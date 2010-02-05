@@ -61,7 +61,6 @@ window.onload = initDynSections;
   <div class="tabs">
     <ul>
       <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
@@ -92,7 +91,7 @@ Collaboration diagram for scheator.ScheatorApp:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <dl class="author"><dt><b>Author:</b></dt><dd>mep </dd></dl>
 
-<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00015">15</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
+<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00018">18</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="abc7c27a0dd5ed6a9cea1d0beb62e2c76"></a><!-- doxytag: member="scheator::ScheatorApp::configureWindow" ref="abc7c27a0dd5ed6a9cea1d0beb62e2c76" args="(java.awt.Window root)" -->
 <div class="memitem">
@@ -110,10 +109,11 @@ Collaboration diagram for scheator.ScheatorApp:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00021">21</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
+<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00028">28</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00021"></a>00021                                                                    {
-<a name="l00022"></a>00022     }
+<p><div class="fragment"><pre class="fragment"><a name="l00028"></a>00028                                                                    {
+<a name="l00029"></a>00029         root.setMinimumSize(<span class="keyword">new</span> Dimension(640,480));
+<a name="l00030"></a>00030     }
 </pre></div></p>
 
 </div>
@@ -135,11 +135,11 @@ Collaboration diagram for scheator.ScheatorApp:</div>
 <p>A convenient static getter for the application instance. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>the instance of SwingApp </dd></dl>
 
-<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00028">28</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
+<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00036">36</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00028"></a>00028                                                {
-<a name="l00029"></a>00029         <span class="keywordflow">return</span> Application.getInstance(ScheatorApp.class);
-<a name="l00030"></a>00030     }
+<p><div class="fragment"><pre class="fragment"><a name="l00036"></a>00036                                                {
+<a name="l00037"></a>00037         <span class="keywordflow">return</span> Application.getInstance(ScheatorApp.class);
+<a name="l00038"></a>00038     }
 </pre></div></p>
 
 </div>
@@ -166,11 +166,11 @@ Collaboration diagram for scheator.ScheatorApp:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00035">35</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
+<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00043">43</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00035"></a>00035                                            {
-<a name="l00036"></a>00036         launch(ScheatorApp.class, args);
-<a name="l00037"></a>00037     }
+<p><div class="fragment"><pre class="fragment"><a name="l00043"></a>00043                                            {
+<a name="l00044"></a>00044         launch(ScheatorApp.class, args);
+<a name="l00045"></a>00045     }
 </pre></div></p>
 
 </div>
@@ -190,11 +190,15 @@ Collaboration diagram for scheator.ScheatorApp:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00017">17</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
+<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00020">20</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00017"></a>00017                                        {
-<a name="l00018"></a>00018         show(<span class="keyword">new</span> ScheatorMainView(<span class="keyword">this</span>));
-<a name="l00019"></a>00019     }
+<p><div class="fragment"><pre class="fragment"><a name="l00020"></a>00020                                        {
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022         MainController controller = <span class="keyword">new</span> MainController();
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024         
+<a name="l00025"></a>00025         show(<span class="keyword">new</span> MainView(<span class="keyword">this</span>, controller));
+<a name="l00026"></a>00026     }
 </pre></div></p>
 
 </div>
@@ -203,7 +207,7 @@ Collaboration diagram for scheator.ScheatorApp:</div>
 <li>src/scheator/<a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Feb 3 15:32:12 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Feb 5 15:56:24 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

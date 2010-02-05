@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" href="$classscheator_1_1MainSearchPane.html" title="{scheator.MainSearchPane\n||+ MainSearchPane()\l}" alt="" coords="5,225,179,313"/>
+<area shape="rect" href="$classscheator_1_1MainTablePane.html" title="{scheator.MainTablePane\n|~ mainTable\l~ upButton\l~ downButton\l~ saveButton\l&#45; resources\l|+ MainTablePane()\l+ print()\l+ save()\l+ moveUp()\l+ moveDown()\l&#45; initTable()\l}" alt="" coords="203,141,365,397"/>
+</map>

@@ -5,8 +5,11 @@
 
 package scheator;
 
+import ScheatorView.MainView;
+import ScheatorController.MainController;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
+import java.awt.*;
 
 /**
  *
@@ -15,10 +18,15 @@ import org.jdesktop.application.SingleFrameApplication;
 public class ScheatorApp extends SingleFrameApplication {
 
     @Override protected void startup() {
-        show(new ScheatorMainView(this));
+
+        MainController controller = new MainController();
+
+        
+        show(new MainView(this, controller));
     }
 
     @Override protected void configureWindow(java.awt.Window root) {
+        root.setMinimumSize(new Dimension(640,480));
     }
 
     /**
