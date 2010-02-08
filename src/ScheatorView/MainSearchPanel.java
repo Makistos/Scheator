@@ -16,15 +16,14 @@ import javax.swing.*;
  */
 public class MainSearchPanel extends AbstractViewPanel {
 
-    MainController controller;
+    private MainController controller;
+    private org.jdesktop.application.ResourceMap resourceMap;
+    private javax.swing.ActionMap actionMap;
 
     public MainSearchPanel(MainController controller) {
 
         this.controller = controller;
         
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainView.class);
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainView.class, this);
-
         String[] seriesNames = {"SM-liiga", "Veikkausliiga", "Valioliiga"};
         String[] seasonNames = {"2008-09", "2009-10"};
 
@@ -35,6 +34,9 @@ public class MainSearchPanel extends AbstractViewPanel {
         JComboBox seriesList = new JComboBox(seriesNames);
         JComboBox seasonList = new JComboBox(seasonNames);
         JButton searchButton = new JButton();
+
+        this.resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainSearchPanel.class);
+        this.actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainSearchPanel.class, this);
 
         seriesLabel.setText(resourceMap.getString("seriesLabel.text"));
         seasonLabel.setText(resourceMap.getString("seasonLabel.text"));

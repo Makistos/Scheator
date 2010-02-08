@@ -5,6 +5,7 @@
 
 package ScheatorView;
 
+import scheator.*;
 import java.beans.PropertyChangeEvent;
 import org.jdesktop.application.Action;
 import javax.swing.*;
@@ -21,24 +22,26 @@ public class MainTablePanel extends AbstractViewPanel {
     javax.swing.JButton upButton = new javax.swing.JButton();
     javax.swing.JButton downButton = new javax.swing.JButton();
     javax.swing.JButton saveButton = new javax.swing.JButton();
-
+    private org.jdesktop.application.ResourceMap resourceMap;
+    private javax.swing.ActionMap actionMap;
     private MainController controller;
 
     public MainTablePanel(MainController controller) {
 
+        this.controller = controller;
         init();
 
     }
 
     private void init() {
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainView.class);
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainView.class, this);
-
         javax.swing.JPanel panel = new javax.swing.JPanel();
         javax.swing.JPanel buttonPanel = new javax.swing.JPanel();
 
-        mainTable = initTable(resourceMap);
+        this.resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainTablePanel.class);
+        this.actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTablePanel.class, this);
+
+        mainTable = initTable();
 
         mainTable.setFillsViewportHeight(true);
         JScrollPane scrollPanel = new JScrollPane(mainTable);
@@ -46,17 +49,17 @@ public class MainTablePanel extends AbstractViewPanel {
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
+        upButton.setText(resourceMap.getString("moveUp.text"));
+        upButton.setName("moveUp");
         upButton.setAction(actionMap.get("moveUp"));
-        upButton.setText(resourceMap.getString("upButton.text"));
-        upButton.setName("upButton");
 
+        downButton.setText(resourceMap.getString("moveDown.text"));
+        downButton.setName("moveDown");
         downButton.setAction(actionMap.get("moveDown"));
-        downButton.setText(resourceMap.getString("downButton.text"));
-        downButton.setName("downButton");
 
+        saveButton.setText(resourceMap.getString("save.text"));
+        saveButton.setName("save");
         saveButton.setAction(actionMap.get("save")); // NOI18N
-        saveButton.setText(resourceMap.getString("saveButton.text"));
-        saveButton.setName("saveButton");
 
         buttonPanel.add(upButton);
         buttonPanel.add(downButton);
@@ -68,7 +71,7 @@ public class MainTablePanel extends AbstractViewPanel {
         add(panel);
         setName("tablePane");
     }
-    private JTable initTable(org.jdesktop.application.ResourceMap resourceMap) {
+    private JTable initTable() {
 
         String[] columnNames;
         columnNames = new String[3];
@@ -76,6 +79,7 @@ public class MainTablePanel extends AbstractViewPanel {
         columnNames[0] = resourceMap.getString("ColRound.text");
         columnNames[1] = resourceMap.getString("ColHome.text");
         columnNames[2] = resourceMap.getString("ColAway.text");
+
         Object[][] data = {{"", "", ""}};
 
         JTable table = new JTable(data, columnNames);
