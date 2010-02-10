@@ -25,10 +25,21 @@ public class ScheatorApp extends SingleFrameApplication {
         show(new MainView(this, controller));
     }
 
-    @Override protected void configureWindow(java.awt.Window root) {
+    @Override
+    protected void ready() {
+
+    }
+
+    @Override
+    protected void configureWindow(java.awt.Window root) {
         root.setMinimumSize(new Dimension(640,480));
     }
 
+    @Override
+    protected void shutdown() {
+
+    }
+    
     /**
      * A convenient static getter for the application instance.
      * @return the instance of SwingApp

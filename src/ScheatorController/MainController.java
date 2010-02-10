@@ -15,4 +15,8 @@ public class MainController extends AbstractController {
 
     }
 
+    public void seasonSelected(Integer index) {
+        
+    }
+
 }

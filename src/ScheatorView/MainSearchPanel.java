@@ -79,6 +79,6 @@ public class MainSearchPanel extends AbstractViewPanel {
 
     @Action
     public void seasonList() {
-
+        controller.seasonSelected(seasonList.getSelectedIndex());
     }
 }
