@@ -11,4 +11,8 @@ package ScheatorController;
  */
 public class MainController extends AbstractController {
 
+    public void seriesSelected(Integer index) {
+
+    }
+
 }

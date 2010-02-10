@@ -11,6 +11,7 @@ package ScheatorView;
 
 import java.beans.PropertyChangeEvent;
 import javax.swing.JPanel;
+import java.awt.event.*;
 
 /**
  * This class provides the base level abstraction for views in this example. All
