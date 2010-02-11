@@ -6,6 +6,7 @@
 package ScheatorModel;
 
 import javax.swing.table.*;
+import ScheatorController.*;
 
 /**
  *
@@ -13,6 +14,13 @@ import javax.swing.table.*;
  */
 public class MainTableModel extends AbstractTableModel implements TableModel {
 
+    AbstractController controller;
+
+    MainTableModel(AbstractController controller) {
+        this.controller = controller;
+        controller.addModel(this);
+    }
+    
     public void setContents() {
         //firePropertyChange();
     }

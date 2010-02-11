@@ -27,6 +27,7 @@ public class MainSearchPanel extends AbstractViewPanel {
     public MainSearchPanel(MainController controller) {
 
         this.controller = controller;
+        controller.addView(this);
         
         String[] seriesNames = {"SM-liiga", "Veikkausliiga", "Valioliiga"};
         String[] seasonNames = {"2008-09", "2009-10"};

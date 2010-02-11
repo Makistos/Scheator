@@ -7,6 +7,7 @@ package ScheatorView;
 
 import scheator.*;
 import ScheatorController.MainController;
+import java.beans.PropertyChangeEvent;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -32,9 +33,11 @@ public class MainView extends FrameView {
     private MainController controller;
 
     public MainView(SingleFrameApplication app, MainController controller) {
-        super(app);
 
+        super(app);
         this.controller = controller;
+        controller.addMainFrame(this);
+        
         initComponents();
     }
 
@@ -201,6 +204,10 @@ public class MainView extends FrameView {
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
+
+    }
+
+    public void modelPropertyChange(PropertyChangeEvent evt) {
 
     }
 

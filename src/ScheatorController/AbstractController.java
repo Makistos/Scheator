@@ -10,7 +10,7 @@
 package ScheatorController;
 
 import ScheatorModel.AbstractModel;
-import ScheatorView.AbstractViewPanel;
+import ScheatorView.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.reflect.Method;
@@ -28,6 +28,7 @@ public abstract class AbstractController implements PropertyChangeListener {
     //  Vectors that hold a list of the registered models and views for this controller.
 
     private ArrayList<AbstractViewPanel> registeredViews;
+    private MainView mainFrame;
     private ArrayList<AbstractModel> registeredModels;
 
 
@@ -77,7 +78,9 @@ public abstract class AbstractController implements PropertyChangeListener {
         registeredViews.remove(view);
     }
 
-
+    public void addMainFrame(MainView frame) {
+        this.mainFrame = frame;
+    }
 
     //  Used to observe property changes from registered models and propogate
     //  them on to all the views.
@@ -92,6 +95,7 @@ public abstract class AbstractController implements PropertyChangeListener {
         for (AbstractViewPanel view: registeredViews) {
             view.modelPropertyChange(evt);
         }
+        mainFrame.modelPropertyChange(evt);
     }
 
 

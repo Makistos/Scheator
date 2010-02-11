@@ -21,7 +21,6 @@ public class ScheatorApp extends SingleFrameApplication {
 
         MainController controller = new MainController();
 
-        
         show(new MainView(this, controller));
     }
 

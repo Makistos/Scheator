@@ -25,13 +25,26 @@ public class MainTablePanel extends AbstractViewPanel {
     private org.jdesktop.application.ResourceMap resourceMap;
     private javax.swing.ActionMap actionMap;
     private MainController controller;
+    public Boolean tableEdited = false;
 
     public MainTablePanel(MainController controller) {
 
         this.controller = controller;
+        controller.addView(this);
         init();
 
     }
+
+    public void setTableEdited(Boolean tableEdited) {
+        Boolean oldValue = tableEdited;
+        this.tableEdited = tableEdited;
+        firePropertyChange("tableEdited", oldValue, this.tableEdited);
+    }
+    
+    public Boolean isTableEdited() {
+        return tableEdited;
+    }
+
 
     private void init() {
 
@@ -112,20 +125,29 @@ public class MainTablePanel extends AbstractViewPanel {
         }
     }
 
-    @Action
+    @Action (enabledProperty = "tableEdited")
     public void save() {
-
+        controller.scheduleEdited();
+        tableEdited = false;
     }
 
     @Action
     public void moveUp() {
-     //   if (mainTable.)
+        Integer row = mainTable.getSelectedRow();
+        if (row > 0) {
+            controller.moveMatch(row, row - 1);
+            tableEdited = true;
+        }
     }
 
     @Action
     public void moveDown() {
-
-    }
+        Integer row = mainTable.getSelectedRow();
+        if (row < mainTable.getRowCount()-1) {
+            controller.moveMatch(row, row + 1);
+            tableEdited = true;
+        }
+}
 
     @Override
     public void modelPropertyChange(PropertyChangeEvent evt) {
