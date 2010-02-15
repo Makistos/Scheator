@@ -6,6 +6,7 @@
 package ScheatorView;
 
 import scheator.*;
+import ScheatorModel.*;
 import java.beans.PropertyChangeEvent;
 import org.jdesktop.application.Action;
 import javax.swing.*;
@@ -54,8 +55,10 @@ public class MainTablePanel extends AbstractViewPanel {
         this.resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainTablePanel.class);
         this.actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTablePanel.class, this);
 
-        mainTable = initTable();
+        MainTableModel mainTableModel = new MainTableModel();
+        mainTable = new JTable(mainTableModel);
 
+        initTable(mainTable);
         mainTable.setFillsViewportHeight(true);
         JScrollPane scrollPanel = new JScrollPane(mainTable);
 
@@ -84,18 +87,8 @@ public class MainTablePanel extends AbstractViewPanel {
         add(panel);
         setName("tablePane");
     }
-    private JTable initTable() {
+    private JTable initTable(JTable table) {
 
-        String[] columnNames;
-        columnNames = new String[3];
-
-        columnNames[0] = resourceMap.getString("ColRound.text");
-        columnNames[1] = resourceMap.getString("ColHome.text");
-        columnNames[2] = resourceMap.getString("ColAway.text");
-
-        Object[][] data = {{"", "", ""}};
-
-        JTable table = new JTable(data, columnNames);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setColumnSelectionAllowed(false);
         table.setRowSelectionAllowed(true);

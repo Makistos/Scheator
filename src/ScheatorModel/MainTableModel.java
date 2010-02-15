@@ -7,35 +7,51 @@ package ScheatorModel;
 
 import javax.swing.table.*;
 import ScheatorController.*;
+import ScheatorDb.*;
+import org.jdesktop.application.Action;
 
 /**
  *
  * @author mep
  */
-public class MainTableModel extends AbstractTableModel implements TableModel {
+public class MainTableModel extends AbstractTableModel {
 
-    AbstractController controller;
+    private String columns[] = {"", "", ""};
 
-    MainTableModel(AbstractController controller) {
-        this.controller = controller;
-        controller.addModel(this);
+    String rows[][] = {
+        {"1", "Arsenal", "Everton"},
+        {"1", "Chelsea", "ManU"},
+        {"1", "Fulham", "Blackburn"}
+    };
+
+    public MainTableModel() {
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainTableModel.class);
+        //javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTableModel.class, this);
+
+        columns[0] = resourceMap.getString("ColRound.text");
+        columns[1] = resourceMap.getString("ColHome.text");
+        columns[2] = resourceMap.getString("ColAway.text");
+
     }
-    
-    public void setContents() {
-        //firePropertyChange();
-    }
-
     public int getRowCount() {
-        return 0;
+        return rows.length;
     }
 
     public int getColumnCount() {
-        return 0;
+        return columns.length;
     }
 
+    @Override
+    public String getColumnName(int columnIndex) {
+        return columns[columnIndex];
+    }
+    
     public Object getValueAt(int row, int column) {
-        Object obj = new Object();
+        return rows[row][column];
+    }
 
-        return obj;
+    public void moveMatch(int start, int end) {
+
+        fireTableDataChanged();
     }
 }
