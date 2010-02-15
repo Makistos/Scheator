@@ -21,7 +21,8 @@ public class MainTableModel extends AbstractTableModel {
     String rows[][] = {
         {"1", "Arsenal", "Everton"},
         {"1", "Chelsea", "ManU"},
-        {"1", "Fulham", "Blackburn"}
+        {"1", "Fulham", "Blackburn"},
+        {"1", "Tottenham", "Bolton"}
     };
 
     public MainTableModel() {
@@ -51,7 +52,40 @@ public class MainTableModel extends AbstractTableModel {
     }
 
     public void moveMatch(int start, int end) {
+        String tmp[];
 
+        tmp = rows[end];
+
+        if (start > end) {
+            for(int i=rows.length;i>0;i--) {
+                if (i == start) {
+                    tmp = rows[i];
+                } else if (i == end) {
+                    rows[i+1] = rows[i];
+                    rows[i] = tmp;
+                    break;
+                } else if (i < start) {
+                    rows[i+1] = rows[i];
+                }
+            }
+        } else {
+            for(int i=0;i<rows.length-1;i++) {
+                if (i == start) {
+                    tmp = rows[i];
+                    //rows[i] = rows[i+1];
+                } else if (i == end) {
+                    rows[i-1] = rows[i];
+                    rows[i] = tmp;
+                    break;
+                } else if (i > start)
+                    rows[i-1] = rows[i];
+            }
+        }
+        System.err.println("Row moved");
         fireTableDataChanged();
+    }
+
+    public void save() {
+        System.err.println("Table saved");
     }
 }

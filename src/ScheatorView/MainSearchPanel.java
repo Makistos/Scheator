@@ -6,6 +6,7 @@
 package ScheatorView;
 
 import ScheatorController.MainController;
+import ScheatorModel.*;
 import org.jdesktop.application.Action;
 import java.beans.PropertyChangeEvent;
 import javax.swing.*;
@@ -24,6 +25,9 @@ public class MainSearchPanel extends AbstractViewPanel {
     JComboBox seriesList;
     JComboBox seasonList;
     JButton searchButton = new JButton();
+    SeriesComboBoxModel seriesModel;
+    SeasonComboBoxModel seasonModel;
+
     public MainSearchPanel(MainController controller) {
 
         this.controller = controller;
@@ -39,14 +43,20 @@ public class MainSearchPanel extends AbstractViewPanel {
         JLabel seriesLabel = new JLabel();
         JLabel seasonLabel = new JLabel();
 
-        seriesList = new JComboBox(seriesNames);
+        seriesModel = new SeriesComboBoxModel();
+        seriesList = new JComboBox(seriesModel);
+        seriesList.setName("series");
         seriesList.setAction(actionMap.get("seriesList"));
         seriesList.setEditable(false);
+//        seriesList.addItemListener(new ComboBoxListener());
 
-        seasonList = new JComboBox(seasonNames);
+        seasonModel = new SeasonComboBoxModel();
+        seasonList = new JComboBox(seasonModel);
+        seasonList.setName("season");
         seasonList.setAction(actionMap.get("seasonList"));
         seasonList.setEditable(false);
-
+//        seasonList.addItemListener(new ComboBoxListener());
+        
         searchButton = new JButton();
         searchButton.setAction(actionMap.get("search"));
 
@@ -75,11 +85,29 @@ public class MainSearchPanel extends AbstractViewPanel {
 
     @Action
     public void seriesList() {
+        //seasonModel.fill(seriesList.getSelectedId());
         controller.seriesSelected(seriesList.getSelectedIndex());
     }
 
     @Action
     public void seasonList() {
         controller.seasonSelected(seasonList.getSelectedIndex());
+    }
+
+    class ComboBoxListener implements ItemListener {
+        ComboBoxListener() {
+
+        }
+        public void itemStateChanged(ItemEvent e) {
+/*            JComboBox cb = (JComboBox) e.getSource();
+            String originator = cb.getName();
+            if (originator.equals("series")) {
+                seasonModel.fill("0");
+            }
+            else if (originator.equals("season")) {
+                // controller.searchSchedule(seriesModel.getSelected(), seasonModel.getSelected());
+            }
+*/
+        }
     }
 }

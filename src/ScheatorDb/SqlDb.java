@@ -46,15 +46,14 @@ public class SqlDb extends AbstractDb {
         }
     }
 
-    @Override
     public String[] readSeriesList() {
-        String[] retVal;
+        String[] retVal = {""};
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(GET_SERIES_LIST);
             int row = 0;
             while (rs.next()) {
-                retVal[row] = rs.toString();
+//                retVal[row] = rs.toString();
                 row++;
             }
         } catch (SQLException ex) {

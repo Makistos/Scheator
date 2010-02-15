@@ -11,6 +11,8 @@ import java.beans.PropertyChangeEvent;
 import org.jdesktop.application.Action;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import ScheatorController.MainController;
 /**
@@ -27,6 +29,7 @@ public class MainTablePanel extends AbstractViewPanel {
     private javax.swing.ActionMap actionMap;
     private MainController controller;
     public Boolean tableEdited = false;
+    MainTableModel mainTableModel;
 
     public MainTablePanel(MainController controller) {
 
@@ -55,7 +58,7 @@ public class MainTablePanel extends AbstractViewPanel {
         this.resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainTablePanel.class);
         this.actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTablePanel.class, this);
 
-        MainTableModel mainTableModel = new MainTableModel();
+        mainTableModel = new MainTableModel();
         mainTable = new JTable(mainTableModel);
 
         initTable(mainTable);
@@ -68,10 +71,12 @@ public class MainTablePanel extends AbstractViewPanel {
         upButton.setText(resourceMap.getString("moveUp.text"));
         upButton.setName("moveUp");
         upButton.setAction(actionMap.get("moveUp"));
-
+        upButton.addActionListener(new ButtonListener());
+        
         downButton.setText(resourceMap.getString("moveDown.text"));
         downButton.setName("moveDown");
         downButton.setAction(actionMap.get("moveDown"));
+        downButton.addActionListener(new ButtonListener());
 
         saveButton.setText(resourceMap.getString("save.text"));
         saveButton.setName("save");
@@ -147,4 +152,28 @@ public class MainTablePanel extends AbstractViewPanel {
 
     }
 
+    class ButtonListener implements ActionListener {
+        ButtonListener() {
+
+        }
+        public void actionPerformed(ActionEvent e) {
+            if (e.getActionCommand().equals("Up")) {
+                Integer row = mainTable.getSelectedRow();
+                if (row > 0) {
+                    mainTableModel.moveMatch(row, row - 1);
+                    tableEdited = true;
+                }
+            }
+            else if (e.getActionCommand().equals("Down")) {
+                Integer row = mainTable.getSelectedRow();
+                if (row < mainTable.getRowCount()-1) {
+                    mainTableModel.moveMatch(row, row + 1);
+                    tableEdited = true;
+                }
+            }
+            else if (e.getActionCommand().equals("Save")) {
+                mainTableModel.save();
+            }
+        }
+    }
 }
