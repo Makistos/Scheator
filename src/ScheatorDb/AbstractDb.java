@@ -16,4 +16,5 @@ public abstract class AbstractDb {
         
     Connection con = null;
 
+    AbstractQueryEngine qe;
 }

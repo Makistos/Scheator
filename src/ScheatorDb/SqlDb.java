@@ -17,7 +17,6 @@ public class SqlDb extends AbstractDb {
                 "SELECT * from Series";
 
     SqlDb() {
-
     }
     
     /**
@@ -29,6 +28,9 @@ public class SqlDb extends AbstractDb {
      */
     SqlDb(String db, String user, String pw) {
 
+        if (db.length() == 0) {
+            db = "scheator";
+        }
         String url = "jdbc:mysql:///" + db;
 
         try {
@@ -44,6 +46,7 @@ public class SqlDb extends AbstractDb {
         catch (Exception e) {
            System.err.println("Exception: "+ e.getMessage());
         }
+        qe = new SqlQueryEngine();
     }
 
     public String[] readSeriesList() {
