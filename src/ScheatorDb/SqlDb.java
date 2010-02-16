@@ -17,6 +17,7 @@ public class SqlDb extends AbstractDb {
                 "SELECT * from Series";
 
     SqlDb() {
+        initDb("scheator", "root", "marko1");
     }
     
     /**
@@ -27,11 +28,14 @@ public class SqlDb extends AbstractDb {
      * @param pw Password for the db connection.
      */
     SqlDb(String db, String user, String pw) {
+        initDb(db, user, pw);
+    }
 
+    private void initDb(String db, String user, String pw) {
         if (db.length() == 0) {
             db = "scheator";
         }
-        String url = "jdbc:mysql:///" + db;
+        String url = "jdbc:mysql://localhost/" + db;
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();

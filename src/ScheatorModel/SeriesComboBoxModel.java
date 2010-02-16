@@ -18,13 +18,13 @@ public class SeriesComboBoxModel extends AbstractListModel implements ComboBoxMo
 
     Series provider;
     LinkedHashMap<Integer, Series.SeriesData> series;
+    Series.SeriesData selection = null;
 
     public SeriesComboBoxModel() {
         provider = new ScheatorDb.Series();
         series = provider.getList();
     }
 
-    Series.SeriesData selection = null;
 /*    private String[][] series = {
         {"0","Valioliiga"},
         {"1", "SM-liiga"},
@@ -33,11 +33,14 @@ public class SeriesComboBoxModel extends AbstractListModel implements ComboBoxMo
     };
 */
     public Object getElementAt(int index) {
-        if (series.containsKey(index)) {
+        return series.get(1);
+
+/*        if (series.containsKey(index)) {
+            
             return series.get(index);
         } else {
             return null;
-        }
+        } */
     }
 
     public int getSize() {

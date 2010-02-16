@@ -19,24 +19,24 @@ class SqlQueryEngine implements AbstractQueryEngine {
         StringBuilder sb = new StringBuilder();
 
         sb.append("SELECT * FROM ");
-        for(int i=0;i<table.length-1;i++) {
-            sb.append(table);
+        for(int i=0;i<table.length;i++) {
+            sb.append(table[i]);
             if (i<table.length-1) {
                 sb.append(",");
             }
         }
         int i = 0;
-        if (ids.length > 0) {
+        if (ids != null) {
             sb.append(" WHERE ");
-            sb.append(idFields + " = ");
-            sb.append(ids);
+            sb.append(idFields[i] + " = ");
+            sb.append(ids[i]);
             if (i < ids.length-1) {
                 sb.append(" AND ");
             }
             i++;
         }
 
-        System.err.println("getItems returns" + sb.toString());
+        System.err.println("SqlQueryEngine.getItems() returns " + sb.toString());
         return sb.toString();
     }
 

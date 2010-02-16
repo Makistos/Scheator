@@ -38,13 +38,13 @@ public class Series extends DbObject {
      * 
      */
     private void fetchSeries() {
-        String[] idFields = {ID_FIELD};
-
+        String[] idFields = {""};
+        String[] fields = {""};
         list.clear();
         
         try {
             Statement st = db.con.createStatement();
-            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, idFields, FIELDS));
+            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, null , null));
             while (rs.next()) {
                 String id = rs.getString(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);
@@ -52,7 +52,7 @@ public class Series extends DbObject {
                 list.put(id, series);
             }
         } catch (Exception e) {
-            System.err.println("Failed to read series data.");
+            System.err.println("Failed to read series data: " + e.toString());
         }
     }
 
