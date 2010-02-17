@@ -13,11 +13,9 @@ import java.sql.*;
  */
 public class SqlDb extends AbstractDb {
 
-    private static final String GET_SERIES_LIST =
-                "SELECT * from Series";
-
     SqlDb() {
-        initDb("scheator", "root", "marko1");
+        // Use default values for testing
+        initDb("scheator", "root", "root");
     }
     
     /**
@@ -52,21 +50,4 @@ public class SqlDb extends AbstractDb {
         }
         qe = new SqlQueryEngine();
     }
-
-    public String[] readSeriesList() {
-        String[] retVal = {""};
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(GET_SERIES_LIST);
-            int row = 0;
-            while (rs.next()) {
-//                retVal[row] = rs.toString();
-                row++;
-            }
-        } catch (SQLException ex) {
-
-        }
-        return retVal;
-    }
-
 }

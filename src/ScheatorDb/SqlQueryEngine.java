@@ -14,34 +14,54 @@ import java.lang.reflect.Field;
  */
 class SqlQueryEngine implements AbstractQueryEngine {
 
+    /** Returns an SQL query for retrieving information from a database.
+     *
+     * @todo get and delete do not add escape characters for String type fields.
+     * 
+     * @param table Table names.
+     * @param fields Field names. If this is null, * is used.
+     * @param idFields Fields used to query the database. If this is null, every
+     * row is returned.
+     * @param ids Values for the id fields. Must be in the same order as the
+     * idFields. If this is null, every row is returned.
+     * @return SQL query string.
+     */
     @Override
-    public String getItems(String[] table, String[] idFields, String[] ids) {
+    public String getItems(String[] table, String[] fields, String[] idFields, String[] ids) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("SELECT * FROM ");
+        if (fields == null) {
+            sb.append("SELECT * FROM ");
+        } else {
+            sb.append("SELECT ");
+            for(int i=0;i<fields.length-1;i++) {
+                 sb.append(fields[i]);
+                 if (i < fields.length-1) {
+                     sb.append(", ");
+                 }
+            }
+            sb.append(" FROM ");
+        }
         for(int i=0;i<table.length;i++) {
             sb.append(table[i]);
             if (i<table.length-1) {
                 sb.append(",");
             }
         }
-        int i = 0;
-        if (ids != null) {
-            sb.append(" WHERE ");
-            sb.append(idFields[i] + " = ");
-            sb.append(ids[i]);
-            if (i < ids.length-1) {
-                sb.append(" AND ");
-            }
-            i++;
-        }
+        sb.append(createWhereClause(idFields, ids));
 
         System.err.println("SqlQueryEngine.getItems() returns " + sb.toString());
         return sb.toString();
     }
 
+    /** Builds an SQL query string to add an item to the database.
+     *
+     * @param table Table name.
+     * @param toAdd Object to add.
+     * @return SQL query.
+     */
     @Override
-    public String addItems(String table, Object toAdd) {
+    public String addItem(String table, Object toAdd) {
         StringBuilder sb = new StringBuilder();
         StringBuilder sbFields = new StringBuilder();
         StringBuilder sbValues = new StringBuilder();
@@ -72,7 +92,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
                     try {
                         sbValues.append(f.get(value));
                     } catch (Exception e) {
-                        System.err.println("No such field!");
+                        System.err.println("No such field!" + e.getMessage());
                     }
                 }
                 sbFields.append(",");
@@ -89,18 +109,45 @@ class SqlQueryEngine implements AbstractQueryEngine {
         return sb.toString();
     }
 
+    /** Builds an SQL query to delete items from the database.
+     *
+     * @param table Table name. Mandatory.
+     * @param idField Field names for the query. If this is null, contents of the
+     * entire table is cleared.
+     * @param id Id values for the query. Must be in the same order as the
+     * fields in idField. If this is null, contents of the entire table is cleared.
+     * @return SQL query string.
+     */
     @Override
-    public String deleteItems(String table, String idField, String id) {
+    public String deleteItems(String table, String[] idFields, String[] ids) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("DELETE FROM ");
         sb.append(table);
-        sb.append(" WHERE ");
-        sb.append(idField);
-        sb.append(" = ");
-        sb.append(id);
+        sb.append(createWhereClause(idFields, ids));
 
         return sb.toString();
     }
 
+    /** Builds the WHERE part of an SQL query.
+     *
+     * @param idFields Fields of the query.
+     * @param ids Values of the query.
+     * @return  WHERE part of an SQL query.
+     */
+    private String createWhereClause(String[] idFields, String[] ids) {
+        StringBuilder sb = new StringBuilder();
+
+        if (idFields != null && ids != null) {
+            sb.append(" WHERE ");
+            for(int i=0;i<idFields.length-1;i++) {
+                sb.append(idFields[i] + " = ");
+                sb.append(ids[i]);
+                if (i < ids.length-1) {
+                    sb.append(" AND ");
+                }
+            }
+        }
+        return sb.toString();
+    }
 }

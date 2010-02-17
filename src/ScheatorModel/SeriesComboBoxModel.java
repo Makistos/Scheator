@@ -9,54 +9,18 @@ import ScheatorDb.*;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 import java.util.LinkedHashMap;
+import java.util.Iterator;
+import java.util.Collection;
 
 /** Model for the series combo box on the main screen.
  *
  * @author mep
  */
-public class SeriesComboBoxModel extends AbstractListModel implements ComboBoxModel {
-
-    Series provider;
-    LinkedHashMap<Integer, Series.SeriesData> series;
-    Series.SeriesData selection = null;
+public class SeriesComboBoxModel extends ScheatorComboBoxModel {
 
     public SeriesComboBoxModel() {
         provider = new ScheatorDb.Series();
-        series = provider.getList();
+        list = provider.getList();
     }
 
-/*    private String[][] series = {
-        {"0","Valioliiga"},
-        {"1", "SM-liiga"},
-        {"2", "NHL"},
-        {"3", "Veikkausliiga"}
-    };
-*/
-    public Object getElementAt(int index) {
-        return series.get(1);
-
-/*        if (series.containsKey(index)) {
-            
-            return series.get(index);
-        } else {
-            return null;
-        } */
-    }
-
-    public int getSize() {
-        return series.size();
-    }
-
-    public void setSelectedItem(Object anItem) {
-        selection =  (Series.SeriesData) anItem;
-    }
-
-    public Object getSelectedItem() {
-        return selection;
-    }
-
-/*    public int getSelectedId() {
-        return Integer.parseInt();
-    }
- */
 }

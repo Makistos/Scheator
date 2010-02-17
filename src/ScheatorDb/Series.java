@@ -29,26 +29,31 @@ public class Series extends DbObject {
      * 
      */
     public Series() {
-        list = new LinkedHashMap<Integer, SeriesData>();
+        list = new LinkedHashMap<Integer, Data>();
         db = new SqlDb();
-        fetchSeries();
+        fetch(0);
     }
 
     /** Gets all the series from the database
      * 
      */
-    private void fetchSeries() {
-        String[] idFields = {""};
-        String[] fields = {""};
+    final void fetch(int key) {
+        this.currentId = key;
         list.clear();
+        String[] idFields = null;
+        String[] ids = null;
+        if (key != 0) {
+            idFields[0] = "season";
+            ids[0] = String.valueOf(currentId);
+        }
         
         try {
             Statement st = db.con.createStatement();
-            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, null , null));
+            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, null, idFields , ids));
             while (rs.next()) {
                 String id = rs.getString(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);
-                SeriesData series = new SeriesData(Integer.parseInt(id.trim()), name);
+                Data series = new Data(Integer.parseInt(id.trim()), name);
                 list.put(id, series);
             }
         } catch (Exception e) {
@@ -59,16 +64,16 @@ public class Series extends DbObject {
     /** A container for a series entity
      * 
      */
-    public class SeriesData {
+    public class Data extends DbObject.Data {
 
-        int field_id;
-        String field_name;
+        public int field_id;
+        public String field_name;
 
         /** Creates a new series entity without a database id.
          *
          * @param name Name of the series.
          */
-        SeriesData(String name) {
+        Data(String name) {
             this.field_id = 0;
             this.field_name = name;
         }
@@ -78,7 +83,7 @@ public class Series extends DbObject {
          * @param id   Database id for this entity.
          * @param name Name of the series.
          */
-        SeriesData(int id, String name) {
+        Data(int id, String name) {
             this.field_id = id;
             this.field_name = name;
         }

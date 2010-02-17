@@ -13,12 +13,19 @@ import java.util.LinkedHashMap;
 public abstract class DbObject<Object, T> {
     LinkedHashMap<Object, T> list;
     AbstractDb db;
+    int currentId;
     
+    abstract void fetch(int key);
+
     public LinkedHashMap<Object, T> getList() {
         return list;
     }
 
     public T getItemByIndex(Object index) {
         return list.get(index);
+    }
+
+    abstract public class Data {
+        
     }
 }
