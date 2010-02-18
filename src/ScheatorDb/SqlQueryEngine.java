@@ -5,10 +5,13 @@
 
 package ScheatorDb;
 
-import java.sql.*;
 import java.lang.reflect.Field;
 
-/**
+/** A class for creating SQL queries.
+ *
+ * @todo getItems() and deleteItems do not support varchar (=String) type
+ * search fields as the values should be enclosed in single quotes. This is done
+ * in addItem() but since I don't need this feature it has not been implemented.
  *
  * @author mep
  */
@@ -27,7 +30,8 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @return SQL query string.
      */
     @Override
-    public String getItems(String[] table, String[] fields, String[] idFields, String[] ids) {
+    public String getItems(String[] table, String[] fields, String[] idFields, 
+            String[] ids, String[] orderBy) {
         StringBuilder sb = new StringBuilder();
 
         if (fields == null) {
@@ -50,6 +54,10 @@ class SqlQueryEngine implements AbstractQueryEngine {
         }
         sb.append(createWhereClause(idFields, ids));
 
+        if (orderBy != null) {
+            sb.append(" ORDER BY ");
+            sb.append(orderBy);
+        }
         System.err.println("SqlQueryEngine.getItems() returns " + sb.toString());
         return sb.toString();
     }
@@ -140,7 +148,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
 
         if (idFields != null && ids != null) {
             sb.append(" WHERE ");
-            for(int i=0;i<idFields.length-1;i++) {
+            for(int i=0;i<idFields.length;i++) {
                 sb.append(idFields[i] + " = ");
                 sb.append(ids[i]);
                 if (i < ids.length-1) {

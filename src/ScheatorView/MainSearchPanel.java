@@ -7,6 +7,7 @@ package ScheatorView;
 
 import ScheatorController.MainController;
 import ScheatorModel.*;
+import ScheatorDb.*;
 import org.jdesktop.application.Action;
 import java.beans.PropertyChangeEvent;
 import javax.swing.*;
@@ -27,6 +28,7 @@ public class MainSearchPanel extends AbstractViewPanel {
     JButton searchButton = new JButton();
     SeriesComboBoxModel seriesModel;
     SeasonComboBoxModel seasonModel;
+    public Boolean searchEnabled = true;
 
     public MainSearchPanel(MainController controller) {
 
@@ -73,9 +75,21 @@ public class MainSearchPanel extends AbstractViewPanel {
         setName("searchPane");
     }
 
-    @Action
+
+    public void setSearchEnabled(Boolean searchEnabled) {
+        Boolean oldValue = searchEnabled;
+        this.searchEnabled = searchEnabled;
+        firePropertyChange("searchEnabled", oldValue, this.searchEnabled);
+    }
+
+    public Boolean isSearchEnabled() {
+        return searchEnabled;
+    }
+
+    @Action (enabledProperty = "searchEnabled")
     public void search() {
-       // controller.searchMainTable();
+        //int seasonId = (ScheatorDb.DbObject.Data) seasonList.getSelectedItem().field_id;
+       //controller.searchMainTable(seasonId);
     }
 
     @Override
@@ -86,12 +100,19 @@ public class MainSearchPanel extends AbstractViewPanel {
     @Action
     public void seriesList() {
         //seasonModel.fill(seriesList.getSelectedId());
-        controller.seriesSelected(seriesList.getSelectedIndex());
+        //controller.seriesSelected(seriesList.getSelectedIndex());
+        Series.Data selected = (Series.Data)seriesModel.getSelectedItem();
+        int id = selected.field_id;
+        seasonModel.update(id);
     }
 
     @Action
     public void seasonList() {
-        controller.seasonSelected(seasonList.getSelectedIndex());
+        if ((Season.Data)seasonModel.getSelectedItem() != null) {
+            setSearchEnabled(true);
+        } else {
+            setSearchEnabled(false);
+        }
     }
 
     class ComboBoxListener implements ItemListener {

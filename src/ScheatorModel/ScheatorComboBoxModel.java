@@ -60,6 +60,7 @@ public abstract class ScheatorComboBoxModel extends AbstractListModel implements
      */
     public void setSelectedItem(Object anItem) {
         selection =  (DbObject.Data) anItem;
+
     }
 
     /** Returns the currectly selected item.

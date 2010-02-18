@@ -30,14 +30,14 @@ public class Series extends DbObject {
      */
     public Series() {
         list = new LinkedHashMap<Integer, Data>();
-        db = new SqlDb();
+        db = new MySqlDb();
         fetch(0);
     }
 
-    /** Gets all the series from the database
+    /** Gets all the series or one specific series from the database.
      * 
      */
-    final void fetch(int key) {
+    public final void fetch(int key) {
         this.currentId = key;
         list.clear();
         String[] idFields = null;
@@ -49,7 +49,7 @@ public class Series extends DbObject {
         
         try {
             Statement st = db.con.createStatement();
-            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, null, idFields , ids));
+            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, null, idFields , ids, null));
             while (rs.next()) {
                 String id = rs.getString(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);
@@ -61,13 +61,10 @@ public class Series extends DbObject {
         }
     }
 
-    /** A container for a series entity
+    /** A container for a series entity.
      * 
      */
     public class Data extends DbObject.Data {
-
-        public int field_id;
-        public String field_name;
 
         /** Creates a new series entity without a database id.
          *
@@ -86,10 +83,6 @@ public class Series extends DbObject {
         Data(int id, String name) {
             this.field_id = id;
             this.field_name = name;
-        }
-        @Override
-        public String toString() {
-            return field_name;
         }
     }
 }

@@ -126,7 +126,7 @@ public class MainTablePanel extends AbstractViewPanel {
     @Action (enabledProperty = "tableEdited")
     public void save() {
         controller.scheduleEdited();
-        tableEdited = false;
+        setTableEdited(false);
     }
 
     @Action
@@ -134,7 +134,7 @@ public class MainTablePanel extends AbstractViewPanel {
         Integer row = mainTable.getSelectedRow();
         if (row > 0) {
             controller.moveMatch(row, row - 1);
-            tableEdited = true;
+            setTableEdited(true);
         }
     }
 
@@ -143,7 +143,7 @@ public class MainTablePanel extends AbstractViewPanel {
         Integer row = mainTable.getSelectedRow();
         if (row < mainTable.getRowCount()-1) {
             controller.moveMatch(row, row + 1);
-            tableEdited = true;
+            setTableEdited(true);
         }
 }
 
@@ -161,14 +161,14 @@ public class MainTablePanel extends AbstractViewPanel {
                 Integer row = mainTable.getSelectedRow();
                 if (row > 0) {
                     mainTableModel.moveMatch(row, row - 1);
-                    tableEdited = true;
+                    setTableEdited(true);
                 }
             }
             else if (e.getActionCommand().equals("Down")) {
                 Integer row = mainTable.getSelectedRow();
                 if (row < mainTable.getRowCount()-1) {
                     mainTableModel.moveMatch(row, row + 1);
-                    tableEdited = true;
+                    setTableEdited(true);
                 }
             }
             else if (e.getActionCommand().equals("Save")) {

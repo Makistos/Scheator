@@ -14,17 +14,20 @@ import java.sql.*;
 public class Schedule extends DbObject {
 
     /** Table name in the database */
-    private static final String[] TABLE_NAME = {"Schedule"};
+    private static final String[] TABLES = {"Season", "SeasonTeam", "Team", "Match"};
     /** Id field name for this table in the database */
     private static final String ID_FIELD = "ID";
     /** Field names for this table in the database */
     private static final String[] FIELDS = {"ID", "Name", "Season"};
 
-    Schedule() {
-
+    public Schedule() {
+        list = new LinkedHashMap<Integer, Data>();
+        db = new MySqlDb();
     }
 
-    Schedule(int key) {
+    public Schedule(int key) {
+        list = new LinkedHashMap<Integer, Data>();
+        db = new MySqlDb();
         fetch(key);
     }
 
@@ -40,7 +43,7 @@ public class Schedule extends DbObject {
 
         try {
             Statement st = db.con.createStatement();
-            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, null, idFields , ids));
+            ResultSet rs = st.executeQuery(db.qe.getItems(TABLES, null, idFields , ids, null));
             while (rs.next()) {
                 String id = rs.getString(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);
@@ -52,7 +55,8 @@ public class Schedule extends DbObject {
         }
     }
 
-    public class Data {
+    public class Data extends DbObject.Data {
+
         Data() {
 
         }

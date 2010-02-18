@@ -22,5 +22,4 @@ public class SeriesComboBoxModel extends ScheatorComboBoxModel {
         provider = new ScheatorDb.Series();
         list = provider.getList();
     }
-
 }

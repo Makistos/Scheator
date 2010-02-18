@@ -9,13 +9,16 @@ import javax.swing.table.*;
 import ScheatorController.*;
 import ScheatorDb.*;
 import org.jdesktop.application.Action;
+import java.util.ArrayList;
 
-/**
+/** The model for the schedule table on the main window.
  *
  * @author mep
  */
 public class MainTableModel extends AbstractTableModel {
 
+    ArrayList<Schedule.Data> list;
+    DbObject provider;
     private String columns[] = {"", "", ""};
 
     String rows[][] = {
@@ -26,6 +29,8 @@ public class MainTableModel extends AbstractTableModel {
     };
 
     public MainTableModel() {
+        provider = new ScheatorDb.Schedule();
+        
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainTableModel.class);
         //javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTableModel.class, this);
 
@@ -51,6 +56,11 @@ public class MainTableModel extends AbstractTableModel {
         return rows[row][column];
     }
 
+    /** Moves a match to a different position.
+     *
+     * @param start Start position.
+     * @param end Position to move the match to.
+     */
     public void moveMatch(int start, int end) {
         String tmp[];
 
@@ -82,6 +92,15 @@ public class MainTableModel extends AbstractTableModel {
             }
         }
         System.err.println("Row moved");
+        fireTableDataChanged();
+    }
+
+    /** Updates the table data from the database and notifies the listeners.
+     *
+     * @param seasonId Season for which to retrieve the schedule.
+     */
+    public void update(int seasonId) {
+        provider.fetch(seasonId);
         fireTableDataChanged();
     }
 

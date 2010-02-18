@@ -8,7 +8,7 @@ package ScheatorDb;
 import java.sql.*;
 import ScheatorModel.*;
 
-/**
+/** An abstraction of a database connector.
  *
  * @author mep
  */
