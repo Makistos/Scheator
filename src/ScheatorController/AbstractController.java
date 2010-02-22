@@ -27,13 +27,13 @@ import java.awt.*;
  * changes when necessary.
  * @author Robert Eckstein
  */
-public abstract class AbstractController implements EventListener, TableModelListener, ListDataListener, ItemListener {
+public abstract class AbstractController implements EventListener {
 
     //  Vectors that hold a list of the registered models and views for this controller.
 
-    private ArrayList<AbstractView> registeredViews;
-    private MainView mainFrame;
-    private ArrayList<Object> registeredModels;
+    ArrayList<AbstractView> registeredViews;
+    MainView mainFrame;
+    ArrayList<Object> registeredModels;
 
 
     /** Creates a new instance of Controller */
@@ -53,15 +53,15 @@ public abstract class AbstractController implements EventListener, TableModelLis
         registeredModels.add(model);
         if(model instanceof AbstractTableModel) {
             AbstractTableModel T = (AbstractTableModel) model;
-            T.addTableModelListener(this);
+            T.addTableModelListener(new TableModelListenerImpl());
         }
         if (model instanceof AbstractListModel) {
             AbstractListModel T = (AbstractListModel) model;
-            T.addListDataListener(this);
+            T.addListDataListener(new ListDataListenerImpl());
         }
         if (model instanceof ItemSelectable) {
             ItemSelectable T = (ItemSelectable) model;
-            T.addItemListener(this);
+            T.addItemListener(new ItemListenerImpl());
         }
     }
 
@@ -73,12 +73,18 @@ public abstract class AbstractController implements EventListener, TableModelLis
         registeredModels.remove(model);
         if(model instanceof AbstractTableModel) {
             AbstractTableModel T = (AbstractTableModel) model;
-            T.removeTableModelListener(this);
+            T.removeTableModelListener(new TableModelListenerImpl());
         }
-        else if (model instanceof AbstractListModel) {
+        if (model instanceof AbstractListModel) {
             AbstractListModel T = (AbstractListModel) model;
-            T.removeListDataListener(this);
-        }    }
+            T.removeListDataListener(new ListDataListenerImpl());
+        }    
+        if (model instanceof ItemSelectable) {
+            System.err.println("Item is selectable");
+            ItemSelectable T = (ItemSelectable) model;
+            T.addItemListener(new ItemListenerImpl());
+        }
+    }
 
 
     /**
@@ -102,40 +108,49 @@ public abstract class AbstractController implements EventListener, TableModelLis
         this.mainFrame = frame;
     }
 
-    public void tableChanged(TableModelEvent e) {
-        for (AbstractView view: registeredViews) {
-            view.mainTableChanged(e);
+    class TableModelListenerImpl implements TableModelListener {
+        public void tableChanged(TableModelEvent e) {
+            for (AbstractView view: registeredViews) {
+                view.mainTableChanged(e);
+            }
+            mainFrame.mainTableChanged(e);
         }
-        mainFrame.mainTableChanged(e);
     }
 
-    public void contentsChanged(ListDataEvent e) {
-        for (AbstractView view: registeredViews) {
-            view.comboBoxEvent(e);
+    class ListDataListenerImpl implements ListDataListener {
+        public void contentsChanged(ListDataEvent e) {
+            for (AbstractView view: registeredViews) {
+                view.comboBoxEvent(e);
+            }
+            System.err.println("contentsChanged()");
+            mainFrame.comboBoxEvent(e);
         }
-        System.err.println("contentsChanged()");
-        mainFrame.comboBoxEvent(e);
+
+        public void intervalRemoved(ListDataEvent e) {
+            for (AbstractView view: registeredViews) {
+                view.comboBoxEvent(e);
+            }
+            mainFrame.comboBoxEvent(e);
+        }
+
+        public void intervalAdded(ListDataEvent e) {
+            for (AbstractView view: registeredViews) {
+                view.comboBoxEvent(e);
+            }
+            mainFrame.comboBoxEvent(e);
+        }
+
     }
 
-    public void intervalRemoved(ListDataEvent e) {
-        for (AbstractView view: registeredViews) {
-            view.comboBoxEvent(e);
-        }
-        mainFrame.comboBoxEvent(e);
-    }
 
-    public void intervalAdded(ListDataEvent e) {
-        for (AbstractView view: registeredViews) {
-            view.comboBoxEvent(e);
-        }
-        mainFrame.comboBoxEvent(e);
-    }
 
-    public void itemStateChanged(ItemEvent e) {
-        for (AbstractView view: registeredViews) {
-            view.itemStateChanged(e);
+    class ItemListenerImpl implements ItemListener {
+        public void itemStateChanged(ItemEvent e) {
+            for (AbstractView view: registeredViews) {
+                view.itemStateChanged(e);
+            }
+            System.err.println("itemStateChanged");
+            mainFrame.itemStateChanged(e);
         }
-        System.err.println("itemStateChanged");
-        mainFrame.itemStateChanged(e);
     }
 }

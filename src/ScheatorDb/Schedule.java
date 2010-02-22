@@ -37,13 +37,17 @@ public class Schedule extends DbObject {
         String[] idFields = null;
         String[] ids = null;
         if (key != 0) {
+            idFields = new String[1];
+            ids = new String[1];
             idFields[0] = "season";
             ids[0] = String.valueOf(currentId);
         }
 
         try {
             Statement st = db.con.createStatement();
-            ResultSet rs = st.executeQuery(db.qe.getItems(TABLES, null, idFields , ids, null));
+            String q = db.qe.getItems(TABLES, null, idFields , ids, null);
+            System.err.println("Query = " + q);
+            ResultSet rs = st.executeQuery(q);
             while (rs.next()) {
                 String id = rs.getString(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);

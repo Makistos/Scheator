@@ -5,12 +5,7 @@
 
 package ScheatorModel;
 
-import ScheatorDb.*;
-import javax.swing.AbstractListModel;
-import javax.swing.ComboBoxModel;
-import java.util.LinkedHashMap;
-import java.util.Iterator;
-import java.util.Collection;
+import ScheatorController.*;
 
 /** Model for the series combo box on the main screen.
  *
@@ -18,8 +13,13 @@ import java.util.Collection;
  */
 public class SeriesComboBoxModel extends ScheatorComboBoxModel {
 
-    public SeriesComboBoxModel() {
+    private AbstractController controller;
+
+    public SeriesComboBoxModel(AbstractController controller) {
         provider = new ScheatorDb.Series();
+        this.controller = controller;
+        controller.addModel(this);
+
         list = provider.getList();
     }
 }

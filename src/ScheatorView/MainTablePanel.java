@@ -60,7 +60,7 @@ public class MainTablePanel extends AbstractView {
         this.resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainTablePanel.class);
         this.actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTablePanel.class, this);
 
-        mainTableModel = new MainTableModel();
+        mainTableModel = new MainTableModel(controller);
         mainTable = new JTable(mainTableModel);
 
         initTable(mainTable);

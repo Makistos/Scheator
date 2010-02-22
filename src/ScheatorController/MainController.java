@@ -5,7 +5,7 @@
 
 package ScheatorController;
 
-import javax.swing.*;
+import java.lang.reflect.*;
 
 /**
  *
@@ -16,8 +16,29 @@ public class MainController extends AbstractController {
     public static final String SERIES_LIST = "SERIES_LIST";
     public static final String SEASON_LIST = "SEASON_LIST";
     public static final String SCHEDULE_DATA = "SCHEDULE_DATA";
+    private static final String MAINTABLE_MODEL_SEARCH = "MainTableModel";
 
-
+    public void searchMainTable(int seasonId) {
+        System.err.println("searchMainTable()");
+        for (Object model: registeredModels) {
+            Class c = model.getClass();
+            System.err.println("Class = " + c.getName());
+            if (c.getName().equals("ScheatorModel.MainTableModel")) {
+                System.err.println("Model found");
+                Class parTypes[] = new Class[1];
+                parTypes[0] = Integer.TYPE;
+                try {
+                    Method m = c.getMethod("update", parTypes);
+                    Object argList[] = new Object[1];
+                    argList[0] = new Integer(seasonId);
+                    m.invoke(model, argList);
+                } catch (Throwable e) {
+                    //System.err.println("Fail " + e.toString());
+                }
+            }
+        }
+    }
+    
     /** Saves the schedule list.
      *
      * A JTable is received for performance reasons. The only way to abstract

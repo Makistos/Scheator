@@ -11,6 +11,7 @@ import ScheatorDb.*;
 import org.jdesktop.application.Action;
 import javax.swing.*;
 import java.awt.event.*;
+import ScheatorDb.*;
 
 /**
  *
@@ -26,7 +27,7 @@ public class MainSearchPanel extends AbstractView {
     JButton searchButton = new JButton();
     SeriesComboBoxModel seriesModel;
     SeasonComboBoxModel seasonModel;
-    public Boolean searchEnabled = true;
+    private boolean searchEnabled = false;
 
     public MainSearchPanel(MainController controller) {
 
@@ -43,7 +44,7 @@ public class MainSearchPanel extends AbstractView {
         JLabel seriesLabel = new JLabel();
         JLabel seasonLabel = new JLabel();
 
-        seriesModel = new SeriesComboBoxModel();
+        seriesModel = new SeriesComboBoxModel(controller);
         seriesList = new JComboBox(seriesModel);
         seriesList.setName("series");
         seriesList.setAction(actionMap.get("seriesList"));
@@ -74,8 +75,8 @@ public class MainSearchPanel extends AbstractView {
     }
 
 
-    public void setSearchEnabled(Boolean searchEnabled) {
-        Boolean oldValue = searchEnabled;
+    public void setSearchEnabled(boolean searchEnabled) {
+        boolean oldValue = this.searchEnabled;
         this.searchEnabled = searchEnabled;
         firePropertyChange("searchEnabled", oldValue, this.searchEnabled);
     }
@@ -86,8 +87,10 @@ public class MainSearchPanel extends AbstractView {
 
     @Action (enabledProperty = "searchEnabled")
     public void search() {
-        //int seasonId = (ScheatorDb.DbObject.Data) seasonList.getSelectedItem().field_id;
-       //controller.searchMainTable(seasonId);
+        System.err.println("Searching");
+        ScheatorDb.DbObject.Data data = (ScheatorDb.DbObject.Data) seasonList.getSelectedItem();
+        int seasonId = data.field_id;
+        controller.searchMainTable(seasonId);
     }
 
     @Action
@@ -103,6 +106,7 @@ public class MainSearchPanel extends AbstractView {
     public void seasonList() {
         if ((Season.Data)seasonModel.getSelectedItem() != null) {
             setSearchEnabled(true);
+            System.err.println("SELECTED");
         } else {
             setSearchEnabled(false);
         }
@@ -110,8 +114,11 @@ public class MainSearchPanel extends AbstractView {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        //if (e.getStateChange == ItemEvent.SELECTED)
         Object source = e.getItem().getClass().getName();
+        
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+
+        }
 
         System.err.println("itemStateChanged source: " + source);
 

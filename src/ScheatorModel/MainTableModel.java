@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class MainTableModel extends AbstractTableModel {
 
+    private AbstractController controller;
     ArrayList<Schedule.Data> list;
     DbObject provider;
     private String columns[] = {"", "", ""};
@@ -28,9 +29,11 @@ public class MainTableModel extends AbstractTableModel {
         {"1", "Tottenham", "Bolton"}
     };
 
-    public MainTableModel() {
+    public MainTableModel(AbstractController controller) {
         provider = new ScheatorDb.Schedule();
-        
+        this.controller = controller;
+        controller.addModel(this);
+
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainTableModel.class);
         //javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTableModel.class, this);
 
@@ -100,6 +103,7 @@ public class MainTableModel extends AbstractTableModel {
      * @param seasonId Season for which to retrieve the schedule.
      */
     public void update(int seasonId) {
+        System.err.println("Updating table for season #" + seasonId);
         provider.fetch(seasonId);
         fireTableDataChanged();
     }
