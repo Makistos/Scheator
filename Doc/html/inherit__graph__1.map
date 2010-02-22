@@ -1,5 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" href="$classjavax_1_1swing_1_1JScrollPane.html" title="JScrollPane" alt="" coords="5,32,96,61"/>
-<area shape="rect" href="$classscheator_1_1MainSearchPane.html" title="scheator.MainSearchPane" alt="" coords="144,5,317,35"/>
-<area shape="rect" href="$classscheator_1_1MainTablePane.html" title="scheator.MainTablePane" alt="" coords="149,59,312,88"/>
+<area shape="rect" href="$classDbObject_1_1Data.html" title="Data" alt="" coords="5,112,53,141"/>
+<area shape="rect" href="$classScheatorDb_1_1Matches_1_1Data.html" title="ScheatorDb.Matches.Data" alt="" coords="104,5,277,35"/>
+<area shape="rect" href="$classScheatorDb_1_1Schedule_1_1Data.html" title="ScheatorDb.Schedule.Data" alt="" coords="101,59,280,88"/>
+<area shape="rect" href="$classScheatorDb_1_1Season_1_1Data.html" title="ScheatorDb.Season.Data" alt="" coords="107,112,275,141"/>
+<area shape="rect" href="$classScheatorDb_1_1Series_1_1Data.html" title="ScheatorDb.Series.Data" alt="" coords="111,165,271,195"/>
+<area shape="rect" href="$classScheatorDb_1_1Teams_1_1Data.html" title="ScheatorDb.Teams.Data" alt="" coords="109,219,272,248"/>
 </map>

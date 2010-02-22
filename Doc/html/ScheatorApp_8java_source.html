@@ -53,6 +53,7 @@ window.onload = initDynSections;
   <div class="tabs">
     <ul>
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -80,27 +81,37 @@ window.onload = initDynSections;
 <a name="l00019"></a>00019 
 <a name="l00020"></a><a class="code" href="classscheator_1_1ScheatorApp.html#a858ad3e0171ee782a7f31a2300126733">00020</a>     @Override <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classscheator_1_1ScheatorApp.html#a858ad3e0171ee782a7f31a2300126733">startup</a>() {
 <a name="l00021"></a>00021 
-<a name="l00022"></a>00022         MainController controller = <span class="keyword">new</span> MainController();
+<a name="l00022"></a>00022         <a class="code" href="classScheatorController_1_1MainController.html">MainController</a> controller = <span class="keyword">new</span> <a class="code" href="classScheatorController_1_1MainController.html">MainController</a>();
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024         
-<a name="l00025"></a>00025         show(<span class="keyword">new</span> MainView(<span class="keyword">this</span>, controller));
-<a name="l00026"></a>00026     }
-<a name="l00027"></a>00027 
-<a name="l00028"></a><a class="code" href="classscheator_1_1ScheatorApp.html#abc7c27a0dd5ed6a9cea1d0beb62e2c76">00028</a>     @Override <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classscheator_1_1ScheatorApp.html#abc7c27a0dd5ed6a9cea1d0beb62e2c76">configureWindow</a>(java.awt.Window root) {
-<a name="l00029"></a>00029         root.setMinimumSize(<span class="keyword">new</span> Dimension(640,480));
+<a name="l00024"></a>00024         show(<span class="keyword">new</span> <a class="code" href="classScheatorView_1_1MainView.html">MainView</a>(<span class="keyword">this</span>, controller));
+<a name="l00025"></a>00025     }
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027     @Override
+<a name="l00028"></a><a class="code" href="classscheator_1_1ScheatorApp.html#a7c6c8729878b5b057a75247258196d0c">00028</a>     <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classscheator_1_1ScheatorApp.html#a7c6c8729878b5b057a75247258196d0c">ready</a>() {
+<a name="l00029"></a>00029 
 <a name="l00030"></a>00030     }
 <a name="l00031"></a>00031 
-<a name="l00036"></a><a class="code" href="classscheator_1_1ScheatorApp.html#a859e444bddc3e9ffcea51aff5aa4fd46">00036</a>     <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="classscheator_1_1ScheatorApp.html">ScheatorApp</a> <a class="code" href="classscheator_1_1ScheatorApp.html#a859e444bddc3e9ffcea51aff5aa4fd46">getApplication</a>() {
-<a name="l00037"></a>00037         <span class="keywordflow">return</span> Application.getInstance(<a class="code" href="classscheator_1_1ScheatorApp.html">ScheatorApp</a>.class);
-<a name="l00038"></a>00038     }
+<a name="l00032"></a>00032     @Override
+<a name="l00033"></a><a class="code" href="classscheator_1_1ScheatorApp.html#abc7c27a0dd5ed6a9cea1d0beb62e2c76">00033</a>     <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classscheator_1_1ScheatorApp.html#abc7c27a0dd5ed6a9cea1d0beb62e2c76">configureWindow</a>(java.awt.Window root) {
+<a name="l00034"></a>00034         root.setMinimumSize(<span class="keyword">new</span> Dimension(640,480));
+<a name="l00035"></a>00035     }
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037     @Override
+<a name="l00038"></a><a class="code" href="classscheator_1_1ScheatorApp.html#accf5e2cf66d9d031b911276b21eaeb83">00038</a>     <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classscheator_1_1ScheatorApp.html#accf5e2cf66d9d031b911276b21eaeb83">shutdown</a>() {
 <a name="l00039"></a>00039 
-<a name="l00043"></a><a class="code" href="classscheator_1_1ScheatorApp.html#aba422aa7a960f122a130ee6f20c93850">00043</a>     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classscheator_1_1ScheatorApp.html#aba422aa7a960f122a130ee6f20c93850">main</a>(String[] args) {
-<a name="l00044"></a>00044         launch(<a class="code" href="classscheator_1_1ScheatorApp.html">ScheatorApp</a>.class, args);
-<a name="l00045"></a>00045     }
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 }
+<a name="l00040"></a>00040     }
+<a name="l00041"></a>00041     
+<a name="l00046"></a><a class="code" href="classscheator_1_1ScheatorApp.html#a859e444bddc3e9ffcea51aff5aa4fd46">00046</a>     <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="classscheator_1_1ScheatorApp.html">ScheatorApp</a> <a class="code" href="classscheator_1_1ScheatorApp.html#a859e444bddc3e9ffcea51aff5aa4fd46">getApplication</a>() {
+<a name="l00047"></a>00047         <span class="keywordflow">return</span> Application.getInstance(<a class="code" href="classscheator_1_1ScheatorApp.html">ScheatorApp</a>.class);
+<a name="l00048"></a>00048     }
+<a name="l00049"></a>00049 
+<a name="l00053"></a><a class="code" href="classscheator_1_1ScheatorApp.html#aba422aa7a960f122a130ee6f20c93850">00053</a>     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classscheator_1_1ScheatorApp.html#aba422aa7a960f122a130ee6f20c93850">main</a>(String[] args) {
+<a name="l00054"></a>00054         launch(<a class="code" href="classscheator_1_1ScheatorApp.html">ScheatorApp</a>.class, args);
+<a name="l00055"></a>00055     }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 }
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Feb 8 21:49:31 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:16 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

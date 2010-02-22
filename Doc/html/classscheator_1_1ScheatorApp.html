@@ -53,6 +53,7 @@ window.onload = initDynSections;
   <div class="tabs">
     <ul>
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -61,6 +62,7 @@ window.onload = initDynSections;
   <div class="tabs">
     <ul>
       <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
@@ -86,7 +88,9 @@ Collaboration diagram for scheator.ScheatorApp:</div>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscheator_1_1ScheatorApp.html#aba422aa7a960f122a130ee6f20c93850">main</a> (String[] args)</td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscheator_1_1ScheatorApp.html#a858ad3e0171ee782a7f31a2300126733">startup</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscheator_1_1ScheatorApp.html#a7c6c8729878b5b057a75247258196d0c">ready</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscheator_1_1ScheatorApp.html#abc7c27a0dd5ed6a9cea1d0beb62e2c76">configureWindow</a> (java.awt.Window root)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscheator_1_1ScheatorApp.html#accf5e2cf66d9d031b911276b21eaeb83">shutdown</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <dl class="author"><dt><b>Author:</b></dt><dd>mep </dd></dl>
@@ -109,11 +113,11 @@ Collaboration diagram for scheator.ScheatorApp:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00028">28</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
+<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00033">33</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00028"></a>00028                                                                    {
-<a name="l00029"></a>00029         root.setMinimumSize(<span class="keyword">new</span> Dimension(640,480));
-<a name="l00030"></a>00030     }
+<p><div class="fragment"><pre class="fragment"><a name="l00033"></a>00033                                                          {
+<a name="l00034"></a>00034         root.setMinimumSize(<span class="keyword">new</span> Dimension(640,480));
+<a name="l00035"></a>00035     }
 </pre></div></p>
 
 </div>
@@ -135,11 +139,11 @@ Collaboration diagram for scheator.ScheatorApp:</div>
 <p>A convenient static getter for the application instance. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>the instance of SwingApp </dd></dl>
 
-<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00036">36</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
+<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00046">46</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00036"></a>00036                                                {
-<a name="l00037"></a>00037         <span class="keywordflow">return</span> Application.getInstance(ScheatorApp.class);
-<a name="l00038"></a>00038     }
+<p><div class="fragment"><pre class="fragment"><a name="l00046"></a>00046                                                {
+<a name="l00047"></a>00047         <span class="keywordflow">return</span> Application.getInstance(ScheatorApp.class);
+<a name="l00048"></a>00048     }
 </pre></div></p>
 
 </div>
@@ -166,11 +170,59 @@ Collaboration diagram for scheator.ScheatorApp:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00043">43</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
+<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00053">53</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00043"></a>00043                                            {
-<a name="l00044"></a>00044         launch(ScheatorApp.class, args);
-<a name="l00045"></a>00045     }
+<p><div class="fragment"><pre class="fragment"><a name="l00053"></a>00053                                            {
+<a name="l00054"></a>00054         launch(ScheatorApp.class, args);
+<a name="l00055"></a>00055     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a7c6c8729878b5b057a75247258196d0c"></a><!-- doxytag: member="scheator::ScheatorApp::ready" ref="a7c6c8729878b5b057a75247258196d0c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scheator.ScheatorApp.ready </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00028">28</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00028"></a>00028                            {
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="accf5e2cf66d9d031b911276b21eaeb83"></a><!-- doxytag: member="scheator::ScheatorApp::shutdown" ref="accf5e2cf66d9d031b911276b21eaeb83" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scheator.ScheatorApp.shutdown </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="ScheatorApp_8java_source.html#l00038">38</a> of file <a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00038"></a>00038                               {
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040     }
 </pre></div></p>
 
 </div>
@@ -196,9 +248,8 @@ Collaboration diagram for scheator.ScheatorApp:</div>
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022         MainController controller = <span class="keyword">new</span> MainController();
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024         
-<a name="l00025"></a>00025         show(<span class="keyword">new</span> MainView(<span class="keyword">this</span>, controller));
-<a name="l00026"></a>00026     }
+<a name="l00024"></a>00024         show(<span class="keyword">new</span> MainView(<span class="keyword">this</span>, controller));
+<a name="l00025"></a>00025     }
 </pre></div></p>
 
 </div>
@@ -207,7 +258,7 @@ Collaboration diagram for scheator.ScheatorApp:</div>
 <li>src/scheator/<a class="el" href="ScheatorApp_8java_source.html">ScheatorApp.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Feb 8 21:49:31 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:17 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

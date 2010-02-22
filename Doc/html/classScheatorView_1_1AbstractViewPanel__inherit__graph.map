@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html" title="{ScheatorView.MainSearchPanel\n|+ searchEnabled\l~ seriesList\l~ seasonList\l~ searchButton\l~ seriesModel\l~ seasonModel\l&#45; controller\l&#45; resourceMap\l&#45; actionMap\l|+ MainSearchPanel()\l+ setSearchEnabled()\l+ isSearchEnabled()\l+ search()\l+ modelPropertyChange()\l+ seriesList()\l+ seasonList()\l}" alt="" coords="5,305,211,655"/>
+<area shape="rect" href="$classScheatorView_1_1MainTablePanel.html" title="{ScheatorView.MainTablePanel\n|+ tableEdited\l~ mainTable\l~ upButton\l~ downButton\l~ saveButton\l~ mainTableModel\l&#45; resourceMap\l&#45; actionMap\l&#45; controller\l|+ MainTablePanel()\l+ setTableEdited()\l+ isTableEdited()\l+ print()\l+ save()\l+ moveUp()\l+ moveDown()\l+ modelPropertyChange()\l&#45; init()\l&#45; initTable()\l}" alt="" coords="235,277,429,683"/>
+</map>

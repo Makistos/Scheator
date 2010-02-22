@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Scheator: src/scheator/MainTableModel.java Source File</title>
+<title>Scheator: src/ScheatorModel/MainTableModel.java Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -64,18 +64,105 @@ window.onload = initDynSections;
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>src/scheator/MainTableModel.java</h1><a href="MainTableModel_8java.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/ScheatorModel/MainTableModel.java</h1><a href="MainTableModel_8java.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment"> * To change this template, choose Tools | Templates</span>
 <a name="l00003"></a>00003 <span class="comment"> * and open the template in the editor.</span>
 <a name="l00004"></a>00004 <span class="comment"> */</span>
 <a name="l00005"></a>00005 
-<a name="l00006"></a>00006 <span class="keyword">package </span>scheator;
+<a name="l00006"></a>00006 <span class="keyword">package </span>ScheatorModel;
 <a name="l00007"></a>00007 
-<a name="l00012"></a><a class="code" href="classscheator_1_1MainTableModel.html">00012</a> <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classscheator_1_1MainTableModel.html">MainTableModel</a> {
+<a name="l00008"></a>00008 <span class="keyword">import</span> javax.swing.table.*;
+<a name="l00009"></a>00009 <span class="keyword">import</span> ScheatorController.*;
+<a name="l00010"></a>00010 <span class="keyword">import</span> ScheatorDb.*;
+<a name="l00011"></a>00011 <span class="keyword">import</span> org.jdesktop.application.Action;
+<a name="l00012"></a>00012 <span class="keyword">import</span> java.util.ArrayList;
 <a name="l00013"></a>00013 
-<a name="l00014"></a>00014 }
+<a name="l00018"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html">00018</a> <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classScheatorModel_1_1MainTableModel.html">MainTableModel</a> <span class="keyword">extends</span> <a class="code" href="classAbstractTableModel.html">AbstractTableModel</a> {
+<a name="l00019"></a>00019 
+<a name="l00020"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#a4539ee4570a76db39a7dfbedc9d732d4">00020</a>     ArrayList&lt;<a class="code" href="classScheatorDb_1_1Schedule.html">Schedule</a>.Data&gt; <a class="code" href="classScheatorModel_1_1MainTableModel.html#a4539ee4570a76db39a7dfbedc9d732d4">list</a>;
+<a name="l00021"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">00021</a>     DbObject <a class="code" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">provider</a>;
+<a name="l00022"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">00022</a>     <span class="keyword">private</span> String <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[] = {<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>};
+<a name="l00023"></a>00023 
+<a name="l00024"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">00024</a>     String <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[][] = {
+<a name="l00025"></a>00025         {<span class="stringliteral">&quot;1&quot;</span>, <span class="stringliteral">&quot;Arsenal&quot;</span>, <span class="stringliteral">&quot;Everton&quot;</span>},
+<a name="l00026"></a>00026         {<span class="stringliteral">&quot;1&quot;</span>, <span class="stringliteral">&quot;Chelsea&quot;</span>, <span class="stringliteral">&quot;ManU&quot;</span>},
+<a name="l00027"></a>00027         {<span class="stringliteral">&quot;1&quot;</span>, <span class="stringliteral">&quot;Fulham&quot;</span>, <span class="stringliteral">&quot;Blackburn&quot;</span>},
+<a name="l00028"></a>00028         {<span class="stringliteral">&quot;1&quot;</span>, <span class="stringliteral">&quot;Tottenham&quot;</span>, <span class="stringliteral">&quot;Bolton&quot;</span>}
+<a name="l00029"></a>00029     };
+<a name="l00030"></a>00030 
+<a name="l00031"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#ad05a9adbc1ef6f18f93f14a3d1215246">00031</a>     <span class="keyword">public</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad05a9adbc1ef6f18f93f14a3d1215246">MainTableModel</a>() {
+<a name="l00032"></a>00032         <a class="code" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">provider</a> = <span class="keyword">new</span> ScheatorDb.Schedule();
+<a name="l00033"></a>00033         
+<a name="l00034"></a>00034         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(<a class="code" href="classScheatorModel_1_1MainTableModel.html">MainTableModel</a>.class);
+<a name="l00035"></a>00035         <span class="comment">//javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTableModel.class, this);</span>
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037         <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[0] = resourceMap.getString(<span class="stringliteral">&quot;ColRound.text&quot;</span>);
+<a name="l00038"></a>00038         <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[1] = resourceMap.getString(<span class="stringliteral">&quot;ColHome.text&quot;</span>);
+<a name="l00039"></a>00039         <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[2] = resourceMap.getString(<span class="stringliteral">&quot;ColAway.text&quot;</span>);
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041     }
+<a name="l00042"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#a59d32b059a3c7f2bcaf188fda5c3d350">00042</a>     <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#a59d32b059a3c7f2bcaf188fda5c3d350">getRowCount</a>() {
+<a name="l00043"></a>00043         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>.length;
+<a name="l00044"></a>00044     }
+<a name="l00045"></a>00045 
+<a name="l00046"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#ac7e3d75764a0cdb02c6e154d6d323946">00046</a>     <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#ac7e3d75764a0cdb02c6e154d6d323946">getColumnCount</a>() {
+<a name="l00047"></a>00047         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>.length;
+<a name="l00048"></a>00048     }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050     @Override
+<a name="l00051"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#a36a9c6a9284f65b87cb07e366daa1d27">00051</a>     <span class="keyword">public</span> String <a class="code" href="classScheatorModel_1_1MainTableModel.html#a36a9c6a9284f65b87cb07e366daa1d27">getColumnName</a>(<span class="keywordtype">int</span> columnIndex) {
+<a name="l00052"></a>00052         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[columnIndex];
+<a name="l00053"></a>00053     }
+<a name="l00054"></a>00054     
+<a name="l00055"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#afda66dd663374cbf3fa28551a595b5b5">00055</a>     <span class="keyword">public</span> Object <a class="code" href="classScheatorModel_1_1MainTableModel.html#afda66dd663374cbf3fa28551a595b5b5">getValueAt</a>(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> column) {
+<a name="l00056"></a>00056         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[row][column];
+<a name="l00057"></a>00057     }
+<a name="l00058"></a>00058 
+<a name="l00064"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#a5ffda31d76301ff411c9c5eb5e806bcb">00064</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#a5ffda31d76301ff411c9c5eb5e806bcb">moveMatch</a>(<span class="keywordtype">int</span> start, <span class="keywordtype">int</span> end) {
+<a name="l00065"></a>00065         String tmp[];
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067         tmp = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[end];
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069         <span class="keywordflow">if</span> (start &gt; end) {
+<a name="l00070"></a>00070             <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=<a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>.length;i&gt;0;i--) {
+<a name="l00071"></a>00071                 <span class="keywordflow">if</span> (i == start) {
+<a name="l00072"></a>00072                     tmp = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
+<a name="l00073"></a>00073                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i == end) {
+<a name="l00074"></a>00074                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i+1] = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
+<a name="l00075"></a>00075                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i] = tmp;
+<a name="l00076"></a>00076                     <span class="keywordflow">break</span>;
+<a name="l00077"></a>00077                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i &lt; start) {
+<a name="l00078"></a>00078                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i+1] = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
+<a name="l00079"></a>00079                 }
+<a name="l00080"></a>00080             }
+<a name="l00081"></a>00081         } <span class="keywordflow">else</span> {
+<a name="l00082"></a>00082             <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;<a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>.length-1;i++) {
+<a name="l00083"></a>00083                 <span class="keywordflow">if</span> (i == start) {
+<a name="l00084"></a>00084                     tmp = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
+<a name="l00085"></a>00085                     <span class="comment">//rows[i] = rows[i+1];</span>
+<a name="l00086"></a>00086                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i == end) {
+<a name="l00087"></a>00087                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i-1] = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
+<a name="l00088"></a>00088                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i] = tmp;
+<a name="l00089"></a>00089                     <span class="keywordflow">break</span>;
+<a name="l00090"></a>00090                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i &gt; start)
+<a name="l00091"></a>00091                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i-1] = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
+<a name="l00092"></a>00092             }
+<a name="l00093"></a>00093         }
+<a name="l00094"></a>00094         System.err.println(<span class="stringliteral">&quot;Row moved&quot;</span>);
+<a name="l00095"></a>00095         fireTableDataChanged();
+<a name="l00096"></a>00096     }
+<a name="l00097"></a>00097 
+<a name="l00102"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#a500158bde9e500b7511185824f641135">00102</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#a500158bde9e500b7511185824f641135">update</a>(<span class="keywordtype">int</span> seasonId) {
+<a name="l00103"></a>00103         <a class="code" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">provider</a>.fetch(seasonId);
+<a name="l00104"></a>00104         fireTableDataChanged();
+<a name="l00105"></a>00105     }
+<a name="l00106"></a>00106 
+<a name="l00107"></a><a class="code" href="classScheatorModel_1_1MainTableModel.html#aedfeb31ecb3d7b17dc033d277c970298">00107</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#aedfeb31ecb3d7b17dc033d277c970298">save</a>() {
+<a name="l00108"></a>00108         System.err.println(<span class="stringliteral">&quot;Table saved&quot;</span>);
+<a name="l00109"></a>00109     }
+<a name="l00110"></a>00110 }
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Feb 5 13:28:49 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:16 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
