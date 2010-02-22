@@ -18,14 +18,6 @@ public class MainController extends AbstractController {
     public static final String SCHEDULE_DATA = "SCHEDULE_DATA";
 
 
-    public void seriesSelected(Integer index) {
-
-    }
-
-    public void seasonSelected(Integer index) {
-        
-    }
-
     /** Saves the schedule list.
      *
      * A JTable is received for performance reasons. The only way to abstract

@@ -10,6 +10,11 @@ import ScheatorDb.*;
 import javax.swing.ComboBoxModel;
 import java.util.LinkedHashMap;
 import java.util.Iterator;
+import java.awt.*;
+import java.awt.ItemSelectable;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import javax.swing.event.EventListenerList;
 
 /** Provides base operability for combo boxes used in the app.
  *
@@ -19,7 +24,7 @@ import java.util.Iterator;
  * 
  * @author mep
  */
-public abstract class ScheatorComboBoxModel extends AbstractListModel implements ComboBoxModel {
+public abstract class ScheatorComboBoxModel extends AbstractListModel implements ComboBoxModel, ItemSelectable {
     DbObject provider;
     LinkedHashMap<Integer, DbObject.Data> list;
     DbObject.Data selection = null;
@@ -71,4 +76,32 @@ public abstract class ScheatorComboBoxModel extends AbstractListModel implements
         return selection;
     }
 
+    /* ItemSelectable */
+
+    //protected EventListenerList listenerList = new EventListenerList();
+
+    public Object[] getSelectedObjects() {
+        return new String[] { "a", "b", "c" };
+    }
+    
+    public void addItemListener(ItemListener l) {
+        listenerList.add(ItemListener.class, l);
+    }
+
+    public void removeItemListener(ItemListener l) {
+        listenerList.remove(ItemListener.class, l);
+    }
+    
+    void fireItemEvent(Object item, boolean sel) {
+        ItemEvent evt = new ItemEvent(this, ItemEvent.ITEM_STATE_CHANGED, item,
+        sel ? ItemEvent.SELECTED : ItemEvent.DESELECTED);
+
+        Object[] listeners = listenerList.getListenerList();
+
+        for (int i = 0; i < listeners.length - 2; i += 2) {
+            if (listeners[i] == ItemListener.class) {
+                ((ItemListener) listeners[i + 1]).itemStateChanged(evt);
+            }
+        }
+    }
 }

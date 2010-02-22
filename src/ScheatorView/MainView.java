@@ -17,6 +17,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.event.*;
+import java.awt.event.*;
+
 /**
  *
  * @author mep
@@ -207,8 +210,14 @@ public class MainView extends FrameView {
 
     }
 
-    public void modelPropertyChange(PropertyChangeEvent evt) {
+    public void mainTableChanged(TableModelEvent e) {
+        
+    }
+    public void comboBoxEvent(ListDataEvent e) {
 
     }
 
+    public void itemStateChanged(ItemEvent e) {
+        
+    }
 }

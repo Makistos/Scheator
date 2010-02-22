@@ -13,13 +13,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.*;
+import java.util.EventObject;
 
 import ScheatorController.MainController;
 /**
  *
  * @author mep
  */
-public class MainTablePanel extends AbstractViewPanel {
+public class MainTablePanel extends AbstractView {
 
     JTable mainTable;
     javax.swing.JButton upButton = new javax.swing.JButton();
@@ -147,11 +149,6 @@ public class MainTablePanel extends AbstractViewPanel {
         }
 }
 
-    @Override
-    public void modelPropertyChange(PropertyChangeEvent evt) {
-
-    }
-
     class ButtonListener implements ActionListener {
         ButtonListener() {
 
@@ -176,4 +173,12 @@ public class MainTablePanel extends AbstractViewPanel {
             }
         }
     }
+
+    @Override
+    public void comboBoxEvent(ListDataEvent e) {
+        String source = e.getSource().getClass().getName();
+        System.err.println("comboBoxEvent source: " + source);
+    }
+
+
 }
