@@ -9,16 +9,14 @@ import ScheatorController.MainController;
 import ScheatorModel.*;
 import ScheatorDb.*;
 import org.jdesktop.application.Action;
-import java.beans.PropertyChangeEvent;
 import javax.swing.*;
-import javax.swing.event.*;
 import java.awt.event.*;
 
 /**
  *
  * @author mep
  */
-public class MainSearchPanel extends AbstractViewPanel {
+public class MainSearchPanel extends AbstractView {
 
     private MainController controller;
     private org.jdesktop.application.ResourceMap resourceMap;
@@ -52,7 +50,7 @@ public class MainSearchPanel extends AbstractViewPanel {
         seriesList.setEditable(false);
 //        seriesList.addItemListener(new ComboBoxListener());
 
-        seasonModel = new SeasonComboBoxModel();
+        seasonModel = new SeasonComboBoxModel(controller);
         seasonList = new JComboBox(seasonModel);
         seasonList.setName("season");
         seasonList.setAction(actionMap.get("seasonList"));
@@ -92,11 +90,6 @@ public class MainSearchPanel extends AbstractViewPanel {
        //controller.searchMainTable(seasonId);
     }
 
-    @Override
-    public void modelPropertyChange(PropertyChangeEvent evt) {
-
-    }
-
     @Action
     public void seriesList() {
         //seasonModel.fill(seriesList.getSelectedId());
@@ -113,6 +106,15 @@ public class MainSearchPanel extends AbstractViewPanel {
         } else {
             setSearchEnabled(false);
         }
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        //if (e.getStateChange == ItemEvent.SELECTED)
+        Object source = e.getItem().getClass().getName();
+
+        System.err.println("itemStateChanged source: " + source);
+
     }
 
     class ComboBoxListener implements ItemListener {

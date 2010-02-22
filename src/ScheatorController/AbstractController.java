@@ -9,13 +9,16 @@
 
 package ScheatorController;
 
-import ScheatorModel.AbstractModel;
 import ScheatorView.*;
 import java.util.EventListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.EventObject;
+import javax.swing.event.*;
+import javax.swing.table.*;
+import javax.swing.AbstractListModel;
+import java.awt.event.*;
+import java.awt.*;
 
 /**
  * This class provides base level functionality for each controller. This includes the
@@ -24,21 +27,20 @@ import java.util.ArrayList;
  * changes when necessary.
  * @author Robert Eckstein
  */
-public abstract class AbstractController implements EventListener {
+public abstract class AbstractController implements EventListener, TableModelListener, ListDataListener, ItemListener {
 
     //  Vectors that hold a list of the registered models and views for this controller.
 
-    private ArrayList<AbstractViewPanel> registeredViews;
+    private ArrayList<AbstractView> registeredViews;
     private MainView mainFrame;
-    private ArrayList<AbstractModel> registeredModels;
+    private ArrayList<Object> registeredModels;
 
 
     /** Creates a new instance of Controller */
     public AbstractController() {
-        registeredViews = new ArrayList<AbstractViewPanel>();
-        registeredModels = new ArrayList<AbstractModel>();
+        registeredViews = new ArrayList<AbstractView>();
+        registeredModels = new ArrayList<Object>();
     }
-
 
     /**
      * Binds a model to this controller. Once added, the controller will listen for all
@@ -47,19 +49,36 @@ public abstract class AbstractController implements EventListener {
      * state.
      * @param model The model to be added
      */
-    public void addModel(AbstractModel model) {
+    public void addModel(Object model) {
         registeredModels.add(model);
-        //model.addEventListener(this);
+        if(model instanceof AbstractTableModel) {
+            AbstractTableModel T = (AbstractTableModel) model;
+            T.addTableModelListener(this);
+        }
+        if (model instanceof AbstractListModel) {
+            AbstractListModel T = (AbstractListModel) model;
+            T.addListDataListener(this);
+        }
+        if (model instanceof ItemSelectable) {
+            ItemSelectable T = (ItemSelectable) model;
+            T.addItemListener(this);
+        }
     }
 
     /**
      * Unbinds a model from this controller.
      * @param model The model to be removed
      */
-    public void removeModel(AbstractModel model) {
+    public void removeModel(Object model) {
         registeredModels.remove(model);
-        //model.removePropertyChangeListener(this);
-    }
+        if(model instanceof AbstractTableModel) {
+            AbstractTableModel T = (AbstractTableModel) model;
+            T.removeTableModelListener(this);
+        }
+        else if (model instanceof AbstractListModel) {
+            AbstractListModel T = (AbstractListModel) model;
+            T.removeListDataListener(this);
+        }    }
 
 
     /**
@@ -67,7 +86,7 @@ public abstract class AbstractController implements EventListener {
      * changes to each view for consideration.
      * @param view The view to be added
      */
-    public void addView(AbstractViewPanel view) {
+    public void addView(AbstractView view) {
         registeredViews.add(view);
     }
 
@@ -75,7 +94,7 @@ public abstract class AbstractController implements EventListener {
      * Unbinds a view from this controller.
      * @param view The view to be removed
      */
-    public void removeView(AbstractViewPanel view) {
+    public void removeView(AbstractView view) {
         registeredViews.remove(view);
     }
 
@@ -83,49 +102,40 @@ public abstract class AbstractController implements EventListener {
         this.mainFrame = frame;
     }
 
-    //  Used to observe property changes from registered models and propogate
-    //  them on to all the views.
-
-    /**
-     * This method is used to implement the PropertyChangeListener interface. Any model
-     * changes will be sent to this controller through the use of this method.
-     * @param evt An object that describes the model's property change.
-     */
-    public void propertyChange(PropertyChangeEvent evt) {
-
-        for (AbstractViewPanel view: registeredViews) {
-            view.modelPropertyChange(evt);
+    public void tableChanged(TableModelEvent e) {
+        for (AbstractView view: registeredViews) {
+            view.mainTableChanged(e);
         }
-        mainFrame.modelPropertyChange(evt);
+        mainFrame.mainTableChanged(e);
     }
 
-
-    /**
-     * Convienence method that subclasses can call upon to fire off property changes
-     * back to the models. This method used reflection to inspect each of the model
-     * classes to determine if it is the owner of the property in question. If it
-     * isn't, a NoSuchMethodException is throws (which the method ignores).
-     *
-     * @param propertyName The name of the property
-     * @param newValue An object that represents the new value of the property.
-     */
-    protected void setModelProperty(String propertyName, Object newValue) {
-
-        for (AbstractModel model: registeredModels) {
-            try {
-
-                Method method = model.getClass().
-                    getMethod("set"+propertyName, new Class[] {
-                                                      newValue.getClass()
-                                                  }
-                             );
-                method.invoke(model, newValue);
-
-            } catch (Exception ex) {
-                //  Handle exception
-            }
+    public void contentsChanged(ListDataEvent e) {
+        for (AbstractView view: registeredViews) {
+            view.comboBoxEvent(e);
         }
+        System.err.println("contentsChanged()");
+        mainFrame.comboBoxEvent(e);
     }
 
+    public void intervalRemoved(ListDataEvent e) {
+        for (AbstractView view: registeredViews) {
+            view.comboBoxEvent(e);
+        }
+        mainFrame.comboBoxEvent(e);
+    }
 
+    public void intervalAdded(ListDataEvent e) {
+        for (AbstractView view: registeredViews) {
+            view.comboBoxEvent(e);
+        }
+        mainFrame.comboBoxEvent(e);
+    }
+
+    public void itemStateChanged(ItemEvent e) {
+        for (AbstractView view: registeredViews) {
+            view.itemStateChanged(e);
+        }
+        System.err.println("itemStateChanged");
+        mainFrame.itemStateChanged(e);
+    }
 }

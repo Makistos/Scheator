@@ -5,13 +5,18 @@
 
 package ScheatorModel;
 
+import ScheatorController.*;
 /**
  *
  * @author mep
  */
 public class SeasonComboBoxModel extends ScheatorComboBoxModel {
 
-    public SeasonComboBoxModel() {
+    AbstractController controller;
+    
+    public SeasonComboBoxModel(AbstractController controller) {
+        this.controller = controller;
+        controller.addModel(this);
         provider = new ScheatorDb.Season();
         list = provider.getList();
     }
@@ -22,6 +27,7 @@ public class SeasonComboBoxModel extends ScheatorComboBoxModel {
      */
     public void update(int seriesId) {
         provider.fetch(seriesId);
+        System.err.println("Firing contentsChange()");
         fireContentsChanged(this, 0, list.size()-1);
     }
 }
