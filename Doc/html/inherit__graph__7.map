@@ -1,3 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" href="$interfaceScheatorDb_1_1AbstractQueryEngine_3_01T_01_4.html" title="ScheatorDb.AbstractQueryEngine\&lt; T \&gt;" alt="" coords="5,5,253,35"/>
+<area shape="rect" href="$classScheatorDb_1_1AbstractDb.html" title="ScheatorDb.AbstractDb" alt="" coords="7,5,164,35"/>
+<area shape="rect" href="$classScheatorDb_1_1MySqlDb.html" title="ScheatorDb.MySqlDb" alt="" coords="213,5,360,35"/>
 </map>

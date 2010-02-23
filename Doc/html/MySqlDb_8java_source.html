@@ -64,50 +64,45 @@ window.onload = initDynSections;
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>src/ScheatorDb/MySqlDb.java</h1><a href="MySqlDb_8java.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
-<a name="l00002"></a>00002 <span class="comment"> * To change this template, choose Tools | Templates</span>
-<a name="l00003"></a>00003 <span class="comment"> * and open the template in the editor.</span>
-<a name="l00004"></a>00004 <span class="comment"> */</span>
-<a name="l00005"></a>00005 
-<a name="l00006"></a>00006 <span class="keyword">package </span>ScheatorDb;
-<a name="l00007"></a>00007 
-<a name="l00008"></a>00008 <span class="keyword">import</span> java.sql.*;
-<a name="l00009"></a>00009 
-<a name="l00014"></a><a class="code" href="classScheatorDb_1_1MySqlDb.html">00014</a> <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class </span><a class="code" href="classScheatorDb_1_1MySqlDb.html">MySqlDb</a> <span class="keyword">extends</span> <a class="code" href="classScheatorDb_1_1AbstractDb.html">AbstractDb</a> {
-<a name="l00015"></a>00015 
-<a name="l00016"></a><a class="code" href="classScheatorDb_1_1MySqlDb.html#a6690d05adb19d016b5d59bd9750c56c5">00016</a>     <a class="code" href="classScheatorDb_1_1MySqlDb.html#a6690d05adb19d016b5d59bd9750c56c5">MySqlDb</a>() {
-<a name="l00017"></a>00017         <span class="comment">// Use default values for testing</span>
-<a name="l00018"></a>00018         <a class="code" href="classScheatorDb_1_1MySqlDb.html#af94e38889d1bcd541f070aa6186d6523">initDb</a>(<span class="stringliteral">&quot;scheator&quot;</span>, <span class="stringliteral">&quot;root&quot;</span>, <span class="stringliteral">&quot;root&quot;</span>);
-<a name="l00019"></a>00019     }
-<a name="l00020"></a>00020     
-<a name="l00028"></a><a class="code" href="classScheatorDb_1_1MySqlDb.html#aad9dc08d53b19013925051ab44a475fa">00028</a>     <a class="code" href="classScheatorDb_1_1MySqlDb.html#aad9dc08d53b19013925051ab44a475fa">MySqlDb</a>(String db, String user, String pw) {
-<a name="l00029"></a>00029         <a class="code" href="classScheatorDb_1_1MySqlDb.html#af94e38889d1bcd541f070aa6186d6523">initDb</a>(db, user, pw);
-<a name="l00030"></a>00030     }
-<a name="l00031"></a>00031 
-<a name="l00032"></a><a class="code" href="classScheatorDb_1_1MySqlDb.html#af94e38889d1bcd541f070aa6186d6523">00032</a>     <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorDb_1_1MySqlDb.html#af94e38889d1bcd541f070aa6186d6523">initDb</a>(String db, String user, String pw) {
-<a name="l00033"></a>00033         <span class="keywordflow">if</span> (db.length() == 0) {
-<a name="l00034"></a>00034             db = <span class="stringliteral">&quot;scheator&quot;</span>;
-<a name="l00035"></a>00035         }
-<a name="l00036"></a>00036         String url = <span class="stringliteral">&quot;jdbc:mysql://localhost/&quot;</span> + db;
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038         <span class="keywordflow">try</span> {
-<a name="l00039"></a>00039             Class.forName(<span class="stringliteral">&quot;com.mysql.jdbc.Driver&quot;</span>).newInstance();
-<a name="l00040"></a>00040             <a class="code" href="classScheatorDb_1_1AbstractDb.html#aee128a50ef068640bdeb02d6654ea96f">con</a> = DriverManager.getConnection(url, user, pw);
-<a name="l00041"></a>00041             <span class="keywordflow">if</span> (!<a class="code" href="classScheatorDb_1_1AbstractDb.html#aee128a50ef068640bdeb02d6654ea96f">con</a>.isClosed()) {
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043             }
-<a name="l00044"></a>00044             <span class="keywordflow">else</span> {
-<a name="l00045"></a>00045                 System.err.println(<span class="stringliteral">&quot;Failed to connecto to &quot;</span> + db);
-<a name="l00046"></a>00046             }
-<a name="l00047"></a>00047         }
-<a name="l00048"></a>00048         <span class="keywordflow">catch</span> (Exception e) {
-<a name="l00049"></a>00049            System.err.println(<span class="stringliteral">&quot;Exception: &quot;</span>+ e.getMessage());
-<a name="l00050"></a>00050         }
-<a name="l00051"></a>00051         <a class="code" href="classScheatorDb_1_1AbstractDb.html#a0b65e0d4f54fc8cd0e61d0225464f785">qe</a> = <span class="keyword">new</span> <a class="code" href="classScheatorDb_1_1SqlQueryEngine.html">SqlQueryEngine</a>();
-<a name="l00052"></a>00052     }
-<a name="l00053"></a>00053 }
+<h1>src/ScheatorDb/MySqlDb.java</h1><a href="MySqlDb_8java.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="keyword">package </span>ScheatorDb;
+<a name="l00002"></a>00002 
+<a name="l00003"></a>00003 <span class="keyword">import</span> java.sql.*;
+<a name="l00004"></a>00004 
+<a name="l00009"></a><a class="code" href="classScheatorDb_1_1MySqlDb.html">00009</a> <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class </span><a class="code" href="classScheatorDb_1_1MySqlDb.html">MySqlDb</a> <span class="keyword">extends</span> <a class="code" href="classScheatorDb_1_1AbstractDb.html">AbstractDb</a> {
+<a name="l00010"></a>00010 
+<a name="l00011"></a><a class="code" href="classScheatorDb_1_1MySqlDb.html#a6690d05adb19d016b5d59bd9750c56c5">00011</a>     <a class="code" href="classScheatorDb_1_1MySqlDb.html#a6690d05adb19d016b5d59bd9750c56c5">MySqlDb</a>() {
+<a name="l00012"></a>00012         <span class="comment">// Use default values for testing</span>
+<a name="l00013"></a>00013         <a class="code" href="classScheatorDb_1_1MySqlDb.html#af94e38889d1bcd541f070aa6186d6523">initDb</a>(<span class="stringliteral">&quot;scheator&quot;</span>, <span class="stringliteral">&quot;root&quot;</span>, <span class="stringliteral">&quot;root&quot;</span>);
+<a name="l00014"></a>00014     }
+<a name="l00015"></a>00015     
+<a name="l00023"></a><a class="code" href="classScheatorDb_1_1MySqlDb.html#aad9dc08d53b19013925051ab44a475fa">00023</a>     <a class="code" href="classScheatorDb_1_1MySqlDb.html#aad9dc08d53b19013925051ab44a475fa">MySqlDb</a>(String db, String user, String pw) {
+<a name="l00024"></a>00024         <a class="code" href="classScheatorDb_1_1MySqlDb.html#af94e38889d1bcd541f070aa6186d6523">initDb</a>(db, user, pw);
+<a name="l00025"></a>00025     }
+<a name="l00026"></a>00026 
+<a name="l00033"></a><a class="code" href="classScheatorDb_1_1MySqlDb.html#af94e38889d1bcd541f070aa6186d6523">00033</a>     <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorDb_1_1MySqlDb.html#af94e38889d1bcd541f070aa6186d6523">initDb</a>(String db, String user, String pw) {
+<a name="l00034"></a>00034         <span class="keywordflow">if</span> (db.length() == 0) {
+<a name="l00035"></a>00035             db = <span class="stringliteral">&quot;scheator&quot;</span>;
+<a name="l00036"></a>00036         }
+<a name="l00037"></a>00037         String url = <span class="stringliteral">&quot;jdbc:mysql://localhost/&quot;</span> + db;
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039         <span class="keywordflow">try</span> {
+<a name="l00040"></a>00040             Class.forName(<span class="stringliteral">&quot;com.mysql.jdbc.Driver&quot;</span>).newInstance();
+<a name="l00041"></a>00041             <a class="code" href="classScheatorDb_1_1AbstractDb.html#aee128a50ef068640bdeb02d6654ea96f">con</a> = DriverManager.getConnection(url, user, pw);
+<a name="l00042"></a>00042             <span class="keywordflow">if</span> (!<a class="code" href="classScheatorDb_1_1AbstractDb.html#aee128a50ef068640bdeb02d6654ea96f">con</a>.isClosed()) {
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044             }
+<a name="l00045"></a>00045             <span class="keywordflow">else</span> {
+<a name="l00046"></a>00046                 System.err.println(<span class="stringliteral">&quot;Failed to connecto to &quot;</span> + db);
+<a name="l00047"></a>00047             }
+<a name="l00048"></a>00048         }
+<a name="l00049"></a>00049         <span class="keywordflow">catch</span> (Exception e) {
+<a name="l00050"></a>00050            System.err.println(<span class="stringliteral">&quot;Exception: &quot;</span>+ e.getMessage());
+<a name="l00051"></a>00051         }
+<a name="l00052"></a>00052         <a class="code" href="classScheatorDb_1_1AbstractDb.html#a0b65e0d4f54fc8cd0e61d0225464f785">qe</a> = <span class="keyword">new</span> <a class="code" href="classScheatorDb_1_1SqlQueryEngine.html">SqlQueryEngine</a>();
+<a name="l00053"></a>00053     }
+<a name="l00054"></a>00054 }
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:16 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:40 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

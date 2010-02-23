@@ -64,66 +64,61 @@ window.onload = initDynSections;
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>src/ScheatorDb/Series.java</h1><a href="Series_8java.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
-<a name="l00002"></a>00002 <span class="comment"> * To change this template, choose Tools | Templates</span>
-<a name="l00003"></a>00003 <span class="comment"> * and open the template in the editor.</span>
-<a name="l00004"></a>00004 <span class="comment"> */</span>
-<a name="l00005"></a>00005 
-<a name="l00006"></a>00006 <span class="keyword">package </span>ScheatorDb;
-<a name="l00007"></a>00007 <span class="keyword">import</span> java.util.LinkedHashMap;
-<a name="l00008"></a>00008 <span class="keyword">import</span> java.sql.*;
-<a name="l00009"></a>00009 
-<a name="l00014"></a><a class="code" href="classScheatorDb_1_1Series.html">00014</a> <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classScheatorDb_1_1Series.html">Series</a> <span class="keyword">extends</span> DbObject {
-<a name="l00015"></a>00015 
-<a name="l00017"></a><a class="code" href="classScheatorDb_1_1Series.html#a7fc88035a742b29e58672e0de4cb0312">00017</a>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] <a class="code" href="classScheatorDb_1_1Series.html#a7fc88035a742b29e58672e0de4cb0312">TABLE_NAME</a> = {<span class="stringliteral">&quot;Series&quot;</span>};
-<a name="l00019"></a><a class="code" href="classScheatorDb_1_1Series.html#ab6448537dfba59584b7b7c21205ab032">00019</a>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String <a class="code" href="classScheatorDb_1_1Series.html#ab6448537dfba59584b7b7c21205ab032">ID_FIELD</a> = <span class="stringliteral">&quot;ID&quot;</span>;
-<a name="l00021"></a><a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">00021</a>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] <a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">FIELDS</a> = {<span class="stringliteral">&quot;ID&quot;</span>, <span class="stringliteral">&quot;Name&quot;</span>};
-<a name="l00022"></a>00022 
-<a name="l00031"></a><a class="code" href="classScheatorDb_1_1Series.html#aeb7665ae3cae74027fd68b53ccd98379">00031</a>     <span class="keyword">public</span> <a class="code" href="classScheatorDb_1_1Series.html#aeb7665ae3cae74027fd68b53ccd98379" title="Creates the database connection and fetches the data from the database.">Series</a>() {
-<a name="l00032"></a>00032         list = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Data&gt;();
-<a name="l00033"></a>00033         db = <span class="keyword">new</span> <a class="code" href="classScheatorDb_1_1MySqlDb.html">MySqlDb</a>();
-<a name="l00034"></a>00034         <a class="code" href="classScheatorDb_1_1Series.html#abb05baf1099dfb5e9b66180a60c36826">fetch</a>(0);
-<a name="l00035"></a>00035     }
-<a name="l00036"></a>00036 
-<a name="l00040"></a><a class="code" href="classScheatorDb_1_1Series.html#abb05baf1099dfb5e9b66180a60c36826">00040</a>     <span class="keyword">public</span> <span class="keyword">final</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorDb_1_1Series.html#abb05baf1099dfb5e9b66180a60c36826">fetch</a>(<span class="keywordtype">int</span> key) {
-<a name="l00041"></a>00041         this.currentId = key;
-<a name="l00042"></a>00042         list.clear();
-<a name="l00043"></a>00043         String[] idFields = null;
-<a name="l00044"></a>00044         String[] ids = null;
-<a name="l00045"></a>00045         <span class="keywordflow">if</span> (key != 0) {
-<a name="l00046"></a>00046             idFields[0] = <span class="stringliteral">&quot;season&quot;</span>;
-<a name="l00047"></a>00047             ids[0] = String.valueOf(currentId);
-<a name="l00048"></a>00048         }
-<a name="l00049"></a>00049         
-<a name="l00050"></a>00050         <span class="keywordflow">try</span> {
-<a name="l00051"></a>00051             Statement st = db.con.createStatement();
-<a name="l00052"></a>00052             ResultSet rs = st.executeQuery(db.qe.getItems(<a class="code" href="classScheatorDb_1_1Series.html#a7fc88035a742b29e58672e0de4cb0312">TABLE_NAME</a>, null, idFields , ids, null));
-<a name="l00053"></a>00053             <span class="keywordflow">while</span> (rs.next()) {
-<a name="l00054"></a>00054                 String <span class="keywordtype">id</span> = rs.getString(<a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">FIELDS</a>[0]);
-<a name="l00055"></a>00055                 String name = rs.getString(<a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">FIELDS</a>[1]);
-<a name="l00056"></a>00056                 <a class="code" href="classScheatorDb_1_1Series_1_1Data.html">Data</a> series = <span class="keyword">new</span> <a class="code" href="classScheatorDb_1_1Series_1_1Data.html">Data</a>(Integer.parseInt(<span class="keywordtype">id</span>.trim()), name);
-<a name="l00057"></a>00057                 list.put(<span class="keywordtype">id</span>, series);
-<a name="l00058"></a>00058             }
-<a name="l00059"></a>00059         } <span class="keywordflow">catch</span> (Exception e) {
-<a name="l00060"></a>00060             System.err.println(<span class="stringliteral">&quot;Failed to read series data: &quot;</span> + e.toString());
-<a name="l00061"></a>00061         }
-<a name="l00062"></a>00062     }
-<a name="l00063"></a>00063 
-<a name="l00067"></a><a class="code" href="classScheatorDb_1_1Series_1_1Data.html">00067</a>     <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classScheatorDb_1_1Series_1_1Data.html">Data</a> <span class="keyword">extends</span> DbObject.<a class="code" href="classScheatorDb_1_1Series_1_1Data.html">Data</a> {
-<a name="l00068"></a>00068 
-<a name="l00073"></a><a class="code" href="classScheatorDb_1_1Series_1_1Data.html#a4f4210f6f9d4ea5248b584e2ee18807a">00073</a>         <a class="code" href="classScheatorDb_1_1Series_1_1Data.html#a4f4210f6f9d4ea5248b584e2ee18807a">Data</a>(String name) {
-<a name="l00074"></a>00074             this.field_id = 0;
-<a name="l00075"></a>00075             this.field_name = name;
-<a name="l00076"></a>00076         }
-<a name="l00077"></a>00077 
-<a name="l00083"></a><a class="code" href="classScheatorDb_1_1Series_1_1Data.html#a5009f4f7122393fb7251731b322a1082">00083</a>         <a class="code" href="classScheatorDb_1_1Series_1_1Data.html#a5009f4f7122393fb7251731b322a1082">Data</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>, String name) {
-<a name="l00084"></a>00084             this.field_id = id;
-<a name="l00085"></a>00085             this.field_name = name;
-<a name="l00086"></a>00086         }
-<a name="l00087"></a>00087     }
-<a name="l00088"></a>00088 }
+<h1>src/ScheatorDb/Series.java</h1><a href="Series_8java.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="keyword">package </span>ScheatorDb;
+<a name="l00002"></a>00002 <span class="keyword">import</span> java.util.LinkedHashMap;
+<a name="l00003"></a>00003 <span class="keyword">import</span> java.sql.*;
+<a name="l00004"></a>00004 
+<a name="l00009"></a><a class="code" href="classScheatorDb_1_1Series.html">00009</a> <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classScheatorDb_1_1Series.html">Series</a> <span class="keyword">extends</span> DbObject {
+<a name="l00010"></a>00010 
+<a name="l00012"></a><a class="code" href="classScheatorDb_1_1Series.html#a7fc88035a742b29e58672e0de4cb0312">00012</a>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] <a class="code" href="classScheatorDb_1_1Series.html#a7fc88035a742b29e58672e0de4cb0312">TABLE_NAME</a> = {<span class="stringliteral">&quot;Series&quot;</span>};
+<a name="l00014"></a><a class="code" href="classScheatorDb_1_1Series.html#ab6448537dfba59584b7b7c21205ab032">00014</a>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String <a class="code" href="classScheatorDb_1_1Series.html#ab6448537dfba59584b7b7c21205ab032">ID_FIELD</a> = <span class="stringliteral">&quot;ID&quot;</span>;
+<a name="l00016"></a><a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">00016</a>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] <a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">FIELDS</a> = {<span class="stringliteral">&quot;ID&quot;</span>, <span class="stringliteral">&quot;Name&quot;</span>};
+<a name="l00017"></a>00017 
+<a name="l00026"></a><a class="code" href="classScheatorDb_1_1Series.html#aeb7665ae3cae74027fd68b53ccd98379">00026</a>     <span class="keyword">public</span> <a class="code" href="classScheatorDb_1_1Series.html#aeb7665ae3cae74027fd68b53ccd98379" title="Creates the database connection and fetches the data from the database.">Series</a>() {
+<a name="l00027"></a>00027         list = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Data&gt;();
+<a name="l00028"></a>00028         db = <span class="keyword">new</span> <a class="code" href="classScheatorDb_1_1MySqlDb.html">MySqlDb</a>();
+<a name="l00029"></a>00029         <a class="code" href="classScheatorDb_1_1Series.html#abb05baf1099dfb5e9b66180a60c36826">fetch</a>(0);
+<a name="l00030"></a>00030     }
+<a name="l00031"></a>00031 
+<a name="l00036"></a><a class="code" href="classScheatorDb_1_1Series.html#abb05baf1099dfb5e9b66180a60c36826">00036</a>     <span class="keyword">public</span> <span class="keyword">final</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorDb_1_1Series.html#abb05baf1099dfb5e9b66180a60c36826">fetch</a>(<span class="keywordtype">int</span> key) {
+<a name="l00037"></a>00037         this.currentId = key;
+<a name="l00038"></a>00038         list.clear();
+<a name="l00039"></a>00039         String[] idFields = null;
+<a name="l00040"></a>00040         String[] ids = null;
+<a name="l00041"></a>00041         <span class="keywordflow">if</span> (key != 0) {
+<a name="l00042"></a>00042             idFields[0] = <span class="stringliteral">&quot;season&quot;</span>;
+<a name="l00043"></a>00043             ids[0] = String.valueOf(currentId);
+<a name="l00044"></a>00044         }
+<a name="l00045"></a>00045         
+<a name="l00046"></a>00046         <span class="keywordflow">try</span> {
+<a name="l00047"></a>00047             Statement st = db.con.createStatement();
+<a name="l00048"></a>00048             ResultSet rs = st.executeQuery(db.qe.getItems(<a class="code" href="classScheatorDb_1_1Series.html#a7fc88035a742b29e58672e0de4cb0312">TABLE_NAME</a>, null, idFields , ids, null));
+<a name="l00049"></a>00049             <span class="keywordflow">while</span> (rs.next()) {
+<a name="l00050"></a>00050                 String <span class="keywordtype">id</span> = rs.getString(<a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">FIELDS</a>[0]);
+<a name="l00051"></a>00051                 String name = rs.getString(<a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">FIELDS</a>[1]);
+<a name="l00052"></a>00052                 <a class="code" href="classScheatorDb_1_1Series_1_1Data.html">Data</a> series = <span class="keyword">new</span> <a class="code" href="classScheatorDb_1_1Series_1_1Data.html">Data</a>(Integer.parseInt(<span class="keywordtype">id</span>.trim()), name);
+<a name="l00053"></a>00053                 list.put(<span class="keywordtype">id</span>, series);
+<a name="l00054"></a>00054             }
+<a name="l00055"></a>00055         } <span class="keywordflow">catch</span> (Exception e) {
+<a name="l00056"></a>00056             System.err.println(<span class="stringliteral">&quot;Failed to read series data: &quot;</span> + e.toString());
+<a name="l00057"></a>00057         }
+<a name="l00058"></a>00058     }
+<a name="l00059"></a>00059 
+<a name="l00063"></a><a class="code" href="classScheatorDb_1_1Series_1_1Data.html">00063</a>     <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classScheatorDb_1_1Series_1_1Data.html">Data</a> <span class="keyword">extends</span> DbObject.<a class="code" href="classScheatorDb_1_1Series_1_1Data.html">Data</a> {
+<a name="l00064"></a>00064 
+<a name="l00069"></a><a class="code" href="classScheatorDb_1_1Series_1_1Data.html#a4f4210f6f9d4ea5248b584e2ee18807a">00069</a>         <a class="code" href="classScheatorDb_1_1Series_1_1Data.html#a4f4210f6f9d4ea5248b584e2ee18807a">Data</a>(String name) {
+<a name="l00070"></a>00070             this.field_id = null;
+<a name="l00071"></a>00071             this.field_name = name;
+<a name="l00072"></a>00072         }
+<a name="l00073"></a>00073 
+<a name="l00079"></a><a class="code" href="classScheatorDb_1_1Series_1_1Data.html#a24d68e42dd4b4e3b32edd074b3d5b028">00079</a>         <a class="code" href="classScheatorDb_1_1Series_1_1Data.html#a24d68e42dd4b4e3b32edd074b3d5b028">Data</a>(Integer <span class="keywordtype">id</span>, String name) {
+<a name="l00080"></a>00080             this.field_id = id;
+<a name="l00081"></a>00081             this.field_name = name;
+<a name="l00082"></a>00082         }
+<a name="l00083"></a>00083     }
+<a name="l00084"></a>00084 }
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:16 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:40 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

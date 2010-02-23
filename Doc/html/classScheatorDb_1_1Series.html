@@ -98,7 +98,7 @@ Collaboration diagram for ScheatorDb.Series:</div>
 <p>The database reflection of the <a class="el" href="classScheatorDb_1_1Series.html">Series</a> database table.</p>
 <dl class="author"><dt><b>Author:</b></dt><dd>mep </dd></dl>
 
-<p>Definition at line <a class="el" href="Series_8java_source.html#l00014">14</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
+<p>Definition at line <a class="el" href="Series_8java_source.html#l00009">9</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aeb7665ae3cae74027fd68b53ccd98379"></a><!-- doxytag: member="ScheatorDb::Series::Series" ref="aeb7665ae3cae74027fd68b53ccd98379" args="()" -->
 <div class="memitem">
@@ -119,15 +119,15 @@ Collaboration diagram for ScheatorDb.Series:</div>
 <p>Constructor for this class.</p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Only Sql databases supported at the moment.</dd></dl>
 
-<p>Definition at line <a class="el" href="Series_8java_source.html#l00031">31</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
+<p>Definition at line <a class="el" href="Series_8java_source.html#l00026">26</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
 
-<p>References <a class="el" href="Series_8java_source.html#l00040">ScheatorDb.Series.fetch()</a>.</p>
+<p>References <a class="el" href="Series_8java_source.html#l00036">ScheatorDb.Series.fetch()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00031"></a>00031                     {
-<a name="l00032"></a>00032         list = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Data&gt;();
-<a name="l00033"></a>00033         db = <span class="keyword">new</span> MySqlDb();
-<a name="l00034"></a>00034         <a class="code" href="classScheatorDb_1_1Series.html#abb05baf1099dfb5e9b66180a60c36826">fetch</a>(0);
-<a name="l00035"></a>00035     }
+<p><div class="fragment"><pre class="fragment"><a name="l00026"></a>00026                     {
+<a name="l00027"></a>00027         list = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Data&gt;();
+<a name="l00028"></a>00028         db = <span class="keyword">new</span> MySqlDb();
+<a name="l00029"></a>00029         <a class="code" href="classScheatorDb_1_1Series.html#abb05baf1099dfb5e9b66180a60c36826">fetch</a>(0);
+<a name="l00030"></a>00030     }
 </pre></div></p>
 
 <p><div class="dynheader">
@@ -157,37 +157,43 @@ Here is the call graph for this function:</div>
       </table>
 </div>
 <div class="memdoc">
-<p>Gets all the series or one specific series from the database. </p>
+<p>Gets all the series or one specific series from the database.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>key</em>&nbsp;</td><td><a class="el" href="classScheatorDb_1_1Series.html">Series</a> database id. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="Series_8java_source.html#l00040">40</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
+<p>Definition at line <a class="el" href="Series_8java_source.html#l00036">36</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
 
-<p>References <a class="el" href="Series_8java_source.html#l00021">ScheatorDb.Series.FIELDS</a>, and <a class="el" href="Series_8java_source.html#l00017">ScheatorDb.Series.TABLE_NAME</a>.</p>
+<p>References <a class="el" href="Series_8java_source.html#l00016">ScheatorDb.Series.FIELDS</a>, and <a class="el" href="Series_8java_source.html#l00012">ScheatorDb.Series.TABLE_NAME</a>.</p>
 
-<p>Referenced by <a class="el" href="Series_8java_source.html#l00031">ScheatorDb.Series.Series()</a>.</p>
+<p>Referenced by <a class="el" href="Series_8java_source.html#l00026">ScheatorDb.Series.Series()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00040"></a>00040                                      {
-<a name="l00041"></a>00041         this.currentId = key;
-<a name="l00042"></a>00042         list.clear();
-<a name="l00043"></a>00043         String[] idFields = null;
-<a name="l00044"></a>00044         String[] ids = null;
-<a name="l00045"></a>00045         <span class="keywordflow">if</span> (key != 0) {
-<a name="l00046"></a>00046             idFields[0] = <span class="stringliteral">&quot;season&quot;</span>;
-<a name="l00047"></a>00047             ids[0] = String.valueOf(currentId);
-<a name="l00048"></a>00048         }
-<a name="l00049"></a>00049         
-<a name="l00050"></a>00050         <span class="keywordflow">try</span> {
-<a name="l00051"></a>00051             Statement st = db.con.createStatement();
-<a name="l00052"></a>00052             ResultSet rs = st.executeQuery(db.qe.getItems(<a class="code" href="classScheatorDb_1_1Series.html#a7fc88035a742b29e58672e0de4cb0312">TABLE_NAME</a>, null, idFields , ids, null));
-<a name="l00053"></a>00053             <span class="keywordflow">while</span> (rs.next()) {
-<a name="l00054"></a>00054                 String <span class="keywordtype">id</span> = rs.getString(<a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">FIELDS</a>[0]);
-<a name="l00055"></a>00055                 String name = rs.getString(<a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">FIELDS</a>[1]);
-<a name="l00056"></a>00056                 <a class="code" href="classDbObject_1_1Data.html">Data</a> series = <span class="keyword">new</span> <a class="code" href="classDbObject_1_1Data.html">Data</a>(Integer.parseInt(<span class="keywordtype">id</span>.trim()), name);
-<a name="l00057"></a>00057                 list.put(<span class="keywordtype">id</span>, series);
-<a name="l00058"></a>00058             }
-<a name="l00059"></a>00059         } <span class="keywordflow">catch</span> (Exception e) {
-<a name="l00060"></a>00060             System.err.println(<span class="stringliteral">&quot;Failed to read series data: &quot;</span> + e.toString());
-<a name="l00061"></a>00061         }
-<a name="l00062"></a>00062     }
+<p><div class="fragment"><pre class="fragment"><a name="l00036"></a>00036                                      {
+<a name="l00037"></a>00037         this.currentId = key;
+<a name="l00038"></a>00038         list.clear();
+<a name="l00039"></a>00039         String[] idFields = null;
+<a name="l00040"></a>00040         String[] ids = null;
+<a name="l00041"></a>00041         <span class="keywordflow">if</span> (key != 0) {
+<a name="l00042"></a>00042             idFields[0] = <span class="stringliteral">&quot;season&quot;</span>;
+<a name="l00043"></a>00043             ids[0] = String.valueOf(currentId);
+<a name="l00044"></a>00044         }
+<a name="l00045"></a>00045         
+<a name="l00046"></a>00046         <span class="keywordflow">try</span> {
+<a name="l00047"></a>00047             Statement st = db.con.createStatement();
+<a name="l00048"></a>00048             ResultSet rs = st.executeQuery(db.qe.getItems(<a class="code" href="classScheatorDb_1_1Series.html#a7fc88035a742b29e58672e0de4cb0312">TABLE_NAME</a>, null, idFields , ids, null));
+<a name="l00049"></a>00049             <span class="keywordflow">while</span> (rs.next()) {
+<a name="l00050"></a>00050                 String <span class="keywordtype">id</span> = rs.getString(<a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">FIELDS</a>[0]);
+<a name="l00051"></a>00051                 String name = rs.getString(<a class="code" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">FIELDS</a>[1]);
+<a name="l00052"></a>00052                 <a class="code" href="classDbObject_1_1Data.html">Data</a> series = <span class="keyword">new</span> <a class="code" href="classDbObject_1_1Data.html">Data</a>(Integer.parseInt(<span class="keywordtype">id</span>.trim()), name);
+<a name="l00053"></a>00053                 list.put(<span class="keywordtype">id</span>, series);
+<a name="l00054"></a>00054             }
+<a name="l00055"></a>00055         } <span class="keywordflow">catch</span> (Exception e) {
+<a name="l00056"></a>00056             System.err.println(<span class="stringliteral">&quot;Failed to read series data: &quot;</span> + e.toString());
+<a name="l00057"></a>00057         }
+<a name="l00058"></a>00058     }
 </pre></div></p>
 
 <p><div class="dynheader">
@@ -214,9 +220,9 @@ Here is the caller graph for this function:</div>
 <div class="memdoc">
 <p>Field names for this table in the database </p>
 
-<p>Definition at line <a class="el" href="Series_8java_source.html#l00021">21</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
+<p>Definition at line <a class="el" href="Series_8java_source.html#l00016">16</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
 
-<p>Referenced by <a class="el" href="Series_8java_source.html#l00040">ScheatorDb.Series.fetch()</a>.</p>
+<p>Referenced by <a class="el" href="Series_8java_source.html#l00036">ScheatorDb.Series.fetch()</a>.</p>
 
 </div>
 </div>
@@ -232,7 +238,7 @@ Here is the caller graph for this function:</div>
 <div class="memdoc">
 <p>Id field name for this table in the database </p>
 
-<p>Definition at line <a class="el" href="Series_8java_source.html#l00019">19</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
+<p>Definition at line <a class="el" href="Series_8java_source.html#l00014">14</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
 
 </div>
 </div>
@@ -248,9 +254,9 @@ Here is the caller graph for this function:</div>
 <div class="memdoc">
 <p>Table name in the database </p>
 
-<p>Definition at line <a class="el" href="Series_8java_source.html#l00017">17</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
+<p>Definition at line <a class="el" href="Series_8java_source.html#l00012">12</a> of file <a class="el" href="Series_8java_source.html">Series.java</a>.</p>
 
-<p>Referenced by <a class="el" href="Series_8java_source.html#l00040">ScheatorDb.Series.fetch()</a>.</p>
+<p>Referenced by <a class="el" href="Series_8java_source.html#l00036">ScheatorDb.Series.fetch()</a>.</p>
 
 </div>
 </div>
@@ -258,7 +264,7 @@ Here is the caller graph for this function:</div>
 <li>src/ScheatorDb/<a class="el" href="Series_8java_source.html">Series.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:19 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:42 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

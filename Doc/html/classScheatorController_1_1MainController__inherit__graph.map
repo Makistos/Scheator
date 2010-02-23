@@ -1,3 +1,3 @@
 <map id="G" name="G">
-<area shape="rect" href="$classScheatorController_1_1AbstractController.html" title="{ScheatorController.AbstractController\n|&#45; registeredViews\l&#45; mainFrame\l&#45; registeredModels\l|+ AbstractController()\l+ addModel()\l+ removeModel()\l+ addView()\l+ removeView()\l+ addMainFrame()\l+ propertyChange()\l# setModelProperty()\l}" alt="" coords="5,141,240,397"/>
+<area shape="rect" href="$classScheatorController_1_1AbstractController.html" title="{ScheatorController.AbstractController\n|~ registeredViews\l~ mainFrame\l~ registeredModels\l|+ AbstractController()\l+ addModel()\l+ removeModel()\l+ addView()\l+ removeView()\l+ addMainFrame()\l}" alt="" coords="5,141,240,360"/>
 </map>

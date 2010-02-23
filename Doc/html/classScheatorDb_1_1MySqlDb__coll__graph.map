@@ -1,3 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" href="$classScheatorDb_1_1AbstractDb.html" title="{ScheatorDb.AbstractDb\n|~ con\l~ qe\l|}" alt="" coords="68,160,225,267"/>
+<area shape="rect" href="$classScheatorDb_1_1AbstractDb.html" title="{ScheatorDb.AbstractDb\n|~ con\l~ qe\l|}" alt="" coords="121,216,279,323"/>
+<area shape="rect" href="$interfaceScheatorDb_1_1AbstractQueryEngine.html" title="This is an abstraction of a query engine. A query engine can create queries for various..." alt="" coords="5,5,221,149"/>
 </map>

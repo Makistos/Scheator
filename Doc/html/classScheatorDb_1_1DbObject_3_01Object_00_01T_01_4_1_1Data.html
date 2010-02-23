@@ -83,16 +83,115 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;.Data:</div>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a56ff314d72247197e5b52aadf80819c3">toString</a> ()</td></tr>
-<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a65d94e5975ec2e5641877bac08a8cff2">field_id</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a50e9f285ff90909525c4b25a3a4ce5af">set</a> (String field, Object value)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Object&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#aa241d4bebe32bd84db811a408f760286">get</a> (String field)</td></tr>
+<tr><td colspan="2"><h2>Package Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Integer&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a992487aef2dc9044708a2e14df2ae799">field_id</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a9ab5bdb7fb5ef701aef99770ecd4fdfc">field_name</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a1183eaf1023e6cab438b72113c4f5da5">FieldState</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#aba476ca2e598d3b0dd6108ed9adee607">state</a> = FieldState.SAVED</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This class holds the actual data retrieved from the database. Each class needs to define this themselves. Each field retrieved directly from the database needs to have the "field_" prefix. </p>
 <p>The actual data for this class. </p>
 
-<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00047">47</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00050">50</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="aa241d4bebe32bd84db811a408f760286"></a><!-- doxytag: member="ScheatorDb::DbObject&lt; Object, T &gt;::Data::get" ref="aa241d4bebe32bd84db811a408f760286" args="(String field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Object ScheatorDb.DbObject&lt; Object, T &gt;.Data.get </td>
+          <td>(</td>
+          <td class="paramtype">String&nbsp;</td>
+          <td class="paramname"> <em>field</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the value of a field.</p>
+<p>This method uses reflection to determine the field where the value will be retrieved.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>field</em>&nbsp;</td><td>Field name. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Value of the field. </dd></dl>
+
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00094">94</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00094"></a>00094                                         {
+<a name="l00095"></a>00095             String name = <span class="stringliteral">&quot;field_&quot;</span>.concat(field);
+<a name="l00096"></a>00096             Object retval = null;
+<a name="l00097"></a>00097             <span class="keywordflow">try</span> {
+<a name="l00098"></a>00098                 Class c = Class.forName(this.<a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a56ff314d72247197e5b52aadf80819c3">toString</a>());
+<a name="l00099"></a>00099                 Field f = c.getField(name);
+<a name="l00100"></a>00100                 retval = (Object)f.get(<span class="keyword">this</span>);
+<a name="l00101"></a>00101             } <span class="keywordflow">catch</span> (Exception e) {
+<a name="l00102"></a>00102                 System.err.println(<span class="stringliteral">&quot;Field does not exist: &quot;</span> + name + <span class="stringliteral">&quot; (&quot;</span> + e.getMessage() + <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00103"></a>00103             }
+<a name="l00104"></a>00104             <span class="keywordflow">return</span> retval;
+<a name="l00105"></a>00105         }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a50e9f285ff90909525c4b25a3a4ce5af"></a><!-- doxytag: member="ScheatorDb::DbObject&lt; Object, T &gt;::Data::set" ref="a50e9f285ff90909525c4b25a3a4ce5af" args="(String field, Object value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ScheatorDb.DbObject&lt; Object, T &gt;.Data.set </td>
+          <td>(</td>
+          <td class="paramtype">String&nbsp;</td>
+          <td class="paramname"> <em>field</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Object&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Sets a field in the object to the given value.</p>
+<p>This function uses reflection to determine the field where the value will be set.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>field</em>&nbsp;</td><td>Name (minus field_) of field to set. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>Value used. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00072">72</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00072"></a>00072                                                     {
+<a name="l00073"></a>00073             String name = <span class="stringliteral">&quot;field_&quot;</span>.concat(field);
+<a name="l00074"></a>00074             <span class="keywordflow">try</span> {
+<a name="l00075"></a>00075                 Class c = Class.forName(this.<a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a56ff314d72247197e5b52aadf80819c3">toString</a>());
+<a name="l00076"></a>00076                 Field f = c.getField(name);
+<a name="l00077"></a>00077                 f.set(<span class="keyword">this</span>, value);
+<a name="l00078"></a>00078             } <span class="keywordflow">catch</span> (Exception e) {
+<a name="l00079"></a>00079                 System.err.println(<span class="stringliteral">&quot;Field does not exist: &quot;</span> + name + <span class="stringliteral">&quot;(&quot;</span> + e.getMessage() + <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00080"></a>00080             }
+<a name="l00081"></a>00081             <span class="keywordflow">if</span> (state == <a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a1183eaf1023e6cab438b72113c4f5da5">FieldState</a>.SAVED) {
+<a name="l00082"></a>00082                 <a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#aba476ca2e598d3b0dd6108ed9adee607">state</a> = <a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a1183eaf1023e6cab438b72113c4f5da5">FieldState</a>.CHANGED;
+<a name="l00083"></a>00083             }
+<a name="l00084"></a>00084         }
+</pre></div></p>
+
+</div>
+</div>
 <a class="anchor" id="a56ff314d72247197e5b52aadf80819c3"></a><!-- doxytag: member="ScheatorDb::DbObject&lt; Object, T &gt;::Data::toString" ref="a56ff314d72247197e5b52aadf80819c3" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -108,29 +207,29 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;.Data:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00055">55</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00060">60</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00055"></a>00055                                  {
-<a name="l00056"></a>00056             <span class="keywordflow">return</span> <a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a9ab5bdb7fb5ef701aef99770ecd4fdfc">field_name</a>;
-<a name="l00057"></a>00057         }
+<p><div class="fragment"><pre class="fragment"><a name="l00060"></a>00060                                  {
+<a name="l00061"></a>00061             <span class="keywordflow">return</span> <a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a9ab5bdb7fb5ef701aef99770ecd4fdfc">field_name</a>;
+<a name="l00062"></a>00062         }
 </pre></div></p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a65d94e5975ec2e5641877bac08a8cff2"></a><!-- doxytag: member="ScheatorDb::DbObject&lt; Object, T &gt;::Data::field_id" ref="a65d94e5975ec2e5641877bac08a8cff2" args="" -->
+<a class="anchor" id="a992487aef2dc9044708a2e14df2ae799"></a><!-- doxytag: member="ScheatorDb::DbObject&lt; Object, T &gt;::Data::field_id" ref="a992487aef2dc9044708a2e14df2ae799" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int ScheatorDb.DbObject&lt; Object, T &gt;.Data.field_id</td>
+          <td class="memname">Integer ScheatorDb.DbObject&lt; Object, T &gt;.Data.field_id<code> [package]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>Id in the database. </p>
 
-<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00050">50</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00053">53</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
 
 </div>
 </div>
@@ -139,14 +238,29 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;.Data:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">String ScheatorDb.DbObject&lt; Object, T &gt;.Data.field_name</td>
+          <td class="memname">String ScheatorDb.DbObject&lt; Object, T &gt;.Data.field_name<code> [package]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p><a class="el" href="classScheatorDb_1_1Season.html">Season</a> "name", e.g. "2007-08". </p>
 
-<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00052">52</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00055">55</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aba476ca2e598d3b0dd6108ed9adee607"></a><!-- doxytag: member="ScheatorDb::DbObject&lt; Object, T &gt;::Data::state" ref="aba476ca2e598d3b0dd6108ed9adee607" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a1183eaf1023e6cab438b72113c4f5da5">FieldState</a> ScheatorDb.DbObject&lt; Object, T &gt;.Data.state = FieldState.SAVED<code> [package]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00057">57</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
 
 </div>
 </div>
@@ -154,7 +268,7 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;.Data:</div>
 <li>src/ScheatorDb/<a class="el" href="DbObject_8java_source.html">DbObject.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:18 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:42 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

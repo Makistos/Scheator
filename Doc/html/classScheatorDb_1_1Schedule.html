@@ -191,23 +191,27 @@ Here is the call graph for this function:</div>
 <a name="l00037"></a>00037         String[] idFields = null;
 <a name="l00038"></a>00038         String[] ids = null;
 <a name="l00039"></a>00039         <span class="keywordflow">if</span> (key != 0) {
-<a name="l00040"></a>00040             idFields[0] = <span class="stringliteral">&quot;season&quot;</span>;
-<a name="l00041"></a>00041             ids[0] = String.valueOf(currentId);
-<a name="l00042"></a>00042         }
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044         <span class="keywordflow">try</span> {
-<a name="l00045"></a>00045             Statement st = db.con.createStatement();
-<a name="l00046"></a>00046             ResultSet rs = st.executeQuery(db.qe.getItems(<a class="code" href="classScheatorDb_1_1Schedule.html#a26b9c202c5e0a71841f14cc9a6b79fd9">TABLES</a>, null, idFields , ids, null));
-<a name="l00047"></a>00047             <span class="keywordflow">while</span> (rs.next()) {
-<a name="l00048"></a>00048                 String <span class="keywordtype">id</span> = rs.getString(<a class="code" href="classScheatorDb_1_1Schedule.html#aa7b40bf339a985bf91c6ca2c660fc9a0">FIELDS</a>[0]);
-<a name="l00049"></a>00049                 String name = rs.getString(<a class="code" href="classScheatorDb_1_1Schedule.html#aa7b40bf339a985bf91c6ca2c660fc9a0">FIELDS</a>[1]);
-<a name="l00050"></a>00050                 <span class="comment">//Data schedule = new Data(Integer.parseInt(id.trim()), name);</span>
-<a name="l00051"></a>00051                 <span class="comment">//list.put(id, schedule);</span>
-<a name="l00052"></a>00052             }
-<a name="l00053"></a>00053         } <span class="keywordflow">catch</span> (Exception e) {
-<a name="l00054"></a>00054             System.err.println(<span class="stringliteral">&quot;Failed to read series data: &quot;</span> + e.toString());
-<a name="l00055"></a>00055         }
-<a name="l00056"></a>00056     }
+<a name="l00040"></a>00040             idFields = <span class="keyword">new</span> String[1];
+<a name="l00041"></a>00041             ids = <span class="keyword">new</span> String[1];
+<a name="l00042"></a>00042             idFields[0] = <span class="stringliteral">&quot;season&quot;</span>;
+<a name="l00043"></a>00043             ids[0] = String.valueOf(currentId);
+<a name="l00044"></a>00044         }
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046         <span class="keywordflow">try</span> {
+<a name="l00047"></a>00047             Statement st = db.con.createStatement();
+<a name="l00048"></a>00048             String q = db.qe.getItems(<a class="code" href="classScheatorDb_1_1Schedule.html#a26b9c202c5e0a71841f14cc9a6b79fd9">TABLES</a>, null, idFields , ids, null);
+<a name="l00049"></a>00049             System.err.println(<span class="stringliteral">&quot;Query = &quot;</span> + q);
+<a name="l00050"></a>00050             ResultSet rs = st.executeQuery(q);
+<a name="l00051"></a>00051             <span class="keywordflow">while</span> (rs.next()) {
+<a name="l00052"></a>00052                 String <span class="keywordtype">id</span> = rs.getString(<a class="code" href="classScheatorDb_1_1Schedule.html#aa7b40bf339a985bf91c6ca2c660fc9a0">FIELDS</a>[0]);
+<a name="l00053"></a>00053                 String name = rs.getString(<a class="code" href="classScheatorDb_1_1Schedule.html#aa7b40bf339a985bf91c6ca2c660fc9a0">FIELDS</a>[1]);
+<a name="l00054"></a>00054                 <span class="comment">//Data schedule = new Data(Integer.parseInt(id.trim()), name);</span>
+<a name="l00055"></a>00055                 <span class="comment">//list.put(id, schedule);</span>
+<a name="l00056"></a>00056             }
+<a name="l00057"></a>00057         } <span class="keywordflow">catch</span> (Exception e) {
+<a name="l00058"></a>00058             System.err.println(<span class="stringliteral">&quot;Failed to read series data: &quot;</span> + e.toString());
+<a name="l00059"></a>00059         }
+<a name="l00060"></a>00060     }
 </pre></div></p>
 
 <p><div class="dynheader">
@@ -278,7 +282,7 @@ Here is the caller graph for this function:</div>
 <li>src/ScheatorDb/<a class="el" href="Schedule_8java_source.html">Schedule.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:19 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:42 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

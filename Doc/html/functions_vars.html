@@ -71,6 +71,7 @@ window.onload = initDynSections;
       <li><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
     </ul>
   </div>
   <div class="tabs">
@@ -117,8 +118,11 @@ window.onload = initDynSections;
 : <a class="el" href="classScheatorDb_1_1AbstractDb.html#aee128a50ef068640bdeb02d6654ea96f">ScheatorDb.AbstractDb</a>
 </li>
 <li>controller
-: <a class="el" href="classScheatorView_1_1MainTablePanel.html#a49cceef1b13d30f0f9fae431d4dbafdf">ScheatorView.MainTablePanel</a>
+: <a class="el" href="classScheatorModel_1_1MainTableModel.html#ad9e96cdf9e2a960cdcdc9ee156d4dee2">ScheatorModel.MainTableModel</a>
 , <a class="el" href="classScheatorView_1_1MainSearchPanel.html#acb6a7126c8641c31080ee7ad0d3c79b9">ScheatorView.MainSearchPanel</a>
+, <a class="el" href="classScheatorModel_1_1SeriesComboBoxModel.html#acb2a9b5286df0db340f0f2cc86806249">ScheatorModel.SeriesComboBoxModel</a>
+, <a class="el" href="classScheatorModel_1_1SeasonComboBoxModel.html#a96ff0aa3ccaef3dd0f0f957c4908f2fb">ScheatorModel.SeasonComboBoxModel</a>
+, <a class="el" href="classScheatorView_1_1MainTablePanel.html#a49cceef1b13d30f0f9fae431d4dbafdf">ScheatorView.MainTablePanel</a>
 , <a class="el" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">ScheatorView.MainView</a>
 </li>
 <li>currentId
@@ -145,16 +149,16 @@ window.onload = initDynSections;
 : <a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#ac74a6ce29e99afdc92ec0519a70069e2">ScheatorDb.Matches.Data</a>
 </li>
 <li>field_id
-: <a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a65d94e5975ec2e5641877bac08a8cff2">ScheatorDb.DbObject&lt; Object, T &gt;.Data</a>
+: <a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a992487aef2dc9044708a2e14df2ae799">ScheatorDb.DbObject&lt; Object, T &gt;.Data</a>
 </li>
 <li>field_matchNumber
-: <a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#a8af6b65dd05482734cce9eff1b2a9b35">ScheatorDb.Matches.Data</a>
+: <a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#a70ed4f79a548dc74e5cd046976cabd7e">ScheatorDb.Matches.Data</a>
 </li>
 <li>field_name
 : <a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#a9ab5bdb7fb5ef701aef99770ecd4fdfc">ScheatorDb.DbObject&lt; Object, T &gt;.Data</a>
 </li>
 <li>field_series
-: <a class="el" href="classScheatorDb_1_1Season_1_1Data.html#a3bb62468f6f7b3ce3264c2054e2e4e71">ScheatorDb.Season.Data</a>
+: <a class="el" href="classScheatorDb_1_1Season_1_1Data.html#a80e14dc0e225b6844233b78ad9bbe943">ScheatorDb.Season.Data</a>
 </li>
 <li>FIELDS
 : <a class="el" href="classScheatorDb_1_1Series.html#a87fe59200498bc9c4a75521980a0ced9">ScheatorDb.Series</a>
@@ -183,7 +187,7 @@ window.onload = initDynSections;
 <li>list
 : <a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#ad80c3e29eac5c27378f0fb63f1715fe9">ScheatorDb.DbObject&lt; Object, T &gt;</a>
 , <a class="el" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">ScheatorModel.ScheatorComboBoxModel</a>
-, <a class="el" href="classScheatorModel_1_1MainTableModel.html#a4539ee4570a76db39a7dfbedc9d732d4">ScheatorModel.MainTableModel</a>
+, <a class="el" href="classScheatorModel_1_1MainTableModel.html#a364ea4cb9df9ad80f916a8e426e7610c">ScheatorModel.MainTableModel</a>
 </li>
 </ul>
 
@@ -197,6 +201,12 @@ window.onload = initDynSections;
 </li>
 <li>mainTable
 : <a class="el" href="classScheatorView_1_1MainTablePanel.html#a453b1174480a54a304a9458c8a43108f">ScheatorView.MainTablePanel</a>
+</li>
+<li>MAINTABLE_MODEL_NAME
+: <a class="el" href="classScheatorController_1_1MainController.html#a23fcbf3641172a9f160892934fa47465">ScheatorController.MainController</a>
+</li>
+<li>MAINTABLE_UPDATE
+: <a class="el" href="classScheatorController_1_1MainController.html#ab4ebe99abfc0704b12bf143841acbdbf">ScheatorController.MainController</a>
 </li>
 <li>mainTableModel
 : <a class="el" href="classScheatorView_1_1MainTablePanel.html#ae52dba122eea2c9e12744d220e918e0d">ScheatorView.MainTablePanel</a>
@@ -218,12 +228,9 @@ window.onload = initDynSections;
 <li>progressBar
 : <a class="el" href="classScheatorView_1_1MainView.html#ac21ac2db6a9b06141732f4e52771b162">ScheatorView.MainView</a>
 </li>
-<li>propertyChangeSupport
-: <a class="el" href="classScheatorModel_1_1AbstractModel.html#ae85932f9f51584505433c947d9903e33">ScheatorModel.AbstractModel</a>
-</li>
 <li>provider
-: <a class="el" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">ScheatorModel.MainTableModel</a>
-, <a class="el" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">ScheatorModel.ScheatorComboBoxModel</a>
+: <a class="el" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">ScheatorModel.ScheatorComboBoxModel</a>
+, <a class="el" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">ScheatorModel.MainTableModel</a>
 </li>
 </ul>
 
@@ -237,17 +244,14 @@ window.onload = initDynSections;
 
 <h3><a class="anchor" id="index_r">- r -</a></h3><ul>
 <li>registeredModels
-: <a class="el" href="classScheatorController_1_1AbstractController.html#a61b38c700365a74071aa1c6b70a5a15e">ScheatorController.AbstractController</a>
+: <a class="el" href="classScheatorController_1_1AbstractController.html#a54f06d2217ee76aa9f55e35e29306cf4">ScheatorController.AbstractController</a>
 </li>
 <li>registeredViews
-: <a class="el" href="classScheatorController_1_1AbstractController.html#a31151f655140d3a15852198f00c98615">ScheatorController.AbstractController</a>
+: <a class="el" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">ScheatorController.AbstractController</a>
 </li>
 <li>resourceMap
-: <a class="el" href="classScheatorView_1_1MainTablePanel.html#a333bfc8ae6c42aa49fc0f110c39658ba">ScheatorView.MainTablePanel</a>
-, <a class="el" href="classScheatorView_1_1MainSearchPanel.html#aa08d903c79e5e231d212ebd27574e2f7">ScheatorView.MainSearchPanel</a>
-</li>
-<li>rows
-: <a class="el" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">ScheatorModel.MainTableModel</a>
+: <a class="el" href="classScheatorView_1_1MainSearchPanel.html#aa08d903c79e5e231d212ebd27574e2f7">ScheatorView.MainSearchPanel</a>
+, <a class="el" href="classScheatorView_1_1MainTablePanel.html#a333bfc8ae6c42aa49fc0f110c39658ba">ScheatorView.MainTablePanel</a>
 </li>
 </ul>
 
@@ -263,7 +267,7 @@ window.onload = initDynSections;
 : <a class="el" href="classScheatorView_1_1MainSearchPanel.html#ab9f0c1895876cc0d86266fd6a2eea621">ScheatorView.MainSearchPanel</a>
 </li>
 <li>searchEnabled
-: <a class="el" href="classScheatorView_1_1MainSearchPanel.html#ad97333034cc0e2a814e371474f7ca2bf">ScheatorView.MainSearchPanel</a>
+: <a class="el" href="classScheatorView_1_1MainSearchPanel.html#a86b0835f2fd54bb4e29213c11535c7de">ScheatorView.MainSearchPanel</a>
 </li>
 <li>SEASON_LIST
 : <a class="el" href="classScheatorController_1_1MainController.html#ab845da27b7112db418a002392cb83767">ScheatorController.MainController</a>
@@ -285,6 +289,9 @@ window.onload = initDynSections;
 </li>
 <li>seriesModel
 : <a class="el" href="classScheatorView_1_1MainSearchPanel.html#aedff66c5945d55191c7e20157b0c769b">ScheatorView.MainSearchPanel</a>
+</li>
+<li>state
+: <a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html#aba476ca2e598d3b0dd6108ed9adee607">ScheatorDb.DbObject&lt; Object, T &gt;.Data</a>
 </li>
 <li>statusAnimationLabel
 : <a class="el" href="classScheatorView_1_1MainView.html#a72025dd3d65387d24b4ea7895377c480">ScheatorView.MainView</a>
@@ -320,7 +327,7 @@ window.onload = initDynSections;
 </li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:16 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:40 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

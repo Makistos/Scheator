@@ -90,7 +90,7 @@ Collaboration diagram for ScheatorView.MainTablePanel.ButtonListener:</div>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="MainTablePanel_8java_source.html#l00155">155</a> of file <a class="el" href="MainTablePanel_8java_source.html">MainTablePanel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTablePanel_8java_source.html#l00152">152</a> of file <a class="el" href="MainTablePanel_8java_source.html">MainTablePanel.java</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="acb1071acfd6b8cfb532cbac5879993a4"></a><!-- doxytag: member="ScheatorView::MainTablePanel::ButtonListener::ButtonListener" ref="acb1071acfd6b8cfb532cbac5879993a4" args="()" -->
 <div class="memitem">
@@ -107,11 +107,11 @@ Collaboration diagram for ScheatorView.MainTablePanel.ButtonListener:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MainTablePanel_8java_source.html#l00156">156</a> of file <a class="el" href="MainTablePanel_8java_source.html">MainTablePanel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTablePanel_8java_source.html#l00153">153</a> of file <a class="el" href="MainTablePanel_8java_source.html">MainTablePanel.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00156"></a>00156                          {
-<a name="l00157"></a>00157 
-<a name="l00158"></a>00158         }
+<p><div class="fragment"><pre class="fragment"><a name="l00153"></a>00153                          {
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155         }
 </pre></div></p>
 
 </div>
@@ -133,29 +133,29 @@ Collaboration diagram for ScheatorView.MainTablePanel.ButtonListener:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MainTablePanel_8java_source.html#l00159">159</a> of file <a class="el" href="MainTablePanel_8java_source.html">MainTablePanel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTablePanel_8java_source.html#l00156">156</a> of file <a class="el" href="MainTablePanel_8java_source.html">MainTablePanel.java</a>.</p>
 
-<p>References <a class="el" href="MainTablePanel_8java_source.html#l00024">ScheatorView.MainTablePanel.mainTable</a>, <a class="el" href="MainTablePanel_8java_source.html#l00032">ScheatorView.MainTablePanel.mainTableModel</a>, <a class="el" href="MainTableModel_8java_source.html#l00064">ScheatorModel.MainTableModel.moveMatch()</a>, <a class="el" href="MainTableModel_8java_source.html#l00107">ScheatorModel.MainTableModel.save()</a>, and <a class="el" href="MainTablePanel_8java_source.html#l00042">ScheatorView.MainTablePanel.setTableEdited()</a>.</p>
+<p>References <a class="el" href="MainTablePanel_8java_source.html#l00026">ScheatorView.MainTablePanel.mainTable</a>, <a class="el" href="MainTablePanel_8java_source.html#l00034">ScheatorView.MainTablePanel.mainTableModel</a>, <a class="el" href="MainTableModel_8java_source.html#l00096">ScheatorModel.MainTableModel.moveMatch()</a>, <a class="el" href="MainTableModel_8java_source.html#l00144">ScheatorModel.MainTableModel.save()</a>, and <a class="el" href="MainTablePanel_8java_source.html#l00044">ScheatorView.MainTablePanel.setTableEdited()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00159"></a>00159                                                    {
-<a name="l00160"></a>00160             <span class="keywordflow">if</span> (e.getActionCommand().equals(<span class="stringliteral">&quot;Up&quot;</span>)) {
-<a name="l00161"></a>00161                 Integer row = <a class="code" href="classScheatorView_1_1MainTablePanel.html#a453b1174480a54a304a9458c8a43108f">mainTable</a>.getSelectedRow();
-<a name="l00162"></a>00162                 <span class="keywordflow">if</span> (row &gt; 0) {
-<a name="l00163"></a>00163                     <a class="code" href="classScheatorView_1_1MainTablePanel.html#ae52dba122eea2c9e12744d220e918e0d">mainTableModel</a>.<a class="code" href="classScheatorModel_1_1MainTableModel.html#a5ffda31d76301ff411c9c5eb5e806bcb">moveMatch</a>(row, row - 1);
-<a name="l00164"></a>00164                     <a class="code" href="classScheatorView_1_1MainTablePanel.html#a310693851bfd18510ec1fa8d9584d259">setTableEdited</a>(<span class="keyword">true</span>);
-<a name="l00165"></a>00165                 }
-<a name="l00166"></a>00166             }
-<a name="l00167"></a>00167             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (e.getActionCommand().equals(<span class="stringliteral">&quot;Down&quot;</span>)) {
-<a name="l00168"></a>00168                 Integer row = <a class="code" href="classScheatorView_1_1MainTablePanel.html#a453b1174480a54a304a9458c8a43108f">mainTable</a>.getSelectedRow();
-<a name="l00169"></a>00169                 <span class="keywordflow">if</span> (row &lt; <a class="code" href="classScheatorView_1_1MainTablePanel.html#a453b1174480a54a304a9458c8a43108f">mainTable</a>.getRowCount()-1) {
-<a name="l00170"></a>00170                     <a class="code" href="classScheatorView_1_1MainTablePanel.html#ae52dba122eea2c9e12744d220e918e0d">mainTableModel</a>.<a class="code" href="classScheatorModel_1_1MainTableModel.html#a5ffda31d76301ff411c9c5eb5e806bcb">moveMatch</a>(row, row + 1);
-<a name="l00171"></a>00171                     <a class="code" href="classScheatorView_1_1MainTablePanel.html#a310693851bfd18510ec1fa8d9584d259">setTableEdited</a>(<span class="keyword">true</span>);
-<a name="l00172"></a>00172                 }
+<p><div class="fragment"><pre class="fragment"><a name="l00156"></a>00156                                                    {
+<a name="l00157"></a>00157             <span class="keywordflow">if</span> (e.getActionCommand().equals(<span class="stringliteral">&quot;Up&quot;</span>)) {
+<a name="l00158"></a>00158                 Integer row = <a class="code" href="classScheatorView_1_1MainTablePanel.html#a453b1174480a54a304a9458c8a43108f">mainTable</a>.getSelectedRow();
+<a name="l00159"></a>00159                 <span class="keywordflow">if</span> (row &gt; 0) {
+<a name="l00160"></a>00160                     <a class="code" href="classScheatorView_1_1MainTablePanel.html#ae52dba122eea2c9e12744d220e918e0d">mainTableModel</a>.<a class="code" href="classScheatorModel_1_1MainTableModel.html#a5ffda31d76301ff411c9c5eb5e806bcb">moveMatch</a>(row, row - 1);
+<a name="l00161"></a>00161                     <a class="code" href="classScheatorView_1_1MainTablePanel.html#a310693851bfd18510ec1fa8d9584d259">setTableEdited</a>(<span class="keyword">true</span>);
+<a name="l00162"></a>00162                 }
+<a name="l00163"></a>00163             }
+<a name="l00164"></a>00164             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (e.getActionCommand().equals(<span class="stringliteral">&quot;Down&quot;</span>)) {
+<a name="l00165"></a>00165                 Integer row = <a class="code" href="classScheatorView_1_1MainTablePanel.html#a453b1174480a54a304a9458c8a43108f">mainTable</a>.getSelectedRow();
+<a name="l00166"></a>00166                 <span class="keywordflow">if</span> (row &lt; <a class="code" href="classScheatorView_1_1MainTablePanel.html#a453b1174480a54a304a9458c8a43108f">mainTable</a>.getRowCount()-1) {
+<a name="l00167"></a>00167                     <a class="code" href="classScheatorView_1_1MainTablePanel.html#ae52dba122eea2c9e12744d220e918e0d">mainTableModel</a>.<a class="code" href="classScheatorModel_1_1MainTableModel.html#a5ffda31d76301ff411c9c5eb5e806bcb">moveMatch</a>(row, row + 1);
+<a name="l00168"></a>00168                     <a class="code" href="classScheatorView_1_1MainTablePanel.html#a310693851bfd18510ec1fa8d9584d259">setTableEdited</a>(<span class="keyword">true</span>);
+<a name="l00169"></a>00169                 }
+<a name="l00170"></a>00170             }
+<a name="l00171"></a>00171             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (e.getActionCommand().equals(<span class="stringliteral">&quot;Save&quot;</span>)) {
+<a name="l00172"></a>00172                 <a class="code" href="classScheatorView_1_1MainTablePanel.html#ae52dba122eea2c9e12744d220e918e0d">mainTableModel</a>.<a class="code" href="classScheatorModel_1_1MainTableModel.html#aedfeb31ecb3d7b17dc033d277c970298">save</a>();
 <a name="l00173"></a>00173             }
-<a name="l00174"></a>00174             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (e.getActionCommand().equals(<span class="stringliteral">&quot;Save&quot;</span>)) {
-<a name="l00175"></a>00175                 <a class="code" href="classScheatorView_1_1MainTablePanel.html#ae52dba122eea2c9e12744d220e918e0d">mainTableModel</a>.<a class="code" href="classScheatorModel_1_1MainTableModel.html#aedfeb31ecb3d7b17dc033d277c970298">save</a>();
-<a name="l00176"></a>00176             }
-<a name="l00177"></a>00177         }
+<a name="l00174"></a>00174         }
 </pre></div></p>
 
 <p><div class="dynheader">
@@ -173,7 +173,7 @@ Here is the call graph for this function:</div>
 <li>src/ScheatorView/<a class="el" href="MainTablePanel_8java_source.html">MainTablePanel.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:22 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:47 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

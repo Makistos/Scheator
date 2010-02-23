@@ -71,20 +71,26 @@ window.onload = initDynSections;
 <a name="l00005"></a>00005 
 <a name="l00006"></a>00006 <span class="keyword">package </span>ScheatorModel;
 <a name="l00007"></a>00007 
-<a name="l00012"></a><a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html">00012</a> <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html">SeasonComboBoxModel</a> <span class="keyword">extends</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html">ScheatorComboBoxModel</a> {
-<a name="l00013"></a>00013 
-<a name="l00014"></a><a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#afdedd702aee3509451bdd5e2b69dce0b">00014</a>     <span class="keyword">public</span> <a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#afdedd702aee3509451bdd5e2b69dce0b">SeasonComboBoxModel</a>() {
-<a name="l00015"></a>00015         <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">provider</a> = <span class="keyword">new</span> ScheatorDb.Season();
-<a name="l00016"></a>00016         <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">list</a> = <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">provider</a>.getList();
-<a name="l00017"></a>00017     }
-<a name="l00018"></a>00018 
-<a name="l00023"></a><a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#aa11b52318c1be11e1a3290e0114d08a9">00023</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#aa11b52318c1be11e1a3290e0114d08a9">update</a>(<span class="keywordtype">int</span> seriesId) {
-<a name="l00024"></a>00024         <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">provider</a>.fetch(seriesId);
-<a name="l00025"></a>00025         fireContentsChanged(<span class="keyword">this</span>, 0, <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">list</a>.size()-1);
-<a name="l00026"></a>00026     }
-<a name="l00027"></a>00027 }
+<a name="l00008"></a>00008 <span class="keyword">import</span> ScheatorController.*;
+<a name="l00013"></a><a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html">00013</a> <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html">SeasonComboBoxModel</a> <span class="keyword">extends</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html">ScheatorComboBoxModel</a> {
+<a name="l00014"></a>00014 
+<a name="l00015"></a><a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#a96ff0aa3ccaef3dd0f0f957c4908f2fb">00015</a>     <a class="code" href="classScheatorController_1_1AbstractController.html">AbstractController</a> <a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#a96ff0aa3ccaef3dd0f0f957c4908f2fb">controller</a>;
+<a name="l00016"></a>00016     
+<a name="l00017"></a><a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#a31b86b360313c07968299b55cb965525">00017</a>     <span class="keyword">public</span> <a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#a31b86b360313c07968299b55cb965525">SeasonComboBoxModel</a>(<a class="code" href="classScheatorController_1_1AbstractController.html">AbstractController</a> <a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#a96ff0aa3ccaef3dd0f0f957c4908f2fb">controller</a>) {
+<a name="l00018"></a>00018         this.controller = controller;
+<a name="l00019"></a>00019         controller.<a class="code" href="classScheatorController_1_1AbstractController.html#a92d4c5f2ee31ee9fd9fde54535a76b6f">addModel</a>(<span class="keyword">this</span>);
+<a name="l00020"></a>00020         <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">provider</a> = <span class="keyword">new</span> ScheatorDb.Season();
+<a name="l00021"></a>00021         <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">list</a> = <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">provider</a>.getList();
+<a name="l00022"></a>00022     }
+<a name="l00023"></a>00023 
+<a name="l00028"></a><a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#aa11b52318c1be11e1a3290e0114d08a9">00028</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorModel_1_1SeasonComboBoxModel.html#aa11b52318c1be11e1a3290e0114d08a9">update</a>(<span class="keywordtype">int</span> seriesId) {
+<a name="l00029"></a>00029         <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">provider</a>.fetch(seriesId);
+<a name="l00030"></a>00030         System.err.println(<span class="stringliteral">&quot;Firing contentsChange()&quot;</span>);
+<a name="l00031"></a>00031         fireContentsChanged(<span class="keyword">this</span>, 0, <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">list</a>.size()-1);
+<a name="l00032"></a>00032     }
+<a name="l00033"></a>00033 }
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:16 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:40 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

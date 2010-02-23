@@ -1,4 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" href="$classScheatorModel_1_1SeasonComboBoxModel.html" title="{ScheatorModel.SeasonComboBoxModel\n||+ SeasonComboBoxModel()\l+ update()\l}" alt="" coords="5,371,261,477"/>
-<area shape="rect" href="$classScheatorModel_1_1SeriesComboBoxModel.html" title="{ScheatorModel.SeriesComboBoxModel\n||+ SeriesComboBoxModel()\l}" alt="" coords="285,380,533,468"/>
+<area shape="rect" href="$classScheatorModel_1_1SeasonComboBoxModel.html" title="{ScheatorModel.SeasonComboBoxModel\n|~ controller\l|+ SeasonComboBoxModel()\l+ update()\l}" alt="" coords="5,445,261,552"/>
+<area shape="rect" href="$classScheatorModel_1_1SeriesComboBoxModel.html" title="{ScheatorModel.SeriesComboBoxModel\n|&#45; controller\l|+ SeriesComboBoxModel()\l}" alt="" coords="285,455,533,543"/>
 </map>

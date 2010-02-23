@@ -1,4 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" href="$classScheatorController_1_1AbstractController.html" title="{ScheatorController.AbstractController\n|&#45; registeredViews\l&#45; mainFrame\l&#45; registeredModels\l|+ AbstractController()\l+ addModel()\l+ removeModel()\l+ addView()\l+ removeView()\l+ addMainFrame()\l+ propertyChange()\l# setModelProperty()\l}" alt="" coords="319,613,553,869"/>
-<area shape="rect" href="$classScheatorController_1_1MainController.html" title="{ScheatorController.MainController\n|+ SERIES_LIST\l+ SEASON_LIST\l+ SCHEDULE_DATA\l|+ seriesSelected()\l+ seasonSelected()\l+ scheduleEdited()\l+ moveMatch()\l}" alt="" coords="328,973,544,1155"/>
+<area shape="rect" href="$classScheatorController_1_1AbstractController.html" title="{ScheatorController.AbstractController\n|~ registeredViews\l~ mainFrame\l~ registeredModels\l|+ AbstractController()\l+ addModel()\l+ removeModel()\l+ addView()\l+ removeView()\l+ addMainFrame()\l}" alt="" coords="275,651,509,869"/>
+<area shape="rect" href="$classScheatorController_1_1MainController.html" title="{ScheatorController.MainController\n|+ SERIES_LIST\l+ SEASON_LIST\l+ SCHEDULE_DATA\l&#45; MAINTABLE_MODEL_NAME\l&#45; MAINTABLE_UPDATE\l|+ searchMainTable()\l+ scheduleEdited()\l+ moveMatch()\l}" alt="" coords="284,1011,500,1211"/>
 </map>

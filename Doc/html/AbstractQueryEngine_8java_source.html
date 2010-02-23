@@ -64,23 +64,21 @@ window.onload = initDynSections;
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>src/ScheatorDb/AbstractQueryEngine.java</h1><a href="AbstractQueryEngine_8java.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
-<a name="l00002"></a>00002 <span class="comment"> * To change this template, choose Tools | Templates</span>
-<a name="l00003"></a>00003 <span class="comment"> * and open the template in the editor.</span>
-<a name="l00004"></a>00004 <span class="comment"> */</span>
-<a name="l00005"></a>00005 
-<a name="l00006"></a>00006 <span class="keyword">package </span>ScheatorDb;
-<a name="l00007"></a>00007 
-<a name="l00012"></a><a class="code" href="interfaceScheatorDb_1_1AbstractQueryEngine_3_01T_01_4.html">00012</a> interface <a class="code" href="interfaceScheatorDb_1_1AbstractQueryEngine_3_01T_01_4.html">AbstractQueryEngine&lt;T&gt;</a> {
-<a name="l00024"></a>00024     <span class="keyword">abstract</span> String getItems(String[] table, String[] fields, String[] idFields, 
-<a name="l00025"></a>00025             String[] ids, String[] orderBy);
-<a name="l00026"></a>00026 
-<a name="l00034"></a>00034     <span class="keyword">abstract</span> String addItem(String entity, Object toAdd);
-<a name="l00035"></a>00035 
-<a name="l00044"></a>00044     <span class="keyword">abstract</span> String deleteItems(String entity, String[] idField, String[] <span class="keywordtype">id</span>);
-<a name="l00045"></a>00045 }
+<h1>src/ScheatorDb/AbstractQueryEngine.java</h1><a href="AbstractQueryEngine_8java.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="keyword">package </span>ScheatorDb;
+<a name="l00002"></a>00002 
+<a name="l00011"></a><a class="code" href="interfaceScheatorDb_1_1AbstractQueryEngine.html">00011</a> interface <a class="code" href="interfaceScheatorDb_1_1AbstractQueryEngine.html" title="This is an abstraction of a query engine. A query engine can create queries for various...">AbstractQueryEngine</a> {
+<a name="l00023"></a>00023     <span class="keyword">abstract</span> String getItems(String[] table, String[] fields, String[] idFields, 
+<a name="l00024"></a>00024             String[] ids, String[] orderBy);
+<a name="l00025"></a>00025 
+<a name="l00033"></a>00033     <span class="keyword">abstract</span> String addItem(String entity, Object toAdd);
+<a name="l00034"></a>00034 
+<a name="l00042"></a>00042     <span class="keyword">abstract</span> String updateItem(String entity, Object toUpdate, String[] idFields,
+<a name="l00043"></a>00043             String[] ids);
+<a name="l00044"></a>00044 
+<a name="l00053"></a>00053     <span class="keyword">abstract</span> String deleteItems(String entity, String[] idField, String[] <span class="keywordtype">id</span>);
+<a name="l00054"></a>00054 }
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:16 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:40 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

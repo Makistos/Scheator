@@ -1,5 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#a4b6a3e9647e5bed4155b58e70bfa922d" title="ScheatorView.MainSearchPanel.seasonList" alt="" coords="417,5,689,35"/>
-<area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#a3f8da40289773cfe7e33ebdcc3aa5d06" title="ScheatorView.MainSearchPanel.seriesList" alt="" coords="420,59,687,88"/>
-<area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#a28f749cf844524416c75dd11c1164d4d" title="ScheatorView.MainSearchPanel.MainSearchPanel" alt="" coords="739,32,1051,61"/>
+<area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#a4b6a3e9647e5bed4155b58e70bfa922d" title="ScheatorView.MainSearchPanel.seasonList" alt="" coords="417,59,689,88"/>
+<area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#a3f8da40289773cfe7e33ebdcc3aa5d06" title="ScheatorView.MainSearchPanel.seriesList" alt="" coords="420,5,687,35"/>
+<area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#a28f749cf844524416c75dd11c1164d4d" title="ScheatorView.MainSearchPanel.MainSearchPanel" alt="" coords="739,5,1051,35"/>
+<area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#a4f35449a7841555cde14e2ff33b1d5db" title="ScheatorView.MainSearchPanel.search" alt="" coords="771,59,1019,88"/>
 </map>

@@ -87,25 +87,59 @@ Collaboration diagram for ScheatorDb.Matches.Data:</div>
 
 <p><a href="classScheatorDb_1_1Matches_1_1Data-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#a8af6b65dd05482734cce9eff1b2a9b35">field_matchNumber</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#ace8fae1d55517cff134517ac28a03e8e">Data</a> ()</td></tr>
+<tr><td colspan="2"><h2>Package Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#a3cfa9b1de7e406279461827b2d3154d1">Data</a> (Integer id, int match, String home, String away)</td></tr>
+<tr><td colspan="2"><h2>Package Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Integer&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#a70ed4f79a548dc74e5cd046976cabd7e">field_matchNumber</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#ac74a6ce29e99afdc92ec0519a70069e2">field_homeTeam</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#acdccb1411ab38dc4bd481488a28566cc">field_awayTeam</a></td></tr>
-<tr><td colspan="2"><h2>Package Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#ab2fbb68d0ef5126e8e2e879ea5485fb6">Data</a> (int id, int match, String home, String away)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>One match in the database. </p>
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00068">68</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00093">93</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ab2fbb68d0ef5126e8e2e879ea5485fb6"></a><!-- doxytag: member="ScheatorDb::Matches::Data::Data" ref="ab2fbb68d0ef5126e8e2e879ea5485fb6" args="(int id, int match, String home, String away)" -->
+<a class="anchor" id="ace8fae1d55517cff134517ac28a03e8e"></a><!-- doxytag: member="ScheatorDb::Matches::Data::Data" ref="ace8fae1d55517cff134517ac28a03e8e" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">ScheatorDb.Matches.Data.Data </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00101">101</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+
+<p>References <a class="el" href="Matches_8java_source.html#l00099">ScheatorDb.Matches.Data.field_awayTeam</a>, <a class="el" href="Matches_8java_source.html#l00097">ScheatorDb.Matches.Data.field_homeTeam</a>, and <a class="el" href="Matches_8java_source.html#l00095">ScheatorDb.Matches.Data.field_matchNumber</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00101"></a>00101                       {
+<a name="l00102"></a>00102             field_id = null;
+<a name="l00103"></a>00103             field_name = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00104"></a>00104             <a class="code" href="classScheatorDb_1_1Matches_1_1Data.html#a70ed4f79a548dc74e5cd046976cabd7e">field_matchNumber</a> = null;
+<a name="l00105"></a>00105             <a class="code" href="classScheatorDb_1_1Matches_1_1Data.html#ac74a6ce29e99afdc92ec0519a70069e2">field_homeTeam</a> = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00106"></a>00106             <a class="code" href="classScheatorDb_1_1Matches_1_1Data.html#acdccb1411ab38dc4bd481488a28566cc">field_awayTeam</a> = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00107"></a>00107             state = FieldState.NEW;
+<a name="l00108"></a>00108         }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a3cfa9b1de7e406279461827b2d3154d1"></a><!-- doxytag: member="ScheatorDb::Matches::Data::Data" ref="a3cfa9b1de7e406279461827b2d3154d1" args="(Integer id, int match, String home, String away)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ScheatorDb.Matches.Data.Data </td>
+          <td>(</td>
+          <td class="paramtype">Integer&nbsp;</td>
           <td class="paramname"> <em>id</em>, </td>
         </tr>
         <tr>
@@ -135,17 +169,17 @@ Collaboration diagram for ScheatorDb.Matches.Data:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00073">73</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00110">110</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 
-<p>References <a class="el" href="Matches_8java_source.html#l00071">ScheatorDb.Matches.Data.field_awayTeam</a>, <a class="el" href="Matches_8java_source.html#l00070">ScheatorDb.Matches.Data.field_homeTeam</a>, and <a class="el" href="Matches_8java_source.html#l00069">ScheatorDb.Matches.Data.field_matchNumber</a>.</p>
+<p>References <a class="el" href="Matches_8java_source.html#l00099">ScheatorDb.Matches.Data.field_awayTeam</a>, <a class="el" href="Matches_8java_source.html#l00097">ScheatorDb.Matches.Data.field_homeTeam</a>, and <a class="el" href="Matches_8java_source.html#l00095">ScheatorDb.Matches.Data.field_matchNumber</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00073"></a>00073                                                           {
-<a name="l00074"></a>00074             field_id = id;
-<a name="l00075"></a>00075             field_name = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00076"></a>00076             <a class="code" href="classScheatorDb_1_1Matches_1_1Data.html#a8af6b65dd05482734cce9eff1b2a9b35">field_matchNumber</a> = match;
-<a name="l00077"></a>00077             <a class="code" href="classScheatorDb_1_1Matches_1_1Data.html#ac74a6ce29e99afdc92ec0519a70069e2">field_homeTeam</a> = home;
-<a name="l00078"></a>00078             <a class="code" href="classScheatorDb_1_1Matches_1_1Data.html#acdccb1411ab38dc4bd481488a28566cc">field_awayTeam</a> = away;
-<a name="l00079"></a>00079         }
+<p><div class="fragment"><pre class="fragment"><a name="l00110"></a>00110                                                               {
+<a name="l00111"></a>00111             field_id = id;
+<a name="l00112"></a>00112             field_name = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00113"></a>00113             <a class="code" href="classScheatorDb_1_1Matches_1_1Data.html#a70ed4f79a548dc74e5cd046976cabd7e">field_matchNumber</a> = match;
+<a name="l00114"></a>00114             <a class="code" href="classScheatorDb_1_1Matches_1_1Data.html#ac74a6ce29e99afdc92ec0519a70069e2">field_homeTeam</a> = home;
+<a name="l00115"></a>00115             <a class="code" href="classScheatorDb_1_1Matches_1_1Data.html#acdccb1411ab38dc4bd481488a28566cc">field_awayTeam</a> = away;
+<a name="l00116"></a>00116         }
 </pre></div></p>
 
 </div>
@@ -156,15 +190,16 @@ Collaboration diagram for ScheatorDb.Matches.Data:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">String <a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#acdccb1411ab38dc4bd481488a28566cc">ScheatorDb.Matches.Data.field_awayTeam</a></td>
+          <td class="memname">String <a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#acdccb1411ab38dc4bd481488a28566cc">ScheatorDb.Matches.Data.field_awayTeam</a><code> [package]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Away team id (from the Team table). </p>
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00071">71</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00099">99</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 
-<p>Referenced by <a class="el" href="Matches_8java_source.html#l00073">ScheatorDb.Matches.Data.Data()</a>.</p>
+<p>Referenced by <a class="el" href="Matches_8java_source.html#l00101">ScheatorDb.Matches.Data.Data()</a>.</p>
 
 </div>
 </div>
@@ -173,32 +208,34 @@ Collaboration diagram for ScheatorDb.Matches.Data:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">String <a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#ac74a6ce29e99afdc92ec0519a70069e2">ScheatorDb.Matches.Data.field_homeTeam</a></td>
+          <td class="memname">String <a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#ac74a6ce29e99afdc92ec0519a70069e2">ScheatorDb.Matches.Data.field_homeTeam</a><code> [package]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Home team id (from the Team table). </p>
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00070">70</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00097">97</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 
-<p>Referenced by <a class="el" href="Matches_8java_source.html#l00073">ScheatorDb.Matches.Data.Data()</a>.</p>
+<p>Referenced by <a class="el" href="Matches_8java_source.html#l00101">ScheatorDb.Matches.Data.Data()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8af6b65dd05482734cce9eff1b2a9b35"></a><!-- doxytag: member="ScheatorDb::Matches::Data::field_matchNumber" ref="a8af6b65dd05482734cce9eff1b2a9b35" args="" -->
+<a class="anchor" id="a70ed4f79a548dc74e5cd046976cabd7e"></a><!-- doxytag: member="ScheatorDb::Matches::Data::field_matchNumber" ref="a70ed4f79a548dc74e5cd046976cabd7e" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#a8af6b65dd05482734cce9eff1b2a9b35">ScheatorDb.Matches.Data.field_matchNumber</a></td>
+          <td class="memname">Integer <a class="el" href="classScheatorDb_1_1Matches_1_1Data.html#a70ed4f79a548dc74e5cd046976cabd7e">ScheatorDb.Matches.Data.field_matchNumber</a><code> [package]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Match number (order) in the schedule. </p>
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00069">69</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00095">95</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 
-<p>Referenced by <a class="el" href="Matches_8java_source.html#l00073">ScheatorDb.Matches.Data.Data()</a>.</p>
+<p>Referenced by <a class="el" href="Matches_8java_source.html#l00101">ScheatorDb.Matches.Data.Data()</a>.</p>
 
 </div>
 </div>
@@ -206,7 +243,7 @@ Collaboration diagram for ScheatorDb.Matches.Data:</div>
 <li>src/ScheatorDb/<a class="el" href="Matches_8java_source.html">Matches.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:18 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:42 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

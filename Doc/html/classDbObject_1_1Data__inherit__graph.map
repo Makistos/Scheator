@@ -1,7 +1,7 @@
 <map id="G" name="G">
-<area shape="rect" href="$classScheatorDb_1_1Matches_1_1Data.html" title="{ScheatorDb.Matches.Data\n|+ field_matchNumber\l+ field_homeTeam\l+ field_awayTeam\l|~ Data()\l}" alt="" coords="5,151,179,276"/>
+<area shape="rect" href="$classScheatorDb_1_1Matches_1_1Data.html" title="{ScheatorDb.Matches.Data\n|~ field_matchNumber\l~ field_homeTeam\l~ field_awayTeam\l|+ Data()\l~ Data()\l}" alt="" coords="5,141,179,285"/>
 <area shape="rect" href="$classScheatorDb_1_1Schedule_1_1Data.html" title="{ScheatorDb.Schedule.Data\n||~ Data()\l}" alt="" coords="203,169,381,257"/>
-<area shape="rect" href="$classScheatorDb_1_1Season_1_1Data.html" title="{ScheatorDb.Season.Data\n|+ field_series\l|+ toString()\l~ Data()\l~ Data()\l~ Data()\l}" alt="" coords="405,141,573,285"/>
+<area shape="rect" href="$classScheatorDb_1_1Season_1_1Data.html" title="{ScheatorDb.Season.Data\n|~ field_series\l|+ toString()\l~ Data()\l~ Data()\l~ Data()\l}" alt="" coords="405,141,573,285"/>
 <area shape="rect" href="$classScheatorDb_1_1Series_1_1Data.html" title="{ScheatorDb.Series.Data\n||~ Data()\l~ Data()\l}" alt="" coords="597,160,757,267"/>
 <area shape="rect" href="$classScheatorDb_1_1Teams_1_1Data.html" title="{ScheatorDb.Teams.Data\n||~ Data()\l~ Data()\l~ Data()\l}" alt="" coords="781,151,944,276"/>
 </map>

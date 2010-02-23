@@ -88,8 +88,8 @@ Collaboration diagram for ScheatorDb.Season:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Season.html#a3a61389a5020a0bb4c03dc27722b5d8e">Season</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Season.html#aa244ac1dcdb90fc8a15f7add0ee77e65">Season</a> (int seriesId)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">final void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Season.html#af18ee7ebcb443c88a66f1f87f0c43f4c">fetch</a> (int key)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A season is a mapping between a series and the matches. One series can have several seasons and a season consists of several matches.  <a href="#af18ee7ebcb443c88a66f1f87f0c43f4c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">final void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Season.html#a458e8dd711c0213a14f02e3d7a5a49b7">fetch</a> (int series)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A season is a mapping between a series and the matches. One series can have several seasons and a season consists of several matches.  <a href="#a458e8dd711c0213a14f02e3d7a5a49b7"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static final String[]&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Season.html#a974dce39fc6144548efc809fa2bd253d">TABLE_NAME</a> = {&quot;Season&quot;}</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static final String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Season.html#a0dc84ff71b27c9b2e0356a47e163e033">ID_FIELD</a> = &quot;ID&quot;</td></tr>
@@ -150,7 +150,7 @@ Collaboration diagram for ScheatorDb.Season:</div>
 <p><div class="fragment"><pre class="fragment"><a name="l00025"></a>00025                                 {
 <a name="l00026"></a>00026         list = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Data&gt;();
 <a name="l00027"></a>00027         db = <span class="keyword">new</span> MySqlDb();
-<a name="l00028"></a>00028         <a class="code" href="classScheatorDb_1_1Season.html#af18ee7ebcb443c88a66f1f87f0c43f4c" title="A season is a mapping between a series and the matches. One series can have several...">fetch</a>(seriesId);
+<a name="l00028"></a>00028         <a class="code" href="classScheatorDb_1_1Season.html#a458e8dd711c0213a14f02e3d7a5a49b7" title="A season is a mapping between a series and the matches. One series can have several...">fetch</a>(seriesId);
 <a name="l00029"></a>00029     }
 </pre></div></p>
 
@@ -159,14 +159,14 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <div class="center"><img src="classScheatorDb_1_1Season_aa244ac1dcdb90fc8a15f7add0ee77e65_cgraph.png" border="0" usemap="#classScheatorDb_1_1Season_aa244ac1dcdb90fc8a15f7add0ee77e65_cgraph_map" alt=""></div>
 <map name="classScheatorDb_1_1Season_aa244ac1dcdb90fc8a15f7add0ee77e65_cgraph_map" id="classScheatorDb_1_1Season_aa244ac1dcdb90fc8a15f7add0ee77e65_cgraph">
-<area shape="rect" href="classScheatorDb_1_1Season.html#af18ee7ebcb443c88a66f1f87f0c43f4c" title="A season is a mapping between a series and the matches. One series can have several..." alt="" coords="240,5,411,35"/></map>
+<area shape="rect" href="classScheatorDb_1_1Season.html#a458e8dd711c0213a14f02e3d7a5a49b7" title="A season is a mapping between a series and the matches. One series can have several..." alt="" coords="240,5,411,35"/></map>
 </div>
 </p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="af18ee7ebcb443c88a66f1f87f0c43f4c"></a><!-- doxytag: member="ScheatorDb::Season::fetch" ref="af18ee7ebcb443c88a66f1f87f0c43f4c" args="(int key)" -->
+<a class="anchor" id="a458e8dd711c0213a14f02e3d7a5a49b7"></a><!-- doxytag: member="ScheatorDb::Season::fetch" ref="a458e8dd711c0213a14f02e3d7a5a49b7" args="(int series)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -174,7 +174,7 @@ Here is the call graph for this function:</div>
           <td class="memname">final void ScheatorDb.Season.fetch </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>key</em></td>
+          <td class="paramname"> <em>series</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -186,7 +186,7 @@ Here is the call graph for this function:</div>
 <p>Fetches the data from the database for a season.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>key</em>&nbsp;</td><td></td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>series</em>&nbsp;</td><td><a class="el" href="classScheatorDb_1_1Series.html">Series</a> database id. </td></tr>
   </table>
   </dd>
 </dl>
@@ -197,8 +197,8 @@ Here is the call graph for this function:</div>
 
 <p>Referenced by <a class="el" href="Season_8java_source.html#l00025">ScheatorDb.Season.Season()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00038"></a>00038                                      {
-<a name="l00039"></a>00039         this.currentId = key;
+<p><div class="fragment"><pre class="fragment"><a name="l00038"></a>00038                                         {
+<a name="l00039"></a>00039         this.currentId = series;
 <a name="l00040"></a>00040         String[] idFields = null;
 <a name="l00041"></a>00041         String[] ids = null;
 <a name="l00042"></a>00042         <span class="keywordflow">if</span> (currentId != 0) {
@@ -217,20 +217,21 @@ Here is the call graph for this function:</div>
 <a name="l00055"></a>00055                 String <span class="keywordtype">id</span> = rs.getString(<a class="code" href="classScheatorDb_1_1Season.html#ab59a88538b1a8825f188f34f0fcd3743">FIELDS</a>[0]);
 <a name="l00056"></a>00056                 String name = rs.getString(<a class="code" href="classScheatorDb_1_1Season.html#ab59a88538b1a8825f188f34f0fcd3743">FIELDS</a>[1]);
 <a name="l00057"></a>00057                 String seriesId = rs.getString(<a class="code" href="classScheatorDb_1_1Season.html#ab59a88538b1a8825f188f34f0fcd3743">FIELDS</a>[2]);
-<a name="l00058"></a>00058                 <a class="code" href="classDbObject_1_1Data.html">Data</a> season = <span class="keyword">new</span> <a class="code" href="classDbObject_1_1Data.html">Data</a>(Integer.parseInt(<span class="keywordtype">id</span>.trim()), name, Integer.parseInt(seriesId));
-<a name="l00059"></a>00059                 list.put(<span class="keywordtype">id</span>, season);
-<a name="l00060"></a>00060             }
-<a name="l00061"></a>00061         } <span class="keywordflow">catch</span> (Exception e) {
-<a name="l00062"></a>00062             System.err.println(<span class="stringliteral">&quot;Failed to read season data: &quot;</span> + e.toString());
-<a name="l00063"></a>00063         }
-<a name="l00064"></a>00064     }
+<a name="l00058"></a>00058                 <a class="code" href="classDbObject_1_1Data.html">Data</a> season = <span class="keyword">new</span> <a class="code" href="classDbObject_1_1Data.html">Data</a>(Integer.parseInt(<span class="keywordtype">id</span>.trim()),
+<a name="l00059"></a>00059                         name, Integer.parseInt(seriesId.trim()));
+<a name="l00060"></a>00060                 list.put(<span class="keywordtype">id</span>, season);
+<a name="l00061"></a>00061             }
+<a name="l00062"></a>00062         } <span class="keywordflow">catch</span> (Exception e) {
+<a name="l00063"></a>00063             System.err.println(<span class="stringliteral">&quot;Failed to read season data: &quot;</span> + e.toString());
+<a name="l00064"></a>00064         }
+<a name="l00065"></a>00065     }
 </pre></div></p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dynsection">
-<div class="center"><img src="classScheatorDb_1_1Season_af18ee7ebcb443c88a66f1f87f0c43f4c_icgraph.png" border="0" usemap="#classScheatorDb_1_1Season_af18ee7ebcb443c88a66f1f87f0c43f4c_icgraph_map" alt=""></div>
-<map name="classScheatorDb_1_1Season_af18ee7ebcb443c88a66f1f87f0c43f4c_icgraph_map" id="classScheatorDb_1_1Season_af18ee7ebcb443c88a66f1f87f0c43f4c_icgraph">
+<div class="center"><img src="classScheatorDb_1_1Season_a458e8dd711c0213a14f02e3d7a5a49b7_icgraph.png" border="0" usemap="#classScheatorDb_1_1Season_a458e8dd711c0213a14f02e3d7a5a49b7_icgraph_map" alt=""></div>
+<map name="classScheatorDb_1_1Season_a458e8dd711c0213a14f02e3d7a5a49b7_icgraph_map" id="classScheatorDb_1_1Season_a458e8dd711c0213a14f02e3d7a5a49b7_icgraph">
 <area shape="rect" href="classScheatorDb_1_1Season.html#aa244ac1dcdb90fc8a15f7add0ee77e65" title="ScheatorDb.Season.Season" alt="" coords="225,5,409,35"/></map>
 </div>
 </p>
@@ -294,7 +295,7 @@ Here is the caller graph for this function:</div>
 <li>src/ScheatorDb/<a class="el" href="Season_8java_source.html">Season.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:19 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:42 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

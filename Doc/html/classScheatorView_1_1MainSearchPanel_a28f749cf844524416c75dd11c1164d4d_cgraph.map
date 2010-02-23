@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" href="$classScheatorController_1_1AbstractController.html#aa3f004e21fd0c7f213a25267f0c63ae7" title="ScheatorController.AbstractController.addView" alt="" coords="367,5,655,35"/>
+<area shape="rect" href="$classScheatorController_1_1AbstractController.html#ad175324c924a93169bc215a0abcd2348" title="ScheatorController.AbstractController.addView" alt="" coords="367,5,655,35"/>
 <area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#a4b6a3e9647e5bed4155b58e70bfa922d" title="ScheatorView.MainSearchPanel.seasonList" alt="" coords="375,59,647,88"/>
 <area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#a3f8da40289773cfe7e33ebdcc3aa5d06" title="ScheatorView.MainSearchPanel.seriesList" alt="" coords="377,112,644,141"/>
 <area shape="rect" href="$classScheatorModel_1_1ScheatorComboBoxModel.html#a1c94faa8950bac8866eb2fdbb99aa0df" title="ScheatorModel.ScheatorComboBoxModel.getSelectedItem" alt="" coords="704,85,1067,115"/>
-<area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#af7292a503f249ca88657704dedd2087a" title="ScheatorView.MainSearchPanel.setSearchEnabled" alt="" coords="728,32,1043,61"/>
+<area shape="rect" href="$classScheatorView_1_1MainSearchPanel.html#a6cd79d88dc356c811252e32a48b6abfb" title="ScheatorView.MainSearchPanel.setSearchEnabled" alt="" coords="728,32,1043,61"/>
 <area shape="rect" href="$classScheatorModel_1_1SeasonComboBoxModel.html#aa11b52318c1be11e1a3290e0114d08a9" title="ScheatorModel.SeasonComboBoxModel.update" alt="" coords="736,139,1035,168"/>
 </map>

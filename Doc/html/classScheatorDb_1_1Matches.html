@@ -86,20 +86,21 @@ Collaboration diagram for ScheatorDb.Matches:</div>
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches_1_1Data.html">Data</a></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches.html#a5cfe0486d4d398441ab8219e19597ce5">fetch</a> (int seasonId)</td></tr>
-<tr><td colspan="2"><h2>Package Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches.html#a15837f0ef9b467452ed4d513f7c8dbd1">Matches</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches.html#a1f24dc00be98f5a2fb6e44c62f5ea924">Matches</a> (int seasonId)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches.html#acf71b00ec85eee5bcd4507a2a4c5e5a0">addNew</a> (int match_no, String homeTeam, String awayTeam)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches.html#a5cfe0486d4d398441ab8219e19597ce5">fetch</a> (int seasonId)</td></tr>
 <tr><td colspan="2"><h2>Static Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static final String[]&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches.html#a3e851a476678a5110e6e5b98014f79cd">TABLES</a> = {&quot;Match&quot;, &quot;<a class="el" href="classScheatorDb_1_1Season.html">Season</a>&quot;, &quot;Team home&quot;, &quot;Team away&quot;}</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static final String[]&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches.html#a3e851a476678a5110e6e5b98014f79cd">TABLES</a> = {&quot;`Match`&quot;, &quot;`<a class="el" href="classScheatorDb_1_1Season.html">Season</a>`&quot;, &quot;`Team` AS home&quot;, &quot;`Team` AS away&quot;}</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static final String[]&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches.html#a5e8e47cd3fbf8aee302c4029e294fe3d">FIELDS</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static final String[]&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches.html#a507a21fd2fa58ebb7a6bea96aa510dfb">ID_FIELDS</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static final String[]&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1Matches.html#a6922dda4e5b799b083bc1020b87022c4">ORDER_BY</a> = {&quot;match_no&quot;}</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>A class representing a match or a number of matches (=schedule).</p>
 <dl class="author"><dt><b>Author:</b></dt><dd>mep </dd></dl>
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00014">14</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00009">9</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a15837f0ef9b467452ed4d513f7c8dbd1"></a><!-- doxytag: member="ScheatorDb::Matches::Matches" ref="a15837f0ef9b467452ed4d513f7c8dbd1" args="()" -->
 <div class="memitem">
@@ -110,18 +111,22 @@ Collaboration diagram for ScheatorDb.Matches:</div>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [package]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00031">31</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00033">33</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00031"></a>00031               {
-<a name="l00032"></a>00032         list = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Data&gt;();
-<a name="l00033"></a>00033         db = <span class="keyword">new</span> MySqlDb();
-<a name="l00034"></a>00034     }
+<p><div class="fragment"><pre class="fragment"><a name="l00033"></a>00033                      {
+<a name="l00034"></a>00034         <span class="comment">// Create a list with an empty Data object. The table controller</span>
+<a name="l00035"></a>00035         <span class="comment">// requires that there is at least one row in the table.</span>
+<a name="l00036"></a>00036         list = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Data&gt;();
+<a name="l00037"></a>00037         <a class="code" href="classDbObject_1_1Data.html">Data</a> m = <span class="keyword">new</span> <a class="code" href="classDbObject_1_1Data.html">Data</a>();
+<a name="l00038"></a>00038         list.put(0, m);
+<a name="l00039"></a>00039         db = <span class="keyword">new</span> MySqlDb();
+<a name="l00040"></a>00040     }
 </pre></div></p>
 
 </div>
@@ -136,21 +141,21 @@ Collaboration diagram for ScheatorDb.Matches:</div>
           <td class="paramtype">int&nbsp;</td>
           <td class="paramname"> <em>seasonId</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [package]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00036">36</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00042">42</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 
-<p>References <a class="el" href="Matches_8java_source.html#l00042">ScheatorDb.Matches.fetch()</a>.</p>
+<p>References <a class="el" href="Matches_8java_source.html#l00065">ScheatorDb.Matches.fetch()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00036"></a>00036                           {
-<a name="l00037"></a>00037         list = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Data&gt;();
-<a name="l00038"></a>00038         db = <span class="keyword">new</span> MySqlDb();
-<a name="l00039"></a>00039         <a class="code" href="classScheatorDb_1_1Matches.html#a5cfe0486d4d398441ab8219e19597ce5">fetch</a>(seasonId);
-<a name="l00040"></a>00040     }
+<p><div class="fragment"><pre class="fragment"><a name="l00042"></a>00042                                  {
+<a name="l00043"></a>00043         list = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Data&gt;();
+<a name="l00044"></a>00044         db = <span class="keyword">new</span> MySqlDb();
+<a name="l00045"></a>00045         <a class="code" href="classScheatorDb_1_1Matches.html#a5cfe0486d4d398441ab8219e19597ce5">fetch</a>(seasonId);
+<a name="l00046"></a>00046     }
 </pre></div></p>
 
 <p><div class="dynheader">
@@ -165,6 +170,56 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="acf71b00ec85eee5bcd4507a2a4c5e5a0"></a><!-- doxytag: member="ScheatorDb::Matches::addNew" ref="acf71b00ec85eee5bcd4507a2a4c5e5a0" args="(int match_no, String homeTeam, String awayTeam)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ScheatorDb.Matches.addNew </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>match_no</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&nbsp;</td>
+          <td class="paramname"> <em>homeTeam</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&nbsp;</td>
+          <td class="paramname"> <em>awayTeam</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Adds a new match to the list (but not yet to the database).</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>match_no</em>&nbsp;</td><td>Match number. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>homeTeam</em>&nbsp;</td><td>Home team id. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>awayTeam</em>&nbsp;</td><td>Away team id. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00055">55</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00055"></a>00055                                                                        {
+<a name="l00056"></a>00056         <a class="code" href="classDbObject_1_1Data.html">Data</a> match = <span class="keyword">new</span> <a class="code" href="classDbObject_1_1Data.html">Data</a>(null, match_no, homeTeam, awayTeam);
+<a name="l00057"></a>00057         list.put(match_no, match);
+<a name="l00058"></a>00058     }
+</pre></div></p>
+
+</div>
+</div>
 <a class="anchor" id="a5cfe0486d4d398441ab8219e19597ce5"></a><!-- doxytag: member="ScheatorDb::Matches::fetch" ref="a5cfe0486d4d398441ab8219e19597ce5" args="(int seasonId)" -->
 <div class="memitem">
 <div class="memproto">
@@ -180,38 +235,44 @@ Here is the call graph for this function:</div>
       </table>
 </div>
 <div class="memdoc">
+<p>Fetches the match(es) from the database and inserts them into a LinkedHashMap structure.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>seasonId</em>&nbsp;</td><td>Database id for the season to search matches for. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00042">42</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00065">65</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 
-<p>References <a class="el" href="Matches_8java_source.html#l00017">ScheatorDb.Matches.FIELDS</a>, <a class="el" href="Matches_8java_source.html#l00023">ScheatorDb.Matches.ID_FIELDS</a>, <a class="el" href="Matches_8java_source.html#l00029">ScheatorDb.Matches.ORDER_BY</a>, and <a class="el" href="Matches_8java_source.html#l00016">ScheatorDb.Matches.TABLES</a>.</p>
+<p>References <a class="el" href="Matches_8java_source.html#l00014">ScheatorDb.Matches.FIELDS</a>, <a class="el" href="Matches_8java_source.html#l00023">ScheatorDb.Matches.ID_FIELDS</a>, <a class="el" href="Matches_8java_source.html#l00031">ScheatorDb.Matches.ORDER_BY</a>, and <a class="el" href="Matches_8java_source.html#l00012">ScheatorDb.Matches.TABLES</a>.</p>
 
-<p>Referenced by <a class="el" href="Matches_8java_source.html#l00036">ScheatorDb.Matches.Matches()</a>.</p>
+<p>Referenced by <a class="el" href="Matches_8java_source.html#l00042">ScheatorDb.Matches.Matches()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00042"></a>00042                                     {
-<a name="l00043"></a>00043         list.clear();
-<a name="l00044"></a>00044         String[] ids = {<span class="stringliteral">&quot;seasonId&quot;</span>, <span class="stringliteral">&quot;match.hometeam&quot;</span>, <span class="stringliteral">&quot;match.awayteam&quot;</span>};
-<a name="l00045"></a>00045         String query;
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047         <span class="keywordflow">try</span> {
-<a name="l00048"></a>00048             Statement st = db.con.createStatement();
-<a name="l00049"></a>00049             ResultSet rs = st.executeQuery(db.qe.getItems(<a class="code" href="classScheatorDb_1_1Matches.html#a3e851a476678a5110e6e5b98014f79cd">TABLES</a>, <a class="code" href="classScheatorDb_1_1Matches.html#a5e8e47cd3fbf8aee302c4029e294fe3d">FIELDS</a>, <a class="code" href="classScheatorDb_1_1Matches.html#a507a21fd2fa58ebb7a6bea96aa510dfb">ID_FIELDS</a>, ids, <a class="code" href="classScheatorDb_1_1Matches.html#a6922dda4e5b799b083bc1020b87022c4">ORDER_BY</a>));
-<a name="l00050"></a>00050             <span class="keywordflow">while</span> (rs.next()) {
-<a name="l00051"></a>00051                 String matchId = rs.getString(<span class="stringliteral">&quot;matchId&quot;</span>);
-<a name="l00052"></a>00052                 String sId = rs.getString(<span class="stringliteral">&quot;seasonId&quot;</span>);
-<a name="l00053"></a>00053                 String home_team = rs.getString(<span class="stringliteral">&quot;home_team&quot;</span>);
-<a name="l00054"></a>00054                 String away_team = rs.getString(<span class="stringliteral">&quot;away_team&quot;</span>);
-<a name="l00055"></a>00055                 String match_no = rs.getString(<span class="stringliteral">&quot;match_no&quot;</span>);
-<a name="l00056"></a>00056                 currentId = Integer.parseInt(sId);
-<a name="l00057"></a>00057                 <a class="code" href="classDbObject_1_1Data.html">Data</a> team = <span class="keyword">new</span> <a class="code" href="classDbObject_1_1Data.html">Data</a>(Integer.parseInt(matchId.trim()),
-<a name="l00058"></a>00058                         Integer.parseInt(match_no.trim()),
-<a name="l00059"></a>00059                         home_team, away_team);
-<a name="l00060"></a>00060                 list.put(matchId, team);
-<a name="l00061"></a>00061             }
-<a name="l00062"></a>00062         } <span class="keywordflow">catch</span> (Exception e) {
-<a name="l00063"></a>00063             System.err.println(<span class="stringliteral">&quot;Failed to read season data: &quot;</span> + e.toString());
-<a name="l00064"></a>00064         }
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066     }
+<p><div class="fragment"><pre class="fragment"><a name="l00065"></a>00065                                     {
+<a name="l00066"></a>00066         list.clear();
+<a name="l00067"></a>00067         String[] ids = {<span class="stringliteral">&quot;Season.id&quot;</span>, Integer.toString(seasonId), <span class="stringliteral">&quot;Match.hometeam&quot;</span>, <span class="stringliteral">&quot;Match.awayteam&quot;</span>};
+<a name="l00068"></a>00068         String query;
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070         <span class="keywordflow">try</span> {
+<a name="l00071"></a>00071             Statement st = db.con.createStatement();
+<a name="l00072"></a>00072             ResultSet rs = st.executeQuery(db.qe.getItems(<a class="code" href="classScheatorDb_1_1Matches.html#a3e851a476678a5110e6e5b98014f79cd">TABLES</a>, <a class="code" href="classScheatorDb_1_1Matches.html#a5e8e47cd3fbf8aee302c4029e294fe3d">FIELDS</a>, <a class="code" href="classScheatorDb_1_1Matches.html#a507a21fd2fa58ebb7a6bea96aa510dfb">ID_FIELDS</a>, ids, <a class="code" href="classScheatorDb_1_1Matches.html#a6922dda4e5b799b083bc1020b87022c4">ORDER_BY</a>));
+<a name="l00073"></a>00073             <span class="keywordflow">while</span> (rs.next()) {
+<a name="l00074"></a>00074                 String matchId = rs.getString(<span class="stringliteral">&quot;matchId&quot;</span>);
+<a name="l00075"></a>00075                 String sId = rs.getString(<span class="stringliteral">&quot;seasonId&quot;</span>);
+<a name="l00076"></a>00076                 String home_team = rs.getString(<span class="stringliteral">&quot;hometeam&quot;</span>);
+<a name="l00077"></a>00077                 String away_team = rs.getString(<span class="stringliteral">&quot;awayteam&quot;</span>);
+<a name="l00078"></a>00078                 String match_no = rs.getString(<span class="stringliteral">&quot;match_no&quot;</span>);
+<a name="l00079"></a>00079                 currentId = Integer.parseInt(sId);
+<a name="l00080"></a>00080                 <a class="code" href="classDbObject_1_1Data.html">Data</a> team = <span class="keyword">new</span> <a class="code" href="classDbObject_1_1Data.html">Data</a>(Integer.parseInt(matchId.trim()),
+<a name="l00081"></a>00081                         Integer.parseInt(match_no.trim()),
+<a name="l00082"></a>00082                         home_team, away_team);
+<a name="l00083"></a>00083                 list.put(matchId, team);
+<a name="l00084"></a>00084             }
+<a name="l00085"></a>00085         } <span class="keywordflow">catch</span> (Exception e) {
+<a name="l00086"></a>00086             System.err.println(<span class="stringliteral">&quot;Failed to read season data: &quot;</span> + e.toString());
+<a name="l00087"></a>00087         }
+<a name="l00088"></a>00088     }
 </pre></div></p>
 
 <p><div class="dynheader">
@@ -237,15 +298,16 @@ Here is the caller graph for this function:</div>
 </div>
 <div class="memdoc">
 <b>Initial value:</b><div class="fragment"><pre class="fragment">
-    {<span class="stringliteral">&quot;match.Id AS matchId&quot;</span>,
-     <span class="stringliteral">&quot;season.id AS seasonId&quot;</span>,
-     <span class="stringliteral">&quot;home.name as home_team&quot;</span>,
-     <span class="stringliteral">&quot;away.name as away_team&quot;</span>,
+    {<span class="stringliteral">&quot;Match.Id AS matchId&quot;</span>,
+     <span class="stringliteral">&quot;Season.id AS seasonId&quot;</span>,
+     <span class="stringliteral">&quot;home.name AS hometeam&quot;</span>,
+     <span class="stringliteral">&quot;away.name AS awayteam&quot;</span>,
      <span class="stringliteral">&quot;match_no&quot;</span>}
-</pre></div>
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00017">17</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+</pre></div><p>Fields that need to be retrieved from the database for a match. </p>
 
-<p>Referenced by <a class="el" href="Matches_8java_source.html#l00042">ScheatorDb.Matches.fetch()</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00014">14</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+
+<p>Referenced by <a class="el" href="Matches_8java_source.html#l00065">ScheatorDb.Matches.fetch()</a>.</p>
 
 </div>
 </div>
@@ -260,14 +322,16 @@ Here is the caller graph for this function:</div>
 </div>
 <div class="memdoc">
 <b>Initial value:</b><div class="fragment"><pre class="fragment">
-    { <span class="stringliteral">&quot;seasonId&quot;</span>,
+    { <span class="stringliteral">&quot;Match.season&quot;</span>,
+      <span class="stringliteral">&quot;Season.id&quot;</span>,
       <span class="stringliteral">&quot;home.id&quot;</span>,
       <span class="stringliteral">&quot;away.id&quot;</span>
     }
-</pre></div>
+</pre></div><p>ID fields needed to identify matches required. These values return an entire season's matches. </p>
+
 <p>Definition at line <a class="el" href="Matches_8java_source.html#l00023">23</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 
-<p>Referenced by <a class="el" href="Matches_8java_source.html#l00042">ScheatorDb.Matches.fetch()</a>.</p>
+<p>Referenced by <a class="el" href="Matches_8java_source.html#l00065">ScheatorDb.Matches.fetch()</a>.</p>
 
 </div>
 </div>
@@ -281,10 +345,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div>
 <div class="memdoc">
+<p>Field used to order the matches. </p>
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00029">29</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00031">31</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 
-<p>Referenced by <a class="el" href="Matches_8java_source.html#l00042">ScheatorDb.Matches.fetch()</a>.</p>
+<p>Referenced by <a class="el" href="Matches_8java_source.html#l00065">ScheatorDb.Matches.fetch()</a>.</p>
 
 </div>
 </div>
@@ -293,15 +358,16 @@ Here is the caller graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final String [] <a class="el" href="classScheatorDb_1_1Matches.html#a3e851a476678a5110e6e5b98014f79cd">ScheatorDb.Matches.TABLES</a> = {&quot;Match&quot;, &quot;<a class="el" href="classScheatorDb_1_1Season.html">Season</a>&quot;, &quot;Team home&quot;, &quot;Team away&quot;}<code> [static, private]</code></td>
+          <td class="memname">final String [] <a class="el" href="classScheatorDb_1_1Matches.html#a3e851a476678a5110e6e5b98014f79cd">ScheatorDb.Matches.TABLES</a> = {&quot;`Match`&quot;, &quot;`<a class="el" href="classScheatorDb_1_1Season.html">Season</a>`&quot;, &quot;`Team` AS home&quot;, &quot;`Team` AS away&quot;}<code> [static, private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Tables needed to get information for a match. </p>
 
-<p>Definition at line <a class="el" href="Matches_8java_source.html#l00016">16</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
+<p>Definition at line <a class="el" href="Matches_8java_source.html#l00012">12</a> of file <a class="el" href="Matches_8java_source.html">Matches.java</a>.</p>
 
-<p>Referenced by <a class="el" href="Matches_8java_source.html#l00042">ScheatorDb.Matches.fetch()</a>.</p>
+<p>Referenced by <a class="el" href="Matches_8java_source.html#l00065">ScheatorDb.Matches.fetch()</a>.</p>
 
 </div>
 </div>
@@ -309,7 +375,7 @@ Here is the caller graph for this function:</div>
 <li>src/ScheatorDb/<a class="el" href="Matches_8java_source.html">Matches.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:18 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:42 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

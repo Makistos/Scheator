@@ -83,197 +83,206 @@ window.onload = initDynSections;
 <a name="l00017"></a>00017 <span class="keyword">import</span> java.awt.event.ActionListener;
 <a name="l00018"></a>00018 <span class="keyword">import</span> javax.swing.*;
 <a name="l00019"></a>00019 <span class="keyword">import</span> java.awt.*;
-<a name="l00024"></a><a class="code" href="classScheatorView_1_1MainView.html">00024</a> <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classScheatorView_1_1MainView.html">MainView</a> <span class="keyword">extends</span> FrameView {
-<a name="l00025"></a>00025 
-<a name="l00026"></a><a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">00026</a>     <span class="keyword">private</span> <a class="code" href="classjavax_1_1swing_1_1JDialog.html">JDialog</a> <a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">aboutBox</a>;
-<a name="l00027"></a><a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">00027</a>     <span class="keyword">private</span> javax.swing.JPanel <a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>;
-<a name="l00028"></a><a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">00028</a>     <span class="keyword">private</span> javax.swing.JMenuBar <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>;
-<a name="l00029"></a><a class="code" href="classScheatorView_1_1MainView.html#ac21ac2db6a9b06141732f4e52771b162">00029</a>     <span class="keyword">private</span> javax.swing.JProgressBar <a class="code" href="classScheatorView_1_1MainView.html#ac21ac2db6a9b06141732f4e52771b162">progressBar</a>;
-<a name="l00030"></a><a class="code" href="classScheatorView_1_1MainView.html#a72025dd3d65387d24b4ea7895377c480">00030</a>     <span class="keyword">private</span> javax.swing.JLabel <a class="code" href="classScheatorView_1_1MainView.html#a72025dd3d65387d24b4ea7895377c480">statusAnimationLabel</a>;
-<a name="l00031"></a><a class="code" href="classScheatorView_1_1MainView.html#a48372284c236a17431623cfa0992aa6c">00031</a>     <span class="keyword">private</span> javax.swing.JLabel <a class="code" href="classScheatorView_1_1MainView.html#a48372284c236a17431623cfa0992aa6c">statusMessageLabel</a>;
-<a name="l00032"></a><a class="code" href="classScheatorView_1_1MainView.html#a5ee22dd6c1d43a95495134d49b022534">00032</a>     <span class="keyword">private</span> javax.swing.JPanel <a class="code" href="classScheatorView_1_1MainView.html#a5ee22dd6c1d43a95495134d49b022534">statusPanel</a>;
-<a name="l00033"></a><a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">00033</a>     <span class="keyword">private</span> <a class="code" href="classScheatorController_1_1MainController.html">MainController</a> <a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>;
-<a name="l00034"></a>00034 
-<a name="l00035"></a><a class="code" href="classScheatorView_1_1MainView.html#adab9e87270527e1429b0f3eb9496d9d2">00035</a>     <span class="keyword">public</span> <a class="code" href="classScheatorView_1_1MainView.html#adab9e87270527e1429b0f3eb9496d9d2">MainView</a>(SingleFrameApplication app, <a class="code" href="classScheatorController_1_1MainController.html">MainController</a> <a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>) {
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037         super(app);
-<a name="l00038"></a>00038         this.controller = controller;
-<a name="l00039"></a>00039         controller.<a class="code" href="classScheatorController_1_1AbstractController.html#a6887c1c0fc3f5393262712a196e5f4ea">addMainFrame</a>(<span class="keyword">this</span>);
-<a name="l00040"></a>00040         
-<a name="l00041"></a>00041         <a class="code" href="classScheatorView_1_1MainView.html#a83752fc305626aea51a73b28c5dffa09">initComponents</a>();
-<a name="l00042"></a>00042     }
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044     @Action
-<a name="l00045"></a><a class="code" href="classScheatorView_1_1MainView.html#af71afbca52eee32450d0afc0da53d20a">00045</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#af71afbca52eee32450d0afc0da53d20a">showAboutBox</a>() {
-<a name="l00046"></a>00046         <span class="keywordflow">if</span> (<a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">aboutBox</a> == null) {
-<a name="l00047"></a>00047             JFrame mainFrame = <a class="code" href="classscheator_1_1ScheatorApp.html">ScheatorApp</a>.getApplication().getMainFrame();
-<a name="l00048"></a>00048             <a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">aboutBox</a> = <span class="keyword">new</span> <a class="code" href="classScheatorView_1_1ScheatorAboutBox.html">ScheatorAboutBox</a>(mainFrame);
-<a name="l00049"></a>00049             <a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">aboutBox</a>.setLocationRelativeTo(mainFrame);
-<a name="l00050"></a>00050         }
-<a name="l00051"></a>00051         <a class="code" href="classscheator_1_1ScheatorApp.html">ScheatorApp</a>.getApplication().show(<a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">aboutBox</a>);
-<a name="l00052"></a>00052     }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054     @Action
-<a name="l00055"></a><a class="code" href="classScheatorView_1_1MainView.html#a4be36d26f133ef826cc4d67c5839b4d5">00055</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a4be36d26f133ef826cc4d67c5839b4d5">createSchedule</a>() {
-<a name="l00056"></a>00056         
-<a name="l00057"></a>00057     }
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059     @Action
-<a name="l00060"></a><a class="code" href="classScheatorView_1_1MainView.html#a9f3e0106270c24631d3f4fca75ee1801">00060</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a9f3e0106270c24631d3f4fca75ee1801">print</a>() {
-<a name="l00061"></a>00061         
-<a name="l00062"></a>00062     }
-<a name="l00063"></a>00063     
-<a name="l00064"></a>00064     @Action
-<a name="l00065"></a><a class="code" href="classScheatorView_1_1MainView.html#a4fb38bbd0e1a4bc2bc29021199e5099d">00065</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a4fb38bbd0e1a4bc2bc29021199e5099d">editSeries</a>() {
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067     }
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069     @Action
-<a name="l00070"></a><a class="code" href="classScheatorView_1_1MainView.html#a64a327a634ad5a86485582db87e0b950">00070</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a64a327a634ad5a86485582db87e0b950">editTeams</a>() {
+<a name="l00020"></a>00020 <span class="keyword">import</span> javax.swing.event.*;
+<a name="l00021"></a>00021 <span class="keyword">import</span> java.awt.event.*;
+<a name="l00022"></a>00022 
+<a name="l00027"></a><a class="code" href="classScheatorView_1_1MainView.html">00027</a> <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classScheatorView_1_1MainView.html">MainView</a> <span class="keyword">extends</span> FrameView {
+<a name="l00028"></a>00028 
+<a name="l00029"></a><a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">00029</a>     <span class="keyword">private</span> <a class="code" href="classjavax_1_1swing_1_1JDialog.html">JDialog</a> <a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">aboutBox</a>;
+<a name="l00030"></a><a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">00030</a>     <span class="keyword">private</span> javax.swing.JPanel <a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>;
+<a name="l00031"></a><a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">00031</a>     <span class="keyword">private</span> javax.swing.JMenuBar <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>;
+<a name="l00032"></a><a class="code" href="classScheatorView_1_1MainView.html#ac21ac2db6a9b06141732f4e52771b162">00032</a>     <span class="keyword">private</span> javax.swing.JProgressBar <a class="code" href="classScheatorView_1_1MainView.html#ac21ac2db6a9b06141732f4e52771b162">progressBar</a>;
+<a name="l00033"></a><a class="code" href="classScheatorView_1_1MainView.html#a72025dd3d65387d24b4ea7895377c480">00033</a>     <span class="keyword">private</span> javax.swing.JLabel <a class="code" href="classScheatorView_1_1MainView.html#a72025dd3d65387d24b4ea7895377c480">statusAnimationLabel</a>;
+<a name="l00034"></a><a class="code" href="classScheatorView_1_1MainView.html#a48372284c236a17431623cfa0992aa6c">00034</a>     <span class="keyword">private</span> javax.swing.JLabel <a class="code" href="classScheatorView_1_1MainView.html#a48372284c236a17431623cfa0992aa6c">statusMessageLabel</a>;
+<a name="l00035"></a><a class="code" href="classScheatorView_1_1MainView.html#a5ee22dd6c1d43a95495134d49b022534">00035</a>     <span class="keyword">private</span> javax.swing.JPanel <a class="code" href="classScheatorView_1_1MainView.html#a5ee22dd6c1d43a95495134d49b022534">statusPanel</a>;
+<a name="l00036"></a><a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">00036</a>     <span class="keyword">private</span> <a class="code" href="classScheatorController_1_1MainController.html">MainController</a> <a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>;
+<a name="l00037"></a>00037 
+<a name="l00038"></a><a class="code" href="classScheatorView_1_1MainView.html#adab9e87270527e1429b0f3eb9496d9d2">00038</a>     <span class="keyword">public</span> <a class="code" href="classScheatorView_1_1MainView.html#adab9e87270527e1429b0f3eb9496d9d2">MainView</a>(SingleFrameApplication app, <a class="code" href="classScheatorController_1_1MainController.html">MainController</a> <a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>) {
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040         super(app);
+<a name="l00041"></a>00041         this.controller = controller;
+<a name="l00042"></a>00042         controller.<a class="code" href="classScheatorController_1_1AbstractController.html#a6887c1c0fc3f5393262712a196e5f4ea">addMainFrame</a>(<span class="keyword">this</span>);
+<a name="l00043"></a>00043         
+<a name="l00044"></a>00044         <a class="code" href="classScheatorView_1_1MainView.html#a83752fc305626aea51a73b28c5dffa09">initComponents</a>();
+<a name="l00045"></a>00045     }
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047     @Action
+<a name="l00048"></a><a class="code" href="classScheatorView_1_1MainView.html#af71afbca52eee32450d0afc0da53d20a">00048</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#af71afbca52eee32450d0afc0da53d20a">showAboutBox</a>() {
+<a name="l00049"></a>00049         <span class="keywordflow">if</span> (<a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">aboutBox</a> == null) {
+<a name="l00050"></a>00050             JFrame mainFrame = <a class="code" href="classscheator_1_1ScheatorApp.html">ScheatorApp</a>.getApplication().getMainFrame();
+<a name="l00051"></a>00051             <a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">aboutBox</a> = <span class="keyword">new</span> <a class="code" href="classScheatorView_1_1ScheatorAboutBox.html">ScheatorAboutBox</a>(mainFrame);
+<a name="l00052"></a>00052             <a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">aboutBox</a>.setLocationRelativeTo(mainFrame);
+<a name="l00053"></a>00053         }
+<a name="l00054"></a>00054         <a class="code" href="classscheator_1_1ScheatorApp.html">ScheatorApp</a>.getApplication().show(<a class="code" href="classScheatorView_1_1MainView.html#ada9b80b2224e64ace5b985358ed5cd9c">aboutBox</a>);
+<a name="l00055"></a>00055     }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057     @Action
+<a name="l00058"></a><a class="code" href="classScheatorView_1_1MainView.html#a4be36d26f133ef826cc4d67c5839b4d5">00058</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a4be36d26f133ef826cc4d67c5839b4d5">createSchedule</a>() {
+<a name="l00059"></a>00059         
+<a name="l00060"></a>00060     }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062     @Action
+<a name="l00063"></a><a class="code" href="classScheatorView_1_1MainView.html#a9f3e0106270c24631d3f4fca75ee1801">00063</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a9f3e0106270c24631d3f4fca75ee1801">print</a>() {
+<a name="l00064"></a>00064         
+<a name="l00065"></a>00065     }
+<a name="l00066"></a>00066     
+<a name="l00067"></a>00067     @Action
+<a name="l00068"></a><a class="code" href="classScheatorView_1_1MainView.html#a4fb38bbd0e1a4bc2bc29021199e5099d">00068</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a4fb38bbd0e1a4bc2bc29021199e5099d">editSeries</a>() {
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070     }
 <a name="l00071"></a>00071 
-<a name="l00072"></a>00072     }
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074     @Action
-<a name="l00075"></a><a class="code" href="classScheatorView_1_1MainView.html#aa81998284ef5d8ae4acf9d63659e0d2a">00075</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#aa81998284ef5d8ae4acf9d63659e0d2a">editSchedule</a>() {
+<a name="l00072"></a>00072     @Action
+<a name="l00073"></a><a class="code" href="classScheatorView_1_1MainView.html#a64a327a634ad5a86485582db87e0b950">00073</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a64a327a634ad5a86485582db87e0b950">editTeams</a>() {
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075     }
 <a name="l00076"></a>00076 
-<a name="l00077"></a>00077     }
-<a name="l00078"></a>00078 
-<a name="l00079"></a><a class="code" href="classScheatorView_1_1MainView.html#a83752fc305626aea51a73b28c5dffa09">00079</a>     <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a83752fc305626aea51a73b28c5dffa09">initComponents</a>() {
-<a name="l00080"></a>00080         <a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a> = <span class="keyword">new</span> javax.swing.JPanel();
+<a name="l00077"></a>00077     @Action
+<a name="l00078"></a><a class="code" href="classScheatorView_1_1MainView.html#aa81998284ef5d8ae4acf9d63659e0d2a">00078</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#aa81998284ef5d8ae4acf9d63659e0d2a">editSchedule</a>() {
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080     }
 <a name="l00081"></a>00081 
-<a name="l00082"></a>00082         <span class="comment">// Menus</span>
-<a name="l00083"></a>00083         <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a> = <span class="keyword">new</span> javax.swing.JMenuBar();
-<a name="l00084"></a>00084         javax.swing.JMenu fileMenu = <span class="keyword">new</span> javax.swing.JMenu();
-<a name="l00085"></a>00085         javax.swing.JMenuItem createScheduleMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
-<a name="l00086"></a>00086         javax.swing.JMenuItem printMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
-<a name="l00087"></a>00087         javax.swing.JMenuItem exitMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
-<a name="l00088"></a>00088         javax.swing.JMenu editMenu = <span class="keyword">new</span> javax.swing.JMenu();
-<a name="l00089"></a>00089         javax.swing.JMenuItem seriesMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
-<a name="l00090"></a>00090         javax.swing.JMenuItem teamsMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
-<a name="l00091"></a>00091         javax.swing.JMenuItem scheduleMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
-<a name="l00092"></a>00092         javax.swing.JMenu helpMenu = <span class="keyword">new</span> javax.swing.JMenu();
-<a name="l00093"></a>00093         javax.swing.JMenuItem aboutMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095         <span class="comment">// Status panel</span>
-<a name="l00096"></a>00096         <a class="code" href="classScheatorView_1_1MainView.html#a5ee22dd6c1d43a95495134d49b022534">statusPanel</a> = <span class="keyword">new</span> javax.swing.JPanel();
-<a name="l00097"></a>00097         <a class="code" href="classScheatorView_1_1MainView.html#a48372284c236a17431623cfa0992aa6c">statusMessageLabel</a> = <span class="keyword">new</span> javax.swing.JLabel();
-<a name="l00098"></a>00098         <a class="code" href="classScheatorView_1_1MainView.html#a72025dd3d65387d24b4ea7895377c480">statusAnimationLabel</a> = <span class="keyword">new</span> javax.swing.JLabel();
-<a name="l00099"></a>00099         <a class="code" href="classScheatorView_1_1MainView.html#ac21ac2db6a9b06141732f4e52771b162">progressBar</a> = <span class="keyword">new</span> javax.swing.JProgressBar();
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(<a class="code" href="classScheatorView_1_1MainView.html">MainView</a>.class);
-<a name="l00102"></a>00102         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(<a class="code" href="classScheatorView_1_1MainView.html">MainView</a>.class, <span class="keyword">this</span>);
+<a name="l00082"></a><a class="code" href="classScheatorView_1_1MainView.html#a83752fc305626aea51a73b28c5dffa09">00082</a>     <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a83752fc305626aea51a73b28c5dffa09">initComponents</a>() {
+<a name="l00083"></a>00083         <a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a> = <span class="keyword">new</span> javax.swing.JPanel();
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085         <span class="comment">// Menus</span>
+<a name="l00086"></a>00086         <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a> = <span class="keyword">new</span> javax.swing.JMenuBar();
+<a name="l00087"></a>00087         javax.swing.JMenu fileMenu = <span class="keyword">new</span> javax.swing.JMenu();
+<a name="l00088"></a>00088         javax.swing.JMenuItem createScheduleMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
+<a name="l00089"></a>00089         javax.swing.JMenuItem printMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
+<a name="l00090"></a>00090         javax.swing.JMenuItem exitMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
+<a name="l00091"></a>00091         javax.swing.JMenu editMenu = <span class="keyword">new</span> javax.swing.JMenu();
+<a name="l00092"></a>00092         javax.swing.JMenuItem seriesMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
+<a name="l00093"></a>00093         javax.swing.JMenuItem teamsMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
+<a name="l00094"></a>00094         javax.swing.JMenuItem scheduleMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
+<a name="l00095"></a>00095         javax.swing.JMenu helpMenu = <span class="keyword">new</span> javax.swing.JMenu();
+<a name="l00096"></a>00096         javax.swing.JMenuItem aboutMenuItem = <span class="keyword">new</span> javax.swing.JMenuItem();
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098         <span class="comment">// Status panel</span>
+<a name="l00099"></a>00099         <a class="code" href="classScheatorView_1_1MainView.html#a5ee22dd6c1d43a95495134d49b022534">statusPanel</a> = <span class="keyword">new</span> javax.swing.JPanel();
+<a name="l00100"></a>00100         <a class="code" href="classScheatorView_1_1MainView.html#a48372284c236a17431623cfa0992aa6c">statusMessageLabel</a> = <span class="keyword">new</span> javax.swing.JLabel();
+<a name="l00101"></a>00101         <a class="code" href="classScheatorView_1_1MainView.html#a72025dd3d65387d24b4ea7895377c480">statusAnimationLabel</a> = <span class="keyword">new</span> javax.swing.JLabel();
+<a name="l00102"></a>00102         <a class="code" href="classScheatorView_1_1MainView.html#ac21ac2db6a9b06141732f4e52771b162">progressBar</a> = <span class="keyword">new</span> javax.swing.JProgressBar();
 <a name="l00103"></a>00103 
-<a name="l00104"></a>00104         <span class="comment">// Panels (one split pane that includes two scroll panes)</span>
-<a name="l00105"></a>00105         <a class="code" href="classScheatorView_1_1MainSearchPanel.html">MainSearchPanel</a> searchPanel = <span class="keyword">new</span> <a class="code" href="classScheatorView_1_1MainSearchPanel.html">MainSearchPanel</a>(<a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>);
-<a name="l00106"></a>00106         <a class="code" href="classScheatorView_1_1MainTablePanel.html">MainTablePanel</a> tablePanel = <span class="keyword">new</span> <a class="code" href="classScheatorView_1_1MainTablePanel.html">MainTablePanel</a>(<a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>);
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108         <a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>.<a class="code" href="classScheatorController_1_1AbstractController.html#aa3f004e21fd0c7f213a25267f0c63ae7">addView</a>(searchPanel);
-<a name="l00109"></a>00109         <a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>.<a class="code" href="classScheatorController_1_1AbstractController.html#aa3f004e21fd0c7f213a25267f0c63ae7">addView</a>(tablePanel);
+<a name="l00104"></a>00104         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(<a class="code" href="classScheatorView_1_1MainView.html">MainView</a>.class);
+<a name="l00105"></a>00105         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(<a class="code" href="classScheatorView_1_1MainView.html">MainView</a>.class, <span class="keyword">this</span>);
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107         <span class="comment">// Panels (one split pane that includes two scroll panes)</span>
+<a name="l00108"></a>00108         <a class="code" href="classScheatorView_1_1MainSearchPanel.html">MainSearchPanel</a> searchPanel = <span class="keyword">new</span> <a class="code" href="classScheatorView_1_1MainSearchPanel.html">MainSearchPanel</a>(<a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>);
+<a name="l00109"></a>00109         <a class="code" href="classScheatorView_1_1MainTablePanel.html">MainTablePanel</a> tablePanel = <span class="keyword">new</span> <a class="code" href="classScheatorView_1_1MainTablePanel.html">MainTablePanel</a>(<a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>);
 <a name="l00110"></a>00110 
-<a name="l00111"></a>00111         JSplitPane splitPane = <span class="keyword">new</span> JSplitPane(JSplitPane.VERTICAL_SPLIT, searchPanel, tablePanel);
-<a name="l00112"></a>00112         <span class="comment">//JPanel searchPanel = new javax.swing.JPanel();</span>
+<a name="l00111"></a>00111         <a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>.<a class="code" href="classScheatorController_1_1AbstractController.html#ad175324c924a93169bc215a0abcd2348">addView</a>(searchPanel);
+<a name="l00112"></a>00112         <a class="code" href="classScheatorView_1_1MainView.html#aa843c0d6e05b5922dc00af6919f1cb8c">controller</a>.<a class="code" href="classScheatorController_1_1AbstractController.html#ad175324c924a93169bc215a0abcd2348">addView</a>(tablePanel);
 <a name="l00113"></a>00113 
-<a name="l00114"></a>00114         splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-<a name="l00115"></a>00115         splitPane.setName(<span class="stringliteral">&quot;splitPane&quot;</span>);
-<a name="l00116"></a>00116         splitPane.setOneTouchExpandable(<span class="keyword">true</span>);
-<a name="l00117"></a>00117         splitPane.setDividerLocation(50);
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119         <span class="comment">//searchPanel = createSearchPanel(resourceMap, actionMap);</span>
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121         splitPane.setTopComponent(searchPanel);
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123 <span class="comment">//        tablePanel = createTablePanel(resourceMap, actionMap);</span>
-<a name="l00124"></a>00124         
-<a name="l00125"></a>00125         splitPane.setBottomComponent(tablePanel);
-<a name="l00126"></a>00126         
-<a name="l00127"></a>00127         <span class="comment">//mainPanel.setSize(new Dimension(1000,1000));</span>
-<a name="l00128"></a>00128         <a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>.setName(<span class="stringliteral">&quot;mainPanel&quot;</span>); <span class="comment">// NOI18N</span>
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130         <a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>.add(splitPane);
-<a name="l00131"></a>00131         
-<a name="l00132"></a>00132         javax.swing.GroupLayout mainPanelLayout = <span class="keyword">new</span> javax.swing.GroupLayout(<a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>);
-<a name="l00133"></a>00133         <a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>.setLayout(mainPanelLayout);
-<a name="l00134"></a>00134         mainPanelLayout.setHorizontalGroup(
-<a name="l00135"></a>00135             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<a name="l00136"></a>00136             .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-<a name="l00137"></a>00137         );
-<a name="l00138"></a>00138         mainPanelLayout.setVerticalGroup(
-<a name="l00139"></a>00139             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<a name="l00140"></a>00140             .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-<a name="l00141"></a>00141         );
-<a name="l00142"></a>00142 
-<a name="l00144"></a>00144         <span class="comment">// Menu bars</span>
-<a name="l00146"></a>00146 <span class="comment"></span>        <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>.setName(<span class="stringliteral">&quot;menuBar&quot;</span>); <span class="comment">// NOI18N</span>
-<a name="l00147"></a>00147 
-<a name="l00148"></a>00148         <span class="comment">// ----</span>
-<a name="l00149"></a>00149         <span class="comment">// File</span>
-<a name="l00150"></a>00150         <span class="comment">//</span>
-<a name="l00151"></a>00151         fileMenu.setText(resourceMap.getString(<span class="stringliteral">&quot;fileMenu.text&quot;</span>)); <span class="comment">// NOI18N</span>
-<a name="l00152"></a>00152         fileMenu.setName(<span class="stringliteral">&quot;fileMenu&quot;</span>); <span class="comment">// NOI18N</span>
-<a name="l00153"></a>00153 
-<a name="l00154"></a>00154         createScheduleMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;createSchedule&quot;</span>));
-<a name="l00155"></a>00155         createScheduleMenuItem.setName(<span class="stringliteral">&quot;createSchedule&quot;</span>);
-<a name="l00156"></a>00156         fileMenu.add(createScheduleMenuItem);
-<a name="l00157"></a>00157 
-<a name="l00158"></a>00158         fileMenu.addSeparator();
-<a name="l00159"></a>00159         
-<a name="l00160"></a>00160         printMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;print&quot;</span>));
-<a name="l00161"></a>00161         printMenuItem.setName(<span class="stringliteral">&quot;print&quot;</span>);
-<a name="l00162"></a>00162         fileMenu.add(printMenuItem);
-<a name="l00163"></a>00163 
-<a name="l00164"></a>00164         fileMenu.addSeparator();
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166         exitMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;quit&quot;</span>)); <span class="comment">// NOI18N</span>
-<a name="l00167"></a>00167         exitMenuItem.setName(<span class="stringliteral">&quot;exitMenuItem&quot;</span>); <span class="comment">// NOI18N</span>
-<a name="l00168"></a>00168         fileMenu.add(exitMenuItem);
-<a name="l00169"></a>00169 
-<a name="l00170"></a>00170         <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>.add(fileMenu);
-<a name="l00171"></a>00171 
-<a name="l00172"></a>00172         <span class="comment">// ----</span>
-<a name="l00173"></a>00173         <span class="comment">// Edit</span>
-<a name="l00174"></a>00174         <span class="comment">//</span>
-<a name="l00175"></a>00175         editMenu.setText(resourceMap.getString(<span class="stringliteral">&quot;editMenu.text&quot;</span>));
-<a name="l00176"></a>00176         editMenu.setName(<span class="stringliteral">&quot;editMenu&quot;</span>);
-<a name="l00177"></a>00177         
-<a name="l00178"></a>00178         seriesMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;editSeries&quot;</span>));
-<a name="l00179"></a>00179         seriesMenuItem.setName(<span class="stringliteral">&quot;editSeries&quot;</span>);
-<a name="l00180"></a>00180         editMenu.add(seriesMenuItem);
-<a name="l00181"></a>00181 
-<a name="l00182"></a>00182         teamsMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;editTeams&quot;</span>));
-<a name="l00183"></a>00183         teamsMenuItem.setName(<span class="stringliteral">&quot;editTeams&quot;</span>);
-<a name="l00184"></a>00184         editMenu.add(teamsMenuItem);
-<a name="l00185"></a>00185 
-<a name="l00186"></a>00186         scheduleMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;editSchedule&quot;</span>));
-<a name="l00187"></a>00187         scheduleMenuItem.setName(<span class="stringliteral">&quot;editSchedule&quot;</span>);
-<a name="l00188"></a>00188         editMenu.add(scheduleMenuItem);
-<a name="l00189"></a>00189         
-<a name="l00190"></a>00190         <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>.add(editMenu);
-<a name="l00191"></a>00191 
-<a name="l00192"></a>00192         <span class="comment">// ----</span>
-<a name="l00193"></a>00193         <span class="comment">// Help</span>
-<a name="l00194"></a>00194         <span class="comment">//</span>
-<a name="l00195"></a>00195         helpMenu.setText(resourceMap.getString(<span class="stringliteral">&quot;helpMenu.text&quot;</span>)); <span class="comment">// NOI18N</span>
-<a name="l00196"></a>00196         helpMenu.setName(<span class="stringliteral">&quot;helpMenu&quot;</span>); <span class="comment">// NOI18N</span>
-<a name="l00197"></a>00197 
-<a name="l00198"></a>00198         aboutMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;showAboutBox&quot;</span>)); <span class="comment">// NOI18N</span>
-<a name="l00199"></a>00199         aboutMenuItem.setName(<span class="stringliteral">&quot;aboutMenuItem&quot;</span>); <span class="comment">// NOI18N</span>
-<a name="l00200"></a>00200         helpMenu.add(aboutMenuItem);
-<a name="l00201"></a>00201 
-<a name="l00202"></a>00202         <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>.add(helpMenu);
-<a name="l00203"></a>00203 
-<a name="l00204"></a>00204         setComponent(<a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>);
-<a name="l00205"></a>00205         setMenuBar(<a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>);
-<a name="l00206"></a>00206         setStatusBar(<a class="code" href="classScheatorView_1_1MainView.html#a5ee22dd6c1d43a95495134d49b022534">statusPanel</a>);
-<a name="l00207"></a>00207 
-<a name="l00208"></a>00208     }
-<a name="l00209"></a>00209 
-<a name="l00210"></a><a class="code" href="classScheatorView_1_1MainView.html#acc1b68bbf01e3e40ffb36598fc4747a0">00210</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#acc1b68bbf01e3e40ffb36598fc4747a0">modelPropertyChange</a>(PropertyChangeEvent evt) {
-<a name="l00211"></a>00211 
-<a name="l00212"></a>00212     }
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214 }
+<a name="l00114"></a>00114         JSplitPane splitPane = <span class="keyword">new</span> JSplitPane(JSplitPane.VERTICAL_SPLIT, searchPanel, tablePanel);
+<a name="l00115"></a>00115         <span class="comment">//JPanel searchPanel = new javax.swing.JPanel();</span>
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117         splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+<a name="l00118"></a>00118         splitPane.setName(<span class="stringliteral">&quot;splitPane&quot;</span>);
+<a name="l00119"></a>00119         splitPane.setOneTouchExpandable(<span class="keyword">true</span>);
+<a name="l00120"></a>00120         splitPane.setDividerLocation(50);
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122         <span class="comment">//searchPanel = createSearchPanel(resourceMap, actionMap);</span>
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124         splitPane.setTopComponent(searchPanel);
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 <span class="comment">//        tablePanel = createTablePanel(resourceMap, actionMap);</span>
+<a name="l00127"></a>00127         
+<a name="l00128"></a>00128         splitPane.setBottomComponent(tablePanel);
+<a name="l00129"></a>00129         
+<a name="l00130"></a>00130         <span class="comment">//mainPanel.setSize(new Dimension(1000,1000));</span>
+<a name="l00131"></a>00131         <a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>.setName(<span class="stringliteral">&quot;mainPanel&quot;</span>); <span class="comment">// NOI18N</span>
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133         <a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>.add(splitPane);
+<a name="l00134"></a>00134         
+<a name="l00135"></a>00135         javax.swing.GroupLayout mainPanelLayout = <span class="keyword">new</span> javax.swing.GroupLayout(<a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>);
+<a name="l00136"></a>00136         <a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>.setLayout(mainPanelLayout);
+<a name="l00137"></a>00137         mainPanelLayout.setHorizontalGroup(
+<a name="l00138"></a>00138             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<a name="l00139"></a>00139             .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+<a name="l00140"></a>00140         );
+<a name="l00141"></a>00141         mainPanelLayout.setVerticalGroup(
+<a name="l00142"></a>00142             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<a name="l00143"></a>00143             .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+<a name="l00144"></a>00144         );
+<a name="l00145"></a>00145 
+<a name="l00147"></a>00147         <span class="comment">// Menu bars</span>
+<a name="l00149"></a>00149 <span class="comment"></span>        <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>.setName(<span class="stringliteral">&quot;menuBar&quot;</span>); <span class="comment">// NOI18N</span>
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151         <span class="comment">// ----</span>
+<a name="l00152"></a>00152         <span class="comment">// File</span>
+<a name="l00153"></a>00153         <span class="comment">//</span>
+<a name="l00154"></a>00154         fileMenu.setText(resourceMap.getString(<span class="stringliteral">&quot;fileMenu.text&quot;</span>)); <span class="comment">// NOI18N</span>
+<a name="l00155"></a>00155         fileMenu.setName(<span class="stringliteral">&quot;fileMenu&quot;</span>); <span class="comment">// NOI18N</span>
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157         createScheduleMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;createSchedule&quot;</span>));
+<a name="l00158"></a>00158         createScheduleMenuItem.setName(<span class="stringliteral">&quot;createSchedule&quot;</span>);
+<a name="l00159"></a>00159         fileMenu.add(createScheduleMenuItem);
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161         fileMenu.addSeparator();
+<a name="l00162"></a>00162         
+<a name="l00163"></a>00163         printMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;print&quot;</span>));
+<a name="l00164"></a>00164         printMenuItem.setName(<span class="stringliteral">&quot;print&quot;</span>);
+<a name="l00165"></a>00165         fileMenu.add(printMenuItem);
+<a name="l00166"></a>00166 
+<a name="l00167"></a>00167         fileMenu.addSeparator();
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169         exitMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;quit&quot;</span>)); <span class="comment">// NOI18N</span>
+<a name="l00170"></a>00170         exitMenuItem.setName(<span class="stringliteral">&quot;exitMenuItem&quot;</span>); <span class="comment">// NOI18N</span>
+<a name="l00171"></a>00171         fileMenu.add(exitMenuItem);
+<a name="l00172"></a>00172 
+<a name="l00173"></a>00173         <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>.add(fileMenu);
+<a name="l00174"></a>00174 
+<a name="l00175"></a>00175         <span class="comment">// ----</span>
+<a name="l00176"></a>00176         <span class="comment">// Edit</span>
+<a name="l00177"></a>00177         <span class="comment">//</span>
+<a name="l00178"></a>00178         editMenu.setText(resourceMap.getString(<span class="stringliteral">&quot;editMenu.text&quot;</span>));
+<a name="l00179"></a>00179         editMenu.setName(<span class="stringliteral">&quot;editMenu&quot;</span>);
+<a name="l00180"></a>00180         
+<a name="l00181"></a>00181         seriesMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;editSeries&quot;</span>));
+<a name="l00182"></a>00182         seriesMenuItem.setName(<span class="stringliteral">&quot;editSeries&quot;</span>);
+<a name="l00183"></a>00183         editMenu.add(seriesMenuItem);
+<a name="l00184"></a>00184 
+<a name="l00185"></a>00185         teamsMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;editTeams&quot;</span>));
+<a name="l00186"></a>00186         teamsMenuItem.setName(<span class="stringliteral">&quot;editTeams&quot;</span>);
+<a name="l00187"></a>00187         editMenu.add(teamsMenuItem);
+<a name="l00188"></a>00188 
+<a name="l00189"></a>00189         scheduleMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;editSchedule&quot;</span>));
+<a name="l00190"></a>00190         scheduleMenuItem.setName(<span class="stringliteral">&quot;editSchedule&quot;</span>);
+<a name="l00191"></a>00191         editMenu.add(scheduleMenuItem);
+<a name="l00192"></a>00192         
+<a name="l00193"></a>00193         <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>.add(editMenu);
+<a name="l00194"></a>00194 
+<a name="l00195"></a>00195         <span class="comment">// ----</span>
+<a name="l00196"></a>00196         <span class="comment">// Help</span>
+<a name="l00197"></a>00197         <span class="comment">//</span>
+<a name="l00198"></a>00198         helpMenu.setText(resourceMap.getString(<span class="stringliteral">&quot;helpMenu.text&quot;</span>)); <span class="comment">// NOI18N</span>
+<a name="l00199"></a>00199         helpMenu.setName(<span class="stringliteral">&quot;helpMenu&quot;</span>); <span class="comment">// NOI18N</span>
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201         aboutMenuItem.setAction(actionMap.get(<span class="stringliteral">&quot;showAboutBox&quot;</span>)); <span class="comment">// NOI18N</span>
+<a name="l00202"></a>00202         aboutMenuItem.setName(<span class="stringliteral">&quot;aboutMenuItem&quot;</span>); <span class="comment">// NOI18N</span>
+<a name="l00203"></a>00203         helpMenu.add(aboutMenuItem);
+<a name="l00204"></a>00204 
+<a name="l00205"></a>00205         <a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>.add(helpMenu);
+<a name="l00206"></a>00206 
+<a name="l00207"></a>00207         setComponent(<a class="code" href="classScheatorView_1_1MainView.html#a0d876589a6a6309275c1aeae15b40eef">mainPanel</a>);
+<a name="l00208"></a>00208         setMenuBar(<a class="code" href="classScheatorView_1_1MainView.html#a5ed0187402774dc0cd37317e8dc999c9">menuBar</a>);
+<a name="l00209"></a>00209         setStatusBar(<a class="code" href="classScheatorView_1_1MainView.html#a5ee22dd6c1d43a95495134d49b022534">statusPanel</a>);
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211     }
+<a name="l00212"></a>00212 
+<a name="l00213"></a><a class="code" href="classScheatorView_1_1MainView.html#ae69f93e45c7063e6f555239864204256">00213</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#ae69f93e45c7063e6f555239864204256">mainTableChanged</a>(TableModelEvent e) {
+<a name="l00214"></a>00214         
+<a name="l00215"></a>00215     }
+<a name="l00216"></a><a class="code" href="classScheatorView_1_1MainView.html#aeecf8646ae0b64faeaffd3aea70912b0">00216</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#aeecf8646ae0b64faeaffd3aea70912b0">comboBoxEvent</a>(ListDataEvent e) {
+<a name="l00217"></a>00217 
+<a name="l00218"></a>00218     }
+<a name="l00219"></a>00219 
+<a name="l00220"></a><a class="code" href="classScheatorView_1_1MainView.html#a48075f7e39e1e071c8462118b550a8e9">00220</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorView_1_1MainView.html#a48075f7e39e1e071c8462118b550a8e9">itemStateChanged</a>(ItemEvent e) {
+<a name="l00221"></a>00221         
+<a name="l00222"></a>00222     }
+<a name="l00223"></a>00223 }
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:16 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:40 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

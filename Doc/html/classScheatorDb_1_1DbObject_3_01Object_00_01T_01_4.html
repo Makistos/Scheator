@@ -78,7 +78,7 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;:</div>
 <div class="dynsection">
 <div class="center"><img src="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4__coll__graph.png" border="0" usemap="#ScheatorDb_8DbObject_3_01Object_00_01T_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="ScheatorDb_8DbObject_3_01Object_00_01T_01_4_coll__map" id="ScheatorDb_8DbObject_3_01Object_00_01T_01_4_coll__map">
-<area shape="rect" href="classScheatorDb_1_1AbstractDb.html" title="{ScheatorDb.AbstractDb\n|~ con\l~ qe\l|}" alt="" coords="283,160,440,267"/></map>
+<area shape="rect" href="classScheatorDb_1_1AbstractDb.html" title="{ScheatorDb.AbstractDb\n|~ con\l~ qe\l|}" alt="" coords="283,216,440,323"/><area shape="rect" href="interfaceScheatorDb_1_1AbstractQueryEngine.html" title="This is an abstraction of a query engine. A query engine can create queries for various..." alt="" coords="248,5,464,149"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4-members.html">List of all members.</a></p>
@@ -90,6 +90,11 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;:</div>
 <tr><td class="memItemLeft" align="right" valign="top">abstract void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#afaac60b3f3541d42594bf4b035a7d2c4">fetch</a> (int key)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">LinkedHashMap&lt; Object, T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a04a12b96860f3e9a55ac036d710732a6">getList</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a5529eb4a6719448616f904f4abeddf7b">getItemByIndex</a> (Object index)</td></tr>
+<tr><td colspan="2"><h2>Package Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a1183eaf1023e6cab438b72113c4f5da5">FieldState</a> { <a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a1183eaf1023e6cab438b72113c4f5da5">SAVED</a>, 
+<a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a1183eaf1023e6cab438b72113c4f5da5">NEW</a>, 
+<a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a1183eaf1023e6cab438b72113c4f5da5">CHANGED</a>
+ }</td></tr>
 <tr><td colspan="2"><h2>Package Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">LinkedHashMap&lt; Object, T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#ad80c3e29eac5c27378f0fb63f1715fe9">list</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classScheatorDb_1_1AbstractDb.html">AbstractDb</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#ab5650f9ad473d0544ac0996e7661d618">db</a></td></tr>
@@ -100,7 +105,36 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;:</div>
 <p>An abstract definition of a database object.</p>
 <dl class="author"><dt><b>Author:</b></dt><dd>mep </dd></dl>
 
-<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00012">12</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00013">13</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<hr/><h2>Member Enumeration Documentation</h2>
+<a class="anchor" id="a1183eaf1023e6cab438b72113c4f5da5"></a><!-- doxytag: member="ScheatorDb::DbObject&lt; Object, T &gt;::FieldState" ref="a1183eaf1023e6cab438b72113c4f5da5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum ScheatorDb::DbObject&lt; Object, T &gt;::<a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#a1183eaf1023e6cab438b72113c4f5da5">FieldState</a><code> [package]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a1183eaf1023e6cab438b72113c4f5da5"></a><!-- doxytag: member="SAVED" ref="a1183eaf1023e6cab438b72113c4f5da5" args="" -->SAVED</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a1183eaf1023e6cab438b72113c4f5da5"></a><!-- doxytag: member="NEW" ref="a1183eaf1023e6cab438b72113c4f5da5" args="" -->NEW</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a1183eaf1023e6cab438b72113c4f5da5"></a><!-- doxytag: member="CHANGED" ref="a1183eaf1023e6cab438b72113c4f5da5" args="" -->CHANGED</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00018">18</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00018"></a>00018 {SAVED, NEW, CHANGED}
+</pre></div></p>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="afaac60b3f3541d42594bf4b035a7d2c4"></a><!-- doxytag: member="ScheatorDb::DbObject&lt; Object, T &gt;::fetch" ref="afaac60b3f3541d42594bf4b035a7d2c4" args="(int key)" -->
 <div class="memitem">
@@ -151,11 +185,11 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Item having the selected index. </dd></dl>
 
-<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00037">37</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00040">40</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00037"></a>00037                                           {
-<a name="l00038"></a>00038         <span class="keywordflow">return</span> <a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#ad80c3e29eac5c27378f0fb63f1715fe9">list</a>.get(index);
-<a name="l00039"></a>00039     }
+<p><div class="fragment"><pre class="fragment"><a name="l00040"></a>00040                                           {
+<a name="l00041"></a>00041         <span class="keywordflow">return</span> <a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#ad80c3e29eac5c27378f0fb63f1715fe9">list</a>.get(index);
+<a name="l00042"></a>00042     }
 </pre></div></p>
 
 </div>
@@ -177,11 +211,11 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;:</div>
 <p>Returns the LinkedHashMap containing the data.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4_1_1Data.html" title="This class holds the actual data retrieved from the database. Each class needs to...">Data</a> items. </dd></dl>
 
-<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00028">28</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00031">31</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00028"></a>00028                                               {
-<a name="l00029"></a>00029         <span class="keywordflow">return</span> <a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#ad80c3e29eac5c27378f0fb63f1715fe9">list</a>;
-<a name="l00030"></a>00030     }
+<p><div class="fragment"><pre class="fragment"><a name="l00031"></a>00031                                               {
+<a name="l00032"></a>00032         <span class="keywordflow">return</span> <a class="code" href="classScheatorDb_1_1DbObject_3_01Object_00_01T_01_4.html#ad80c3e29eac5c27378f0fb63f1715fe9">list</a>;
+<a name="l00033"></a>00033     }
 </pre></div></p>
 
 </div>
@@ -198,7 +232,7 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00015">15</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00016">16</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
 
 </div>
 </div>
@@ -213,7 +247,7 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00014">14</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00015">15</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
 
 </div>
 </div>
@@ -228,7 +262,7 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00013">13</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
+<p>Definition at line <a class="el" href="DbObject_8java_source.html#l00014">14</a> of file <a class="el" href="DbObject_8java_source.html">DbObject.java</a>.</p>
 
 </div>
 </div>
@@ -236,7 +270,7 @@ Collaboration diagram for ScheatorDb.DbObject&lt; Object, T &gt;:</div>
 <li>src/ScheatorDb/<a class="el" href="DbObject_8java_source.html">DbObject.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:18 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:42 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

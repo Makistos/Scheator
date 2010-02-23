@@ -76,41 +76,72 @@ window.onload = initDynSections;
 <a name="l00010"></a>00010 <span class="keyword">import</span> javax.swing.ComboBoxModel;
 <a name="l00011"></a>00011 <span class="keyword">import</span> java.util.LinkedHashMap;
 <a name="l00012"></a>00012 <span class="keyword">import</span> java.util.Iterator;
-<a name="l00013"></a>00013 
-<a name="l00022"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html">00022</a> <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class </span><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html">ScheatorComboBoxModel</a> <span class="keyword">extends</span> AbstractListModel implements ComboBoxModel {
-<a name="l00023"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">00023</a>     DbObject <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">provider</a>;
-<a name="l00024"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">00024</a>     LinkedHashMap&lt;Integer, DbObject.Data&gt; <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">list</a>;
-<a name="l00025"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a0eecc3941d9c0851799a78af9fe62e53">00025</a>     DbObject.Data <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a0eecc3941d9c0851799a78af9fe62e53">selection</a> = null;
-<a name="l00026"></a>00026 
-<a name="l00036"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#ad4996e607389bb546cb1146d5fb909ee">00036</a>     <span class="keyword">public</span> Object <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#ad4996e607389bb546cb1146d5fb909ee">getElementAt</a>(<span class="keywordtype">int</span> index) {
-<a name="l00037"></a>00037         DbObject.Data retval = null;
-<a name="l00038"></a>00038         <span class="keywordtype">int</span> i = 0;
-<a name="l00039"></a>00039         <span class="keywordflow">for</span>(Iterator it=<a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">list</a>.values().iterator(); it.hasNext();) {
-<a name="l00040"></a>00040             <span class="keywordflow">if</span> (i == index) {
-<a name="l00041"></a>00041                 retval = (DbObject.Data) it.next();
-<a name="l00042"></a>00042                 <span class="keywordflow">break</span>;
-<a name="l00043"></a>00043             }
-<a name="l00044"></a>00044             i++;
-<a name="l00045"></a>00045         }
-<a name="l00046"></a>00046         <span class="keywordflow">return</span> retval;
-<a name="l00047"></a>00047     }
-<a name="l00048"></a>00048 
-<a name="l00053"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a4505e06b19c6c999222b9947678915e7">00053</a>     <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a4505e06b19c6c999222b9947678915e7">getSize</a>() {
-<a name="l00054"></a>00054         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">list</a>.size();
-<a name="l00055"></a>00055     }
-<a name="l00056"></a>00056 
-<a name="l00061"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#ae862dec95a88ef2304c60a0611aa41e2">00061</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#ae862dec95a88ef2304c60a0611aa41e2">setSelectedItem</a>(Object anItem) {
-<a name="l00062"></a>00062         <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a0eecc3941d9c0851799a78af9fe62e53">selection</a> =  (DbObject.Data) anItem;
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064     }
-<a name="l00065"></a>00065 
-<a name="l00070"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a1c94faa8950bac8866eb2fdbb99aa0df">00070</a>     <span class="keyword">public</span> Object <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a1c94faa8950bac8866eb2fdbb99aa0df">getSelectedItem</a>() {
-<a name="l00071"></a>00071         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a0eecc3941d9c0851799a78af9fe62e53">selection</a>;
-<a name="l00072"></a>00072     }
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 }
+<a name="l00013"></a>00013 <span class="keyword">import</span> java.awt.ItemSelectable;
+<a name="l00014"></a>00014 <span class="keyword">import</span> java.awt.event.ItemEvent;
+<a name="l00015"></a>00015 <span class="keyword">import</span> java.awt.event.ItemListener;
+<a name="l00016"></a>00016 
+<a name="l00025"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html">00025</a> <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class </span><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html">ScheatorComboBoxModel</a> <span class="keyword">extends</span> AbstractListModel implements ComboBoxModel, ItemSelectable {
+<a name="l00026"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">00026</a>     DbObject <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a9fd0182d6e22e8eda5e7a2cec00bfaef">provider</a>;
+<a name="l00027"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">00027</a>     LinkedHashMap&lt;Integer, DbObject.Data&gt; <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">list</a>;
+<a name="l00028"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a0eecc3941d9c0851799a78af9fe62e53">00028</a>     DbObject.Data <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a0eecc3941d9c0851799a78af9fe62e53">selection</a> = null;
+<a name="l00029"></a>00029 
+<a name="l00039"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#ad4996e607389bb546cb1146d5fb909ee">00039</a>     <span class="keyword">public</span> Object <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#ad4996e607389bb546cb1146d5fb909ee">getElementAt</a>(<span class="keywordtype">int</span> index) {
+<a name="l00040"></a>00040         DbObject.Data retval = null;
+<a name="l00041"></a>00041         <span class="keywordtype">int</span> i = 0;
+<a name="l00042"></a>00042         <span class="keywordflow">for</span>(Iterator it=<a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">list</a>.values().iterator(); it.hasNext();) {
+<a name="l00043"></a>00043             <span class="keywordflow">if</span> (i == index) {
+<a name="l00044"></a>00044                 retval = (DbObject.Data) it.next();
+<a name="l00045"></a>00045                 <span class="keywordflow">break</span>;
+<a name="l00046"></a>00046             }
+<a name="l00047"></a>00047             i++;
+<a name="l00048"></a>00048         }
+<a name="l00049"></a>00049         <span class="keywordflow">return</span> retval;
+<a name="l00050"></a>00050     }
+<a name="l00051"></a>00051 
+<a name="l00056"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a4505e06b19c6c999222b9947678915e7">00056</a>     <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a4505e06b19c6c999222b9947678915e7">getSize</a>() {
+<a name="l00057"></a>00057         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#aef3c4132b9cdfd40a6ec5b522e9e66a0">list</a>.size();
+<a name="l00058"></a>00058     }
+<a name="l00059"></a>00059 
+<a name="l00064"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#ae862dec95a88ef2304c60a0611aa41e2">00064</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#ae862dec95a88ef2304c60a0611aa41e2">setSelectedItem</a>(Object anItem) {
+<a name="l00065"></a>00065         <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a0eecc3941d9c0851799a78af9fe62e53">selection</a> =  (DbObject.Data) anItem;
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067     }
+<a name="l00068"></a>00068 
+<a name="l00073"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a1c94faa8950bac8866eb2fdbb99aa0df">00073</a>     <span class="keyword">public</span> Object <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a1c94faa8950bac8866eb2fdbb99aa0df">getSelectedItem</a>() {
+<a name="l00074"></a>00074         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a0eecc3941d9c0851799a78af9fe62e53">selection</a>;
+<a name="l00075"></a>00075     }
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077     <span class="comment">/* ItemSelectable */</span>
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079     <span class="comment">//protected EventListenerList listenerList = new EventListenerList();</span>
+<a name="l00080"></a>00080 
+<a name="l00081"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#af28d9e36d441170a7c8c063be1c3a9fa">00081</a>     <span class="keyword">public</span> Object[] <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#af28d9e36d441170a7c8c063be1c3a9fa">getSelectedObjects</a>() {
+<a name="l00082"></a>00082         <span class="keywordflow">return</span> <span class="keyword">new</span> String[] { <span class="stringliteral">&quot;a&quot;</span>, <span class="stringliteral">&quot;b&quot;</span>, <span class="stringliteral">&quot;c&quot;</span> };
+<a name="l00083"></a>00083     }
+<a name="l00084"></a>00084     
+<a name="l00085"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a909a3ccc7b485b9a6d3b07265931d015">00085</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a909a3ccc7b485b9a6d3b07265931d015">addItemListener</a>(ItemListener l) {
+<a name="l00086"></a>00086         listenerList.add(ItemListener.class, l);
+<a name="l00087"></a>00087     }
+<a name="l00088"></a>00088 
+<a name="l00089"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a5f0451bd3e4ad4d5c9b59bbd5cdd237c">00089</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a5f0451bd3e4ad4d5c9b59bbd5cdd237c">removeItemListener</a>(ItemListener l) {
+<a name="l00090"></a>00090         listenerList.remove(ItemListener.class, l);
+<a name="l00091"></a>00091     }
+<a name="l00092"></a>00092     
+<a name="l00093"></a><a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a20bf5392566f15a63e5c3676071db956">00093</a>     <span class="keywordtype">void</span> <a class="code" href="classScheatorModel_1_1ScheatorComboBoxModel.html#a20bf5392566f15a63e5c3676071db956">fireItemEvent</a>(Object item, <span class="keywordtype">boolean</span> sel) {
+<a name="l00094"></a>00094         ItemEvent evt = <span class="keyword">new</span> ItemEvent(<span class="keyword">this</span>, ItemEvent.ITEM_STATE_CHANGED, item,
+<a name="l00095"></a>00095         sel ? ItemEvent.SELECTED : ItemEvent.DESELECTED);
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097         Object[] listeners = listenerList.getListenerList();
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; listeners.length - 2; i += 2) {
+<a name="l00100"></a>00100             <span class="keywordflow">if</span> (listeners[i] == ItemListener.class) {
+<a name="l00101"></a>00101                 ((ItemListener) listeners[i + 1]).itemStateChanged(evt);
+<a name="l00102"></a>00102             }
+<a name="l00103"></a>00103         }
+<a name="l00104"></a>00104     }
+<a name="l00105"></a>00105 }
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:16 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:40 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

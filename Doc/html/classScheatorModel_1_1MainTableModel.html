@@ -82,13 +82,13 @@ Collaboration diagram for ScheatorModel.MainTableModel:</div>
 <div class="dynsection">
 <div class="center"><img src="classScheatorModel_1_1MainTableModel__coll__graph.png" border="0" usemap="#ScheatorModel_8MainTableModel_coll__map" alt="Collaboration graph"/></div>
 <map name="ScheatorModel_8MainTableModel_coll__map" id="ScheatorModel_8MainTableModel_coll__map">
-<area shape="rect" href="classAbstractTableModel.html" title="{AbstractTableModel\n||}" alt="" coords="5,160,141,248"/></map>
+<area shape="rect" href="classAbstractTableModel.html" title="{AbstractTableModel\n||}" alt="" coords="104,380,240,468"/><area shape="rect" href="classScheatorController_1_1AbstractController.html" title="{ScheatorController.AbstractController\n|~ registeredViews\l~ mainFrame\l~ registeredModels\l|+ AbstractController()\l+ addModel()\l+ removeModel()\l+ addView()\l+ removeView()\l+ addMainFrame()\l}" alt="" coords="1068,315,1303,533"/><area shape="rect" href="classScheatorController_1_1MainController.html" title="{ScheatorController.MainController\n|+ SERIES_LIST\l+ SEASON_LIST\l+ SCHEDULE_DATA\l&#45; MAINTABLE_MODEL_NAME\l&#45; MAINTABLE_UPDATE\l|+ searchMainTable()\l+ scheduleEdited()\l+ moveMatch()\l}" alt="" coords="1276,712,1492,912"/><area shape="rect" href="classScheatorView_1_1MainView.html" title="{ScheatorView.MainView\n|&#45; aboutBox\l&#45; mainPanel\l&#45; menuBar\l&#45; progressBar\l&#45; statusAnimationLabel\l&#45; statusMessageLabel\l&#45; statusPanel\l&#45; controller\l|+ MainView()\l+ showAboutBox()\l+ createSchedule()\l+ print()\l+ editSeries()\l+ editTeams()\l+ editSchedule()\l+ mainTableChanged()\l+ comboBoxEvent()\l+ itemStateChanged()\l&#45; initComponents()\l}" alt="" coords="804,1035,964,1440"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="classScheatorModel_1_1MainTableModel-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#ad05a9adbc1ef6f18f93f14a3d1215246">MainTableModel</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#a1934e339d1d09a31ea8fe723eaca71df">MainTableModel</a> (<a class="el" href="classScheatorController_1_1AbstractController.html">AbstractController</a> <a class="el" href="classScheatorModel_1_1MainTableModel.html#ad9e96cdf9e2a960cdcdc9ee156d4dee2">controller</a>)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#a59d32b059a3c7f2bcaf188fda5c3d350">getRowCount</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#ac7e3d75764a0cdb02c6e154d6d323946">getColumnCount</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#a36a9c6a9284f65b87cb07e366daa1d27">getColumnName</a> (int columnIndex)</td></tr>
@@ -97,26 +97,28 @@ Collaboration diagram for ScheatorModel.MainTableModel:</div>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#a500158bde9e500b7511185824f641135">update</a> (int seasonId)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#aedfeb31ecb3d7b17dc033d277c970298">save</a> ()</td></tr>
 <tr><td colspan="2"><h2>Package Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">ArrayList&lt; <a class="el" href="classScheatorDb_1_1Schedule_1_1Data.html">Schedule.Data</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#a4539ee4570a76db39a7dfbedc9d732d4">list</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">DbObject&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">provider</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a> [][]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">LinkedHashMap&lt; Integer, <br class="typebreak"/>
+<a class="el" href="classScheatorDb_1_1Matches_1_1Data.html">Matches.Data</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#a364ea4cb9df9ad80f916a8e426e7610c">list</a></td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classScheatorController_1_1AbstractController.html">AbstractController</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#ad9e96cdf9e2a960cdcdc9ee156d4dee2">controller</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a> [] = {&quot;&quot;, &quot;&quot;, &quot;&quot;}</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>The model for the schedule table on the main window.</p>
 <dl class="author"><dt><b>Author:</b></dt><dd>mep </dd></dl>
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00018">18</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00019">19</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ad05a9adbc1ef6f18f93f14a3d1215246"></a><!-- doxytag: member="ScheatorModel::MainTableModel::MainTableModel" ref="ad05a9adbc1ef6f18f93f14a3d1215246" args="()" -->
+<a class="anchor" id="a1934e339d1d09a31ea8fe723eaca71df"></a><!-- doxytag: member="ScheatorModel::MainTableModel::MainTableModel" ref="a1934e339d1d09a31ea8fe723eaca71df" args="(AbstractController controller)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">ScheatorModel.MainTableModel.MainTableModel </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype"><a class="el" href="classScheatorController_1_1AbstractController.html">AbstractController</a>&nbsp;</td>
+          <td class="paramname"> <em>controller</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -124,22 +126,33 @@ Collaboration diagram for ScheatorModel.MainTableModel:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00031">31</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00026">26</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 
-<p>References <a class="el" href="MainTableModel_8java_source.html#l00022">ScheatorModel.MainTableModel.columns</a>, and <a class="el" href="MainTableModel_8java_source.html#l00021">ScheatorModel.MainTableModel.provider</a>.</p>
+<p>References <a class="el" href="AbstractController_8java_source.html#l00041">ScheatorController.AbstractController.addModel()</a>, <a class="el" href="MainTableModel_8java_source.html#l00024">ScheatorModel.MainTableModel.columns</a>, <a class="el" href="MainTableModel_8java_source.html#l00023">ScheatorModel.MainTableModel.list</a>, and <a class="el" href="MainTableModel_8java_source.html#l00022">ScheatorModel.MainTableModel.provider</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00031"></a>00031                             {
-<a name="l00032"></a>00032         <a class="code" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">provider</a> = <span class="keyword">new</span> ScheatorDb.Schedule();
-<a name="l00033"></a>00033         
-<a name="l00034"></a>00034         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(<a class="code" href="classScheatorModel_1_1MainTableModel.html#ad05a9adbc1ef6f18f93f14a3d1215246">MainTableModel</a>.class);
-<a name="l00035"></a>00035         <span class="comment">//javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTableModel.class, this);</span>
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037         <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[0] = resourceMap.getString(<span class="stringliteral">&quot;ColRound.text&quot;</span>);
-<a name="l00038"></a>00038         <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[1] = resourceMap.getString(<span class="stringliteral">&quot;ColHome.text&quot;</span>);
-<a name="l00039"></a>00039         <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[2] = resourceMap.getString(<span class="stringliteral">&quot;ColAway.text&quot;</span>);
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041     }
+<p><div class="fragment"><pre class="fragment"><a name="l00026"></a>00026                                                          {
+<a name="l00027"></a>00027         <a class="code" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">provider</a> = <span class="keyword">new</span> ScheatorDb.Matches();
+<a name="l00028"></a>00028         this.controller = controller;
+<a name="l00029"></a>00029         controller.<a class="code" href="classScheatorController_1_1AbstractController.html#a92d4c5f2ee31ee9fd9fde54535a76b6f">addModel</a>(<span class="keyword">this</span>);
+<a name="l00030"></a>00030         <a class="code" href="classScheatorModel_1_1MainTableModel.html#a364ea4cb9df9ad80f916a8e426e7610c">list</a> = <a class="code" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">provider</a>.getList();
+<a name="l00031"></a>00031         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(<a class="code" href="classScheatorModel_1_1MainTableModel.html#a1934e339d1d09a31ea8fe723eaca71df">MainTableModel</a>.class);
+<a name="l00032"></a>00032         <span class="comment">//javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTableModel.class, this);</span>
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034         <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[0] = resourceMap.getString(<span class="stringliteral">&quot;ColRound.text&quot;</span>);
+<a name="l00035"></a>00035         <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[1] = resourceMap.getString(<span class="stringliteral">&quot;ColHome.text&quot;</span>);
+<a name="l00036"></a>00036         <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[2] = resourceMap.getString(<span class="stringliteral">&quot;ColAway.text&quot;</span>);
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038     }
 </pre></div></p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="classScheatorModel_1_1MainTableModel_a1934e339d1d09a31ea8fe723eaca71df_cgraph.png" border="0" usemap="#classScheatorModel_1_1MainTableModel_a1934e339d1d09a31ea8fe723eaca71df_cgraph_map" alt=""></div>
+<map name="classScheatorModel_1_1MainTableModel_a1934e339d1d09a31ea8fe723eaca71df_cgraph_map" id="classScheatorModel_1_1MainTableModel_a1934e339d1d09a31ea8fe723eaca71df_cgraph">
+<area shape="rect" href="classScheatorController_1_1AbstractController.html#a92d4c5f2ee31ee9fd9fde54535a76b6f" title="ScheatorController.AbstractController.addModel" alt="" coords="357,5,653,35"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -158,14 +171,16 @@ Collaboration diagram for ScheatorModel.MainTableModel:</div>
       </table>
 </div>
 <div class="memdoc">
+<p>Returns number of columns inthe table.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Column count. </dd></dl>
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00046">46</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00056">56</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 
-<p>References <a class="el" href="MainTableModel_8java_source.html#l00022">ScheatorModel.MainTableModel.columns</a>.</p>
+<p>References <a class="el" href="MainTableModel_8java_source.html#l00024">ScheatorModel.MainTableModel.columns</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00046"></a>00046                                 {
-<a name="l00047"></a>00047         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>.length;
-<a name="l00048"></a>00048     }
+<p><div class="fragment"><pre class="fragment"><a name="l00056"></a>00056                                 {
+<a name="l00057"></a>00057         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>.length;
+<a name="l00058"></a>00058     }
 </pre></div></p>
 
 </div>
@@ -185,14 +200,22 @@ Collaboration diagram for ScheatorModel.MainTableModel:</div>
       </table>
 </div>
 <div class="memdoc">
+<p>Returns name for the given column. This is used as the column name.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>columnIndex</em>&nbsp;</td><td>Column index. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Column name. </dd></dl>
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00051">51</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00066">66</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 
-<p>References <a class="el" href="MainTableModel_8java_source.html#l00022">ScheatorModel.MainTableModel.columns</a>.</p>
+<p>References <a class="el" href="MainTableModel_8java_source.html#l00024">ScheatorModel.MainTableModel.columns</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00051"></a>00051                                                  {
-<a name="l00052"></a>00052         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[columnIndex];
-<a name="l00053"></a>00053     }
+<p><div class="fragment"><pre class="fragment"><a name="l00066"></a>00066                                                  {
+<a name="l00067"></a>00067         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#ad8076841cd4d7616a27e286ca2b41d1c">columns</a>[columnIndex];
+<a name="l00068"></a>00068     }
 </pre></div></p>
 
 </div>
@@ -211,14 +234,20 @@ Collaboration diagram for ScheatorModel.MainTableModel:</div>
       </table>
 </div>
 <div class="memdoc">
+<p>Returns number of rows in the table.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Row count. </dd></dl>
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00042">42</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00044">44</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 
-<p>References <a class="el" href="MainTableModel_8java_source.html#l00024">ScheatorModel.MainTableModel.rows</a>.</p>
+<p>References <a class="el" href="MainTableModel_8java_source.html#l00023">ScheatorModel.MainTableModel.list</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00042"></a>00042                              {
-<a name="l00043"></a>00043         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>.length;
-<a name="l00044"></a>00044     }
+<p><div class="fragment"><pre class="fragment"><a name="l00044"></a>00044                              {
+<a name="l00045"></a>00045         <span class="keywordflow">if</span> (<a class="code" href="classScheatorModel_1_1MainTableModel.html#a364ea4cb9df9ad80f916a8e426e7610c">list</a> != null &amp;&amp; <a class="code" href="classScheatorModel_1_1MainTableModel.html#a364ea4cb9df9ad80f916a8e426e7610c">list</a>.size() &gt; 0)
+<a name="l00046"></a>00046             <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#a364ea4cb9df9ad80f916a8e426e7610c">list</a>.size();
+<a name="l00047"></a>00047         <span class="keywordflow">else</span> {
+<a name="l00048"></a>00048             <span class="keywordflow">return</span> 1;
+<a name="l00049"></a>00049         }
+<a name="l00050"></a>00050     }
 </pre></div></p>
 
 </div>
@@ -248,13 +277,30 @@ Collaboration diagram for ScheatorModel.MainTableModel:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00055">55</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00070">70</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 
-<p>References <a class="el" href="MainTableModel_8java_source.html#l00024">ScheatorModel.MainTableModel.rows</a>.</p>
+<p>References <a class="el" href="MainTableModel_8java_source.html#l00023">ScheatorModel.MainTableModel.list</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00055"></a>00055                                                   {
-<a name="l00056"></a>00056         <span class="keywordflow">return</span> <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[row][column];
-<a name="l00057"></a>00057     }
+<p><div class="fragment"><pre class="fragment"><a name="l00070"></a>00070                                                   {
+<a name="l00071"></a>00071         <a class="code" href="classScheatorDb_1_1Matches.html">Matches</a>.Data retval = null;
+<a name="l00072"></a>00072         <span class="keywordtype">int</span> i = 0;
+<a name="l00073"></a>00073         <span class="keywordflow">for</span>(Iterator it=<a class="code" href="classScheatorModel_1_1MainTableModel.html#a364ea4cb9df9ad80f916a8e426e7610c">list</a>.values().iterator(); it.hasNext();) {
+<a name="l00074"></a>00074             <span class="keywordflow">if</span> (i == row) {
+<a name="l00075"></a>00075                 <a class="code" href="classScheatorDb_1_1Matches.html">Matches</a>.Data dbRow = (<a class="code" href="classScheatorDb_1_1Matches.html">Matches</a>.Data) it.next();
+<a name="l00076"></a>00076                 <span class="keywordflow">switch</span>(column) {
+<a name="l00077"></a>00077                     <span class="keywordflow">case</span> 0:
+<a name="l00078"></a>00078                         <span class="keywordflow">return</span> dbRow.get(<span class="stringliteral">&quot;matchNumber&quot;</span>);
+<a name="l00079"></a>00079                     <span class="keywordflow">case</span> 1:
+<a name="l00080"></a>00080                         <span class="keywordflow">return</span> dbRow.get(<span class="stringliteral">&quot;homeTeam&quot;</span>);
+<a name="l00081"></a>00081                     <span class="keywordflow">case</span> 2:
+<a name="l00082"></a>00082                         <span class="keywordflow">return</span> dbRow.get(<span class="stringliteral">&quot;awayTeam&quot;</span>);
+<a name="l00083"></a>00083                 }
+<a name="l00084"></a>00084                 <span class="keywordflow">break</span>;
+<a name="l00085"></a>00085             }
+<a name="l00086"></a>00086             i++;
+<a name="l00087"></a>00087         }
+<a name="l00088"></a>00088         <span class="keywordflow">return</span> retval;
+<a name="l00089"></a>00089     }
 </pre></div></p>
 
 </div>
@@ -292,45 +338,44 @@ Collaboration diagram for ScheatorModel.MainTableModel:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00064">64</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00096">96</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 
-<p>References <a class="el" href="MainTableModel_8java_source.html#l00024">ScheatorModel.MainTableModel.rows</a>.</p>
+<p>Referenced by <a class="el" href="MainTablePanel_8java_source.html#l00156">ScheatorView.MainTablePanel.ButtonListener.actionPerformed()</a>.</p>
 
-<p>Referenced by <a class="el" href="MainTablePanel_8java_source.html#l00159">ScheatorView.MainTablePanel.ButtonListener.actionPerformed()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00064"></a>00064                                               {
-<a name="l00065"></a>00065         String tmp[];
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         tmp = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[end];
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069         <span class="keywordflow">if</span> (start &gt; end) {
-<a name="l00070"></a>00070             <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=<a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>.length;i&gt;0;i--) {
-<a name="l00071"></a>00071                 <span class="keywordflow">if</span> (i == start) {
-<a name="l00072"></a>00072                     tmp = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
-<a name="l00073"></a>00073                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i == end) {
-<a name="l00074"></a>00074                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i+1] = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
-<a name="l00075"></a>00075                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i] = tmp;
-<a name="l00076"></a>00076                     <span class="keywordflow">break</span>;
-<a name="l00077"></a>00077                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i &lt; start) {
-<a name="l00078"></a>00078                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i+1] = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
-<a name="l00079"></a>00079                 }
-<a name="l00080"></a>00080             }
-<a name="l00081"></a>00081         } <span class="keywordflow">else</span> {
-<a name="l00082"></a>00082             <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;<a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>.length-1;i++) {
-<a name="l00083"></a>00083                 <span class="keywordflow">if</span> (i == start) {
-<a name="l00084"></a>00084                     tmp = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
-<a name="l00085"></a>00085                     <span class="comment">//rows[i] = rows[i+1];</span>
-<a name="l00086"></a>00086                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i == end) {
-<a name="l00087"></a>00087                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i-1] = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
-<a name="l00088"></a>00088                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i] = tmp;
-<a name="l00089"></a>00089                     <span class="keywordflow">break</span>;
-<a name="l00090"></a>00090                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i &gt; start)
-<a name="l00091"></a>00091                     <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i-1] = <a class="code" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">rows</a>[i];
-<a name="l00092"></a>00092             }
-<a name="l00093"></a>00093         }
-<a name="l00094"></a>00094         System.err.println(<span class="stringliteral">&quot;Row moved&quot;</span>);
-<a name="l00095"></a>00095         fireTableDataChanged();
-<a name="l00096"></a>00096     }
+<p><div class="fragment"><pre class="fragment"><a name="l00096"></a>00096                                               {
+<a name="l00097"></a>00097 <span class="comment">/*        String tmp[];</span>
+<a name="l00098"></a>00098 <span class="comment"></span>
+<a name="l00099"></a>00099 <span class="comment">        tmp = rows[end];</span>
+<a name="l00100"></a>00100 <span class="comment"></span>
+<a name="l00101"></a>00101 <span class="comment">        if (start &gt; end) {</span>
+<a name="l00102"></a>00102 <span class="comment">            for(int i=rows.length;i&gt;0;i--) {</span>
+<a name="l00103"></a>00103 <span class="comment">                if (i == start) {</span>
+<a name="l00104"></a>00104 <span class="comment">                    tmp = rows[i];</span>
+<a name="l00105"></a>00105 <span class="comment">                } else if (i == end) {</span>
+<a name="l00106"></a>00106 <span class="comment">                    rows[i+1] = rows[i];</span>
+<a name="l00107"></a>00107 <span class="comment">                    rows[i] = tmp;</span>
+<a name="l00108"></a>00108 <span class="comment">                    break;</span>
+<a name="l00109"></a>00109 <span class="comment">                } else if (i &lt; start) {</span>
+<a name="l00110"></a>00110 <span class="comment">                    rows[i+1] = rows[i];</span>
+<a name="l00111"></a>00111 <span class="comment">                }</span>
+<a name="l00112"></a>00112 <span class="comment">            }</span>
+<a name="l00113"></a>00113 <span class="comment">        } else {</span>
+<a name="l00114"></a>00114 <span class="comment">            for(int i=0;i&lt;rows.length-1;i++) {</span>
+<a name="l00115"></a>00115 <span class="comment">                if (i == start) {</span>
+<a name="l00116"></a>00116 <span class="comment">                    tmp = rows[i];</span>
+<a name="l00117"></a>00117 <span class="comment">                    //rows[i] = rows[i+1];</span>
+<a name="l00118"></a>00118 <span class="comment">                } else if (i == end) {</span>
+<a name="l00119"></a>00119 <span class="comment">                    rows[i-1] = rows[i];</span>
+<a name="l00120"></a>00120 <span class="comment">                    rows[i] = tmp;</span>
+<a name="l00121"></a>00121 <span class="comment">                    break;</span>
+<a name="l00122"></a>00122 <span class="comment">                } else if (i &gt; start)</span>
+<a name="l00123"></a>00123 <span class="comment">                    rows[i-1] = rows[i];</span>
+<a name="l00124"></a>00124 <span class="comment">            }</span>
+<a name="l00125"></a>00125 <span class="comment">        }</span>
+<a name="l00126"></a>00126 <span class="comment">        System.err.println(&quot;Row moved&quot;);</span>
+<a name="l00127"></a>00127 <span class="comment">        fireTableDataChanged();</span>
+<a name="l00128"></a>00128 <span class="comment"> */</span>
+<a name="l00129"></a>00129     }
 </pre></div></p>
 
 <p><div class="dynheader">
@@ -358,14 +403,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div>
 <div class="memdoc">
+<p>Saves the table to the database. </p>
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00107">107</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00144">144</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 
-<p>Referenced by <a class="el" href="MainTablePanel_8java_source.html#l00159">ScheatorView.MainTablePanel.ButtonListener.actionPerformed()</a>.</p>
+<p>Referenced by <a class="el" href="MainTablePanel_8java_source.html#l00156">ScheatorView.MainTablePanel.ButtonListener.actionPerformed()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00107"></a>00107                        {
-<a name="l00108"></a>00108         System.err.println(<span class="stringliteral">&quot;Table saved&quot;</span>);
-<a name="l00109"></a>00109     }
+<p><div class="fragment"><pre class="fragment"><a name="l00144"></a>00144                        {
+<a name="l00145"></a>00145         System.err.println(<span class="stringliteral">&quot;Table saved&quot;</span>);
+<a name="l00146"></a>00146     }
 </pre></div></p>
 
 <p><div class="dynheader">
@@ -402,14 +448,15 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00102">102</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00135">135</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 
-<p>References <a class="el" href="MainTableModel_8java_source.html#l00021">ScheatorModel.MainTableModel.provider</a>.</p>
+<p>References <a class="el" href="MainTableModel_8java_source.html#l00022">ScheatorModel.MainTableModel.provider</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00102"></a>00102                                      {
-<a name="l00103"></a>00103         <a class="code" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">provider</a>.fetch(seasonId);
-<a name="l00104"></a>00104         fireTableDataChanged();
-<a name="l00105"></a>00105     }
+<p><div class="fragment"><pre class="fragment"><a name="l00135"></a>00135                                      {
+<a name="l00136"></a>00136         System.err.println(<span class="stringliteral">&quot;Updating table for season #&quot;</span> + seasonId);
+<a name="l00137"></a>00137         <a class="code" href="classScheatorModel_1_1MainTableModel.html#a61a4772926fcd1e1d245a2f64137f3f5">provider</a>.fetch(seasonId);
+<a name="l00138"></a>00138         fireTableDataChanged();
+<a name="l00139"></a>00139     }
 </pre></div></p>
 
 </div>
@@ -426,24 +473,41 @@ Here is the caller graph for this function:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00022">22</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00024">24</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 
-<p>Referenced by <a class="el" href="MainTableModel_8java_source.html#l00046">ScheatorModel.MainTableModel.getColumnCount()</a>, <a class="el" href="MainTableModel_8java_source.html#l00051">ScheatorModel.MainTableModel.getColumnName()</a>, and <a class="el" href="MainTableModel_8java_source.html#l00031">ScheatorModel.MainTableModel.MainTableModel()</a>.</p>
+<p>Referenced by <a class="el" href="MainTableModel_8java_source.html#l00056">ScheatorModel.MainTableModel.getColumnCount()</a>, <a class="el" href="MainTableModel_8java_source.html#l00066">ScheatorModel.MainTableModel.getColumnName()</a>, and <a class="el" href="MainTableModel_8java_source.html#l00026">ScheatorModel.MainTableModel.MainTableModel()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4539ee4570a76db39a7dfbedc9d732d4"></a><!-- doxytag: member="ScheatorModel::MainTableModel::list" ref="a4539ee4570a76db39a7dfbedc9d732d4" args="" -->
+<a class="anchor" id="ad9e96cdf9e2a960cdcdc9ee156d4dee2"></a><!-- doxytag: member="ScheatorModel::MainTableModel::controller" ref="ad9e96cdf9e2a960cdcdc9ee156d4dee2" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ArrayList&lt;<a class="el" href="classScheatorDb_1_1Schedule_1_1Data.html">Schedule.Data</a>&gt; <a class="el" href="classScheatorModel_1_1MainTableModel.html#a4539ee4570a76db39a7dfbedc9d732d4">ScheatorModel.MainTableModel.list</a><code> [package]</code></td>
+          <td class="memname"><a class="el" href="classScheatorController_1_1AbstractController.html">AbstractController</a> <a class="el" href="classScheatorModel_1_1MainTableModel.html#ad9e96cdf9e2a960cdcdc9ee156d4dee2">ScheatorModel.MainTableModel.controller</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00020">20</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00021">21</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a364ea4cb9df9ad80f916a8e426e7610c"></a><!-- doxytag: member="ScheatorModel::MainTableModel::list" ref="a364ea4cb9df9ad80f916a8e426e7610c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LinkedHashMap&lt;Integer, <a class="el" href="classScheatorDb_1_1Matches_1_1Data.html">Matches.Data</a>&gt; <a class="el" href="classScheatorModel_1_1MainTableModel.html#a364ea4cb9df9ad80f916a8e426e7610c">ScheatorModel.MainTableModel.list</a><code> [package]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00023">23</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+
+<p>Referenced by <a class="el" href="MainTableModel_8java_source.html#l00044">ScheatorModel.MainTableModel.getRowCount()</a>, <a class="el" href="MainTableModel_8java_source.html#l00070">ScheatorModel.MainTableModel.getValueAt()</a>, and <a class="el" href="MainTableModel_8java_source.html#l00026">ScheatorModel.MainTableModel.MainTableModel()</a>.</p>
 
 </div>
 </div>
@@ -458,32 +522,9 @@ Here is the caller graph for this function:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00021">21</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
+<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00022">22</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
 
-<p>Referenced by <a class="el" href="MainTableModel_8java_source.html#l00031">ScheatorModel.MainTableModel.MainTableModel()</a>, and <a class="el" href="MainTableModel_8java_source.html#l00102">ScheatorModel.MainTableModel.update()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aeca5f34a2c86f59774410d6f412240ee"></a><!-- doxytag: member="ScheatorModel::MainTableModel::rows" ref="aeca5f34a2c86f59774410d6f412240ee" args="[][]" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String <a class="el" href="classScheatorModel_1_1MainTableModel.html#aeca5f34a2c86f59774410d6f412240ee">ScheatorModel.MainTableModel.rows</a>[][]<code> [package]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<b>Initial value:</b><div class="fragment"><pre class="fragment"> {
-        {<span class="stringliteral">&quot;1&quot;</span>, <span class="stringliteral">&quot;Arsenal&quot;</span>, <span class="stringliteral">&quot;Everton&quot;</span>},
-        {<span class="stringliteral">&quot;1&quot;</span>, <span class="stringliteral">&quot;Chelsea&quot;</span>, <span class="stringliteral">&quot;ManU&quot;</span>},
-        {<span class="stringliteral">&quot;1&quot;</span>, <span class="stringliteral">&quot;Fulham&quot;</span>, <span class="stringliteral">&quot;Blackburn&quot;</span>},
-        {<span class="stringliteral">&quot;1&quot;</span>, <span class="stringliteral">&quot;Tottenham&quot;</span>, <span class="stringliteral">&quot;Bolton&quot;</span>}
-    }
-</pre></div>
-<p>Definition at line <a class="el" href="MainTableModel_8java_source.html#l00024">24</a> of file <a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a>.</p>
-
-<p>Referenced by <a class="el" href="MainTableModel_8java_source.html#l00042">ScheatorModel.MainTableModel.getRowCount()</a>, <a class="el" href="MainTableModel_8java_source.html#l00055">ScheatorModel.MainTableModel.getValueAt()</a>, and <a class="el" href="MainTableModel_8java_source.html#l00064">ScheatorModel.MainTableModel.moveMatch()</a>.</p>
+<p>Referenced by <a class="el" href="MainTableModel_8java_source.html#l00026">ScheatorModel.MainTableModel.MainTableModel()</a>, and <a class="el" href="MainTableModel_8java_source.html#l00135">ScheatorModel.MainTableModel.update()</a>.</p>
 
 </div>
 </div>
@@ -491,7 +532,7 @@ Here is the caller graph for this function:</div>
 <li>src/ScheatorModel/<a class="el" href="MainTableModel_8java_source.html">MainTableModel.java</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:20 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:43 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

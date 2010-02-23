@@ -64,97 +64,125 @@ window.onload = initDynSections;
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>src/ScheatorController/AbstractController.java</h1><a href="AbstractController_8java.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
-<a name="l00002"></a>00002 <span class="comment"> * AbstractController.java</span>
-<a name="l00003"></a>00003 <span class="comment"> *</span>
-<a name="l00004"></a>00004 <span class="comment"> * Created on January 22, 2007, 8:41 AM</span>
-<a name="l00005"></a>00005 <span class="comment"> *</span>
-<a name="l00006"></a>00006 <span class="comment"> * To change this template, choose Tools | Template Manager</span>
-<a name="l00007"></a>00007 <span class="comment"> * and open the template in the editor.</span>
-<a name="l00008"></a>00008 <span class="comment"> */</span>
-<a name="l00009"></a>00009 
-<a name="l00010"></a><a class="code" href="namespaceScheatorController.html">00010</a> <span class="keyword">package </span>ScheatorController;
+<h1>src/ScheatorController/AbstractController.java</h1><a href="AbstractController_8java.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a><a class="code" href="namespaceScheatorController.html">00001</a> <span class="keyword">package </span>ScheatorController;
+<a name="l00002"></a>00002 
+<a name="l00003"></a>00003 <span class="keyword">import</span> ScheatorView.*;
+<a name="l00004"></a>00004 <span class="keyword">import</span> java.util.EventListener;
+<a name="l00005"></a>00005 <span class="keyword">import</span> java.util.ArrayList;
+<a name="l00006"></a>00006 <span class="keyword">import</span> javax.swing.event.*;
+<a name="l00007"></a>00007 <span class="keyword">import</span> javax.swing.table.*;
+<a name="l00008"></a>00008 <span class="keyword">import</span> javax.swing.AbstractListModel;
+<a name="l00009"></a>00009 <span class="keyword">import</span> java.awt.event.*;
+<a name="l00010"></a>00010 <span class="keyword">import</span> java.awt.*;
 <a name="l00011"></a>00011 
-<a name="l00012"></a>00012 <span class="keyword">import</span> ScheatorModel.AbstractModel;
-<a name="l00013"></a>00013 <span class="keyword">import</span> ScheatorView.*;
-<a name="l00014"></a>00014 <span class="keyword">import</span> java.util.EventListener;
-<a name="l00015"></a>00015 <span class="keyword">import</span> java.beans.PropertyChangeEvent;
-<a name="l00016"></a>00016 <span class="keyword">import</span> java.beans.PropertyChangeListener;
-<a name="l00017"></a>00017 <span class="keyword">import</span> java.lang.reflect.Method;
-<a name="l00018"></a>00018 <span class="keyword">import</span> java.util.ArrayList;
-<a name="l00019"></a>00019 
-<a name="l00027"></a><a class="code" href="classScheatorController_1_1AbstractController.html">00027</a> <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class </span><a class="code" href="classScheatorController_1_1AbstractController.html">AbstractController</a> <span class="keyword">implements</span> EventListener {
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029     <span class="comment">//  Vectors that hold a list of the registered models and views for this controller.</span>
-<a name="l00030"></a>00030 
-<a name="l00031"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a31151f655140d3a15852198f00c98615">00031</a>     <span class="keyword">private</span> ArrayList&lt;AbstractViewPanel&gt; <a class="code" href="classScheatorController_1_1AbstractController.html#a31151f655140d3a15852198f00c98615">registeredViews</a>;
-<a name="l00032"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">00032</a>     <span class="keyword">private</span> <a class="code" href="classScheatorView_1_1MainView.html">MainView</a> <a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">mainFrame</a>;
-<a name="l00033"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a61b38c700365a74071aa1c6b70a5a15e">00033</a>     <span class="keyword">private</span> ArrayList&lt;AbstractModel&gt; <a class="code" href="classScheatorController_1_1AbstractController.html#a61b38c700365a74071aa1c6b70a5a15e">registeredModels</a>;
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035 
-<a name="l00037"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a166c70c4be382489e5d8f3ae5343348a">00037</a>     <span class="keyword">public</span> <a class="code" href="classScheatorController_1_1AbstractController.html#a166c70c4be382489e5d8f3ae5343348a">AbstractController</a>() {
-<a name="l00038"></a>00038         <a class="code" href="classScheatorController_1_1AbstractController.html#a31151f655140d3a15852198f00c98615">registeredViews</a> = <span class="keyword">new</span> ArrayList&lt;AbstractViewPanel&gt;();
-<a name="l00039"></a>00039         <a class="code" href="classScheatorController_1_1AbstractController.html#a61b38c700365a74071aa1c6b70a5a15e">registeredModels</a> = <span class="keyword">new</span> ArrayList&lt;AbstractModel&gt;();
-<a name="l00040"></a>00040     }
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 
-<a name="l00050"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a8843a798dbf9ca2a384e57077997e828">00050</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#a8843a798dbf9ca2a384e57077997e828">addModel</a>(<a class="code" href="classScheatorModel_1_1AbstractModel.html">AbstractModel</a> model) {
-<a name="l00051"></a>00051         <a class="code" href="classScheatorController_1_1AbstractController.html#a61b38c700365a74071aa1c6b70a5a15e">registeredModels</a>.add(model);
-<a name="l00052"></a>00052         <span class="comment">//model.addEventListener(this);</span>
-<a name="l00053"></a>00053     }
-<a name="l00054"></a>00054 
-<a name="l00059"></a><a class="code" href="classScheatorController_1_1AbstractController.html#aa174d54a9f31e84e983b081004689455">00059</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#aa174d54a9f31e84e983b081004689455">removeModel</a>(<a class="code" href="classScheatorModel_1_1AbstractModel.html">AbstractModel</a> model) {
-<a name="l00060"></a>00060         <a class="code" href="classScheatorController_1_1AbstractController.html#a61b38c700365a74071aa1c6b70a5a15e">registeredModels</a>.remove(model);
-<a name="l00061"></a>00061         <span class="comment">//model.removePropertyChangeListener(this);</span>
-<a name="l00062"></a>00062     }
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064 
-<a name="l00070"></a><a class="code" href="classScheatorController_1_1AbstractController.html#aa3f004e21fd0c7f213a25267f0c63ae7">00070</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#aa3f004e21fd0c7f213a25267f0c63ae7">addView</a>(<a class="code" href="classScheatorView_1_1AbstractViewPanel.html">AbstractViewPanel</a> view) {
-<a name="l00071"></a>00071         <a class="code" href="classScheatorController_1_1AbstractController.html#a31151f655140d3a15852198f00c98615">registeredViews</a>.add(view);
-<a name="l00072"></a>00072     }
-<a name="l00073"></a>00073 
-<a name="l00078"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a8cbaaccef13e09a10ceccd6a9f8d55f6">00078</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#a8cbaaccef13e09a10ceccd6a9f8d55f6">removeView</a>(<a class="code" href="classScheatorView_1_1AbstractViewPanel.html">AbstractViewPanel</a> view) {
-<a name="l00079"></a>00079         <a class="code" href="classScheatorController_1_1AbstractController.html#a31151f655140d3a15852198f00c98615">registeredViews</a>.remove(view);
-<a name="l00080"></a>00080     }
-<a name="l00081"></a>00081 
-<a name="l00082"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a6887c1c0fc3f5393262712a196e5f4ea">00082</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#a6887c1c0fc3f5393262712a196e5f4ea">addMainFrame</a>(<a class="code" href="classScheatorView_1_1MainView.html">MainView</a> frame) {
-<a name="l00083"></a>00083         this.<a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">mainFrame</a> = frame;
-<a name="l00084"></a>00084     }
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086     <span class="comment">//  Used to observe property changes from registered models and propogate</span>
-<a name="l00087"></a>00087     <span class="comment">//  them on to all the views.</span>
-<a name="l00088"></a>00088 
-<a name="l00094"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a90fc439ea266293c88397a63444fb1ad">00094</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#a90fc439ea266293c88397a63444fb1ad">propertyChange</a>(PropertyChangeEvent evt) {
+<a name="l00019"></a><a class="code" href="classScheatorController_1_1AbstractController.html">00019</a> <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class </span><a class="code" href="classScheatorController_1_1AbstractController.html">AbstractController</a> <span class="keyword">implements</span> EventListener {
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021     <span class="comment">//  Vectors that hold a list of the registered models and views for this controller.</span>
+<a name="l00022"></a>00022 
+<a name="l00023"></a><a class="code" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">00023</a>     ArrayList&lt;AbstractView&gt; <a class="code" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">registeredViews</a>;
+<a name="l00024"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">00024</a>     <a class="code" href="classScheatorView_1_1MainView.html">MainView</a> <a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">mainFrame</a>;
+<a name="l00025"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a54f06d2217ee76aa9f55e35e29306cf4">00025</a>     ArrayList&lt;Object&gt; <a class="code" href="classScheatorController_1_1AbstractController.html#a54f06d2217ee76aa9f55e35e29306cf4">registeredModels</a>;
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 
+<a name="l00029"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a166c70c4be382489e5d8f3ae5343348a">00029</a>     <span class="keyword">public</span> <a class="code" href="classScheatorController_1_1AbstractController.html#a166c70c4be382489e5d8f3ae5343348a">AbstractController</a>() {
+<a name="l00030"></a>00030         <a class="code" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">registeredViews</a> = <span class="keyword">new</span> ArrayList&lt;AbstractView&gt;();
+<a name="l00031"></a>00031         <a class="code" href="classScheatorController_1_1AbstractController.html#a54f06d2217ee76aa9f55e35e29306cf4">registeredModels</a> = <span class="keyword">new</span> ArrayList&lt;Object&gt;();
+<a name="l00032"></a>00032     }
+<a name="l00033"></a>00033 
+<a name="l00041"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a92d4c5f2ee31ee9fd9fde54535a76b6f">00041</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#a92d4c5f2ee31ee9fd9fde54535a76b6f">addModel</a>(Object model) {
+<a name="l00042"></a>00042         <a class="code" href="classScheatorController_1_1AbstractController.html#a54f06d2217ee76aa9f55e35e29306cf4">registeredModels</a>.add(model);
+<a name="l00043"></a>00043         <span class="keywordflow">if</span>(model instanceof <a class="code" href="classAbstractTableModel.html">AbstractTableModel</a>) {
+<a name="l00044"></a>00044             AbstractTableModel T = (AbstractTableModel) model;
+<a name="l00045"></a>00045             T.addTableModelListener(<span class="keyword">new</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1TableModelListenerImpl.html">TableModelListenerImpl</a>());
+<a name="l00046"></a>00046         }
+<a name="l00047"></a>00047         <span class="keywordflow">if</span> (model instanceof AbstractListModel) {
+<a name="l00048"></a>00048             AbstractListModel T = (AbstractListModel) model;
+<a name="l00049"></a>00049             T.addListDataListener(<span class="keyword">new</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1ListDataListenerImpl.html">ListDataListenerImpl</a>());
+<a name="l00050"></a>00050         }
+<a name="l00051"></a>00051         <span class="keywordflow">if</span> (model instanceof ItemSelectable) {
+<a name="l00052"></a>00052             ItemSelectable T = (ItemSelectable) model;
+<a name="l00053"></a>00053             T.addItemListener(<span class="keyword">new</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1ItemListenerImpl.html">ItemListenerImpl</a>());
+<a name="l00054"></a>00054         }
+<a name="l00055"></a>00055     }
+<a name="l00056"></a>00056 
+<a name="l00061"></a><a class="code" href="classScheatorController_1_1AbstractController.html#ae92281cc7a359c0f41ca5257ab628eae">00061</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#ae92281cc7a359c0f41ca5257ab628eae">removeModel</a>(Object model) {
+<a name="l00062"></a>00062         <a class="code" href="classScheatorController_1_1AbstractController.html#a54f06d2217ee76aa9f55e35e29306cf4">registeredModels</a>.remove(model);
+<a name="l00063"></a>00063         <span class="keywordflow">if</span>(model instanceof <a class="code" href="classAbstractTableModel.html">AbstractTableModel</a>) {
+<a name="l00064"></a>00064             AbstractTableModel T = (AbstractTableModel) model;
+<a name="l00065"></a>00065             T.removeTableModelListener(<span class="keyword">new</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1TableModelListenerImpl.html">TableModelListenerImpl</a>());
+<a name="l00066"></a>00066         }
+<a name="l00067"></a>00067         <span class="keywordflow">if</span> (model instanceof AbstractListModel) {
+<a name="l00068"></a>00068             AbstractListModel T = (AbstractListModel) model;
+<a name="l00069"></a>00069             T.removeListDataListener(<span class="keyword">new</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1ListDataListenerImpl.html">ListDataListenerImpl</a>());
+<a name="l00070"></a>00070         }    
+<a name="l00071"></a>00071         <span class="keywordflow">if</span> (model instanceof ItemSelectable) {
+<a name="l00072"></a>00072             System.err.println(<span class="stringliteral">&quot;Item is selectable&quot;</span>);
+<a name="l00073"></a>00073             ItemSelectable T = (ItemSelectable) model;
+<a name="l00074"></a>00074             T.addItemListener(<span class="keyword">new</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1ItemListenerImpl.html">ItemListenerImpl</a>());
+<a name="l00075"></a>00075         }
+<a name="l00076"></a>00076     }
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 
+<a name="l00084"></a><a class="code" href="classScheatorController_1_1AbstractController.html#ad175324c924a93169bc215a0abcd2348">00084</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#ad175324c924a93169bc215a0abcd2348">addView</a>(<a class="code" href="classScheatorView_1_1AbstractView.html">AbstractView</a> view) {
+<a name="l00085"></a>00085         <a class="code" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">registeredViews</a>.add(view);
+<a name="l00086"></a>00086     }
+<a name="l00087"></a>00087 
+<a name="l00092"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a2be9210933852c6718c211d77671c84d">00092</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#a2be9210933852c6718c211d77671c84d">removeView</a>(<a class="code" href="classScheatorView_1_1AbstractView.html">AbstractView</a> view) {
+<a name="l00093"></a>00093         <a class="code" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">registeredViews</a>.remove(view);
+<a name="l00094"></a>00094     }
 <a name="l00095"></a>00095 
-<a name="l00096"></a>00096         <span class="keywordflow">for</span> (<a class="code" href="classScheatorView_1_1AbstractViewPanel.html">AbstractViewPanel</a> view: <a class="code" href="classScheatorController_1_1AbstractController.html#a31151f655140d3a15852198f00c98615">registeredViews</a>) {
-<a name="l00097"></a>00097             view.modelPropertyChange(evt);
-<a name="l00098"></a>00098         }
-<a name="l00099"></a>00099         <a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">mainFrame</a>.<a class="code" href="classScheatorView_1_1MainView.html#acc1b68bbf01e3e40ffb36598fc4747a0">modelPropertyChange</a>(evt);
-<a name="l00100"></a>00100     }
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 
-<a name="l00112"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a7d88b34a741bfbc83a8e0dd58858be2b">00112</a>     <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#a7d88b34a741bfbc83a8e0dd58858be2b">setModelProperty</a>(String propertyName, Object newValue) {
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114         <span class="keywordflow">for</span> (<a class="code" href="classScheatorModel_1_1AbstractModel.html">AbstractModel</a> model: <a class="code" href="classScheatorController_1_1AbstractController.html#a61b38c700365a74071aa1c6b70a5a15e">registeredModels</a>) {
-<a name="l00115"></a>00115             <span class="keywordflow">try</span> {
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117                 Method method = model.getClass().
-<a name="l00118"></a>00118                     getMethod(<span class="stringliteral">&quot;set&quot;</span>+propertyName, <span class="keyword">new</span> Class[] {
-<a name="l00119"></a>00119                                                       newValue.getClass()
-<a name="l00120"></a>00120                                                   }
-<a name="l00121"></a>00121                              );
-<a name="l00122"></a>00122                 method.invoke(model, newValue);
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124             } <span class="keywordflow">catch</span> (Exception ex) {
-<a name="l00125"></a>00125                 <span class="comment">//  Handle exception</span>
-<a name="l00126"></a>00126             }
-<a name="l00127"></a>00127         }
-<a name="l00128"></a>00128     }
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131 }
+<a name="l00096"></a><a class="code" href="classScheatorController_1_1AbstractController.html#a6887c1c0fc3f5393262712a196e5f4ea">00096</a>     <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController.html#a6887c1c0fc3f5393262712a196e5f4ea">addMainFrame</a>(<a class="code" href="classScheatorView_1_1MainView.html">MainView</a> frame) {
+<a name="l00097"></a>00097         this.<a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">mainFrame</a> = frame;
+<a name="l00098"></a>00098     }
+<a name="l00099"></a>00099 
+<a name="l00100"></a><a class="code" href="classScheatorController_1_1AbstractController_1_1TableModelListenerImpl.html">00100</a>     <span class="keyword">class </span><a class="code" href="classScheatorController_1_1AbstractController_1_1TableModelListenerImpl.html">TableModelListenerImpl</a> <span class="keyword">implements</span> <a class="code" href="classTableModelListener.html">TableModelListener</a> {
+<a name="l00101"></a><a class="code" href="classScheatorController_1_1AbstractController_1_1TableModelListenerImpl.html#a55b4ed5dcc77503622ff2bcd3df4e75e">00101</a>         <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1TableModelListenerImpl.html#a55b4ed5dcc77503622ff2bcd3df4e75e">tableChanged</a>(TableModelEvent e) {
+<a name="l00102"></a>00102             <span class="keywordflow">for</span> (<a class="code" href="classScheatorView_1_1AbstractView.html">AbstractView</a> view: <a class="code" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">registeredViews</a>) {
+<a name="l00103"></a>00103                 view.mainTableChanged(e);
+<a name="l00104"></a>00104             }
+<a name="l00105"></a>00105             <a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">mainFrame</a>.<a class="code" href="classScheatorView_1_1MainView.html#ae69f93e45c7063e6f555239864204256">mainTableChanged</a>(e);
+<a name="l00106"></a>00106         }
+<a name="l00107"></a>00107     }
+<a name="l00108"></a>00108 
+<a name="l00109"></a><a class="code" href="classScheatorController_1_1AbstractController_1_1ListDataListenerImpl.html">00109</a>     <span class="keyword">class </span><a class="code" href="classScheatorController_1_1AbstractController_1_1ListDataListenerImpl.html">ListDataListenerImpl</a> <span class="keyword">implements</span> <a class="code" href="classListDataListener.html">ListDataListener</a> {
+<a name="l00110"></a><a class="code" href="classScheatorController_1_1AbstractController_1_1ListDataListenerImpl.html#a77f7493428f619ecb950ddbc6509ee55">00110</a>         <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1ListDataListenerImpl.html#a77f7493428f619ecb950ddbc6509ee55">contentsChanged</a>(ListDataEvent e) {
+<a name="l00111"></a>00111             <span class="keywordflow">for</span> (<a class="code" href="classScheatorView_1_1AbstractView.html">AbstractView</a> view: <a class="code" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">registeredViews</a>) {
+<a name="l00112"></a>00112                 view.comboBoxEvent(e);
+<a name="l00113"></a>00113             }
+<a name="l00114"></a>00114             System.err.println(<span class="stringliteral">&quot;contentsChanged()&quot;</span>);
+<a name="l00115"></a>00115             <a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">mainFrame</a>.<a class="code" href="classScheatorView_1_1MainView.html#aeecf8646ae0b64faeaffd3aea70912b0">comboBoxEvent</a>(e);
+<a name="l00116"></a>00116         }
+<a name="l00117"></a>00117 
+<a name="l00118"></a><a class="code" href="classScheatorController_1_1AbstractController_1_1ListDataListenerImpl.html#aabe527c5ef96723f51df7a1a682a258b">00118</a>         <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1ListDataListenerImpl.html#aabe527c5ef96723f51df7a1a682a258b">intervalRemoved</a>(ListDataEvent e) {
+<a name="l00119"></a>00119             <span class="keywordflow">for</span> (<a class="code" href="classScheatorView_1_1AbstractView.html">AbstractView</a> view: <a class="code" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">registeredViews</a>) {
+<a name="l00120"></a>00120                 view.comboBoxEvent(e);
+<a name="l00121"></a>00121             }
+<a name="l00122"></a>00122             <a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">mainFrame</a>.<a class="code" href="classScheatorView_1_1MainView.html#aeecf8646ae0b64faeaffd3aea70912b0">comboBoxEvent</a>(e);
+<a name="l00123"></a>00123         }
+<a name="l00124"></a>00124 
+<a name="l00125"></a><a class="code" href="classScheatorController_1_1AbstractController_1_1ListDataListenerImpl.html#aec63b9ce0af249130ee58b9a25f6f399">00125</a>         <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1ListDataListenerImpl.html#aec63b9ce0af249130ee58b9a25f6f399">intervalAdded</a>(ListDataEvent e) {
+<a name="l00126"></a>00126             <span class="keywordflow">for</span> (<a class="code" href="classScheatorView_1_1AbstractView.html">AbstractView</a> view: <a class="code" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">registeredViews</a>) {
+<a name="l00127"></a>00127                 view.comboBoxEvent(e);
+<a name="l00128"></a>00128             }
+<a name="l00129"></a>00129             <a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">mainFrame</a>.<a class="code" href="classScheatorView_1_1MainView.html#aeecf8646ae0b64faeaffd3aea70912b0">comboBoxEvent</a>(e);
+<a name="l00130"></a>00130         }
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132     }
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 
+<a name="l00136"></a><a class="code" href="classScheatorController_1_1AbstractController_1_1ItemListenerImpl.html">00136</a>     <span class="keyword">class </span><a class="code" href="classScheatorController_1_1AbstractController_1_1ItemListenerImpl.html">ItemListenerImpl</a> <span class="keyword">implements</span> ItemListener {
+<a name="l00137"></a><a class="code" href="classScheatorController_1_1AbstractController_1_1ItemListenerImpl.html#a36853d85ba47e349cf385eb0b3e4699e">00137</a>         <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classScheatorController_1_1AbstractController_1_1ItemListenerImpl.html#a36853d85ba47e349cf385eb0b3e4699e">itemStateChanged</a>(ItemEvent e) {
+<a name="l00138"></a>00138             <span class="keywordflow">for</span> (<a class="code" href="classScheatorView_1_1AbstractView.html">AbstractView</a> view: <a class="code" href="classScheatorController_1_1AbstractController.html#aa1d4a60bf9de6c1892d29af923282c5a">registeredViews</a>) {
+<a name="l00139"></a>00139                 view.itemStateChanged(e);
+<a name="l00140"></a>00140             }
+<a name="l00141"></a>00141             System.err.println(<span class="stringliteral">&quot;itemStateChanged&quot;</span>);
+<a name="l00142"></a>00142             <a class="code" href="classScheatorController_1_1AbstractController.html#a097e85b4cd5b91a7129c5ec8bc729321">mainFrame</a>.<a class="code" href="classScheatorView_1_1MainView.html#a48075f7e39e1e071c8462118b550a8e9">itemStateChanged</a>(e);
+<a name="l00143"></a>00143         }
+<a name="l00144"></a>00144     }
+<a name="l00145"></a>00145 }
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Feb 21 14:36:16 2010 for Scheator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Feb 23 16:01:40 2010 for Scheator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
