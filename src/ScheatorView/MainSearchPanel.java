@@ -92,7 +92,7 @@ public class MainSearchPanel extends AbstractView {
     public void search() {
         System.err.println("Searching");
         ScheatorDb.DbObject.Data data = (ScheatorDb.DbObject.Data) seasonList.getSelectedItem();
-        int seasonId = data.field_id;
+        Integer seasonId = (Integer) data.get("id");
         controller.searchMainTable(seasonId);
     }
 
@@ -101,7 +101,7 @@ public class MainSearchPanel extends AbstractView {
         //seasonModel.fill(seriesList.getSelectedId());
         //controller.seriesSelected(seriesList.getSelectedIndex());
         Series.Data selected = (Series.Data)seriesModel.getSelectedItem();
-        int id = selected.field_id;
+        Integer id = (Integer) selected.get("id");
         seasonModel.update(id);
     }
 

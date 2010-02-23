@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ScheatorDb;
 import java.util.LinkedHashMap;
 import java.sql.*;
@@ -35,7 +30,8 @@ public class Series extends DbObject {
     }
 
     /** Gets all the series or one specific series from the database.
-     * 
+     *
+     * @param key Series database id.
      */
     public final void fetch(int key) {
         this.currentId = key;
@@ -71,7 +67,7 @@ public class Series extends DbObject {
          * @param name Name of the series.
          */
         Data(String name) {
-            this.field_id = 0;
+            this.field_id = null;
             this.field_name = name;
         }
 
@@ -80,7 +76,7 @@ public class Series extends DbObject {
          * @param id   Database id for this entity.
          * @param name Name of the series.
          */
-        Data(int id, String name) {
+        Data(Integer id, String name) {
             this.field_id = id;
             this.field_name = name;
         }

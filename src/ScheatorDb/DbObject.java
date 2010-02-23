@@ -1,5 +1,6 @@
 package ScheatorDb;
 import java.util.LinkedHashMap;
+import java.lang.reflect.Field;
 
 /** An abstract definition of a database object. 
  * 
@@ -13,6 +14,8 @@ public abstract class DbObject<Object, T> {
     LinkedHashMap<Object, T> list;
     AbstractDb db;
     int currentId;
+
+    enum FieldState {SAVED, NEW, CHANGED}
 
     /** Fetches one or more items from the database to fill the data fields
      * in this object.
@@ -47,13 +50,58 @@ public abstract class DbObject<Object, T> {
     abstract public class Data {
 
         /** Id in the database. */
-        public int field_id;
+        Integer field_id;
         /** Season "name", e.g. "2007-08". */
-        public String field_name;
-        
+        String field_name;
+
+        FieldState state = FieldState.SAVED;
+
         @Override
         public String toString() {
             return field_name;
+        }
+
+        /** Sets a field in the object to the given value.
+         *
+         * This function uses reflection to determine the field where the value
+         * will be set.
+         * 
+         * @param field Name (minus field_) of field to set.
+         * @param value Value used.
+         */
+        public void set(String field, Object value) {
+            String name = "field_".concat(field);
+            try {
+                Class c = Class.forName(this.toString());
+                Field f = c.getField(name);
+                f.set(this, value);
+            } catch (Exception e) {
+                System.err.println("Field does not exist: " + name + "(" + e.getMessage() + ")");
+            }
+            if (state == FieldState.SAVED) {
+                state = FieldState.CHANGED;
+            }
+        }
+
+        /** Returns the value of a field.
+         *
+         * This method uses reflection to determine the field where the value
+         * will be retrieved.
+         * 
+         * @param field Field name.
+         * @return Value of the field.
+         */
+        public Object get(String field) {
+            String name = "field_".concat(field);
+            Object retval = null;
+            try {
+                Class c = Class.forName(this.toString());
+                Field f = c.getField(name);
+                retval = (Object)f.get(this);
+            } catch (Exception e) {
+                System.err.println("Field does not exist: " + name + " (" + e.getMessage() + ")");
+            }
+            return retval;
         }
 
     }

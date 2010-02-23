@@ -1,19 +1,8 @@
-/*
- * AbstractController.java
- *
- * Created on January 22, 2007, 8:41 AM
- *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
- */
-
 package ScheatorController;
 
 import ScheatorView.*;
 import java.util.EventListener;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.EventObject;
 import javax.swing.event.*;
 import javax.swing.table.*;
 import javax.swing.AbstractListModel;

@@ -1,15 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ScheatorDb;
 
-/**
+/** An interface of a query engine.
+ *
+ * @brief This is an abstraction of a query engine. A query engine can create
+ * queries for various data manipulation tasks. Implementing classes will
+ * each provide an interface to a different datasource.
  *
  * @author mep
  */
-interface AbstractQueryEngine<T> {
+interface AbstractQueryEngine {
     /** Returns a query to retrieve fields from the database.
      *
      * @param table Table names.
@@ -32,6 +31,16 @@ interface AbstractQueryEngine<T> {
      * @return Query to run.
      */
     abstract String addItem(String entity, Object toAdd);
+
+    /** Returns a query to update values of an item in the database.
+     * 
+     * @param entity The entity in which to update the item (typically, a 
+     * database table).
+     * @param toUpdate Fields to update.
+     * @return Query to run.
+     */
+    abstract String updateItem(String entity, Object toUpdate, String[] idFields,
+            String[] ids);
 
     /** Returns a query to delete one or more items from the database.
      *

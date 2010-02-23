@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ScheatorDb;
 
 import java.lang.reflect.Field;
@@ -90,21 +85,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
                 String type = f.getClass().getName();
                 String value = new String();
                 sbFields.append(fieldName);
-                if (type.equals("String")) {
-                    sbValues.append("'");
-                    try {
-                        sbValues.append(f.get(value));
-                    } catch (Exception e) {
-                        System.err.println("No such field!");
-                    }
-                    sbValues.append("'");
-                } else {
-                    try {
-                        sbValues.append(f.get(value));
-                    } catch (Exception e) {
-                        System.err.println("No such field!" + e.getMessage());
-                    }
-                }
+                sbValues.append(formatValue(f));
                 sbFields.append(",");
                 sbValues.append(",");
             }
@@ -116,6 +97,47 @@ class SqlQueryEngine implements AbstractQueryEngine {
         sb.append(")");
 
         System.err.println("addItems returns " + sb.toString());
+        return sb.toString();
+    }
+
+    /** Creates an SQL query for updating a row's values in the database.
+     *
+     * @param entity Table name.
+     * @param toUpdate Fields and values to update. All of the fields will be
+     * updated, so each field must have a meaningful value!
+     * @param idFields Fields used to identify the row(s).
+     * @param ids Id values for id fields. Values must be in the same order as
+     * the fields.
+     * @return
+     */
+    @Override
+    public String updateItem(String entity, Object toUpdate, String[] idFields,
+            String[] ids) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("UPDATE ");
+        sb.append(entity);
+        sb.append("SET ");
+
+        for (Field f: toUpdate.getClass().getDeclaredFields()) {
+            String fieldName = f.getName();
+            if (fieldName.startsWith("field_")) {
+
+                String type = f.getClass().getName();
+                String value = new String();
+                sb.append(fieldName);
+                sb.append("=");
+                sb.append(formatValue(f));
+                sb.append(",");
+            }
+        }
+
+        /* Remove last comma */
+        sb.deleteCharAt(sb.toString().length()-1);
+
+        /* Add where clause */
+        sb.append(createWhereClause(idFields, ids));
+        
         return sb.toString();
     }
 
@@ -161,6 +183,11 @@ class SqlQueryEngine implements AbstractQueryEngine {
         return sb.toString();
     }
 
+    /** Creates the order by clause part of an sql query.
+     *
+     * @param list Field list for the clause.
+     * @return String containing the ORDER BY clause.
+     */
     private String createOrderByClause(String[] list) {
         StringBuilder sb = new StringBuilder();
         
@@ -175,5 +202,59 @@ class SqlQueryEngine implements AbstractQueryEngine {
         }
         
         return sb.toString();
+    }
+
+    /** Formats a value for an sql query.
+     *
+     * This function assumes that the field type is equivalent to the field
+     * in the database. In practice this means that this field support two
+     * types of fields: string (varchar) and numeric.
+     *
+     * A string type field will be escaped with single parenthesis (') because
+     * SQL databases expect that. Numbers are returned as-is.
+     *
+     * If the field is null, a string containing "NULL" is returned instead.
+     * 
+     * @param f The field where the value is.
+     * @return Formatted value.
+     */
+    String formatValue(Field f) {
+        String retval = null;
+        String type = f.getClass().getName();
+        if (type.equals("String")) {
+            try {
+                String value = (String)f.get(f);
+                if (value != null) {
+                    retval = "'" + value + "'";
+                } else {
+                    retval = "NULL";
+                }
+            } catch (Exception e) {
+                System.err.println("No such field: " + e.getMessage());
+            }
+        } else if (type.equals("Integer")) {
+            try {
+                Integer value = (Integer)f.get(f);
+                if (value != null) {
+                    retval = String.valueOf(value);
+                } else {
+                    retval = "NULL";
+                }
+            } catch (Exception e) {
+                System.err.println("No such field: " + e.getMessage());
+            }
+        } else {
+            try {
+                String value = (String) f.get(f);
+                if (value != null) {
+                    retval = value;
+                } else {
+                    retval = "NULL";
+                }
+            } catch (Exception e) {
+                System.err.println("No such field: " + e.getMessage());
+            }
+        }
+        return retval;
     }
 }

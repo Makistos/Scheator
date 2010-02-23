@@ -33,10 +33,10 @@ public class Season extends DbObject {
      * @brief A season is a mapping between a series and the matches. One series
      * can have several seasons and a season consists of several matches. 
      *
-     * @param key
+     * @param series Series database id.
      */
-    public final void fetch(int key) {
-        this.currentId = key;
+    public final void fetch(int series) {
+        this.currentId = series;
         String[] idFields = null;
         String[] ids = null;
         if (currentId != 0) {
@@ -55,7 +55,8 @@ public class Season extends DbObject {
                 String id = rs.getString(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);
                 String seriesId = rs.getString(FIELDS[2]);
-                Data season = new Data(Integer.parseInt(id.trim()), name, Integer.parseInt(seriesId));
+                Data season = new Data(Integer.parseInt(id.trim()),
+                        name, Integer.parseInt(seriesId.trim()));
                 list.put(id, season);
             }
         } catch (Exception e) {
@@ -69,21 +70,21 @@ public class Season extends DbObject {
     public class Data extends DbObject.Data {
 
         /** Database id of series this season belongs to. */
-        public int field_series;
+        Integer field_series;
 
         Data(String name) {
-            field_id = 0;
+            field_id = null;
             field_name = name;
             field_series = 0;
         }
          
         Data(String name, int series) {
-            field_id = 0;
+            field_id = null;
             field_name = name;
             field_series = series;
         }
 
-        Data(int id, String name, int series) {
+        Data(Integer id, String name, int series) {
             field_id = id;
             field_name = name;
             field_series = series;

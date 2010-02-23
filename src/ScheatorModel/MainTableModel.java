@@ -36,6 +36,11 @@ public class MainTableModel extends AbstractTableModel {
         columns[2] = resourceMap.getString("ColAway.text");
 
     }
+
+    /** Returns number of rows in the table.
+     *
+     * @return Row count.
+     */
     public int getRowCount() {
         if (list != null && list.size() > 0)
             return list.size();
@@ -44,10 +49,19 @@ public class MainTableModel extends AbstractTableModel {
         }
     }
 
+    /** Returns number of columns inthe table.
+     *
+     * @return Column count.
+     */
     public int getColumnCount() {
         return columns.length;
     }
 
+    /** Returns name for the given column. This is used as the column name.
+     *
+     * @param columnIndex Column index.
+     * @return Column name.
+     */
     @Override
     public String getColumnName(int columnIndex) {
         return columns[columnIndex];
@@ -61,11 +75,11 @@ public class MainTableModel extends AbstractTableModel {
                 Matches.Data dbRow = (Matches.Data) it.next();
                 switch(column) {
                     case 0:
-                        return dbRow.field_matchNumber;
+                        return dbRow.get("matchNumber");
                     case 1:
-                        return dbRow.field_homeTeam;
+                        return dbRow.get("homeTeam");
                     case 2:
-                        return dbRow.field_awayTeam;
+                        return dbRow.get("awayTeam");
                 }
                 break;
             }
@@ -124,6 +138,9 @@ public class MainTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
+    /** Saves the table to the database.
+     * 
+     */
     public void save() {
         System.err.println("Table saved");
     }

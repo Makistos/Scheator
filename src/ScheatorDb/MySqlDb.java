@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ScheatorDb;
 
 import java.sql.*;
@@ -29,6 +24,12 @@ public final class MySqlDb extends AbstractDb {
         initDb(db, user, pw);
     }
 
+    /** Initialiases the MySql database.
+     *
+     * @param db Database name (address).
+     * @param user Database user name.
+     * @param pw Database password for the user.
+     */
     private void initDb(String db, String user, String pw) {
         if (db.length() == 0) {
             db = "scheator";

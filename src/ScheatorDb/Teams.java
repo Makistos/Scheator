@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ScheatorDb;
 import java.util.LinkedHashMap;
 import java.sql.*;
@@ -28,6 +23,15 @@ public class Teams extends DbObject {
         fetch(seasonId);
     }
 
+    public void addNew(String name) {
+        Data team = new Data(name);
+        list.put(null, team);
+    }
+
+    /** Gets teams connected to given season (identified by seasonId).
+     *
+     * @param seasonId
+     */
     public void fetch(int seasonId) {
         String[] ids = null;
 
@@ -48,24 +52,27 @@ public class Teams extends DbObject {
                 list.put(id, team);
             }
         } catch (Exception e) {
-            System.err.println("Failed to read season data: " + e.toString());
+            System.err.println("Failed to read team data: " + e.toString());
         }
 
     }
 
+    /** Object representation of a team.
+     * 
+     */
     public class Data extends DbObject.Data {
         
         Data() {
-            field_id = 0;
+            field_id = null;
             field_name = "";
         }
 
         Data (String name) {
-            field_id = 0;
+            field_id = null;
             field_name = name;
         }
         
-        Data(int id, String name) {
+        Data(Integer id, String name) {
             field_id = id;
             field_name = name;
         }

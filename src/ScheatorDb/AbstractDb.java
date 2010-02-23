@@ -1,20 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ScheatorDb;
 
 import java.sql.*;
-import ScheatorModel.*;
 
 /** An abstraction of a database connector.
  *
  * @author mep
  */
 public abstract class AbstractDb {
-        
+
+    /** Database connection object. */
     Connection con = null;
 
+    /** Query engine object. */
     AbstractQueryEngine qe;
 }

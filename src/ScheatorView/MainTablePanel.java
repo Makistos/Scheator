@@ -102,7 +102,7 @@ public class MainTablePanel extends AbstractView {
         table.setFillsViewportHeight(true);
         table.setDragEnabled(true);
         table.setShowVerticalLines(false);
-        table.getColumnModel().getColumn(0).setPreferredWidth(10);
+        table.getColumnModel().getColumn(0).setPreferredWidth(5);
         table.getColumnModel().getColumn(1).setPreferredWidth(100);
         table.getColumnModel().getColumn(2).setPreferredWidth(100);
 
@@ -114,7 +114,7 @@ public class MainTablePanel extends AbstractView {
      * Printing is done here becaus the table component supports direct
      * printing.
      *
-     * @todo Add more sophisticated printing by returning a Printable obejct
+     * @todo Add more sophisticated printing by returning a Printable object
      * from this class to a caller.
      */
     public void print() {
