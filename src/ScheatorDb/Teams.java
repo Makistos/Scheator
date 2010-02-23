@@ -1,6 +1,7 @@
 package ScheatorDb;
 import java.util.LinkedHashMap;
 import java.sql.*;
+import java.lang.reflect.Field;
 
 /**
  *
@@ -61,6 +62,11 @@ public class Teams extends DbObject {
      * 
      */
     public class Data extends DbObject.Data {
+
+        /** Id in the database. */
+        Integer field_id;
+        /** Season "name", e.g. "2007-08". */
+        String field_name;
         
         Data() {
             field_id = null;
@@ -75,6 +81,40 @@ public class Teams extends DbObject {
         Data(Integer id, String name) {
             field_id = id;
             field_name = name;
+        }
+        
+        @Override
+        public void set(String field, Object value) {
+            String name = "field_".concat(field);
+            try {
+                Class c = Class.forName(this.getClass().getName());
+                Field f = c.getDeclaredField(name);
+                f.set(this, value);
+            } catch (Exception e) {
+                System.err.println("Field does not exist: " + name + "(" + e.getMessage() + ")");
+            }
+            if (state == FieldState.SAVED) {
+                state = FieldState.CHANGED;
+            }
+        }
+
+        @Override
+        public Object get(String field) {
+            String name = "field_".concat(field);
+            Object retval = null;
+            try {
+                Class c = Class.forName(this.getClass().getName());
+                Field f = c.getDeclaredField(name);
+                retval = (Object)f.get(this);
+            } catch (Exception e) {
+                 System.err.println("Field does not exist: " + name + " (" + e.getMessage() + ")");
+            }
+            return retval;
+        }
+
+        @Override
+        public String toString() {
+            return field_name;
         }
     }
 

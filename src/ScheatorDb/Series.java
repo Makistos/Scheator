@@ -1,6 +1,8 @@
 package ScheatorDb;
+
 import java.util.LinkedHashMap;
 import java.sql.*;
+import java.lang.reflect.Field;
 
 /** The database reflection of the Series database table.
  *
@@ -44,8 +46,11 @@ public class Series extends DbObject {
         }
         
         try {
+
             Statement st = db.con.createStatement();
-            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, null, idFields , ids, null));
+            String q = db.qe.getItems(TABLE_NAME, null, idFields , ids, null);
+            System.err.println("Query: " + q);
+            ResultSet rs = st.executeQuery(q);
             while (rs.next()) {
                 String id = rs.getString(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);
@@ -61,6 +66,11 @@ public class Series extends DbObject {
      * 
      */
     public class Data extends DbObject.Data {
+
+        /** Id in the database. */
+        Integer field_id;
+        /** Season "name", e.g. "2007-08". */
+        String field_name;
 
         /** Creates a new series entity without a database id.
          *
@@ -79,6 +89,40 @@ public class Series extends DbObject {
         Data(Integer id, String name) {
             this.field_id = id;
             this.field_name = name;
+        }
+
+        @Override
+        public void set(String field, Object value) {
+            String name = "field_".concat(field);
+            try {
+                Class c = Class.forName(this.getClass().getName());
+                Field f = c.getDeclaredField(name);
+                f.set(this, value);
+            } catch (Exception e) {
+                System.err.println("Field does not exist: " + name + "(" + e.getMessage() + ")");
+            }
+            if (state == FieldState.SAVED) {
+                state = FieldState.CHANGED;
+            }
+        }
+
+        @Override
+        public Object get(String field) {
+            String name = "field_".concat(field);
+            Object retval = null;
+            try {
+                Class c = Class.forName(this.getClass().getName());
+                Field f = c.getDeclaredField(name);
+                retval = (Object)f.get(this);
+            } catch (Exception e) {
+                 System.err.println("Field does not exist: " + name + " (" + e.getMessage() + ")");
+            }
+            return retval;
+        }
+
+        @Override
+        public String toString() {
+            return field_name;
         }
     }
 }

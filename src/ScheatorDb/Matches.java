@@ -1,6 +1,7 @@
 package ScheatorDb;
 import java.util.LinkedHashMap;
 import java.sql.*;
+import java.lang.reflect.Field;
 
 /** A class representing a match or a number of matches (=schedule).
  *
@@ -91,6 +92,10 @@ public class Matches extends DbObject {
      *
      */
     public class Data extends DbObject.Data {
+        /** Id in the database. */
+        Integer field_id;
+        /** Season "name", e.g. "2007-08". */
+        String field_name;
         /** Match number (order) in the schedule. */
         Integer field_matchNumber;
         /** Home team id (from the Team table). */
@@ -115,6 +120,34 @@ public class Matches extends DbObject {
             field_awayTeam = away;
         }
 
+        @Override
+        public void set(String field, Object value) {
+            String name = "field_".concat(field);
+            try {
+                Class c = Class.forName(this.getClass().getName());
+                Field f = c.getDeclaredField(name);
+                f.set(this, value);
+            } catch (Exception e) {
+                System.err.println("Field does not exist: " + name + "(" + e.getMessage() + ")");
+            }
+            if (state == FieldState.SAVED) {
+                state = FieldState.CHANGED;
+            }
+        }
+
+        @Override
+        public Object get(String field) {
+            String name = "field_".concat(field);
+            Object retval = null;
+            try {
+                Class c = Class.forName(this.getClass().getName());
+                Field f = c.getDeclaredField(name);
+                retval = (Object)f.get(this);
+            } catch (Exception e) {
+                 System.err.println("Field does not exist: " + name + " (" + e.getMessage() + ")");
+            }
+            return retval;
+        }
     }
 
 }

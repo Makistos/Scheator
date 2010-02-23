@@ -25,7 +25,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @return SQL query string.
      */
     @Override
-    public String getItems(String[] table, String[] fields, String[] idFields, 
+    public String getItems(String[] table, String[] fields, Object[] idFields,
             String[] ids, String[] orderBy) {
         StringBuilder sb = new StringBuilder();
 
@@ -66,7 +66,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @return SQL query.
      */
     @Override
-    public String addItem(String table, Object toAdd) {
+    public String addItem(String table, Object[] toAdd) {
         StringBuilder sb = new StringBuilder();
         StringBuilder sbFields = new StringBuilder();
         StringBuilder sbValues = new StringBuilder();
@@ -77,19 +77,19 @@ class SqlQueryEngine implements AbstractQueryEngine {
 
         sbFields.append("(");
         sbValues.append("(");
-        
-        for (Field f: toAdd.getClass().getDeclaredFields()) {
-            String fieldName = f.getName();
-            if (fieldName.startsWith("field_")) {
 
-                String type = f.getClass().getName();
-                String value = new String();
-                sbFields.append(fieldName);
-                sbValues.append(formatValue(f));
-                sbFields.append(",");
-                sbValues.append(",");
+        for (int i=0;i<toAdd.length;i++) {
+            for (Field f: toAdd[i].getClass().getDeclaredFields()) {
+                String fieldName = f.getName();
+                if (fieldName.startsWith("field_")) {
+                    sbFields.append(fieldName);
+                    sbValues.append(formatValue(f));
+                    sbFields.append(",");
+                    sbValues.append(",");
+                }
             }
         }
+
         // Remove extra commas and add missing closing parentheses
         sb.append(sbFields.toString().substring(0, sbFields.toString().length()-1));
         sb.append(")");
@@ -111,7 +111,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @return
      */
     @Override
-    public String updateItem(String entity, Object toUpdate, String[] idFields,
+    public String updateItem(String entity, Object[] toUpdate, Object[] idFields,
             String[] ids) {
         StringBuilder sb = new StringBuilder();
 
@@ -119,16 +119,15 @@ class SqlQueryEngine implements AbstractQueryEngine {
         sb.append(entity);
         sb.append("SET ");
 
-        for (Field f: toUpdate.getClass().getDeclaredFields()) {
-            String fieldName = f.getName();
-            if (fieldName.startsWith("field_")) {
-
-                String type = f.getClass().getName();
-                String value = new String();
-                sb.append(fieldName);
-                sb.append("=");
-                sb.append(formatValue(f));
-                sb.append(",");
+        for(int i=0;i<toUpdate.length;i++) {
+            for (Field f: toUpdate[i].getClass().getDeclaredFields()) {
+                String fieldName = f.getName();
+                if (fieldName.startsWith("field_")) {
+                    sb.append(fieldName);
+                    sb.append("=");
+                    sb.append(formatValue(f));
+                    sb.append(",");
+                }
             }
         }
 
@@ -167,20 +166,27 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @param ids Values of the query.
      * @return  WHERE part of an SQL query.
      */
-    private String createWhereClause(String[] idFields, String[] ids) {
-        StringBuilder sb = new StringBuilder();
+    private String createWhereClause(Object[] idFields, String[] ids) {
 
-        if (idFields != null && ids != null) {
-            sb.append(" WHERE ");
+        if (idFields != null) {
+            StringBuilder sb = new StringBuilder();
             for(int i=0;i<idFields.length;i++) {
-                sb.append(idFields[i] + " = ");
-                sb.append(ids[i]);
-                if (i < ids.length-1) {
-                    sb.append(" AND ");
+                for (Field f: idFields[i].getClass().getDeclaredFields()) {
+                    String fieldName = f.getName();
+                    if (fieldName.contains("field_")) {
+                        sb.append(fieldName);
+                        sb.append("=");
+                        sb.append(formatValue(f));
+                        if (i<idFields.length-1) {
+                            sb.append(" AND ");
+                        }
+                    }
                 }
             }
+            return sb.toString();
+        } else {
+            return " ";
         }
-        return sb.toString();
     }
 
     /** Creates the order by clause part of an sql query.

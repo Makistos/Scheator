@@ -20,7 +20,7 @@ interface AbstractQueryEngine {
      * implementation  whether this is mandatory or not.
      * @return Query to run.
      */
-    abstract String getItems(String[] table, String[] fields, String[] idFields, 
+    abstract String getItems(String[] table, String[] fields, Object[] idFields,
             String[] ids, String[] orderBy);
 
     /** Returns a query to add items to the database.
@@ -30,7 +30,7 @@ interface AbstractQueryEngine {
      * @param toAdd The item to add.
      * @return Query to run.
      */
-    abstract String addItem(String entity, Object toAdd);
+    abstract String addItem(String entity, Object[] toAdd);
 
     /** Returns a query to update values of an item in the database.
      * 
@@ -39,7 +39,7 @@ interface AbstractQueryEngine {
      * @param toUpdate Fields to update.
      * @return Query to run.
      */
-    abstract String updateItem(String entity, Object toUpdate, String[] idFields,
+    abstract String updateItem(String entity, Object[] toUpdate, Object[] idFields,
             String[] ids);
 
     /** Returns a query to delete one or more items from the database.

@@ -49,17 +49,7 @@ public abstract class DbObject<Object, T> {
      */
     abstract public class Data {
 
-        /** Id in the database. */
-        Integer field_id;
-        /** Season "name", e.g. "2007-08". */
-        String field_name;
-
         FieldState state = FieldState.SAVED;
-
-        @Override
-        public String toString() {
-            return field_name;
-        }
 
         /** Sets a field in the object to the given value.
          *
@@ -96,7 +86,7 @@ public abstract class DbObject<Object, T> {
             Object retval = null;
             try {
                 Class c = Class.forName(this.toString());
-                Field f = c.getField(name);
+                Field f = c.getDeclaredField(name);
                 retval = (Object)f.get(this);
             } catch (Exception e) {
                 System.err.println("Field does not exist: " + name + " (" + e.getMessage() + ")");
