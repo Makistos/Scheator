@@ -6,6 +6,7 @@
 package ScheatorDb;
 import java.util.LinkedHashMap;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,27 +14,32 @@ import java.sql.*;
  */
 public class Matches extends DbObject {
 
-    private static final String[] TABLES = {"Match", "Season", "Team home", "Team away"};
+    private static final String[] TABLES = {"`Match`", "`Season`", "`Team` AS home", "`Team` AS away"};
     private static final String[] FIELDS =
-    {"match.Id AS matchId",
-     "season.id AS seasonId",
-     "home.name as home_team",
-     "away.name as away_team",
+    {"Match.Id AS matchId",
+     "Season.id AS seasonId",
+     "home.name AS hometeam",
+     "away.name AS awayteam",
      "match_no"};
     private static final String[] ID_FIELDS =
-    { "seasonId",
+    { "Match.season",
+      "Season.id",
       "home.id",
       "away.id"
     };
 
     private static final String[] ORDER_BY = {"match_no"};
     
-    Matches() {
+    public Matches() {
+        // Create a list with an empty Data object. The table controller
+        // requires that there is at least one row in the table.
         list = new LinkedHashMap<Integer, Data>();
+        Data m = new Data();
+        list.put(0, m);
         db = new MySqlDb();
     }
 
-    Matches(int seasonId) {
+    public Matches(int seasonId) {
         list = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
         fetch(seasonId);
@@ -41,7 +47,7 @@ public class Matches extends DbObject {
 
     public void fetch(int seasonId) {
         list.clear();
-        String[] ids = {"seasonId", "match.hometeam", "match.awayteam"};
+        String[] ids = {"Season.id", Integer.toString(seasonId), "Match.hometeam", "Match.awayteam"};
         String query;
 
         try {
@@ -50,8 +56,8 @@ public class Matches extends DbObject {
             while (rs.next()) {
                 String matchId = rs.getString("matchId");
                 String sId = rs.getString("seasonId");
-                String home_team = rs.getString("home_team");
-                String away_team = rs.getString("away_team");
+                String home_team = rs.getString("hometeam");
+                String away_team = rs.getString("awayteam");
                 String match_no = rs.getString("match_no");
                 currentId = Integer.parseInt(sId);
                 Data team = new Data(Integer.parseInt(matchId.trim()),
@@ -62,7 +68,6 @@ public class Matches extends DbObject {
         } catch (Exception e) {
             System.err.println("Failed to read season data: " + e.toString());
         }
-
     }
 
     public class Data extends DbObject.Data {
@@ -70,6 +75,13 @@ public class Matches extends DbObject {
         public String field_homeTeam;
         public String field_awayTeam;
 
+        public Data() {
+            field_id = 0;
+            field_name = "";
+            field_matchNumber = 0;
+            field_homeTeam = "";
+            field_awayTeam = "";
+        }
         Data(int id, int match, String home, String away) {
             field_id = id;
             field_name = "";

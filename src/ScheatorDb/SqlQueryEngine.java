@@ -38,7 +38,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
             sb.append("SELECT * FROM ");
         } else {
             sb.append("SELECT ");
-            for(int i=0;i<fields.length-1;i++) {
+            for(int i=0;i<fields.length;i++) {
                  sb.append(fields[i]);
                  if (i < fields.length-1) {
                      sb.append(", ");
@@ -49,15 +49,17 @@ class SqlQueryEngine implements AbstractQueryEngine {
         for(int i=0;i<table.length;i++) {
             sb.append(table[i]);
             if (i<table.length-1) {
-                sb.append(",");
+                sb.append(", ");
+            } else {
+                sb.append(" ");
             }
         }
         sb.append(createWhereClause(idFields, ids));
 
-        if (orderBy != null) {
-            sb.append(" ORDER BY ");
-            sb.append(orderBy);
-        }
+        sb.append(" ");
+        
+        sb.append(createOrderByClause(orderBy));
+
         System.err.println("SqlQueryEngine.getItems() returns " + sb.toString());
         return sb.toString();
     }
@@ -156,6 +158,22 @@ class SqlQueryEngine implements AbstractQueryEngine {
                 }
             }
         }
+        return sb.toString();
+    }
+
+    private String createOrderByClause(String[] list) {
+        StringBuilder sb = new StringBuilder();
+        
+        if (list != null) {
+            sb.append("ORDER BY ");
+            for (int i =0;i<list.length;i++) {
+                sb.append(list[i]);
+                if (i < list.length-1) {
+                    sb.append(", ");
+                }
+            }
+        }
+        
         return sb.toString();
     }
 }

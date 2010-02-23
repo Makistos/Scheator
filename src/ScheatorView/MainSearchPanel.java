@@ -46,6 +46,7 @@ public class MainSearchPanel extends AbstractView {
 
         seriesModel = new SeriesComboBoxModel(controller);
         seriesList = new JComboBox(seriesModel);
+        seriesList.setPrototypeDisplayValue("XXXXXXXXXXXX");
         seriesList.setName("series");
         seriesList.setAction(actionMap.get("seriesList"));
         seriesList.setEditable(false);
@@ -53,12 +54,14 @@ public class MainSearchPanel extends AbstractView {
 
         seasonModel = new SeasonComboBoxModel(controller);
         seasonList = new JComboBox(seasonModel);
+        seasonList.setPrototypeDisplayValue("XXXXXXXXXXXX");
         seasonList.setName("season");
         seasonList.setAction(actionMap.get("seasonList"));
         seasonList.setEditable(false);
 //        seasonList.addItemListener(new ComboBoxListener());
         
         searchButton = new JButton();
+        //searchButton.setSize(10, 10);
         searchButton.setAction(actionMap.get("search"));
 
         seriesLabel.setText(resourceMap.getString("seriesLabel.text"));

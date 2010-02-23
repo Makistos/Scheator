@@ -8,8 +8,9 @@ package ScheatorModel;
 import javax.swing.table.*;
 import ScheatorController.*;
 import ScheatorDb.*;
-import org.jdesktop.application.Action;
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Iterator;
+import java.awt.ItemSelectable;
 
 /** The model for the schedule table on the main window.
  *
@@ -18,22 +19,15 @@ import java.util.ArrayList;
 public class MainTableModel extends AbstractTableModel {
 
     private AbstractController controller;
-    ArrayList<Schedule.Data> list;
     DbObject provider;
+    LinkedHashMap<Integer, Matches.Data> list;
     private String columns[] = {"", "", ""};
 
-    String rows[][] = {
-        {"1", "Arsenal", "Everton"},
-        {"1", "Chelsea", "ManU"},
-        {"1", "Fulham", "Blackburn"},
-        {"1", "Tottenham", "Bolton"}
-    };
-
     public MainTableModel(AbstractController controller) {
-        provider = new ScheatorDb.Schedule();
+        provider = new ScheatorDb.Matches();
         this.controller = controller;
         controller.addModel(this);
-
+        list = provider.getList();
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainTableModel.class);
         //javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTableModel.class, this);
 
@@ -43,7 +37,11 @@ public class MainTableModel extends AbstractTableModel {
 
     }
     public int getRowCount() {
-        return rows.length;
+        if (list != null && list.size() > 0)
+            return list.size();
+        else {
+            return 1;
+        }
     }
 
     public int getColumnCount() {
@@ -56,7 +54,24 @@ public class MainTableModel extends AbstractTableModel {
     }
     
     public Object getValueAt(int row, int column) {
-        return rows[row][column];
+        Matches.Data retval = null;
+        int i = 0;
+        for(Iterator it=list.values().iterator(); it.hasNext();) {
+            if (i == row) {
+                Matches.Data dbRow = (Matches.Data) it.next();
+                switch(column) {
+                    case 0:
+                        return dbRow.field_matchNumber;
+                    case 1:
+                        return dbRow.field_homeTeam;
+                    case 2:
+                        return dbRow.field_awayTeam;
+                }
+                break;
+            }
+            i++;
+        }
+        return retval;
     }
 
     /** Moves a match to a different position.
@@ -65,7 +80,7 @@ public class MainTableModel extends AbstractTableModel {
      * @param end Position to move the match to.
      */
     public void moveMatch(int start, int end) {
-        String tmp[];
+/*        String tmp[];
 
         tmp = rows[end];
 
@@ -96,6 +111,7 @@ public class MainTableModel extends AbstractTableModel {
         }
         System.err.println("Row moved");
         fireTableDataChanged();
+ */
     }
 
     /** Updates the table data from the database and notifies the listeners.

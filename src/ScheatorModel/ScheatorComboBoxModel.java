@@ -10,11 +10,9 @@ import ScheatorDb.*;
 import javax.swing.ComboBoxModel;
 import java.util.LinkedHashMap;
 import java.util.Iterator;
-import java.awt.*;
 import java.awt.ItemSelectable;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import javax.swing.event.EventListenerList;
 
 /** Provides base operability for combo boxes used in the app.
  *
