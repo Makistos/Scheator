@@ -1,6 +1,7 @@
 package ScheatorDb;
 
 import java.lang.reflect.Field;
+import java.util.*;
 
 /** A class for creating SQL queries.
  *
@@ -25,8 +26,9 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @return SQL query string.
      */
     @Override
-    public String getItems(String[] table, String[] fields, Object[] idFields,
-            String[] ids, String[] orderBy) {
+    public String getItems(String[] table, String[] fields,
+            HashMap<String, Object> idFields,
+            String[] orderBy) {
         StringBuilder sb = new StringBuilder();
 
         if (fields == null) {
@@ -49,7 +51,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
                 sb.append(" ");
             }
         }
-        sb.append(createWhereClause(idFields, ids));
+        sb.append(createWhereClause(idFields));
 
         sb.append(" ");
         
@@ -66,7 +68,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @return SQL query.
      */
     @Override
-    public String addItem(String table, Object[] toAdd) {
+    public String addItem(String table, HashMap<String, Object> toAdd) {
         StringBuilder sb = new StringBuilder();
         StringBuilder sbFields = new StringBuilder();
         StringBuilder sbValues = new StringBuilder();
@@ -77,17 +79,15 @@ class SqlQueryEngine implements AbstractQueryEngine {
 
         sbFields.append("(");
         sbValues.append("(");
+        Iterator itr = toAdd.entrySet().iterator();
+        while(itr.hasNext()) {
+            Map.Entry me = (Map.Entry) itr.next();
+            String fieldName = (String)me.getKey();
 
-        for (int i=0;i<toAdd.length;i++) {
-            for (Field f: toAdd[i].getClass().getDeclaredFields()) {
-                String fieldName = f.getName();
-                if (fieldName.startsWith("field_")) {
-                    sbFields.append(fieldName);
-                    sbValues.append(formatValue(f));
-                    sbFields.append(",");
-                    sbValues.append(",");
-                }
-            }
+            sbFields.append(fieldName);
+            sbValues.append(formatValue(me.getValue()));
+            sbFields.append(",");
+            sbValues.append(",");
         }
 
         // Remove extra commas and add missing closing parentheses
@@ -111,31 +111,29 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @return
      */
     @Override
-    public String updateItem(String entity, Object[] toUpdate, Object[] idFields,
-            String[] ids) {
+    public String updateItem(String entity, HashMap<String, Object> toUpdate,
+            HashMap<String, Object> idFields) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("UPDATE ");
         sb.append(entity);
         sb.append("SET ");
 
-        for(int i=0;i<toUpdate.length;i++) {
-            for (Field f: toUpdate[i].getClass().getDeclaredFields()) {
-                String fieldName = f.getName();
-                if (fieldName.startsWith("field_")) {
-                    sb.append(fieldName);
-                    sb.append("=");
-                    sb.append(formatValue(f));
-                    sb.append(",");
-                }
-            }
+        Iterator itr = idFields.entrySet().iterator();
+        while(itr.hasNext()) {
+            Map.Entry me = (Map.Entry) itr.next();
+            String  fieldName = (String)me.getKey();
+            sb.append(fieldName);
+            sb.append("=");
+            sb.append(formatValue(me.getValue()));
+            sb.append(",");
         }
 
         /* Remove last comma */
         sb.deleteCharAt(sb.toString().length()-1);
 
         /* Add where clause */
-        sb.append(createWhereClause(idFields, ids));
+        sb.append(createWhereClause(idFields));
         
         return sb.toString();
     }
@@ -150,12 +148,12 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @return SQL query string.
      */
     @Override
-    public String deleteItems(String table, String[] idFields, String[] ids) {
+    public String deleteItems(String table, HashMap<String, Object> idFields) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("DELETE FROM ");
         sb.append(table);
-        sb.append(createWhereClause(idFields, ids));
+        sb.append(createWhereClause(idFields));
 
         return sb.toString();
     }
@@ -166,22 +164,25 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @param ids Values of the query.
      * @return  WHERE part of an SQL query.
      */
-    private String createWhereClause(Object[] idFields, String[] ids) {
+    private String createWhereClause(HashMap<String, Object> idFields) {
 
         if (idFields != null) {
             StringBuilder sb = new StringBuilder();
-            for(int i=0;i<idFields.length;i++) {
-                for (Field f: idFields[i].getClass().getDeclaredFields()) {
-                    String fieldName = f.getName();
-                    if (fieldName.contains("field_")) {
-                        sb.append(fieldName);
-                        sb.append("=");
-                        sb.append(formatValue(f));
-                        if (i<idFields.length-1) {
-                            sb.append(" AND ");
-                        }
+            sb.append(" WHERE ");
+            Iterator itr = idFields.entrySet().iterator();
+            int i = 0;
+            while(itr.hasNext()) {
+                Map.Entry me = (Map.Entry) itr.next();
+                String  fieldName = (String)me.getKey();
+                //if (fieldName.contains("field_")) {
+                    sb.append(fieldName);
+                    sb.append(" = ");
+                    sb.append(formatValue(me.getValue()));
+                    if (i<idFields.size()-1) {
+                        sb.append(" AND ");
                     }
-                }
+                    i++;
+                //}
             }
             return sb.toString();
         } else {
@@ -224,12 +225,13 @@ class SqlQueryEngine implements AbstractQueryEngine {
      * @param f The field where the value is.
      * @return Formatted value.
      */
-    String formatValue(Field f) {
+    String formatValue(Object f) {
         String retval = null;
         String type = f.getClass().getName();
-        if (type.equals("String")) {
+        System.err.println("formatValue type: " + type);
+        if (type.contains("String")) {
             try {
-                String value = (String)f.get(f);
+                String value = (String)f.toString();
                 if (value != null) {
                     retval = "'" + value + "'";
                 } else {
@@ -238,9 +240,9 @@ class SqlQueryEngine implements AbstractQueryEngine {
             } catch (Exception e) {
                 System.err.println("No such field: " + e.getMessage());
             }
-        } else if (type.equals("Integer")) {
+        } else if (type.contains("Integer")) {
             try {
-                Integer value = (Integer)f.get(f);
+                Integer value = Integer.parseInt(f.toString());
                 if (value != null) {
                     retval = String.valueOf(value);
                 } else {
@@ -251,7 +253,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
             }
         } else {
             try {
-                String value = (String) f.get(f);
+                String value = (String) f.toString();
                 if (value != null) {
                     retval = value;
                 } else {

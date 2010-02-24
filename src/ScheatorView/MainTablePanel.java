@@ -42,7 +42,7 @@ public class MainTablePanel extends AbstractView {
     }
 
     public void setTableEdited(Boolean tableEdited) {
-        Boolean oldValue = tableEdited;
+        Boolean oldValue = this.tableEdited;
         this.tableEdited = tableEdited;
         firePropertyChange("tableEdited", oldValue, this.tableEdited);
     }

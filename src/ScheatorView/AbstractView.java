@@ -7,8 +7,6 @@ package ScheatorView;
 
 import javax.swing.JPanel;
 import javax.swing.event.*;
-import javax.swing.table.TableModel;
-import java.awt.event.ActionEvent;
 import java.awt.event.*;
 
 /**

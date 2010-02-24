@@ -34,13 +34,9 @@ public class MainSearchPanel extends AbstractView {
         this.controller = controller;
         controller.addView(this);
         
-        String[] seriesNames = {"SM-liiga", "Veikkausliiga", "Valioliiga"};
-        String[] seasonNames = {"2008-09", "2009-10"};
-
         this.resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainSearchPanel.class);
         this.actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainSearchPanel.class, this);
 
-        javax.swing.JPanel panel = new javax.swing.JPanel();
         JLabel seriesLabel = new JLabel();
         JLabel seasonLabel = new JLabel();
 

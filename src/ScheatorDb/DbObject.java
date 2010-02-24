@@ -13,7 +13,7 @@ import java.lang.reflect.Field;
 public abstract class DbObject<Object, T> {
     LinkedHashMap<Object, T> list;
     AbstractDb db;
-    int currentId;
+    Integer currentId;
 
     enum FieldState {SAVED, NEW, CHANGED}
 
@@ -22,7 +22,17 @@ public abstract class DbObject<Object, T> {
      *
      * @param key Id for item(s) to fetch.
      */
-    public abstract void fetch(int key);
+    public abstract void fetch(Integer key);
+
+    /** Saves the contents to the database.
+     *
+     * Empty by default - we can quite possibly have objects that we do
+     * not need to save.
+     * 
+     */
+    public void save() {
+
+    }
 
     /** Returns the LinkedHashMap containing the data.
      *
@@ -94,5 +104,21 @@ public abstract class DbObject<Object, T> {
             return retval;
         }
 
+    }
+
+    /** Dummy class needed to separate string fields from reference strings
+     * which should not be escaped.
+     */
+    public class FieldReference {
+        String value;
+
+        FieldReference(String val) {
+            this.value = val;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
     }
 }

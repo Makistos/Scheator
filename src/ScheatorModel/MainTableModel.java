@@ -68,11 +68,12 @@ public class MainTableModel extends AbstractTableModel {
     }
     
     public Object getValueAt(int row, int column) {
-        Matches.Data retval = null;
+        Object retval = null;
         int i = 0;
         for(Iterator it=list.values().iterator(); it.hasNext();) {
+            Matches.Data dbRow = (Matches.Data) it.next();
+            System.err.println("Match: " + dbRow.get("matchNumber"));
             if (i == row) {
-                Matches.Data dbRow = (Matches.Data) it.next();
                 switch(column) {
                     case 0:
                         return dbRow.get("matchNumber");

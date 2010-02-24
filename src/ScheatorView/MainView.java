@@ -27,6 +27,7 @@ import java.awt.event.*;
 public class MainView extends FrameView {
 
     private JDialog aboutBox;
+    private JDialog editTeams;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
@@ -34,12 +35,13 @@ public class MainView extends FrameView {
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private MainController controller;
+    private boolean saveEnabled;
 
     public MainView(SingleFrameApplication app, MainController controller) {
 
         super(app);
         this.controller = controller;
-        controller.addMainFrame(this);
+        controller.addFrame(this);
         
         initComponents();
     }
@@ -71,7 +73,12 @@ public class MainView extends FrameView {
 
     @Action
     public void editTeams() {
-
+        if (editTeams == null) {
+            JFrame mainFrame = ScheatorApp.getApplication().getMainFrame();
+            editTeams = new TeamView(mainFrame, controller);
+            editTeams.setLocationRelativeTo(mainFrame);
+        }
+        ScheatorApp.getApplication().show(editTeams);
     }
 
     @Action
@@ -86,6 +93,7 @@ public class MainView extends FrameView {
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem createScheduleMenuItem = new javax.swing.JMenuItem();
+        javax.swing.JMenuItem saveMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenuItem printMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu editMenu = new javax.swing.JMenu();
@@ -158,6 +166,10 @@ public class MainView extends FrameView {
         createScheduleMenuItem.setName("createSchedule");
         fileMenu.add(createScheduleMenuItem);
 
+        saveMenuItem.setAction(actionMap.get("save"));
+        saveMenuItem.setName("save");
+        fileMenu.add(saveMenuItem);
+
         fileMenu.addSeparator();
         
         printMenuItem.setAction(actionMap.get("print"));
@@ -167,7 +179,7 @@ public class MainView extends FrameView {
         fileMenu.addSeparator();
 
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
-        exitMenuItem.setName("exitMenuItem"); // NOI18N
+        exitMenuItem.setName("quit"); // NOI18N
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
@@ -210,9 +222,27 @@ public class MainView extends FrameView {
 
     }
 
-    public void mainTableChanged(TableModelEvent e) {
-        
+    public void setSaveEnabled(Boolean saveEnabled) {
+        Boolean oldValue = this.saveEnabled;
+        this.saveEnabled = saveEnabled;
+        firePropertyChange("saveEnabled", oldValue, this.saveEnabled);
     }
+
+    public Boolean isSaveEnabled() {
+        return saveEnabled;
+    }
+
+    @Action (enabledProperty = "saveEnabled")
+    public void save() {
+        System.err.println("Saving...");
+        controller.saveSchedule();
+        setSaveEnabled(false);
+    }
+
+    public void mainTableChanged(TableModelEvent e) {
+        setSaveEnabled(true);
+    }
+
     public void comboBoxEvent(ListDataEvent e) {
 
     }

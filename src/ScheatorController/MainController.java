@@ -16,6 +16,8 @@ public class MainController extends AbstractController {
     private static final String MAINTABLE_MODEL_NAME = "ScheatorModel.MainTableModel";
     /** Method name for updating main table contents. */
     private static final String MAINTABLE_UPDATE = "update";
+    /** Method name for saving main table contents. */
+    private static final String MAINTABLE_SAVE = "save";
     
     /** Event happened that require filling the in the main table.
      *
@@ -42,7 +44,24 @@ public class MainController extends AbstractController {
             }
         }
     }
-    
+
+
+    public void saveSchedule() {
+        for (Object model: registeredModels) {
+            Class c = model.getClass();
+            if (c.getName().equals(MAINTABLE_MODEL_NAME)) {
+                Class parTypes[] = null;
+                try {
+                    Method m = c.getMethod(MAINTABLE_SAVE, parTypes);
+                    Object argList[] = null;
+                    m.invoke(model, argList);
+                } catch (Throwable e) {
+
+                }
+            }
+        }
+    }
+
     public void scheduleEdited() {
 
     }

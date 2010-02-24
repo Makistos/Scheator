@@ -31,7 +31,7 @@ public class Schedule extends DbObject {
         fetch(key);
     }
 
-    public void fetch(int key) {
+    public void fetch(Integer key) {
         this.currentId = key;
         list.clear();
         String[] idFields = null;
@@ -44,6 +44,7 @@ public class Schedule extends DbObject {
         }
 
         try {
+/*
             Statement st = db.con.createStatement();
             String q = db.qe.getItems(TABLES, null, idFields , ids, null);
             System.err.println("Query = " + q);
@@ -54,6 +55,7 @@ public class Schedule extends DbObject {
                 //Data schedule = new Data(Integer.parseInt(id.trim()), name);
                 //list.put(id, schedule);
             }
+ */
         } catch (Exception e) {
             System.err.println("Failed to read series data: " + e.toString());
         }

@@ -3,6 +3,7 @@ package ScheatorDb;
 import java.util.LinkedHashMap;
 import java.sql.*;
 import java.lang.reflect.Field;
+import java.util.*;
 
 /** The database reflection of the Series database table.
  *
@@ -12,8 +13,6 @@ public class Series extends DbObject {
 
     /** Table name in the database */
     private static final String[] TABLE_NAME = {"Series"};
-    /** Id field name for this table in the database */
-    private static final String ID_FIELD = "ID";
     /** Field names for this table in the database */
     private static final String[] FIELDS = {"ID", "Name"};
 
@@ -35,20 +34,19 @@ public class Series extends DbObject {
      *
      * @param key Series database id.
      */
-    public final void fetch(int key) {
+    public final void fetch(Integer key) {
         this.currentId = key;
         list.clear();
-        String[] idFields = null;
-        String[] ids = null;
+        HashMap<String, Object> idFields = null;
         if (key != 0) {
-            idFields[0] = "season";
-            ids[0] = String.valueOf(currentId);
+            idFields = new HashMap<String, Object>();
+            idFields.put("season", key);
         }
         
         try {
 
             Statement st = db.con.createStatement();
-            String q = db.qe.getItems(TABLE_NAME, null, idFields , ids, null);
+            String q = db.qe.getItems(TABLE_NAME, null, idFields, null);
             System.err.println("Query: " + q);
             ResultSet rs = st.executeQuery(q);
             while (rs.next()) {

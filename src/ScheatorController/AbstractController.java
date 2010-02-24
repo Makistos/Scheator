@@ -23,12 +23,13 @@ public abstract class AbstractController implements EventListener {
     ArrayList<AbstractView> registeredViews;
     MainView mainFrame;
     ArrayList<Object> registeredModels;
-
+    ArrayList<Object> registeredFrames;
 
     /** Creates a new instance of Controller */
     public AbstractController() {
         registeredViews = new ArrayList<AbstractView>();
         registeredModels = new ArrayList<Object>();
+        registeredFrames = new ArrayList<Object>();
     }
 
     /**
@@ -93,16 +94,22 @@ public abstract class AbstractController implements EventListener {
         registeredViews.remove(view);
     }
 
-    public void addMainFrame(MainView frame) {
-        this.mainFrame = frame;
+    public void addFrame(Object frame) {
+        registeredFrames.add(frame);
     }
 
+    public void removeFrame(Object frame) {
+        registeredFrames.remove(frame);
+    }
+    
     class TableModelListenerImpl implements TableModelListener {
         public void tableChanged(TableModelEvent e) {
             for (AbstractView view: registeredViews) {
                 view.mainTableChanged(e);
             }
-            mainFrame.mainTableChanged(e);
+            for (Object frame: registeredFrames) {
+                //frame.mainTableChanged(e);
+            }
         }
     }
 
@@ -112,26 +119,29 @@ public abstract class AbstractController implements EventListener {
                 view.comboBoxEvent(e);
             }
             System.err.println("contentsChanged()");
-            mainFrame.comboBoxEvent(e);
+            for (Object frame: registeredFrames) {
+                //frame.comboBoxEvent(e);
+            }
         }
 
         public void intervalRemoved(ListDataEvent e) {
             for (AbstractView view: registeredViews) {
                 view.comboBoxEvent(e);
             }
-            mainFrame.comboBoxEvent(e);
+            for (Object frame: registeredFrames) {
+                //frame.comboBoxEvent(e);
+            }
         }
 
         public void intervalAdded(ListDataEvent e) {
             for (AbstractView view: registeredViews) {
                 view.comboBoxEvent(e);
             }
-            mainFrame.comboBoxEvent(e);
+            for (Object frame: registeredFrames) {
+                //frame.comboBoxEvent(e);
+            }
         }
-
     }
-
-
 
     class ItemListenerImpl implements ItemListener {
         public void itemStateChanged(ItemEvent e) {
@@ -139,7 +149,9 @@ public abstract class AbstractController implements EventListener {
                 view.itemStateChanged(e);
             }
             System.err.println("itemStateChanged");
-            mainFrame.itemStateChanged(e);
+            for (Object frame: registeredFrames) {
+                //frame.comboBoxEvent(e);
+            }
         }
     }
 }

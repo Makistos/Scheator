@@ -2,6 +2,7 @@ package ScheatorDb;
 import java.util.LinkedHashMap;
 import java.sql.*;
 import java.lang.reflect.Field;
+import java.util.*;
 
 /**
  *
@@ -10,15 +11,14 @@ import java.lang.reflect.Field;
 public class Teams extends DbObject {
 
     private static final String[] TABLE_NAME = {"Team"};
-    private static final String[] ID_FIELDS = {"ID"};
     private static final String[] FIELDS = {"ID", "Name"};
     
-    Teams() {
+    public Teams() {
         list = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
     }
 
-    Teams(int seasonId) {
+    public Teams(int seasonId) {
         list = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
         fetch(seasonId);
@@ -33,19 +33,20 @@ public class Teams extends DbObject {
      *
      * @param seasonId
      */
-    public void fetch(int seasonId) {
-        String[] ids = null;
+    public void fetch(Integer seasonId) {
+        this.currentId = seasonId;
+        HashMap<String, Object> idFields = null;
 
-        if (seasonId != 0) {
-            ids = new String[1];
-            ids[0] = String.valueOf(seasonId);
+        if (seasonId != null) {
+            idFields = new HashMap<String, Object>();
+            idFields.put("id", seasonId);
         }
         
         list.clear();
 
         try {
             Statement st = db.con.createStatement();
-            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, FIELDS, ID_FIELDS , ids, null));
+            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, FIELDS, idFields, null));
             while (rs.next()) {
                 String id = rs.getString(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);

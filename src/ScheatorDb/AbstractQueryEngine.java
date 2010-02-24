@@ -1,5 +1,7 @@
 package ScheatorDb;
 
+import java.util.*;
+
 /** An interface of a query engine.
  *
  * @brief This is an abstraction of a query engine. A query engine can create
@@ -20,8 +22,9 @@ interface AbstractQueryEngine {
      * implementation  whether this is mandatory or not.
      * @return Query to run.
      */
-    abstract String getItems(String[] table, String[] fields, Object[] idFields,
-            String[] ids, String[] orderBy);
+    abstract String getItems(String[] table, String[] fields,
+            HashMap<String, Object> idFields,
+            String[] orderBy);
 
     /** Returns a query to add items to the database.
      *
@@ -30,7 +33,7 @@ interface AbstractQueryEngine {
      * @param toAdd The item to add.
      * @return Query to run.
      */
-    abstract String addItem(String entity, Object[] toAdd);
+    abstract String addItem(String entity, HashMap<String, Object> toAdd);
 
     /** Returns a query to update values of an item in the database.
      * 
@@ -39,8 +42,8 @@ interface AbstractQueryEngine {
      * @param toUpdate Fields to update.
      * @return Query to run.
      */
-    abstract String updateItem(String entity, Object[] toUpdate, Object[] idFields,
-            String[] ids);
+    abstract String updateItem(String entity, HashMap<String, Object> toUpdate,
+            HashMap<String, Object> idFields);
 
     /** Returns a query to delete one or more items from the database.
      *
@@ -50,5 +53,5 @@ interface AbstractQueryEngine {
      * @param id The values of the id fields.
      * @return Query to run.
      */
-    abstract String deleteItems(String entity, String[] idField, String[] id);
+    abstract String deleteItems(String entity, HashMap<String, Object> idField);
 }
