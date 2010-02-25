@@ -64,7 +64,7 @@ public class MainTablePanel extends AbstractView {
         mainTable = new JTable(mainTableModel);
 
         initTable(mainTable);
-        mainTable.setFillsViewportHeight(true);
+        //mainTable.setFillsViewportHeight(true);
         JScrollPane scrollPanel = new JScrollPane(mainTable);
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));

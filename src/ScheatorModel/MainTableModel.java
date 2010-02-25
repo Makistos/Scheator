@@ -26,7 +26,7 @@ public class MainTableModel extends AbstractTableModel {
     public MainTableModel(AbstractController controller) {
         provider = new ScheatorDb.Matches();
         this.controller = controller;
-        controller.addModel(this);
+        this.controller.addModel(this);
         list = provider.getList();
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainTableModel.class);
         //javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTableModel.class, this);

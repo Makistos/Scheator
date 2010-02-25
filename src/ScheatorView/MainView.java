@@ -27,7 +27,7 @@ import java.awt.event.*;
 public class MainView extends FrameView {
 
     private JDialog aboutBox;
-    private JDialog editTeams;
+    private JFrame editTeams;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
@@ -76,7 +76,7 @@ public class MainView extends FrameView {
         if (editTeams == null) {
             JFrame mainFrame = ScheatorApp.getApplication().getMainFrame();
             editTeams = new TeamView(mainFrame, controller);
-            editTeams.setLocationRelativeTo(mainFrame);
+            editTeams.setLocationRelativeTo(null);
         }
         ScheatorApp.getApplication().show(editTeams);
     }

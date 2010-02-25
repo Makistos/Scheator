@@ -41,12 +41,14 @@ public class Teams extends DbObject {
             idFields = new HashMap<String, Object>();
             idFields.put("id", seasonId);
         }
-        
+
+        String[] orderBy = {"name"};
+
         list.clear();
 
         try {
             Statement st = db.con.createStatement();
-            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, FIELDS, idFields, null));
+            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, FIELDS, idFields, orderBy));
             while (rs.next()) {
                 String id = rs.getString(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);

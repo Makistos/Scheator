@@ -16,7 +16,7 @@ import java.util.Iterator;
 public class TeamsModel extends AbstractTableModel {
 
     private AbstractController controller;
-    DbObject provider;
+    Teams provider;
     LinkedHashMap<Integer, Matches.Data> list;
     private String columns[] = {""};
 
@@ -63,13 +63,13 @@ public class TeamsModel extends AbstractTableModel {
         return columns[columnIndex];
     }
 
-    public Object getValueAt(int row, int column) {
+    public Object getValueAt(int row, int col) {
         Object retval = null;
         int i = 0;
         for(Iterator it=list.values().iterator(); it.hasNext();) {
             Teams.Data dbRow = (Teams.Data) it.next();
             if (i == row) {
-                switch(column) {
+                switch(col) {
                     case 0:
                         return dbRow.get("name");
                 }
@@ -78,6 +78,34 @@ public class TeamsModel extends AbstractTableModel {
             i++;
         }
         return retval;
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int col) {
+        // The entire table is editable
+        return true;
+    }
+
+    @Override
+    public Class getColumnClass(int col) {
+        return String.class;
+    }
+    
+    @Override
+    public void setValueAt(Object value, int row, int col) {
+        int i = 0;
+        for(Iterator it=list.values().iterator(); it.hasNext();) {
+            Teams.Data dbRow = (Teams.Data) it.next();
+            if (i == row) {
+                switch(col) {
+                    case 0:
+                        dbRow.set("name", value);
+                }
+                break;
+            }
+            i++;
+        }
+        fireTableCellUpdated(row, col);
     }
 
 }
