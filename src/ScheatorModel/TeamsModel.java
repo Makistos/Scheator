@@ -124,12 +124,12 @@ public class TeamsModel extends AbstractTableModel {
 
     public void removeTeam(int row) {
         int i = 0;
-        Object key = null;
+        Integer key = null;
 
         for(Iterator it=list.values().iterator(); it.hasNext();) {
             Teams.Data dbRow = (Teams.Data) it.next();
             if (i == row) {
-                key =  dbRow.get("id");
+                key =  (Integer) dbRow.get("id");
                 break;
             }
             i++;
@@ -145,7 +145,7 @@ public class TeamsModel extends AbstractTableModel {
         }
     }
 
-    public void save() {
+    public void saveTeams() {
         provider.save();
     }
 

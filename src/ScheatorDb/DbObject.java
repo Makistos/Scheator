@@ -35,13 +35,6 @@ public abstract class DbObject<Object, Data> {
 
     }
 
-    public void delete(Object key) {
-        Data obj = list.get(key);
-        deletedList.put(key, obj);
-        list.remove(key);
-        System.err.println("delete() count: " + list.size());
-    }
-    
     /** Returns the LinkedHashMap containing the data.
      *
      * @return Data items.

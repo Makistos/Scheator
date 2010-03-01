@@ -18,6 +18,8 @@ public class MainController extends AbstractController {
     private static final String MAINTABLE_UPDATE = "update";
     /** Method name for saving main table contents. */
     private static final String MAINTABLE_SAVE = "save";
+
+    private static final String SAVE_TEAMS = "saveTeams";
     
     /** Event happened that require filling the in the main table.
      *
@@ -58,6 +60,20 @@ public class MainController extends AbstractController {
                 } catch (Throwable e) {
 
                 }
+            }
+        }
+    }
+
+    public void saveTeams() {
+        for (Object model: registeredModels) {
+            Class c = model.getClass();
+            Class parTypes[] = null;
+            try {
+                Method m = c.getMethod(SAVE_TEAMS, parTypes);
+                Object argList[] = null;
+                m.invoke(model, argList);
+            } catch (Throwable e) {
+                // Do nothing
             }
         }
     }

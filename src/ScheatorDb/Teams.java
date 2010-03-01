@@ -32,6 +32,7 @@ public class Teams extends DbObject {
 
     @Override
     public void save() {
+        System.err.println("Saving teams");
         try {
             Statement st = db.con.createStatement();
 
@@ -105,9 +106,9 @@ public class Teams extends DbObject {
             Statement st = db.con.createStatement();
             ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, FIELDS, idFields, orderBy));
             while (rs.next()) {
-                String id = rs.getString(FIELDS[0]);
+                Integer id = rs.getInt(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);
-                Data team = new Data(Integer.parseInt(id.trim()), name);
+                Data team = new Data(id, name);
                 list.put(id, team);
             }
         } catch (Exception e) {
@@ -116,6 +117,11 @@ public class Teams extends DbObject {
 
     }
 
+    public void delete(Integer key) {
+        Data obj = (Data)list.remove(key);
+        deletedList.put(key, obj);
+    }
+    
     /** Object representation of a team.
      * 
      */

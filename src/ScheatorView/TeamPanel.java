@@ -60,7 +60,7 @@ public class TeamPanel extends AbstractView {
     }
 
     public void saveTeams() {
-        tableModel.save();
+        tableModel.saveTeams();
     }
 
     public void undoTeamChanges() {
