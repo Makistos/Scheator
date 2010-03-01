@@ -1,10 +1,9 @@
 package ScheatorDb;
-import java.util.LinkedHashMap;
 import java.sql.*;
 import java.lang.reflect.Field;
 import java.util.*;
 
-/**
+/** Represents the Teams table data from the database.
  *
  * @author mep
  */
@@ -15,11 +14,13 @@ public class Teams extends DbObject {
     
     public Teams() {
         list = new LinkedHashMap<Integer, Data>();
+        deletedList = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
     }
 
     public Teams(int seasonId) {
         list = new LinkedHashMap<Integer, Data>();
+        deletedList = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
         fetch(seasonId);
     }
@@ -27,6 +28,60 @@ public class Teams extends DbObject {
     public void addNew(String name) {
         Data team = new Data(name);
         list.put(null, team);
+    }
+
+    @Override
+    public void save() {
+        try {
+            Statement st = db.con.createStatement();
+
+            /* Update and insert rows */
+            System.err.println("No of items: " + list.size());
+            for(Iterator itr = list.values().iterator(); itr.hasNext();) {
+                Data row = (Data) itr.next();
+                String q;
+                HashMap<String, Object> fields = new HashMap<String, Object>();
+
+                fields.put("name", row.field_name);
+
+                switch (row.state) {
+                    case SAVED:
+                        /* Nothing to do */
+                        break;
+                    case CHANGED:
+                        /* Existing row changed */
+                        HashMap<String, Object> idFields = new HashMap<String, Object>();
+                        idFields.put("id", row.field_id);
+                        q = db.qe.updateItem("Team", fields, idFields);
+                        st.executeUpdate(q);
+                        break;
+                    case NEW:
+                        /* New team */
+                        q = db.qe.addItem("Team", fields);
+                        st.executeUpdate(q);
+                        break;
+                }
+            }
+
+            System.err.println("No of deleted items: " + deletedList.size());
+            /* Delete rows */
+            for(Iterator itr = deletedList.values().iterator(); itr.hasNext();) {
+                Data row = (Data) itr.next();
+                String q;
+                HashMap<String, Object> idFields = new HashMap<String, Object>();
+                
+                System.err.println("save() id: " + row.field_id);
+                idFields.put("id", row.field_id);
+                q = db.qe.deleteItems("Team", idFields);
+                st.executeUpdate(q);
+            }
+        } catch (Exception e) {
+
+        }
+
+        // Reload information */
+        fetch(currentId);
+        
     }
 
     /** Gets teams connected to given season (identified by seasonId).

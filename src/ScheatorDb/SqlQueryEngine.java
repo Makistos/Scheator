@@ -134,7 +134,8 @@ class SqlQueryEngine implements AbstractQueryEngine {
 
         /* Add where clause */
         sb.append(createWhereClause(idFields));
-        
+
+        System.err.println("SqlQueryEngine.updateItem() returns " + sb.toString());
         return sb.toString();
     }
 
@@ -155,6 +156,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
         sb.append(table);
         sb.append(createWhereClause(idFields));
 
+        System.err.println("SqlQueryEngine.deleteItems() returns " + sb.toString());
         return sb.toString();
     }
 

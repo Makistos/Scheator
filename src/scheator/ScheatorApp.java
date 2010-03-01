@@ -31,7 +31,12 @@ public class ScheatorApp extends SingleFrameApplication {
 
     @Override
     protected void configureWindow(java.awt.Window root) {
-        root.setMinimumSize(new Dimension(640,480));
+        System.err.println("Window: " + root.getName());
+        if (root.getName().equals("mainFrame")) {
+            // hack hack, this seems to be the only way to control
+            // window sizes in SAF.
+            root.setMinimumSize(new Dimension(680,560));
+        }
     }
 
     @Override

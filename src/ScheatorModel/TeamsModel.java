@@ -1,24 +1,26 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ScheatorModel;
 import javax.swing.table.*;
 import java.util.LinkedHashMap;
 import ScheatorDb.*;
 import ScheatorController.*;
 import java.util.Iterator;
-/**
+
+/** Implements the team data model.
  *
+ * Data is retrieved through the provider (at this point a MySql connector).
+ * 
  * @author mep
  */
 public class TeamsModel extends AbstractTableModel {
 
+    /** Controller */
     private AbstractController controller;
+    /** Data provider. */
     Teams provider;
+    /** List containing the teams. */
     LinkedHashMap<Integer, Matches.Data> list;
-    private String columns[] = {""};
+    /**  Fake variable to get the column count. */
+    private String columns[] = {""}; 
 
     public TeamsModel(AbstractController controller, Integer seasonId) {
         this.controller = controller;
@@ -41,7 +43,7 @@ public class TeamsModel extends AbstractTableModel {
         if (list != null && list.size() > 0)
             return list.size();
         else {
-            return 1;
+            return 0;
         }
     }
 
@@ -63,23 +65,30 @@ public class TeamsModel extends AbstractTableModel {
         return columns[columnIndex];
     }
 
+    @Override
     public Object getValueAt(int row, int col) {
         Object retval = null;
         int i = 0;
         for(Iterator it=list.values().iterator(); it.hasNext();) {
             Teams.Data dbRow = (Teams.Data) it.next();
             if (i == row) {
-                switch(col) {
-                    case 0:
-                        return dbRow.get("name");
-                }
-                break;
+                return dbRow.get("name");
             }
             i++;
         }
         return retval;
     }
 
+    /** Tells if a certain cell is editable.
+     *
+     * This method tells the delegate whether a given cell is editable.
+     * Since this table only has one column and it is editable, this method
+     * always returns true.
+     *
+     * @param row Item's row.
+     * @param col Item's column.
+     * @return Always true.
+     */
     @Override
     public boolean isCellEditable(int row, int col) {
         // The entire table is editable
@@ -106,6 +115,38 @@ public class TeamsModel extends AbstractTableModel {
             i++;
         }
         fireTableCellUpdated(row, col);
+    }
+
+    public void addTeam(String name) {
+        provider.addNew(name);
+        fireTableDataChanged();
+    }
+
+    public void removeTeam(int row) {
+        int i = 0;
+        Object key = null;
+
+        for(Iterator it=list.values().iterator(); it.hasNext();) {
+            Teams.Data dbRow = (Teams.Data) it.next();
+            if (i == row) {
+                key =  dbRow.get("id");
+                break;
+            }
+            i++;
+        }
+
+        System.err.println("removeTeam() key:" + key);
+        if (key != null) {
+            provider.delete(key);
+            //list.clear();
+            list = provider.getList();
+            System.err.println("removeTeam() count:" + list.size());
+            fireTableDataChanged();
+        }
+    }
+
+    public void save() {
+        provider.save();
     }
 
 }

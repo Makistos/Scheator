@@ -10,12 +10,13 @@ import java.lang.reflect.Field;
  *
  * @author mep
  */
-public abstract class DbObject<Object, T> {
-    LinkedHashMap<Object, T> list;
+public abstract class DbObject<Object, Data> {
+    LinkedHashMap<Object, Data> list;
+    LinkedHashMap<Object, Data> deletedList;
     AbstractDb db;
     Integer currentId;
 
-    enum FieldState {SAVED, NEW, CHANGED}
+    enum FieldState {SAVED, NEW, CHANGED, DELETED}
 
     /** Fetches one or more items from the database to fill the data fields
      * in this object.
@@ -34,11 +35,18 @@ public abstract class DbObject<Object, T> {
 
     }
 
+    public void delete(Object key) {
+        Data obj = list.get(key);
+        deletedList.put(key, obj);
+        list.remove(key);
+        System.err.println("delete() count: " + list.size());
+    }
+    
     /** Returns the LinkedHashMap containing the data.
      *
      * @return Data items.
      */
-    public LinkedHashMap<Object, T> getList() {
+    public LinkedHashMap<Object, Data> getList() {
         return list;
     }
 
@@ -47,7 +55,7 @@ public abstract class DbObject<Object, T> {
      * @param index Item index.
      * @return Item having the selected index.
      */
-    public T getItemByIndex(Object index) {
+    public Data getItemByIndex(Object index) {
         return list.get(index);
     }
 
@@ -103,7 +111,6 @@ public abstract class DbObject<Object, T> {
             }
             return retval;
         }
-
     }
 
     /** Dummy class needed to separate string fields from reference strings

@@ -5,19 +5,17 @@
 
 package ScheatorView;
 
-import scheator.*;
 import ScheatorModel.*;
-import java.beans.PropertyChangeEvent;
 import org.jdesktop.application.Action;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.*;
-import java.util.EventObject;
 
 import ScheatorController.MainController;
-/**
+
+/** Implements the table panel in the main window.
  *
  * @author mep
  */
@@ -27,6 +25,7 @@ public class MainTablePanel extends AbstractView {
     javax.swing.JButton upButton = new javax.swing.JButton();
     javax.swing.JButton downButton = new javax.swing.JButton();
     javax.swing.JButton saveButton = new javax.swing.JButton();
+    javax.swing.JButton deleteButton = new javax.swing.JButton();
     private org.jdesktop.application.ResourceMap resourceMap;
     private javax.swing.ActionMap actionMap;
     private MainController controller;
@@ -84,10 +83,15 @@ public class MainTablePanel extends AbstractView {
         saveButton.setName("save");
         saveButton.setAction(actionMap.get("save")); // NOI18N
 
+        deleteButton.setText(resourceMap.getString("delete.text"));
+        deleteButton.setName("delete");
+        deleteButton.setAction(actionMap.get("delete"));
+
         buttonPanel.add(upButton);
         buttonPanel.add(downButton);
         buttonPanel.add(saveButton);
-
+        buttonPanel.add(deleteButton);
+        
         add(scrollPanel);
         add(buttonPanel, BorderLayout.NORTH);
 
@@ -147,7 +151,12 @@ public class MainTablePanel extends AbstractView {
             controller.moveMatch(row, row + 1);
             setTableEdited(true);
         }
-}
+    }
+
+    @Action
+    public void delete() {
+        
+    }
 
     class ButtonListener implements ActionListener {
         ButtonListener() {

@@ -30,6 +30,7 @@ public class Series extends DbObject {
         fetch(0);
     }
 
+    
     /** Gets all the series or one specific series from the database.
      *
      * @param key Series database id.

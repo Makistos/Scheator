@@ -45,13 +45,16 @@ public class TeamView extends javax.swing.JFrame {
 
     public void initComponents() {
         Integer id = null;
-        teamPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        teamPanel = new TeamPanel(controller);
         tableModel = new TeamsModel(controller, id);
         tableModel.addTableModelListener(new TableListener());
         JTable teamTable = new JTable(tableModel);
-        JLabel info = new JLabel("Edit teams");
+//        JLabel info = new JLabel("Edit teams");
+        javax.swing.BoxLayout layout = new javax.swing.BoxLayout(getContentPane(), BoxLayout.Y_AXIS);
+
+
         JPanel bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+
         okButton = new JButton();
         cancelButton = new JButton();
 
@@ -61,13 +64,28 @@ public class TeamView extends javax.swing.JFrame {
         cancelButton.setAction(actionMap.get("cancelButton"));
         cancelButton.setName("cancelButton");
 
+        bottom.add(okButton);
+        bottom.add(cancelButton);
+
         getContentPane().setLayout(layout);
+        //getContentPane().s
+//        getContentPane().setMinimumSize(new Dimension(200,200));
+  //      getContentPane().setPreferredSize(new Dimension(200,200));
+//        getContentPane().setMaximumSize(new Dimension(200,200));
+//        add(info);
+        add(teamPanel);
+        add(bottom);
+
+        pack();
+/*
+        getContentPane().setLayout(layout);
+
 
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(info)
                 .addGap(18,18,18)
-                .addComponent(teamTable)
+                .addComponent(teamPanel)
                 .addGap(18,18,18)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(okButton)
@@ -78,7 +96,7 @@ public class TeamView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createSequentialGroup()
                 .addComponent(info)
-                .addComponent(teamTable)
+                .addComponent(teamPanel)
                 .addGap(18,18,18)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(okButton)
@@ -86,6 +104,7 @@ public class TeamView extends javax.swing.JFrame {
                 );
 
         setSize(new Dimension(100,100));
+ */
 /*
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());

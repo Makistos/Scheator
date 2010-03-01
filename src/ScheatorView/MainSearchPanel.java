@@ -7,7 +7,6 @@ package ScheatorView;
 
 import ScheatorController.MainController;
 import ScheatorModel.*;
-import ScheatorDb.*;
 import org.jdesktop.application.Action;
 import javax.swing.*;
 import java.awt.event.*;
