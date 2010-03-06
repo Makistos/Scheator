@@ -7,16 +7,10 @@ package ScheatorView;
 
 import scheator.*;
 import ScheatorController.MainController;
-import java.beans.PropertyChangeEvent;
 import org.jdesktop.application.Action;
-import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
-import org.jdesktop.application.TaskMonitor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
-import java.awt.*;
 import javax.swing.event.*;
 import java.awt.event.*;
 
@@ -28,6 +22,7 @@ public class MainView extends FrameView {
 
     private JDialog aboutBox;
     private JFrame editTeams;
+    private JFrame editSeries;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
@@ -68,7 +63,12 @@ public class MainView extends FrameView {
     
     @Action
     public void editSeries() {
-
+        if (editSeries == null) {
+            JFrame mainFrame = ScheatorApp.getApplication().getMainFrame();
+            editSeries = new SeriesView(mainFrame, controller);
+            editSeries.setLocationRelativeTo(null);
+        }
+        ScheatorApp.getApplication().show(editSeries);
     }
 
     @Action

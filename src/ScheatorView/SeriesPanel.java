@@ -17,30 +17,30 @@ import org.jdesktop.application.Action;
  *
  * @author mep
  */
-public class TeamPanel extends AbstractView {
+public class SeriesPanel extends AbstractView {
 
-    TeamsModel tableModel;
-    JTable teamTable;
+    SeriesTableModel tableModel;
+    JTable seriesTable;
 
     AbstractController controller;
 
-    TeamPanel(AbstractController controller, TeamsModel tableModel) {
+    SeriesPanel(AbstractController controller, SeriesTableModel tableModel) {
         Integer id = null;
         this.tableModel = tableModel;
         tableModel.addTableModelListener(new TableListener());
         this.controller = controller;
         controller.addView(this);
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(TeamPanel.class);
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(TeamPanel.class, this);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(SeriesPanel.class);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(SeriesPanel.class, this);
 
         //this.setLayout(new FlowLayout(FlowLayout.));
 
-        teamTable = new JTable(tableModel);
+        seriesTable = new JTable(tableModel);
 
-        teamTable.setDefaultEditor(String.class, new DefaultCellEditor(new JTextField()));
+        seriesTable.setDefaultEditor(String.class, new DefaultCellEditor(new JTextField()));
 
-        JScrollPane tableScroll = new JScrollPane(teamTable);
+        JScrollPane tableScroll = new JScrollPane(seriesTable);
         add(tableScroll);
 
         JPanel buttonPanel = new JPanel();
@@ -79,7 +79,7 @@ public class TeamPanel extends AbstractView {
 
     @Action
     public void delete() {
-        tableModel.removeTeam(teamTable.getSelectedRow());
+        tableModel.removeTeam(seriesTable.getSelectedRow());
     }
     
     class TableListener implements TableModelListener {

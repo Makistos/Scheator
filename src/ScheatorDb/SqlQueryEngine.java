@@ -75,7 +75,6 @@ class SqlQueryEngine implements AbstractQueryEngine {
         
         sb.append("INSERT INTO ");
         sb.append(table);
-        sb.append(" VALUES ");
 
         sbFields.append("(");
         sbValues.append("(");
@@ -93,10 +92,11 @@ class SqlQueryEngine implements AbstractQueryEngine {
         // Remove extra commas and add missing closing parentheses
         sb.append(sbFields.toString().substring(0, sbFields.toString().length()-1));
         sb.append(")");
+        sb.append(" VALUES ");
         sb.append(sbValues.toString().substring(0, sbValues.toString().length()-1));
         sb.append(")");
 
-        System.err.println("addItems returns " + sb.toString());
+        System.err.println("SqlQueryEngine.addItems() returns " + sb.toString());
         return sb.toString();
     }
 
@@ -117,9 +117,9 @@ class SqlQueryEngine implements AbstractQueryEngine {
 
         sb.append("UPDATE ");
         sb.append(entity);
-        sb.append("SET ");
+        sb.append(" SET ");
 
-        Iterator itr = idFields.entrySet().iterator();
+        Iterator itr = toUpdate.entrySet().iterator();
         while(itr.hasNext()) {
             Map.Entry me = (Map.Entry) itr.next();
             String  fieldName = (String)me.getKey();

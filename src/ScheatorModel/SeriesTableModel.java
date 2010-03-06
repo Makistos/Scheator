@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package ScheatorModel;
 
 import javax.swing.table.*;
@@ -6,31 +11,28 @@ import ScheatorDb.*;
 import ScheatorController.*;
 import java.util.Iterator;
 
-/** Implements the team data model.
+/**
  *
- * Data is retrieved through the provider (at this point a MySql connector).
- * 
  * @author mep
  */
-public class TeamsModel extends AbstractTableModel {
-
+public class SeriesTableModel extends AbstractTableModel {
     /** Controller */
     private AbstractController controller;
     /** Data provider. */
-    Teams provider;
+    Series provider;
     /** List containing the teams. */
-    LinkedHashMap<Integer, Teams.Data> list;
+    LinkedHashMap<Integer, Series.Data> list;
     /**  Fake variable to get the column count. */
-    private String columns[] = {""}; 
+    private String columns[] = {""};
 
-    public TeamsModel(AbstractController controller, Integer seasonId) {
+    public SeriesTableModel(AbstractController controller, Integer seasonId) {
         this.controller = controller;
-        provider = new ScheatorDb.Teams();
+        provider = new ScheatorDb.Series();
         controller.addModel(this);
         list = provider.getList();
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(TeamsModel.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(SeriesTableModel.class);
 
-        columns[0] = resourceMap.getString("ColTeam.text");
+        columns[0] = resourceMap.getString("ColSeries.text");
 
         /* Get the teams */
         provider.fetch(seasonId);
@@ -71,7 +73,7 @@ public class TeamsModel extends AbstractTableModel {
         Object retval = null;
         int i = 0;
         for(Iterator it=list.values().iterator(); it.hasNext();) {
-            Teams.Data dbRow = (Teams.Data) it.next();
+            Series.Data dbRow = (Series.Data) it.next();
             if (i == row) {
                 return dbRow.get("name");
             }
@@ -100,12 +102,12 @@ public class TeamsModel extends AbstractTableModel {
     public Class getColumnClass(int col) {
         return String.class;
     }
-    
+
     @Override
     public void setValueAt(Object value, int row, int col) {
         int i = 0;
         for(Iterator it=list.values().iterator(); it.hasNext();) {
-            Teams.Data dbRow = (Teams.Data) it.next();
+            Series.Data dbRow = (Series.Data) it.next();
             if (i == row) {
                 switch(col) {
                     case 0:
@@ -129,7 +131,7 @@ public class TeamsModel extends AbstractTableModel {
         Integer key = null;
 
         for(Iterator it=list.values().iterator(); it.hasNext();) {
-            Teams.Data dbRow = (Teams.Data) it.next();
+            Series.Data dbRow = (Series.Data) it.next();
             if (i == row) {
                 key =  (Integer) dbRow.get("id");
                 break;
@@ -137,12 +139,10 @@ public class TeamsModel extends AbstractTableModel {
             i++;
         }
 
-        System.err.println("removeTeam() key:" + key);
         if (key != null) {
             provider.delete(key);
             //list.clear();
             list = provider.getList();
-            System.err.println("removeTeam() count:" + list.size());
             fireTableDataChanged();
         }
     }

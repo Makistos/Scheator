@@ -18,6 +18,9 @@ public abstract class DbObject<Object, Data> {
 
     enum FieldState {SAVED, NEW, CHANGED, DELETED}
 
+    private String TABLE_NAME = "";
+
+
     /** Fetches one or more items from the database to fill the data fields
      * in this object.
      *

@@ -16,23 +16,23 @@ import ScheatorController.*;
  *
  * @author mep
  */
-public class TeamView extends javax.swing.JFrame {
+public class SeriesView extends javax.swing.JFrame {
 
     private javax.swing.JButton okButton;
     private javax.swing.JButton cancelButton;
-    private TeamPanel teamPanel;
+    private SeriesPanel seriesPanel;
     private AbstractController controller;
     private org.jdesktop.application.ResourceMap resourceMap;
     javax.swing.ActionMap actionMap;
-    TeamsModel tableModel;
+    SeriesTableModel tableModel;
     
-    public TeamView(java.awt.Frame parent, AbstractController controller) {
+    public SeriesView(java.awt.Frame parent, AbstractController controller) {
         //super(parent);
         this.controller = controller;
         controller.addFrame(this);
 
-        resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(TeamView.class);
-        actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(TeamView.class, this);
+        resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(SeriesView.class);
+        actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(SeriesView.class, this);
 
         initComponents();
 
@@ -42,8 +42,8 @@ public class TeamView extends javax.swing.JFrame {
 
     public void initComponents() {
         Integer id = null;
-        tableModel = new TeamsModel(controller, id);
-        teamPanel = new TeamPanel(controller, tableModel);
+        tableModel = new SeriesTableModel(controller, id);
+        seriesPanel = new SeriesPanel(controller, tableModel);
         tableModel.addTableModelListener(new TableListener());
 
         javax.swing.BoxLayout layout = new javax.swing.BoxLayout(getContentPane(), BoxLayout.Y_AXIS);
@@ -65,7 +65,7 @@ public class TeamView extends javax.swing.JFrame {
 
         getContentPane().setLayout(layout);
 
-        add(teamPanel);
+        add(seriesPanel);
         add(bottom);
 
         pack();

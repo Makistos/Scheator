@@ -27,6 +27,7 @@ public class Teams extends DbObject {
 
     public void addNew(String name) {
         Data team = new Data(name);
+        team.state = FieldState.NEW;
         list.put(null, team);
     }
 
@@ -42,7 +43,8 @@ public class Teams extends DbObject {
                 Data row = (Data) itr.next();
                 String q;
                 HashMap<String, Object> fields = new HashMap<String, Object>();
-
+                System.err.println("Team name: " + row.field_name);
+                System.err.println("State: " + row.state);
                 fields.put("name", row.field_name);
 
                 switch (row.state) {
@@ -81,8 +83,7 @@ public class Teams extends DbObject {
         }
 
         // Reload information */
-        fetch(currentId);
-        
+        fetch(currentId);        
     }
 
     /** Gets teams connected to given season (identified by seasonId).
@@ -119,7 +120,11 @@ public class Teams extends DbObject {
 
     public void delete(Integer key) {
         Data obj = (Data)list.remove(key);
+        if (obj == null) {
+            System.err.println("Null object found for key " + key);
+        }
         deletedList.put(key, obj);
+        System.err.println("Number of deleted items: " + deletedList.size());
     }
     
     /** Object representation of a team.
@@ -149,6 +154,7 @@ public class Teams extends DbObject {
         
         @Override
         public void set(String field, Object value) {
+            System.err.println("Changing " + field_name + " to " + (String) value);
             String name = "field_".concat(field);
             try {
                 Class c = Class.forName(this.getClass().getName());
