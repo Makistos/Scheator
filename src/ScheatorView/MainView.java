@@ -21,8 +21,8 @@ import java.awt.event.*;
 public class MainView extends FrameView {
 
     private JDialog aboutBox;
-    private JFrame editTeams;
-    private JFrame editSeries;
+    private TeamView editTeams;
+    private ScheduleView createSeason;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
@@ -53,7 +53,13 @@ public class MainView extends FrameView {
 
     @Action
     public void createSchedule() {
-        
+        System.err.println("create schedule");
+        if (createSeason == null) {
+            JFrame mainFrame = ScheatorApp.getApplication().getMainFrame();
+            createSeason = new ScheduleView(mainFrame, controller);
+            createSeason.setLocationRelativeTo(null);
+        }
+        ScheatorApp.getApplication().show(createSeason);
     }
 
     @Action
