@@ -9,8 +9,10 @@ import org.jdesktop.application.Action;
 import java.awt.*;
 import ScheatorModel.*;
 import javax.swing.*;
-import javax.swing.event.*;
 import ScheatorController.*;
+import javax.swing.event.*;
+import java.util.LinkedHashMap;
+import ScheatorDb.Teams;
 
 /**
  *
@@ -19,29 +21,29 @@ import ScheatorController.*;
 public class ScheduleView extends javax.swing.JFrame {
 
     private JTextField seasonName = new JTextField(10);
-    private JComboBox series = new JComboBox();
+    private JComboBox series;
     private JTextField newSeries = new JTextField(10);
     private JButton addNewSeries = new JButton("Add new");
     private javax.swing.JButton genButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JCheckBox onlySeriesTeamsCb = new JCheckBox();
-    private javax.swing.JTable teamsTable = new JTable();
+    private javax.swing.JTable teamsTable;
     private javax.swing.JButton addTeam = new JButton("Add team");
     private javax.swing.JButton delTeam = new JButton("Remove team");
 
+    TeamsModel tableModel;
     SeriesComboBoxModel seriesModel;
     
     //private JPanel teamsPanel;
     //private JPanel infoPanel;
-    private AbstractController controller;
+    private MainController controller;
     private org.jdesktop.application.ResourceMap resourceMap;
     javax.swing.ActionMap actionMap;
-    TeamsModel tableModel;
 
     public ScheduleView(java.awt.Frame parent, AbstractController controller) {
 
-        this.controller = controller;
-        controller.addFrame(this);
+        this.controller = (MainController) controller;
+        this.controller.addFrame(this);
 
         resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(ScheduleView.class);
         actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(ScheduleView.class, this);
@@ -54,6 +56,8 @@ public class ScheduleView extends javax.swing.JFrame {
     }
 
     private void initComponents() {
+        Integer id = null;
+
         JLabel seasonNameLbl = new JLabel("Name");
 
         JLabel seriesLbl = new JLabel("Series");
@@ -75,7 +79,17 @@ public class ScheduleView extends javax.swing.JFrame {
         teamsInputFields.setLayout(layout4);
         
         seriesModel = new SeriesComboBoxModel(controller);
+        series = new JComboBox(seriesModel);
+        series.setPrototypeDisplayValue("XXXXXXXXXXXX");
+        series.setName("series");
+        series.setAction(actionMap.get("seriesList"));
+        series.setEditable(false);
 
+        tableModel = new TeamsModel(controller, id);
+        tableModel.addTableModelListener(new TableListener());
+
+        teamsTable = new JTable(tableModel);
+        teamsTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         getContentPane().setLayout(layout);
 
         // Info panel
@@ -88,16 +102,21 @@ public class ScheduleView extends javax.swing.JFrame {
         seriesFields.add(newSeries);
         seriesFields.add(addNewSeries);
 
+        infoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Season/Tournament"));
         infoPanel.add(seasonFields);
         infoPanel.add(seriesFields);
 
         // Teams panel
+
+        JScrollPane tableScroll = new JScrollPane(teamsTable);
 
         teamsInputFields.add(onlySeriesTeamsCb);
         teamsInputFields.add(teamsTable);
         teamsButtons.add(addTeam);
         teamsButtons.add(delTeam);
 
+        teamsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Participants"));
+        teamsPanel.add(tableScroll);
         teamsPanel.add(teamsInputFields);
         teamsPanel.add(teamsButtons);
 
@@ -123,10 +142,50 @@ public class ScheduleView extends javax.swing.JFrame {
 
     }
 
+    /** Action to generate the schedule.
+     * 
+     */
+    @Action
+    public void genButton() {
+        System.err.println("Generating schedule...");
+        LinkedHashMap<Integer, Teams.Data> teams = new LinkedHashMap<Integer, Teams.Data>();
+
+        int selection[] = teamsTable.getSelectedRows();
+
+        // Create list of selected teams 
+        for(int i=0;i<selection.length;i++) {
+            Teams.Data team = (Teams.Data) tableModel.getValueAt(i, 0);
+            teams.put((Integer)team.get("id"), team);
+        }
+
+        // Forward request to controller
+        controller.generateSchedule(seasonName.toString(), series.getSelectedItem(), teams);
+
+        dispose();
+    }
+
     @Action
     public void cancelButton() {
         // Dispose changes
         dispose();
+    }
+
+    @Action
+    public void add() {
+        tableModel.addTeam("");
+        validate();
+    }
+
+    @Action
+    public void delete() {
+        tableModel.removeTeam(teamsTable.getSelectedRow());
+    }
+
+    class TableListener implements TableModelListener {
+        @Override
+        public void tableChanged(TableModelEvent e) {
+            tableModel.saveTeams();
+        }
     }
 
 }

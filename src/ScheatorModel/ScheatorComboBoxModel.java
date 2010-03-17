@@ -38,10 +38,10 @@ public abstract class ScheatorComboBoxModel extends AbstractListModel implements
      */
     public Object getElementAt(int index) {
         DbObject.Data retval = null;
-        int i = 0;
+        int i = 1;
         for(Iterator it=list.values().iterator(); it.hasNext();) {
+            retval = (DbObject.Data) it.next();
             if (i == index) {
-                retval = (DbObject.Data) it.next();
                 break;
             }
             i++;

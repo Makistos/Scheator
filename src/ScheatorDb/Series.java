@@ -27,7 +27,7 @@ public class Series extends DbObject {
     public Series() {
         list = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
-        fetch(0);
+        fetch(null);
     }
 
     public void addNew(String name) {

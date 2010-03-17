@@ -69,12 +69,6 @@ public class MainView extends FrameView {
     
     @Action
     public void editSeries() {
-        if (editSeries == null) {
-            JFrame mainFrame = ScheatorApp.getApplication().getMainFrame();
-            editSeries = new SeriesView(mainFrame, controller);
-            editSeries.setLocationRelativeTo(null);
-        }
-        ScheatorApp.getApplication().show(editSeries);
     }
 
     @Action

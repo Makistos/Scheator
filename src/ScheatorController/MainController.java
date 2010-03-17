@@ -1,6 +1,8 @@
 package ScheatorController;
 
 import java.lang.reflect.*;
+import java.util.LinkedHashMap;
+import ScheatorDb.*;
 
 /** Main application controller.
  *
@@ -83,6 +85,10 @@ public class MainController extends AbstractController {
     }
 
     public void moveMatch(Integer startPos, Integer endPos) {
+
+    }
+
+    public void generateSchedule(String name, Object series, LinkedHashMap<Integer, Teams.Data> teamList) {
 
     }
 }

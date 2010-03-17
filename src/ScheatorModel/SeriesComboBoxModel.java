@@ -18,8 +18,19 @@ public class SeriesComboBoxModel extends ScheatorComboBoxModel {
     public SeriesComboBoxModel(AbstractController controller) {
         provider = new ScheatorDb.Series();
         this.controller = controller;
-        controller.addModel(this);
+        this.controller.addModel(this);
 
         list = provider.getList();
     }
+
+    /** Updates the data from the database.
+     *
+     * @param seriesId Id of the series for which to find the seasons.
+     */
+    public void update(int seriesId) {
+        provider.fetch(seriesId);
+        System.err.println("Firing contentsChange()");
+        fireContentsChanged(this, 0, list.size()-1);
+    }
+
 }
