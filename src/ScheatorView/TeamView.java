@@ -6,9 +6,6 @@
 package ScheatorView;
 
 import org.jdesktop.application.Action;
-import ScheatorController.*;
-import javax.swing.*;
-import java.awt.Dimension;
 import java.awt.*;
 import ScheatorModel.*;
 import javax.swing.*;
