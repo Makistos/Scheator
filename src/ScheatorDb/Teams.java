@@ -25,10 +25,47 @@ public class Teams extends DbObject {
         fetch(seasonId);
     }
 
+    /** Adds an existing team to the list
+     *
+     * @param team Team to add.
+     */
+    public void add(Data team) {
+        team.state = FieldState.SAVED;
+        list.put((Integer)team.field_id, team);
+    }
+
+    /** Adds a new team to the list
+     *
+     * @param name Name of team.
+     */
     public void addNew(String name) {
         Data team = new Data(name);
         team.state = FieldState.NEW;
         list.put(null, team);
+    }
+
+    /** Adds the "bye" team to the list.
+     * 
+     * Bye team is needed if number of teams in a series is uneven. In that
+     * case, each round has one team not playing, this is simulated with the
+     * bye round.
+     */
+    public void addBye() {
+        HashMap<String, Object> idFields = new HashMap<String, Object>();
+        idFields.put("name", "Bye");
+        try {
+            Statement st = db.con.createStatement();
+            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, FIELDS, idFields, null));
+            while (rs.next()) {
+                Integer id = rs.getInt(FIELDS[0]);
+                String name = rs.getString(FIELDS[1]);
+                Data team = new Data(id, name);
+                list.put(id, team);
+            }
+        } catch (Exception e) {
+            System.err.println("Bye team missign from database!");
+        }
+
     }
 
     @Override

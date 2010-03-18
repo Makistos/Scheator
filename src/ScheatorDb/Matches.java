@@ -128,6 +128,7 @@ public class Matches extends DbObject {
         // Reload information */
         fetch(currentId);
     }
+
     /** One match in the database.
      *
      */
@@ -193,6 +194,11 @@ public class Matches extends DbObject {
                  System.err.println("Field does not exist: " + name + " (" + e.getMessage() + ")");
             }
             return retval;
+        }
+
+        @Override
+        public String toString() {
+            return "(" + field_matchNumber.toString() + ")\t" + field_homeTeam + "\t" + field_awayTeam;
         }
     }
 

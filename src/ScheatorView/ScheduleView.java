@@ -148,14 +148,16 @@ public class ScheduleView extends javax.swing.JFrame {
     @Action
     public void genButton() {
         System.err.println("Generating schedule...");
-        LinkedHashMap<Integer, Teams.Data> teams = new LinkedHashMap<Integer, Teams.Data>();
+        //LinkedHashMap<Integer, Teams.Data> teams = new LinkedHashMap<Integer, Teams.Data>();
+        Teams teams = new Teams();
 
         int selection[] = teamsTable.getSelectedRows();
 
-        // Create list of selected teams 
+        // Create list of selected teams
+//        teams = tableModel.getSelected(selection);
         for(int i=0;i<selection.length;i++) {
-            Teams.Data team = (Teams.Data) tableModel.getValueAt(i, 0);
-            teams.put((Integer)team.get("id"), team);
+            teams.add((Teams.Data) tableModel.getValueAt(selection[i], 0));
+            //teams.put((Integer)team.get("id"), team);
         }
 
         // Forward request to controller

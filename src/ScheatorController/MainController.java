@@ -1,8 +1,9 @@
 package ScheatorController;
 
 import java.lang.reflect.*;
-import java.util.LinkedHashMap;
+import java.util.*;
 import ScheatorDb.*;
+import ScheatorModel.Scheduler;
 
 /** Main application controller.
  *
@@ -88,7 +89,12 @@ public class MainController extends AbstractController {
 
     }
 
-    public void generateSchedule(String name, Object series, LinkedHashMap<Integer, Teams.Data> teamList) {
+    public void generateSchedule(String name, Object series, Teams teamList) {
+        Scheduler schedule = new Scheduler(teamList);
+        Matches matches = schedule.get();
 
+        matches.print();
+        
+        matches.save();
     }
 }

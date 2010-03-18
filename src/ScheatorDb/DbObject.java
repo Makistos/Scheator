@@ -1,7 +1,6 @@
 package ScheatorDb;
-import java.util.LinkedHashMap;
 import java.lang.reflect.Field;
-
+import java.util.*;
 /** An abstract definition of a database object. 
  * 
  * @brief An object can be the contents of an entire table, part of a table or a
@@ -46,6 +45,9 @@ public abstract class DbObject<Object, Data> {
         return list;
     }
 
+    public Integer getSize() {
+        return list.size();
+    }
     /** Returns items by given index.
      *
      * @param index Item index.
@@ -55,6 +57,14 @@ public abstract class DbObject<Object, Data> {
         return list.get(index);
     }
 
+    /** Rudimentary debugging tool. Prints the contents of the data list
+     * as specified in the Data::toString() function.
+     */
+    public void print() {
+        for(Iterator itr = list.values().iterator();itr.hasNext();) {
+            System.err.println((Data)itr.next());
+        }
+    }
     /** The actual data for this class.
      *
      * @brief This class holds the actual data retrieved from the database. Each

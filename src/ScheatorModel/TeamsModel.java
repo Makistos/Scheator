@@ -73,7 +73,8 @@ public class TeamsModel extends AbstractTableModel {
         for(Iterator it=list.values().iterator(); it.hasNext();) {
             Teams.Data dbRow = (Teams.Data) it.next();
             if (i == row) {
-                return dbRow.get("name");
+                //return dbRow.get("name");
+                return dbRow;
             }
             i++;
         }
