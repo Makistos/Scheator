@@ -47,11 +47,13 @@ public class Matches extends DbObject {
      * @param awayTeam Away team id.
      */
 
-    public void addNew(Integer match_no, String homeTeam, Integer homeTeamId,
+    public void addNew(Integer match_no, Integer seasonId, String homeTeam, Integer homeTeamId,
             String awayTeam, Integer awayTeamId) {
-        Data match = new Data(null, match_no, homeTeam, homeTeamId, 
+        Data match = new Data(null, seasonId, match_no, homeTeam, homeTeamId,
                 awayTeam, awayTeamId);
         list.put(match_no, match);
+        // Remove the empty item now that we have something
+        list.remove(0);        
     }
 
     /** Fetches the match(es) from the database and inserts them into a
@@ -84,7 +86,7 @@ public class Matches extends DbObject {
                 Integer away_id = rs.getInt("awayid");
                 Integer match_no = rs.getInt("match_no");
                 currentId = sId;
-                Data team = new Data(matchId,
+                Data team = new Data(matchId, sId,
                         match_no,home_team, home_id, away_team, away_id);
                 list.put(matchId, team);
             }
@@ -141,10 +143,15 @@ public class Matches extends DbObject {
         Integer field_matchNumber;
         /** Home team id (from the Team table). */
         Integer field_homeTeamId;
+        /** Home team name. */
         String field_homeTeam;
         /** Away team id  (from the Team table). */
         Integer field_awayTeamId;
+        /** Away team name. */
         String field_awayTeam;
+        /** Id of season this match is connected to. */
+        Integer field_seasonId;
+
         public Data() {
             field_id = null;
             field_name = null;
@@ -153,10 +160,11 @@ public class Matches extends DbObject {
             field_homeTeamId = null;
             field_awayTeam = null;
             field_awayTeamId = null;
+            field_seasonId = null;
             state = FieldState.NEW;
         }
         
-        Data(Integer id, int match, String home, Integer homeId, 
+        Data(Integer id, Integer seasonId, int match, String home, Integer homeId,
                 String away, Integer awayId) {
             field_id = id;
             field_name = "";
@@ -165,6 +173,7 @@ public class Matches extends DbObject {
             field_homeTeamId = homeId;
             field_awayTeam = away;
             field_awayTeamId = awayId;
+            field_seasonId = seasonId;
         }
 
         @Override
@@ -198,7 +207,18 @@ public class Matches extends DbObject {
 
         @Override
         public String toString() {
-            return "(" + field_matchNumber.toString() + ")\t" + field_homeTeam + "\t" + field_awayTeam;
+            String retval = "(";
+            if (field_matchNumber != null) {
+                retval = retval + field_matchNumber.toString();
+            }
+            retval.concat(")");
+            if (field_homeTeam != null) {
+                retval = retval +"\t" + field_homeTeam;
+            }
+            if (field_awayTeam != null) {
+                retval = retval + "\t" + field_awayTeam;
+            }
+            return retval;
         }
     }
 

@@ -17,7 +17,7 @@ import java.util.*;
  * @author mep
  */
 public class Scheduler {
-    private Matches matches;
+    private Matches matches = new Matches();
 
     public Scheduler(Teams participants) {
         createSchedule(participants);
@@ -53,7 +53,13 @@ public class Scheduler {
     private void createOneRound(int round, ArrayList teams) {
         int mid = teams.size() / 2;
         // Split list into two
-        ArrayList l1 = (ArrayList)teams.subList(0,mid-1);
+
+        ArrayList l1 = new ArrayList();
+        // Can't use sublist (can't cast it to ArrayList - how stupid is that)??
+        for(int j=0;j<mid-1;j++) {
+            l1.add(teams.get(j));
+        }
+
         ArrayList l2 = new ArrayList();
         // We need to reverse the other list
         for(int j=teams.size()-1;j>mid-1;j--) {
