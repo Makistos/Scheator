@@ -63,7 +63,7 @@ public class Matches extends DbObject {
      */
     public void fetch(Integer seasonId) {
         list.clear();
-        String[] ids = {"Season.id", Integer.toString(seasonId), "Match.hometeam", "Match.awayteam"};
+        //String[] ids = {"Season.id", Integer.toString(seasonId), "Match.hometeam", "Match.awayteam"};
 
         HashMap<String, Object> idFields = new HashMap<String, Object>();
         FieldReference sid = new FieldReference("Season.id");
@@ -91,7 +91,7 @@ public class Matches extends DbObject {
                 list.put(matchId, team);
             }
         } catch (Exception e) {
-            System.err.println("Failed to read season data: " + e.toString());
+            System.err.println("Failed to read match data: " + e.toString());
         }
     }
 

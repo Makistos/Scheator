@@ -75,7 +75,7 @@ public class SeriesTableModel extends AbstractTableModel {
         for(Iterator it=list.values().iterator(); it.hasNext();) {
             Series.Data dbRow = (Series.Data) it.next();
             if (i == row) {
-                return dbRow.get("name");
+                return dbRow;
             }
             i++;
         }

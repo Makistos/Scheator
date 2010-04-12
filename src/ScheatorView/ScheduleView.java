@@ -11,8 +11,8 @@ import ScheatorModel.*;
 import javax.swing.*;
 import ScheatorController.*;
 import javax.swing.event.*;
-import java.util.LinkedHashMap;
 import ScheatorDb.Teams;
+import ScheatorDb.Series;
 
 /**
  *
@@ -161,7 +161,7 @@ public class ScheduleView extends javax.swing.JFrame {
         }
 
         // Forward request to controller
-        controller.generateSchedule(seasonName.toString(), series.getSelectedItem(), teams);
+        controller.generateSchedule(seasonName.toString(), (Series.Data)series.getSelectedItem(), teams);
 
         dispose();
     }

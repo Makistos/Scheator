@@ -54,8 +54,10 @@ class SqlQueryEngine implements AbstractQueryEngine {
         sb.append(createWhereClause(idFields));
 
         sb.append(" ");
-        
-        sb.append(createOrderByClause(orderBy));
+
+        if (orderBy != null) {
+            sb.append(createOrderByClause(orderBy));
+        }
 
         System.err.println("SqlQueryEngine.getItems() returns " + sb.toString());
         return sb.toString();
@@ -176,15 +178,18 @@ class SqlQueryEngine implements AbstractQueryEngine {
             while(itr.hasNext()) {
                 Map.Entry me = (Map.Entry) itr.next();
                 String  fieldName = (String)me.getKey();
-                //if (fieldName.contains("field_")) {
-                    sb.append(fieldName);
-                    sb.append(" = ");
-                    sb.append(formatValue(me.getValue()));
-                    if (i<idFields.size()-1) {
-                        sb.append(" AND ");
-                    }
-                    i++;
-                //}
+                String value = formatValue(me.getValue());
+                sb.append(fieldName);
+                sb.append(" = ");
+/*                if (value != null) {
+                    sb.append(value);
+                } else {
+                    sb.append("NULL");
+                }
+ */               if (i<idFields.size()-1) {
+                    sb.append(" AND ");
+                }
+                i++;
             }
             return sb.toString();
         } else {

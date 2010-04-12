@@ -89,8 +89,9 @@ public class MainController extends AbstractController {
 
     }
 
-    public void generateSchedule(String name, Object series, Teams teamList) {
-        Scheduler schedule = new Scheduler(teamList);
+    public void generateSchedule(String name, Series.Data series, Teams teamList) {
+        Integer seriesId = (Integer) series.get("id");
+        Scheduler schedule = new Scheduler(seriesId, teamList);
         Matches matches = schedule.get();
 
         matches.print();

@@ -5,11 +5,8 @@
 
 package ScheatorModel;
 
-import java.util.LinkedHashMap;
 import ScheatorDb.Teams;
 import ScheatorDb.Matches;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.*;
 
 /**
@@ -18,8 +15,10 @@ import java.util.*;
  */
 public class Scheduler {
     private Matches matches = new Matches();
+    private Integer seasonId;
 
-    public Scheduler(Teams participants) {
+    public Scheduler(Integer season, Teams participants) {
+        seasonId = season;
         createSchedule(participants);
     }
 
@@ -77,7 +76,7 @@ public class Scheduler {
                 t1 = (Teams.Data)l2.get(tId);
                 t2 = (Teams.Data)l1.get(tId);
             }
-            matches.addNew((round+1)*(tId+1), (String)t1.get("name"), (Integer)t1.get("id"),
+            matches.addNew((round+1)*(tId+1), seasonId, (String)t1.get("name"), (Integer)t1.get("id"),
                     (String)t2.get("name"), (Integer)t2.get("id"));
         }
     }
