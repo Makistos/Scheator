@@ -26,7 +26,7 @@ public class ScheduleView extends javax.swing.JFrame {
     private JButton addNewSeries = new JButton("Add new");
     private javax.swing.JButton genButton;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JCheckBox onlySeriesTeamsCb = new JCheckBox();
+    //private javax.swing.JCheckBox onlySeriesTeamsCb = new JCheckBox();
     private javax.swing.JTable teamsTable;
     private javax.swing.JButton addTeam = new JButton("Add team");
     private javax.swing.JButton delTeam = new JButton("Remove team");
@@ -50,7 +50,6 @@ public class ScheduleView extends javax.swing.JFrame {
 
         initComponents();
 
-        pack();
         getRootPane().setDefaultButton(genButton);
 
     }
@@ -110,7 +109,7 @@ public class ScheduleView extends javax.swing.JFrame {
 
         JScrollPane tableScroll = new JScrollPane(teamsTable);
 
-        teamsInputFields.add(onlySeriesTeamsCb);
+        //teamsInputFields.add(onlySeriesTeamsCb);
         teamsInputFields.add(teamsTable);
         teamsButtons.add(addTeam);
         teamsButtons.add(delTeam);

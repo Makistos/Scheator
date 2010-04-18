@@ -35,7 +35,7 @@ public class Scheduler {
             list.add(itr.next());
         }
 
-        for(int i = 0;i<list.size();i++) {
+        for(int i = 1;i<list.size();i++) {
             createOneRound(i, list);
             // Move last item to first
             list.add(0, list.get(list.size()-1));
@@ -55,17 +55,17 @@ public class Scheduler {
 
         ArrayList l1 = new ArrayList();
         // Can't use sublist (can't cast it to ArrayList - how stupid is that)??
-        for(int j=0;j<mid-1;j++) {
+        for(int j=0;j<mid;j++) {
             l1.add(teams.get(j));
         }
 
         ArrayList l2 = new ArrayList();
         // We need to reverse the other list
-        for(int j=teams.size()-1;j>mid-1;j--) {
+        for(int j=teams.size()-1;j>=mid;j--) {
             l2.add(teams.get(j));
         }
 
-        for(int tId = 0;tId<l1.size()-1;tId++) {
+        for(int tId = 0;tId<l1.size();tId++) {
             Teams.Data t1;
             Teams.Data t2;
             // Switch sides after each round
@@ -76,7 +76,7 @@ public class Scheduler {
                 t1 = (Teams.Data)l2.get(tId);
                 t2 = (Teams.Data)l1.get(tId);
             }
-            matches.addNew((round+1)*(tId+1), seasonId, (String)t1.get("name"), (Integer)t1.get("id"),
+            matches.addNew((round)*(tId+1), seasonId, (String)t1.get("name"), (Integer)t1.get("id"),
                     (String)t2.get("name"), (Integer)t2.get("id"));
         }
     }

@@ -1,6 +1,5 @@
 package ScheatorDb;
 
-import java.lang.reflect.Field;
 import java.util.*;
 
 /** A class for creating SQL queries.
@@ -44,7 +43,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
             sb.append(" FROM ");
         }
         for(int i=0;i<table.length;i++) {
-            sb.append(table[i]);
+            sb.append("`" + table[i] + "`");
             if (i<table.length-1) {
                 sb.append(", ");
             } else {
@@ -76,7 +75,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
         StringBuilder sbValues = new StringBuilder();
         
         sb.append("INSERT INTO ");
-        sb.append(table);
+        sb.append("`" + table + "`");
 
         sbFields.append("(");
         sbValues.append("(");
@@ -85,7 +84,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
             Map.Entry me = (Map.Entry) itr.next();
             String fieldName = (String)me.getKey();
 
-            sbFields.append(fieldName);
+            sbFields.append("`" + fieldName + "`");
             sbValues.append(formatValue(me.getValue()));
             sbFields.append(",");
             sbValues.append(",");
@@ -155,7 +154,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
         StringBuilder sb = new StringBuilder();
 
         sb.append("DELETE FROM ");
-        sb.append(table);
+        sb.append("`" + table + "`");
         sb.append(createWhereClause(idFields));
 
         System.err.println("SqlQueryEngine.deleteItems() returns " + sb.toString());
@@ -181,12 +180,13 @@ class SqlQueryEngine implements AbstractQueryEngine {
                 String value = formatValue(me.getValue());
                 sb.append(fieldName);
                 sb.append(" = ");
+                sb.append(value);
 /*                if (value != null) {
                     sb.append(value);
                 } else {
                     sb.append("NULL");
                 }
- */               if (i<idFields.size()-1) {
+*/              if (i<idFields.size()-1) {
                     sb.append(" AND ");
                 }
                 i++;

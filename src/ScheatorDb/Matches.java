@@ -51,9 +51,11 @@ public class Matches extends DbObject {
             String awayTeam, Integer awayTeamId) {
         Data match = new Data(null, seasonId, match_no, homeTeam, homeTeamId,
                 awayTeam, awayTeamId);
+        match.state = FieldState.NEW;
         list.put(match_no, match);
         // Remove the empty item now that we have something
-        list.remove(0);        
+        list.remove(0);
+        currentId = seasonId;
     }
 
     /** Fetches the match(es) from the database and inserts them into a
@@ -64,7 +66,7 @@ public class Matches extends DbObject {
     public void fetch(Integer seasonId) {
         list.clear();
         //String[] ids = {"Season.id", Integer.toString(seasonId), "Match.hometeam", "Match.awayteam"};
-
+        
         HashMap<String, Object> idFields = new HashMap<String, Object>();
         FieldReference sid = new FieldReference("Season.id");
         idFields.put("Match.season", sid);
@@ -104,22 +106,22 @@ public class Matches extends DbObject {
                 String q;
                 HashMap<String, Object> fields = new HashMap<String, Object>();
 
-                fields.put("matchNumber", row.field_matchNumber);
+                fields.put("match_no", row.field_matchNumber);
                 fields.put("hometeam", row.field_homeTeamId);
                 fields.put("awayteam", row.field_awayTeamId);
                 fields.put("season", currentId);
-                
+                System.err.println("State = " + row.state);
                 switch (row.state) {
                     case SAVED:
                         break;
                     case CHANGED:
                         HashMap<String, Object> idFields = new HashMap<String, Object>();
                         idFields.put("id", row.field_id);
-                        q = db.qe.updateItem("Matches", fields, idFields);
+                        q = db.qe.updateItem("Match", fields, idFields);
                         st.executeUpdate(q);
                         break;
                     case NEW:
-                        q = db.qe.addItem("Matches", fields);
+                        q = db.qe.addItem("Match", fields);
                         st.executeUpdate(q);
                         break;
                 }
