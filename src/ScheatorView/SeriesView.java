@@ -21,12 +21,12 @@ public class SeriesView extends javax.swing.JFrame {
     private javax.swing.JButton okButton;
     private javax.swing.JButton cancelButton;
     private SeriesPanel seriesPanel;
-    private AbstractController controller;
+    private MainController controller;
     private org.jdesktop.application.ResourceMap resourceMap;
     javax.swing.ActionMap actionMap;
     SeriesTableModel tableModel;
     
-    public SeriesView(java.awt.Frame parent, AbstractController controller) {
+    public SeriesView(java.awt.Frame parent, MainController controller) {
         //super(parent);
         this.controller = controller;
         controller.addFrame(this);
@@ -84,7 +84,7 @@ public class SeriesView extends javax.swing.JFrame {
     @Action
     public void okButton() {
         // Save contents
-        tableModel.saveTeams();
+        tableModel.saveSeries();
         dispose();
     }
 

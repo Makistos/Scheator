@@ -21,7 +21,8 @@ import java.awt.event.*;
 public class MainView extends FrameView {
 
     private JDialog aboutBox;
-    private TeamView editTeams;
+    private TeamView editTeamsView;
+    private SeriesView editSeriesView;
     private ScheduleView createSeason;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
@@ -69,16 +70,22 @@ public class MainView extends FrameView {
     
     @Action
     public void editSeries() {
+        if (editSeriesView == null) {
+            JFrame mainFrame = ScheatorApp.getApplication().getMainFrame();
+            editSeriesView = new SeriesView(mainFrame, controller);
+            editSeriesView.setLocationRelativeTo(null);
+        }
+        ScheatorApp.getApplication().show(editSeriesView);
     }
 
     @Action
     public void editTeams() {
-        if (editTeams == null) {
+        if (editTeamsView == null) {
             JFrame mainFrame = ScheatorApp.getApplication().getMainFrame();
-            editTeams = new TeamView(mainFrame, controller);
-            editTeams.setLocationRelativeTo(null);
+            editTeamsView = new TeamView(mainFrame, controller);
+            editTeamsView.setLocationRelativeTo(null);
         }
-        ScheatorApp.getApplication().show(editTeams);
+        ScheatorApp.getApplication().show(editTeamsView);
     }
 
     @Action

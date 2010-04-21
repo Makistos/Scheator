@@ -10,14 +10,15 @@ import java.util.LinkedHashMap;
 import ScheatorDb.*;
 import ScheatorController.*;
 import java.util.Iterator;
+import ScheatorController.*;
 
-/**
+/** Table model for a series table.
  *
  * @author mep
  */
 public class SeriesTableModel extends AbstractTableModel {
     /** Controller */
-    private AbstractController controller;
+    private MainController controller;
     /** Data provider. */
     Series provider;
     /** List containing the teams. */
@@ -25,7 +26,7 @@ public class SeriesTableModel extends AbstractTableModel {
     /**  Fake variable to get the column count. */
     private String columns[] = {""};
 
-    public SeriesTableModel(AbstractController controller, Integer seasonId) {
+    public SeriesTableModel(MainController controller, Integer seasonId) {
         this.controller = controller;
         provider = new ScheatorDb.Series();
         controller.addModel(this);
@@ -121,7 +122,7 @@ public class SeriesTableModel extends AbstractTableModel {
         fireTableCellUpdated(row, col);
     }
 
-    public void addTeam(String name) {
+    public void addRow(String name) {
         provider.addNew(name);
         fireTableDataChanged();
     }
@@ -147,8 +148,13 @@ public class SeriesTableModel extends AbstractTableModel {
         }
     }
 
-    public void saveTeams() {
+    public void saveSeries() {
         provider.save();
+        controller.seriesSaved();
     }
 
+/*    public void update() {
+        fireTableDataChanged();
+    }
+ */
 }

@@ -6,7 +6,8 @@
 package ScheatorModel;
 
 import ScheatorController.*;
-/**
+
+/** Data model for a season combobox.
  *
  * @author mep
  */

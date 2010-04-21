@@ -13,7 +13,8 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.BoxLayout;
 import org.jdesktop.application.Action;
 
-/**
+/** Panel that includes a table for series in the database and buttons
+ *  to manipulate them.
  *
  * @author mep
  */
@@ -59,8 +60,8 @@ public class SeriesPanel extends AbstractView {
         add(buttonPanel);
     }
 
-    public void saveTeams() {
-        tableModel.saveTeams();
+    public void saveSeries() {
+        tableModel.saveSeries();
     }
 
     public void undoTeamChanges() {
@@ -73,7 +74,7 @@ public class SeriesPanel extends AbstractView {
 
     @Action
     public void add() {
-        tableModel.addTeam("");
+        tableModel.addRow("");
         validate();
     }
 
@@ -85,7 +86,8 @@ public class SeriesPanel extends AbstractView {
     class TableListener implements TableModelListener {
         @Override
         public void tableChanged(TableModelEvent e) {
-            tableModel.saveTeams();
+
+            //tableModel.save();
         }
     }
 

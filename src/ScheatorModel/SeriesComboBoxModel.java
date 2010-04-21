@@ -27,10 +27,9 @@ public class SeriesComboBoxModel extends ScheatorComboBoxModel {
      *
      * @param seriesId Id of the series for which to find the seasons.
      */
-    public void update(int seriesId) {
-        provider.fetch(seriesId);
+    public void seriesSaved() {
+        provider.fetch(null);
         System.err.println("Firing contentsChange()");
         fireContentsChanged(this, 0, list.size()-1);
     }
-
 }

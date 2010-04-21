@@ -25,6 +25,7 @@ public class Series extends DbObject {
      */
     public Series() {
         list = new LinkedHashMap<Integer, Data>();
+        deletedList = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
         fetch(null);
     }
@@ -109,7 +110,7 @@ public class Series extends DbObject {
 
                 System.err.println("save() id: " + row.field_id);
                 idFields.put("id", row.field_id);
-                q = db.qe.deleteItems("Team", idFields);
+                q = db.qe.deleteItems("Series", idFields);
                 st.executeUpdate(q);
             }
         } catch (Exception e) {
@@ -122,11 +123,12 @@ public class Series extends DbObject {
 
     public void delete(Integer key) {
         Data obj = (Data)list.remove(key);
-        if (obj == null) {
-            System.err.println("Null object found for key " + key);
+        try {
+            deletedList.put(key, obj);
+            System.err.println("Number of deleted items: " + deletedList.size());
+        } catch (Exception e) {
+            System.err.println("Failed add obj to deletedList: " + e.toString());
         }
-        deletedList.put(key, obj);
-        System.err.println("Number of deleted items: " + deletedList.size());
     }
 
     /** A container for a series entity.

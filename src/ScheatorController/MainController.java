@@ -22,6 +22,7 @@ public class MainController extends AbstractController {
     private static final String MAINTABLE_SAVE = "save";
 
     private static final String SAVE_TEAMS = "saveTeams";
+    private static final String SERIES_SAVED = "seriesSaved";
     
     /** Event happened that require filling the in the main table.
      *
@@ -97,4 +98,23 @@ public class MainController extends AbstractController {
         
         matches.save();
     }
+
+    /** Called when the series list has changed.
+     * 
+     */
+    public void seriesSaved() {
+        for (Object model: registeredModels) {
+            Class c = model.getClass();
+            Class parTypes[] = null;
+            try {
+                Method m = c.getMethod(SERIES_SAVED, parTypes);
+                System.err.println("Applying " + SERIES_SAVED + "()");
+                Object argList[] = null;
+                m.invoke(model, argList);
+            } catch (Throwable e) {
+                // Do nothing
+            }
+        }
+    }
+    
 }
