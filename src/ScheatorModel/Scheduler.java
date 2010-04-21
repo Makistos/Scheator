@@ -9,7 +9,7 @@ import ScheatorDb.Teams;
 import ScheatorDb.Matches;
 import java.util.*;
 
-/**
+/** Creates schedules.
  *
  * @author mep
  */
@@ -76,7 +76,7 @@ public class Scheduler {
                 t1 = (Teams.Data)l2.get(tId);
                 t2 = (Teams.Data)l1.get(tId);
             }
-            matches.addNew((round)*(tId+1), seasonId, (String)t1.get("name"), (Integer)t1.get("id"),
+            matches.addNew(((round-1)*l1.size())+(tId+1), seasonId, (String)t1.get("name"), (Integer)t1.get("id"),
                     (String)t2.get("name"), (Integer)t2.get("id"));
         }
     }

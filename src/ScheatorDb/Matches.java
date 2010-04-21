@@ -11,7 +11,7 @@ import java.util.*;
 public class Matches extends DbObject {
 
     /** Tables needed to get information for a match. */
-    private static final String[] TABLES = {"`Match`", "`Season`", "`Team` AS home", "`Team` AS away"};
+    private static final String[] TABLES = {"Match", "Season", "`Team` AS home", "`Team` AS away"};
     /** Fields that need to be retrieved from the database for a match. */
     private static final String[] FIELDS =
     {"Match.Id AS matchId",
@@ -24,13 +24,16 @@ public class Matches extends DbObject {
 
     /** Field used to order the matches. */
     private static final String[] ORDER_BY = {"match_no"};
-    
+
+    private boolean isEmpty;
+
     public Matches() {
         // Create a list with an empty Data object. The table controller
         // requires that there is at least one row in the table.
         list = new LinkedHashMap<Integer, Data>();
         Data m = new Data();
         list.put(0, m);
+        isEmpty = true;
         db = new MySqlDb();
     }
 
@@ -49,12 +52,15 @@ public class Matches extends DbObject {
 
     public void addNew(Integer match_no, Integer seasonId, String homeTeam, Integer homeTeamId,
             String awayTeam, Integer awayTeamId) {
-        Data match = new Data(null, seasonId, match_no, homeTeam, homeTeamId,
+        Data match = new Data(match_no, seasonId, match_no, homeTeam, homeTeamId,
                 awayTeam, awayTeamId);
         match.state = FieldState.NEW;
         list.put(match_no, match);
         // Remove the empty item now that we have something
-        list.remove(0);
+        if (isEmpty == true) {
+            list.remove(0);
+            isEmpty = false;
+        }
         currentId = seasonId;
     }
 
@@ -97,6 +103,9 @@ public class Matches extends DbObject {
         }
     }
 
+    /** Saves the matches that are new or changed and deletes one markes as such.
+     *
+     */
     @Override
     public void save() {
         try {

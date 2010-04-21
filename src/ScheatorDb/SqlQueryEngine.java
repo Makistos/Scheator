@@ -43,7 +43,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
             sb.append(" FROM ");
         }
         for(int i=0;i<table.length;i++) {
-            sb.append("`" + table[i] + "`");
+            sb.append(escapeStr(table[i]));
             if (i<table.length-1) {
                 sb.append(", ");
             } else {
@@ -75,7 +75,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
         StringBuilder sbValues = new StringBuilder();
         
         sb.append("INSERT INTO ");
-        sb.append("`" + table + "`");
+        sb.append(escapeStr(table));
 
         sbFields.append("(");
         sbValues.append("(");
@@ -84,7 +84,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
             Map.Entry me = (Map.Entry) itr.next();
             String fieldName = (String)me.getKey();
 
-            sbFields.append("`" + fieldName + "`");
+            sbFields.append(escapeStr(fieldName));
             sbValues.append(formatValue(me.getValue()));
             sbFields.append(",");
             sbValues.append(",");
@@ -154,7 +154,7 @@ class SqlQueryEngine implements AbstractQueryEngine {
         StringBuilder sb = new StringBuilder();
 
         sb.append("DELETE FROM ");
-        sb.append("`" + table + "`");
+        sb.append(escapeStr(table));
         sb.append(createWhereClause(idFields));
 
         System.err.println("SqlQueryEngine.deleteItems() returns " + sb.toString());
@@ -270,6 +270,25 @@ class SqlQueryEngine implements AbstractQueryEngine {
                 System.err.println("No such field: " + e.getMessage());
             }
         }
+        return retval;
+    }
+
+    /** Adds escape characters around a given string if string hasn't been
+     *  escaped already.
+     * 
+     * @param s
+     * @return
+     */
+    private String escapeStr(String s) {
+        String retval;
+
+        if (s.contains("`")) {
+            // Already escaped
+            retval = s;
+        } else {
+            retval = "`" + s + "`";
+        }
+
         return retval;
     }
 }
