@@ -46,7 +46,7 @@ public class Scheduler {
         for(int i = 1;i<list.size();i++) {
             createOneRound(i, list);
             // Move last item to first
-            list.add(0, list.get(list.size()-1));
+            list.add(1, list.get(list.size()-1));
             list.remove(list.size()-1);
         }
 
@@ -70,8 +70,13 @@ public class Scheduler {
         ArrayList l2 = new ArrayList();
         // We need to reverse the other list
         for(int j=teams.size()-1;j>=mid;j--) {
+        //for(int j=mid;j<teams.size();j++) {
             l2.add(teams.get(j));
         }
+
+        System.err.println("Round: " + round);
+        //printList(l1);
+        //printList(l2);
 
         for(int tId = 0;tId<l1.size();tId++) {
             Teams.Data t1;
@@ -84,6 +89,7 @@ public class Scheduler {
                 t1 = (Teams.Data)l2.get(tId);
                 t2 = (Teams.Data)l1.get(tId);
             }
+            System.err.println(t1.get("name") + " - " + t2.get("name"));
             matches.addNew(((round-1)*l1.size())+(tId+1), seasonId, (String)t1.get("name"), (Integer)t1.get("id"),
                     (String)t2.get("name"), (Integer)t2.get("id"));
         }
@@ -93,5 +99,12 @@ public class Scheduler {
      */
     public Matches get() {
         return matches;
+    }
+
+    private void printList(ArrayList list) {
+        for(int i = 0;i< list.size();i++) {
+            System.err.print(list.get(i));
+        }
+        System.err.println("--");
     }
 }
