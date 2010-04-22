@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.*;
-
 import ScheatorController.MainController;
 
 /** Implements the table panel in the main window.
@@ -155,7 +154,11 @@ public class MainTablePanel extends AbstractView {
 
     @Action
     public void delete() {
-        
+        int answer = JOptionPane.showConfirmDialog(this, "Delete schedule?", "Delete confirmation", JOptionPane.YES_NO_OPTION);
+        if (answer == JOptionPane.YES_OPTION) {
+            // Delete the schedule
+            // controller.deleteSchedule(mainTableModel.getSeasonId());
+        }
     }
 
     class ButtonListener implements ActionListener {

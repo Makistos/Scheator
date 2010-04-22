@@ -116,5 +116,9 @@ public class MainController extends AbstractController {
             }
         }
     }
+
+    public void deleteSchedule(Integer scheduleId) {
+
+    }
     
 }

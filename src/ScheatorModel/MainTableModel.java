@@ -10,7 +10,6 @@ import ScheatorController.*;
 import ScheatorDb.*;
 import java.util.LinkedHashMap;
 import java.util.Iterator;
-import java.awt.ItemSelectable;
 
 /** The model for the schedule table on the main window.
  *
@@ -19,9 +18,10 @@ import java.awt.ItemSelectable;
 public class MainTableModel extends AbstractTableModel {
 
     private AbstractController controller;
-    DbObject provider;
+    Matches provider;
     LinkedHashMap<Integer, Matches.Data> list;
     private String columns[] = {"", "", ""};
+    private Integer seasonId;
 
     public MainTableModel(AbstractController controller) {
         provider = new ScheatorDb.Matches();
@@ -34,7 +34,7 @@ public class MainTableModel extends AbstractTableModel {
         columns[0] = resourceMap.getString("ColRound.text");
         columns[1] = resourceMap.getString("ColHome.text");
         columns[2] = resourceMap.getString("ColAway.text");
-
+        seasonId = 0;
     }
 
     /** Returns number of rows in the table.
@@ -136,6 +136,7 @@ public class MainTableModel extends AbstractTableModel {
     public void update(int seasonId) {
         System.err.println("Updating table for season #" + seasonId);
         provider.fetch(seasonId);
+        this.seasonId = seasonId;
         fireTableDataChanged();
     }
 
@@ -144,5 +145,9 @@ public class MainTableModel extends AbstractTableModel {
      */
     public void save() {
         System.err.println("Table saved");
+    }
+
+    public Integer getSeasonId() {
+        return seasonId;
     }
 }

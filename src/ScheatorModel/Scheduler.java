@@ -14,7 +14,11 @@ import java.util.*;
  * @author mep
  */
 public class Scheduler {
+    /** The schedule list. */
     private Matches matches = new Matches();
+    /** Season id, given as parameter to constructor. Passed to the match
+     * objects so that database rows are correctly filled.
+     */
     private Integer seasonId;
 
     public Scheduler(Integer season, Teams participants) {
@@ -22,6 +26,10 @@ public class Scheduler {
         createSchedule(participants);
     }
 
+    /** Creates the entire schedule
+     *
+     * @param participants List of participants for whom to create the schedule.
+     */
     private void createSchedule(Teams participants) {
         if (participants.getSize() % 2 == 1) {
             // Number of teams uneven ->  add the bye team.
@@ -81,6 +89,8 @@ public class Scheduler {
         }
     }
 
+    /** Returns the match list (schedule)
+     */
     public Matches get() {
         return matches;
     }
