@@ -72,7 +72,9 @@ public class ScheduleView extends javax.swing.JFrame {
         javax.swing.BoxLayout layout2 = new BoxLayout(infoPanel, BoxLayout.Y_AXIS);
         javax.swing.BoxLayout layout3 = new BoxLayout(teamsButtons, BoxLayout.Y_AXIS);
         javax.swing.BoxLayout layout4 = new BoxLayout(teamsInputFields, BoxLayout.Y_AXIS);
+        javax.swing.BoxLayout layout5 = new BoxLayout(teamsPanel, BoxLayout.X_AXIS);
 
+        teamsPanel.setLayout(layout5);
         infoPanel.setLayout(layout2);
         teamsButtons.setLayout(layout3);
         teamsInputFields.setLayout(layout4);
@@ -110,6 +112,7 @@ public class ScheduleView extends javax.swing.JFrame {
         JScrollPane tableScroll = new JScrollPane(teamsTable);
 
         //teamsInputFields.add(onlySeriesTeamsCb);
+        teamsTable.setPreferredSize(new Dimension(300, 400));
         teamsInputFields.add(teamsTable);
         teamsButtons.add(addTeam);
         teamsButtons.add(delTeam);

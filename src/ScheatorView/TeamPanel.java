@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.DefaultCellEditor;
 import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
 import org.jdesktop.application.Action;
 
 /**
@@ -35,6 +36,8 @@ public class TeamPanel extends AbstractView {
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(TeamPanel.class, this);
 
         //this.setLayout(new FlowLayout(FlowLayout.));
+
+        setLayout(new FlowLayout(FlowLayout.CENTER));
 
         teamTable = new JTable(tableModel);
 

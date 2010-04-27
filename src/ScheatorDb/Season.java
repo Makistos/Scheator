@@ -4,7 +4,11 @@ import java.sql.*;
 import java.lang.reflect.Field;
 import java.util.*;
 
-/** 
+/** A representation of the season objects.
+ *
+ * The actual data is in the embedded Data class. These are saved in the
+ * LinkedHashMap list so there can be one or more seasons inside this object
+ * at once.
  *
  * @author mep
  */
@@ -22,6 +26,10 @@ public class Season extends DbObject {
         //fetch();
     }
 
+    /** Constructor that allows creating this class with one season's info.
+     *
+     * @param seriesId Series this season belongs to.
+     */
     public Season(int seriesId) {
         list = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
@@ -59,6 +67,51 @@ public class Season extends DbObject {
         } catch (Exception e) {
             System.err.println("Failed to read season data: " + e.toString());
         }
+    }
+
+    /** Saves the season to the database.
+     * 
+     */
+    @Override
+    public void save() {
+
+    }
+
+    /** Add a new season.
+     *
+     * @param seriesId Series this season belongs to.
+     * @param seasonName Name of the season.
+     * @return Id of the newly added season.
+     */
+    public Integer addNew(Integer seriesId, String seasonName) {
+        Integer id = 0;
+        Data season = new Data(null, seasonName, seriesId);
+        Boolean exists = false;
+
+        for(Iterator itr = list.values().iterator(); itr.hasNext();) {
+            Data row = (Data) itr.next();
+            if (row.field_name.equalsIgnoreCase(seasonName)) {
+                id = row.field_id;
+                exists = true;
+                break;
+            }
+        }
+
+        if (exists == false){
+            /* Season does not exist yet, let's create it */
+            list.put(null, season);
+            save();    
+            
+            for(Iterator itr = list.values().iterator(); itr.hasNext();) {
+                Data row = (Data) itr.next();
+                if (row.field_name.equalsIgnoreCase(seasonName)) {
+                    id = row.field_id;
+                    break;                
+                }
+            }
+        }
+
+        return id;
     }
 
     /** Data for the season object.

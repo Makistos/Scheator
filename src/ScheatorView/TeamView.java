@@ -36,7 +36,6 @@ public class TeamView extends javax.swing.JFrame {
 
         initComponents();
 
-        pack();
         getRootPane().setDefaultButton(okButton);
     }
 
@@ -47,7 +46,6 @@ public class TeamView extends javax.swing.JFrame {
         tableModel.addTableModelListener(new TableListener());
 
         javax.swing.BoxLayout layout = new javax.swing.BoxLayout(getContentPane(), BoxLayout.Y_AXIS);
-
 
         JPanel bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
@@ -71,8 +69,6 @@ public class TeamView extends javax.swing.JFrame {
         pack();
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        pack();
     }
 
     @Action
