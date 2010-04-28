@@ -81,14 +81,12 @@ public class MainController extends AbstractController {
         }
     }
 
-    public void scheduleEdited() {
-
-    }
-
-    public void moveMatch(Integer startPos, Integer endPos) {
-
-    }
-
+    /** Creates the season and generates the schedule
+     *
+     * @param seasonName Name of season to generate.
+     * @param series Series for which the season belongs to.
+     * @param teamList List of teams included in teh schedule.
+     */
     public void generateSchedule(String seasonName, Series.Data series, Teams teamList) {
         Integer seriesId = (Integer) series.get("id");
         Season season = new Season(seriesId);
@@ -120,7 +118,7 @@ public class MainController extends AbstractController {
         }
     }
 
-    public void deleteSchedule(Integer scheduleId) {
+    public void deleteSchedule(Integer seasonId) {
 
     }
     

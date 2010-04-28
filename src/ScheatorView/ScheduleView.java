@@ -51,8 +51,6 @@ public class ScheduleView extends javax.swing.JFrame {
 
         initComponents();
 
-        onlySeriesTeamsCb.addItemListener(new CbListener());
-
         getRootPane().setDefaultButton(genButton);
 
     }
@@ -114,12 +112,21 @@ public class ScheduleView extends javax.swing.JFrame {
 
         JScrollPane tableScroll = new JScrollPane(teamsTable);
 
+        onlySeriesTeamsCb.setToolTipText("Only show teams in selected series");
+        onlySeriesTeamsCb.setText("Only series");
+        onlySeriesTeamsCb.addItemListener(new CbListener());
+//        onlySeriesTeamsCb.setAction(actionMap.get("onlySeriesTeamsCb"));
+//        onlySeriesTeamsCb.setName("OnlySeriesTeamsCb");
+
         teamsInputFields.add(onlySeriesTeamsCb);
         teamsTable.setPreferredSize(new Dimension(300, 400));
         teamsInputFields.add(teamsTable);
         teamsButtons.add(addTeam);
         teamsButtons.add(delTeam);
 
+        teamsTable.setAlignmentY(TOP_ALIGNMENT);
+        //teamsTable.setFillsViewportHeight(true);
+        //teamsTable.setPreferredScrollableViewportSize(new Dimension(300,600));
         teamsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Participants"));
         teamsPanel.add(tableScroll);
         teamsPanel.add(teamsInputFields);

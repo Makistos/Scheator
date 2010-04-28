@@ -106,7 +106,7 @@ public class MainView extends FrameView {
         javax.swing.JMenu editMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem seriesMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenuItem teamsMenuItem = new javax.swing.JMenuItem();
-        javax.swing.JMenuItem scheduleMenuItem = new javax.swing.JMenuItem();
+        //javax.swing.JMenuItem scheduleMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -204,11 +204,11 @@ public class MainView extends FrameView {
         teamsMenuItem.setAction(actionMap.get("editTeams"));
         teamsMenuItem.setName("editTeams");
         editMenu.add(teamsMenuItem);
-
+/*
         scheduleMenuItem.setAction(actionMap.get("editSchedule"));
         scheduleMenuItem.setName("editSchedule");
         editMenu.add(scheduleMenuItem);
-        
+  */
         menuBar.add(editMenu);
 
         // ----

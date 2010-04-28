@@ -41,12 +41,17 @@ public class SeriesPanel extends AbstractView {
 
         seriesTable.setDefaultEditor(String.class, new DefaultCellEditor(new JTextField()));
 
+        JPanel contents = new JPanel();
+        contents.setLayout(new BoxLayout(contents, BoxLayout.X_AXIS));
+
         JScrollPane tableScroll = new JScrollPane(seriesTable);
-        add(tableScroll);
+        contents.add(tableScroll);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
+        contents.add(buttonPanel);
+        
         JButton addButton = new JButton();
         addButton.setAction(actionMap.get("add"));
         addButton.setText(resourceMap.getString("addButton.Action.text"));
@@ -57,7 +62,8 @@ public class SeriesPanel extends AbstractView {
         delButton.setText(resourceMap.getString("delButton.Action.text"));
         buttonPanel.add(delButton);
 
-        add(buttonPanel);
+        add(contents);
+        //add(buttonPanel);
     }
 
     public void saveSeries() {

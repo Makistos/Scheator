@@ -130,7 +130,7 @@ public class MainTablePanel extends AbstractView {
 
     @Action (enabledProperty = "tableEdited")
     public void save() {
-        controller.scheduleEdited();
+//        controller.scheduleEdited();
         setTableEdited(false);
     }
 
@@ -138,7 +138,7 @@ public class MainTablePanel extends AbstractView {
     public void moveUp() {
         Integer row = mainTable.getSelectedRow();
         if (row > 0) {
-            controller.moveMatch(row, row - 1);
+//            controller.moveMatch(row, row - 1);
             setTableEdited(true);
         }
     }
@@ -147,7 +147,7 @@ public class MainTablePanel extends AbstractView {
     public void moveDown() {
         Integer row = mainTable.getSelectedRow();
         if (row < mainTable.getRowCount()-1) {
-            controller.moveMatch(row, row + 1);
+//            controller.moveMatch(row, row + 1);
             setTableEdited(true);
         }
     }
