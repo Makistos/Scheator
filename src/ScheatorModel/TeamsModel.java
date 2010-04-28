@@ -36,6 +36,12 @@ public class TeamsModel extends AbstractTableModel {
         provider.fetch(seasonId);
     }
 
+    public void update(Integer seasonId) {
+        list.clear();
+        provider.fetch(seasonId);
+        fireTableDataChanged();
+    }
+
     /** Returns number of rows in the table.
      *
      * @return Row count.

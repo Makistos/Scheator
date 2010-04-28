@@ -13,6 +13,7 @@ import ScheatorController.*;
 import javax.swing.event.*;
 import ScheatorDb.Teams;
 import ScheatorDb.Series;
+import java.awt.event.*;
 
 /**
  *
@@ -26,7 +27,7 @@ public class ScheduleView extends javax.swing.JFrame {
     private JButton addNewSeries = new JButton("Add new");
     private javax.swing.JButton genButton;
     private javax.swing.JButton cancelButton;
-    //private javax.swing.JCheckBox onlySeriesTeamsCb = new JCheckBox();
+    private javax.swing.JCheckBox onlySeriesTeamsCb = new JCheckBox();
     private javax.swing.JTable teamsTable;
     private javax.swing.JButton addTeam = new JButton("Add team");
     private javax.swing.JButton delTeam = new JButton("Remove team");
@@ -49,6 +50,8 @@ public class ScheduleView extends javax.swing.JFrame {
         actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(ScheduleView.class, this);
 
         initComponents();
+
+        onlySeriesTeamsCb.addItemListener(new CbListener());
 
         getRootPane().setDefaultButton(genButton);
 
@@ -111,7 +114,7 @@ public class ScheduleView extends javax.swing.JFrame {
 
         JScrollPane tableScroll = new JScrollPane(teamsTable);
 
-        //teamsInputFields.add(onlySeriesTeamsCb);
+        teamsInputFields.add(onlySeriesTeamsCb);
         teamsTable.setPreferredSize(new Dimension(300, 400));
         teamsInputFields.add(teamsTable);
         teamsButtons.add(addTeam);
@@ -189,6 +192,19 @@ public class ScheduleView extends javax.swing.JFrame {
         @Override
         public void tableChanged(TableModelEvent e) {
             tableModel.saveTeams();
+        }
+    }
+
+    class CbListener implements ItemListener {
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.DESELECTED) {
+                tableModel.update(null);
+            } else {
+                Series.Data data = (Series.Data)seriesModel.getSelectedItem();
+                Integer id = (Integer) data.get("id");
+                System.err.println("Item selected: " + id);
+                tableModel.update(id);
+            }
         }
     }
 

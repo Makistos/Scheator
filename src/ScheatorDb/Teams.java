@@ -10,7 +10,7 @@ import java.util.*;
 public class Teams extends DbObject {
 
     private static final String[] TABLE_NAME = {"Team"};
-    private static final String[] FIELDS = {"ID", "Name"};
+    private static final String[] FIELDS = {"Team.ID", "Team.Name"};
     
     public Teams() {
         list = new LinkedHashMap<Integer, Data>();
@@ -18,11 +18,11 @@ public class Teams extends DbObject {
         db = new MySqlDb();
     }
 
-    public Teams(int seasonId) {
+    public Teams(int seriesId) {
         list = new LinkedHashMap<Integer, Data>();
         deletedList = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
-        fetch(seasonId);
+        fetch(seriesId);
     }
 
     /** Adds an existing team to the list
@@ -123,26 +123,41 @@ public class Teams extends DbObject {
         fetch(currentId);        
     }
 
-    /** Gets teams connected to given season (identified by seasonId).
+    /** Gets teams connected to given season (identified by seriesId).
      *
-     * @param seasonId
+     * @param seriesId
      */
-    public void fetch(Integer seasonId) {
-        this.currentId = seasonId;
+    public void fetch(Integer seriesId) {
+        String tables[] = {"","", ""};
+        this.currentId = seriesId;
         HashMap<String, Object> idFields = null;
 
-        if (seasonId != null) {
+/*        if (seasonId != null) {
+            tables[0] = TABLE_NAME[0];
+            tables[1] = "`Season` as s";
             idFields = new HashMap<String, Object>();
-            idFields.put("id", seasonId);
+            idFields.put("s.id", seasonId);
         }
-
-        String[] orderBy = {"name"};
+*/
+        String[] orderBy = {"Team.name"};
 
         list.clear();
 
         try {
             Statement st = db.con.createStatement();
-            ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, FIELDS, idFields, orderBy));
+            ResultSet rs;
+            if (seriesId == null) {
+                rs = st.executeQuery(db.qe.getItems(TABLE_NAME, FIELDS, idFields, orderBy));
+            } else {
+                // This is too compllicated for the query builder so we do the query by hand
+                String q = "SELECT DISTINCT Team.ID, Team.Name FROM `Team`, `Season`, `Series`, `Match` m "
+                        + "WHERE Season.Series = Series.id AND m.season = Season.id AND "
+                        + "(m.hometeam = Team.id OR m.awayteam = Team.id) "
+                        + "AND Series.id = " + seriesId
+                        + " ORDER BY Team.name";
+                System.err.println(q);
+                rs = st.executeQuery(q);
+            }
             while (rs.next()) {
                 Integer id = rs.getInt(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);
