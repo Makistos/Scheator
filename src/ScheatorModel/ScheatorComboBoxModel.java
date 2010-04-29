@@ -81,7 +81,32 @@ public abstract class ScheatorComboBoxModel extends AbstractListModel implements
     public Object[] getSelectedObjects() {
         return new String[] { "a", "b", "c" };
     }
-    
+
+    /** Returns the index of an item based on its' name
+     *
+     * @param name Name to search for.
+     * @return Item's index in the list.
+     */
+    public Integer getIndexByName(String name) {
+        Integer retval = 0;
+        Boolean found = false;
+        for(Iterator it=list.values().iterator(); it.hasNext();) {
+            retval++;
+            DbObject.Data data = (DbObject.Data) it.next();
+            System.err.println("Series: " + data.get("name"));
+            if (data.get("name").equals(name)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found == true) {
+            return retval;
+        } else {
+            return null;
+        }
+    }
+
     public void addItemListener(ItemListener l) {
         listenerList.add(ItemListener.class, l);
     }

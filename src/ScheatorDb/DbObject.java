@@ -37,6 +37,14 @@ public abstract class DbObject<Object, Data> {
 
     }
 
+    /** Adds a new item to the internal storage (not yet to database).
+     *
+     * @param name Name of new item
+     */
+    public void addNew(String name) {
+
+    }
+    
     /** Returns the LinkedHashMap containing the data.
      *
      * @return Data items.

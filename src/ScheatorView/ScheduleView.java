@@ -102,6 +102,9 @@ public class ScheduleView extends javax.swing.JFrame {
         seriesFields.add(seriesLbl);
         seriesFields.add(series);
         seriesFields.add(newSeries);
+        addNewSeries.setAction(actionMap.get("addNewSeries"));
+        addNewSeries.setText(resourceMap.getString("addNewSeries.text"));
+        //addNewSeries.setName("addNewSeries");
         seriesFields.add(addNewSeries);
 
         infoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Season/Tournament"));
@@ -159,23 +162,31 @@ public class ScheduleView extends javax.swing.JFrame {
      */
     @Action
     public void genButton() {
-        System.err.println("Generating schedule...");
+        String name = seasonName.toString();
+        Series.Data s = (Series.Data)series.getSelectedItem();
         //LinkedHashMap<Integer, Teams.Data> teams = new LinkedHashMap<Integer, Teams.Data>();
-        Teams teams = new Teams();
 
-        int selection[] = teamsTable.getSelectedRows();
+        if (!name.equals("") && s != null) {
+            System.err.println("Generating schedule...");
+            Teams teams = new Teams();
 
-        // Create list of selected teams
-//        teams = tableModel.getSelected(selection);
-        for(int i=0;i<selection.length;i++) {
-            teams.add((Teams.Data) tableModel.getValueAt(selection[i], 0));
-            //teams.put((Integer)team.get("id"), team);
+            int selection[] = teamsTable.getSelectedRows();
+
+            // Create list of selected teams
+    //        teams = tableModel.getSelected(selection);
+            for(int i=0;i<selection.length;i++) {
+                teams.add((Teams.Data) tableModel.getValueAt(selection[i], 0));
+                //teams.put((Integer)team.get("id"), team);
+            }
+
+            // Forward request to controller
+            controller.generateSchedule(seasonName.toString(), s, teams);
+
+            dispose();
+        } else {
+            // User must supply a name for the season
+            JOptionPane.showMessageDialog(this,"Season must have a name and a series.");
         }
-
-        // Forward request to controller
-        controller.generateSchedule(seasonName.toString(), (Series.Data)series.getSelectedItem(), teams);
-
-        dispose();
     }
 
     @Action
@@ -184,9 +195,25 @@ public class ScheduleView extends javax.swing.JFrame {
         dispose();
     }
 
+	
     @Action
     public void add() {
         tableModel.addTeam("");
+        validate();
+    }
+
+    @Action
+    public void addNewSeries() {
+        String name = newSeries.getText();
+        Integer newIdx;
+        System.err.println("Adding new series called: " + name + ".");
+        if (!name.equals("")) {
+            seriesModel.add(name);
+            newIdx = seriesModel.getIndexByName(name);
+            series.setSelectedIndex(newIdx);
+        } else {
+            JOptionPane.showMessageDialog(this,"Series must have a name.");
+        }
         validate();
     }
 

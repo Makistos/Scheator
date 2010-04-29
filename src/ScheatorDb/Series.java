@@ -30,6 +30,7 @@ public class Series extends DbObject {
         fetch(null);
     }
 
+    @Override
     public void addNew(String name) {
         Data series = new Data(name);
         series.state = FieldState.NEW;

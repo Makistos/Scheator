@@ -14,7 +14,6 @@ import ScheatorController.*;
 public class SeriesComboBoxModel extends ScheatorComboBoxModel {
 
     private AbstractController controller;
-
     public SeriesComboBoxModel(AbstractController controller) {
         provider = new ScheatorDb.Series();
         this.controller = controller;
@@ -30,6 +29,12 @@ public class SeriesComboBoxModel extends ScheatorComboBoxModel {
     public void seriesSaved() {
         provider.fetch(null);
         System.err.println("Firing contentsChange()");
+        fireContentsChanged(this, 0, list.size()-1);
+    }
+
+    public void add(String name) {
+        provider.addNew(name);
+        provider.save();
         fireContentsChanged(this, 0, list.size()-1);
     }
 }
