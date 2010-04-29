@@ -131,6 +131,7 @@ public class TeamsModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
+
     public void removeTeam(int row) {
         int i = 0;
         Integer key = null;
@@ -150,6 +151,7 @@ public class TeamsModel extends AbstractTableModel {
             //list.clear();
             list = provider.getList();
             System.err.println("removeTeam() count:" + list.size());
+            provider.save();
             fireTableDataChanged();
         }
     }

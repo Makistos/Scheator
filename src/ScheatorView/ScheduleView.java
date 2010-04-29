@@ -103,7 +103,9 @@ public class ScheduleView extends javax.swing.JFrame {
         seriesFields.add(series);
         seriesFields.add(newSeries);
         addNewSeries.setAction(actionMap.get("addNewSeries"));
-        addNewSeries.setText(resourceMap.getString("addNewSeries.text"));
+        // resourceMap.getString() doesn't work here for some reason, and I
+        // don't have time to figure this out.
+        addNewSeries.setText("Add new");
         //addNewSeries.setName("addNewSeries");
         seriesFields.add(addNewSeries);
 
@@ -124,7 +126,12 @@ public class ScheduleView extends javax.swing.JFrame {
         teamsInputFields.add(onlySeriesTeamsCb);
         teamsTable.setPreferredSize(new Dimension(300, 400));
         teamsInputFields.add(teamsTable);
+        addTeam.setAction(actionMap.get("addTeam"));
+        addTeam.setName("addTeam");
         teamsButtons.add(addTeam);
+
+        delTeam.setAction(actionMap.get("delTeam"));
+        delTeam.setName("delTeam");
         teamsButtons.add(delTeam);
 
         teamsTable.setAlignmentY(TOP_ALIGNMENT);
@@ -158,7 +165,12 @@ public class ScheduleView extends javax.swing.JFrame {
     }
 
     /** Action to generate the schedule.
-     * 
+     *
+     *  This function first checks that the user has entered a name for the
+     *  new schedule (season name) and selected a series. Both are required
+     *  before the action can be taken.
+     *
+     *  If either is missing, the user is informed to fill in the missing info.
      */
     @Action
     public void genButton() {
@@ -173,19 +185,17 @@ public class ScheduleView extends javax.swing.JFrame {
             int selection[] = teamsTable.getSelectedRows();
 
             // Create list of selected teams
-    //        teams = tableModel.getSelected(selection);
             for(int i=0;i<selection.length;i++) {
                 teams.add((Teams.Data) tableModel.getValueAt(selection[i], 0));
-                //teams.put((Integer)team.get("id"), team);
             }
 
             // Forward request to controller
-            controller.generateSchedule(seasonName.toString(), s, teams);
+            controller.generateSchedule(name, s, teams);
 
             dispose();
         } else {
             // User must supply a name for the season
-            JOptionPane.showMessageDialog(this,"Season must have a name and a series.");
+            JOptionPane.showMessageDialog(this,"Season/Tournament must have a name and a series.");
         }
     }
 
@@ -195,18 +205,29 @@ public class ScheduleView extends javax.swing.JFrame {
         dispose();
     }
 
-	
+
+    /** Called when the user clicks the Add new team button.
+     * 
+     */
     @Action
-    public void add() {
+    public void addTeam() {
         tableModel.addTeam("");
-        validate();
+        //validate();
     }
 
+    /** Called when the Add new series button is clicked.
+     *
+     *  Checks if the connected text field has any text and if not,
+     *  tells the user to fill it. Also sets the current index of the
+     *  drop-box to the newly created series.
+     *
+     *  This operation can not be undone by clicking the Cancel button.
+     */
     @Action
     public void addNewSeries() {
         String name = newSeries.getText();
         Integer newIdx;
-        System.err.println("Adding new series called: " + name + ".");
+        System.err.println("Adding a new series called: " + name + ".");
         if (!name.equals("")) {
             seriesModel.add(name);
             newIdx = seriesModel.getIndexByName(name);
@@ -217,9 +238,17 @@ public class ScheduleView extends javax.swing.JFrame {
         validate();
     }
 
+
+    /** Called when the user clicks the Delete team button.
+     *
+     *  This operation can not be undone by clicking the Cancel button.
+     * 
+     */
     @Action
-    public void delete() {
+    public void delTeam() {
+        System.err.println("Deleting team");
         tableModel.removeTeam(teamsTable.getSelectedRow());
+        tableModel.saveTeams();
     }
 
     class TableListener implements TableModelListener {
