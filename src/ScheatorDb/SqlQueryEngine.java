@@ -218,6 +218,15 @@ class SqlQueryEngine implements AbstractQueryEngine {
         return sb.toString();
     }
 
+    @Override
+    public String getSeriesTeams(Integer seriesId) {
+        return "SELECT DISTINCT Team.ID, Team.Name FROM `Team`, `Season`, `Series`, `Match` m "
+            + "WHERE Season.Series = Series.id AND m.season = Season.id AND "
+            + "(m.hometeam = Team.id OR m.awayteam = Team.id) "
+            + "AND Series.id = " + seriesId
+            + " ORDER BY Team.name";
+    }
+    
     /** Formats a value for an sql query.
      *
      * This function assumes that the field type is equivalent to the field

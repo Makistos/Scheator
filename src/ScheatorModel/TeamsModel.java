@@ -126,12 +126,26 @@ public class TeamsModel extends AbstractTableModel {
         fireTableCellUpdated(row, col);
     }
 
+    /** Adds a new team to the list.
+     *
+     *  Team is not yet saved to the database, for that the save() function
+     *  must be called.
+     *
+     * @param name Name of the new team.
+     */
     public void addTeam(String name) {
         provider.addNew(name);
         fireTableDataChanged();
     }
 
 
+    /** Removes a team from the list.
+     *
+     *  Team is not yet removed from the database. For that the save() function
+     *  must be called.
+     * 
+     * @param row Index of team to remove.
+     */
     public void removeTeam(int row) {
         int i = 0;
         Integer key = null;
@@ -151,11 +165,13 @@ public class TeamsModel extends AbstractTableModel {
             //list.clear();
             list = provider.getList();
             System.err.println("removeTeam() count:" + list.size());
-            provider.save();
             fireTableDataChanged();
         }
     }
 
+    /** Saves the team changes to the database.
+     * 
+     */
     public void saveTeams() {
         provider.save();
     }

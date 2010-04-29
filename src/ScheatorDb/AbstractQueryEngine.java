@@ -54,4 +54,7 @@ interface AbstractQueryEngine {
      * @return Query to run.
      */
     abstract String deleteItems(String entity, HashMap<String, Object> idField);
+
+    abstract String getSeriesTeams(Integer seriesId);
+    
 }

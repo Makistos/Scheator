@@ -150,13 +150,7 @@ public class Teams extends DbObject {
                 rs = st.executeQuery(db.qe.getItems(TABLE_NAME, FIELDS, idFields, orderBy));
             } else {
                 // This is too compllicated for the query builder so we do the query by hand
-                String q = "SELECT DISTINCT Team.ID, Team.Name FROM `Team`, `Season`, `Series`, `Match` m "
-                        + "WHERE Season.Series = Series.id AND m.season = Season.id AND "
-                        + "(m.hometeam = Team.id OR m.awayteam = Team.id) "
-                        + "AND Series.id = " + seriesId
-                        + " ORDER BY Team.name";
-                System.err.println(q);
-                rs = st.executeQuery(q);
+                rs = st.executeQuery(db.qe.getSeriesTeams(seriesId));
             }
             while (rs.next()) {
                 Integer id = rs.getInt(FIELDS[0]);
