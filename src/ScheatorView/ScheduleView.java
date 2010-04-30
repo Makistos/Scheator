@@ -15,7 +15,7 @@ import ScheatorDb.Teams;
 import ScheatorDb.Series;
 import java.awt.event.*;
 
-/**
+/** View to create the schedules.
  *
  * @author mep
  */
@@ -55,6 +55,9 @@ public class ScheduleView extends javax.swing.JFrame {
 
     }
 
+    /** Initialises the components on the view.
+     * 
+     */
     private void initComponents() {
         Integer id = null;
 
@@ -86,12 +89,15 @@ public class ScheduleView extends javax.swing.JFrame {
         series.setName("series");
         series.setAction(actionMap.get("seriesList"));
         series.setEditable(false);
-
+        series.addActionListener(new ComboBoxListener());
+        
         tableModel = new TeamsModel(controller, id);
         tableModel.addTableModelListener(new TableListener());
 
         teamsTable = new JTable(tableModel);
         teamsTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        teamsTable.setAlignmentY(Component.TOP_ALIGNMENT);
+        teamsTable.setAlignmentX(Component.LEFT_ALIGNMENT);
         getContentPane().setLayout(layout);
 
         // Info panel
@@ -120,21 +126,30 @@ public class ScheduleView extends javax.swing.JFrame {
         onlySeriesTeamsCb.setToolTipText("Only show teams in selected series");
         onlySeriesTeamsCb.setText("Only series");
         onlySeriesTeamsCb.addItemListener(new CbListener());
+        onlySeriesTeamsCb.setAlignmentX(Component.LEFT_ALIGNMENT);
+        onlySeriesTeamsCb.setAlignmentY(Component.TOP_ALIGNMENT);
 //        onlySeriesTeamsCb.setAction(actionMap.get("onlySeriesTeamsCb"));
 //        onlySeriesTeamsCb.setName("OnlySeriesTeamsCb");
 
         teamsInputFields.add(onlySeriesTeamsCb);
-        teamsTable.setPreferredSize(new Dimension(300, 400));
+        teamsInputFields.setAlignmentY(Component.TOP_ALIGNMENT);
+        
+        //teamsTable.setPreferredSize(new Dimension(300, 400));
         teamsInputFields.add(teamsTable);
         addTeam.setAction(actionMap.get("addTeam"));
         addTeam.setName("addTeam");
+        addTeam.setAlignmentX(Component.LEFT_ALIGNMENT);
+        addTeam.setAlignmentY(Component.TOP_ALIGNMENT);
         teamsButtons.add(addTeam);
 
         delTeam.setAction(actionMap.get("delTeam"));
         delTeam.setName("delTeam");
+        delTeam.setAlignmentX(Component.LEFT_ALIGNMENT);
+        delTeam.setAlignmentY(Component.TOP_ALIGNMENT);
         teamsButtons.add(delTeam);
-
-        teamsTable.setAlignmentY(TOP_ALIGNMENT);
+        teamsButtons.setAlignmentY(Component.TOP_ALIGNMENT);
+        
+        //teamsTable.setAlignmentY(TOP_ALIGNMENT);
         //teamsTable.setFillsViewportHeight(true);
         //teamsTable.setPreferredScrollableViewportSize(new Dimension(300,600));
         teamsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Participants"));
@@ -154,7 +169,7 @@ public class ScheduleView extends javax.swing.JFrame {
 
         bottom.add(genButton);
         bottom.add(cancelButton);
-
+        bottom.setAlignmentY(Component.BOTTOM_ALIGNMENT);
         add(infoPanel);
         add(teamsPanel);
         add(bottom);
@@ -191,7 +206,7 @@ public class ScheduleView extends javax.swing.JFrame {
 
             // Forward request to controller
             controller.generateSchedule(name, s, teams);
-
+            controller.seriesSaved();
             dispose();
         } else {
             // User must supply a name for the season
@@ -199,6 +214,9 @@ public class ScheduleView extends javax.swing.JFrame {
         }
     }
 
+    /** Called when the user clicks the Cancel button.
+     * 
+     */
     @Action
     public void cancelButton() {
         // Dispose changes
@@ -251,6 +269,9 @@ public class ScheduleView extends javax.swing.JFrame {
         tableModel.saveTeams();
     }
 
+    /** Listens to changes to the team table.
+     *
+     */
     class TableListener implements TableModelListener {
         @Override
         public void tableChanged(TableModelEvent e) {
@@ -258,6 +279,27 @@ public class ScheduleView extends javax.swing.JFrame {
         }
     }
 
+    /** Listens to changes in the series drop-down box.
+     *
+     *  If the "Only series teams" button is toggled on, then changing the
+     *  item in the drop-down box will force an update in the teams' list
+     *  to reflect the newly selected series.
+     */
+    class  ComboBoxListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JComboBox cb = (JComboBox)e.getSource();
+            if (onlySeriesTeamsCb.isSelected() == true) {
+                Series.Data data = (Series.Data)seriesModel.getSelectedItem();
+                Integer id = (Integer) data.get("id");
+                System.err.println("Item selected: " + id);
+                tableModel.update(id);
+            }
+        }
+    }
+
+    /** Listens to changes to the "Only series teams" checkbox.
+     * 
+     */
     class CbListener implements ItemListener {
         public void itemStateChanged(ItemEvent e) {
             if (e.getStateChange() == ItemEvent.DESELECTED) {

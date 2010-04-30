@@ -35,8 +35,12 @@ public class ScheatorApp extends SingleFrameApplication {
         if (root.getName().equals("mainFrame")) {
             // hack hack, this seems to be the only way to control
             // window sizes in SAF.
+
             root.setMinimumSize(new Dimension(680,560));
+        } else {
+            root.setMinimumSize(new Dimension(10,10));
         }
+
     }
 
     @Override

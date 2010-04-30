@@ -3,6 +3,7 @@ package ScheatorController;
 import java.lang.reflect.*;
 import ScheatorDb.*;
 import ScheatorModel.Scheduler;
+import java.util.*;
 
 /** Main application controller.
  *
@@ -83,6 +84,14 @@ public class MainController extends AbstractController {
 
     /** Creates the season and generates the schedule
      *
+     *  It is completely possible to rerun the schedule for the same season.
+     *  This will just add new matches to that schedule.
+     *
+     * @todo If the same schedule is recreatead, set round info such that
+     * it will be one larger than the largest value existing and invert
+     * the team order for this season. This will allow the user to create
+     * round robin series with more than one round.
+     * 
      * @param seasonName Name of season to generate.
      * @param series Series for which the season belongs to.
      * @param teamList List of teams included in teh schedule.
@@ -126,8 +135,25 @@ public class MainController extends AbstractController {
         }
     }
 
+    /** Deletes a schedule and associated matches from the database.
+     *
+     * @param seasonId ID of schedule/season to delete.
+     */
     public void deleteSchedule(Integer seasonId) {
 
+        /* Delete matches */
+        Matches matches = new Matches(seasonId);
+        matches.deleteAll();
+
+        /* Delete season */
+        Season seasons = new Season();
+        seasons.fetch(null);
+        seasons.delete(seasonId);
+
+        /* Run the sql queries to actually delete the items */
+        matches.save();
+        seasons.save();
+
+        seriesSaved();
     }
-    
 }

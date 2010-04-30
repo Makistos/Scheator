@@ -21,17 +21,19 @@ public class Season extends DbObject {
 
     public Season() {
         list = new LinkedHashMap<Integer, Data>();
+        deletedList = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
         // No data loading by default
         //fetch();
     }
 
-    /** Constructor that allows creating this class with one season's info.
+    /** Constructor that allows creating this class with one series's info.
      *
      * @param seriesId Series this season belongs to.
      */
     public Season(int seriesId) {
         list = new LinkedHashMap<Integer, Data>();
+        deletedList = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
         fetch(seriesId);
     }
@@ -46,7 +48,7 @@ public class Season extends DbObject {
     public final void fetch(Integer series) {
         this.currentId = series;
         HashMap<String, Object> idFields = null;
-        if (currentId != 0) {
+        if (currentId != null) {
             idFields = new HashMap<String, Object>();
             idFields.put("series", series);
         } 
@@ -57,11 +59,10 @@ public class Season extends DbObject {
             Statement st = db.con.createStatement();
             ResultSet rs = st.executeQuery(db.qe.getItems(TABLE_NAME, null, idFields, null));
             while (rs.next()) {
-                String id = rs.getString(FIELDS[0]);
+                Integer id = rs.getInt(FIELDS[0]);
                 String name = rs.getString(FIELDS[1]);
-                String seriesId = rs.getString(FIELDS[2]);
-                Data season = new Data(Integer.parseInt(id.trim()),
-                        name, Integer.parseInt(seriesId.trim()));
+                Integer seriesId = rs.getInt(FIELDS[2]);
+                Data season = new Data(id, name, seriesId);
                 list.put(id, season);
             }
         } catch (Exception e) {
@@ -100,6 +101,19 @@ public class Season extends DbObject {
                 }
 
             }
+            System.err.println("No of deleted items: " + deletedList.size());
+            /* Delete rows */
+            for(Iterator itr = deletedList.values().iterator(); itr.hasNext();) {
+                Data row = (Data) itr.next();
+                String q;
+                HashMap<String, Object> idFields = new HashMap<String, Object>();
+
+                System.err.println("save() id: " + row.field_id);
+                idFields.put("id", row.field_id);
+                q = db.qe.deleteItems("Season", idFields);
+                st.executeUpdate(q);
+            }
+
         } catch (Exception e) {
             System.err.println("Could not save season data.");
         }
@@ -145,6 +159,22 @@ public class Season extends DbObject {
 
         return id;
     }
+
+    /** Deletes a single item provided it exists in the list.
+     *
+     *  This will not delete the item from the database yet, a call to save()
+     *  is required for that.
+     *
+     * @param id Id of item to delete.
+     */
+     public void delete(Integer key) {
+        Data obj = (Data)list.remove(key);
+        if (obj == null) {
+            System.err.println("Null object found for key " + key);
+        }
+        deletedList.put(key, obj);
+        System.err.println("Number of deleted items: " + deletedList.size());
+     }
 
     /** Data for the season object.
      *

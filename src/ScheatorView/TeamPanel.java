@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ScheatorView;
 
 import ScheatorModel.*;
@@ -26,7 +21,6 @@ public class TeamPanel extends AbstractView {
     AbstractController controller;
 
     TeamPanel(AbstractController controller, TeamsModel tableModel) {
-        Integer id = null;
         this.tableModel = tableModel;
         tableModel.addTableModelListener(new TableListener());
         this.controller = controller;
@@ -52,11 +46,14 @@ public class TeamPanel extends AbstractView {
         JButton addButton = new JButton();
         addButton.setAction(actionMap.get("add"));
         addButton.setText(resourceMap.getString("addButton.Action.text"));
+        addButton.setAlignmentY(TOP_ALIGNMENT);
         buttonPanel.add(addButton);
 
         JButton delButton = new JButton();
         delButton.setAction(actionMap.get("delete"));
         delButton.setText(resourceMap.getString("delButton.Action.text"));
+        delButton.setAlignmentY(TOP_ALIGNMENT);
+        buttonPanel.setAlignmentY(TOP_ALIGNMENT);
         buttonPanel.add(delButton);
 
         add(buttonPanel);
@@ -88,7 +85,7 @@ public class TeamPanel extends AbstractView {
     class TableListener implements TableModelListener {
         @Override
         public void tableChanged(TableModelEvent e) {
-            tableModel.saveTeams();
+            //saveTeams();
         }
     }
 

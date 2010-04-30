@@ -157,7 +157,7 @@ public class MainTablePanel extends AbstractView {
         int answer = JOptionPane.showConfirmDialog(this, "Delete schedule?", "Delete confirmation", JOptionPane.YES_NO_OPTION);
         if (answer == JOptionPane.YES_OPTION) {
             // Delete the schedule
-            // controller.deleteSchedule(mainTableModel.getSeasonId());
+            controller.deleteSchedule(mainTableModel.getSeasonId());
         }
     }
 
@@ -186,11 +186,11 @@ public class MainTablePanel extends AbstractView {
         }
     }
 
-    @Override
+/*    @Override
     public void comboBoxEvent(ListDataEvent e) {
         String source = e.getSource().getClass().getName();
         System.err.println("comboBoxEvent source: " + source);
     }
-
+*/
 
 }

@@ -174,6 +174,11 @@ public class TeamsModel extends AbstractTableModel {
      */
     public void saveTeams() {
         provider.save();
+        provider.fetch(null);
+        //list.clear();
+        list = provider.getList();
+        System.err.println("Firing contentsChange() (list size = " + list.size() + ")");
+        fireTableDataChanged();
     }
 
 }

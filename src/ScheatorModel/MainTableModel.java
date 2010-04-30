@@ -158,4 +158,8 @@ public class MainTableModel extends AbstractTableModel {
     public Integer getSeasonId() {
         return seasonId;
     }
+
+    public void seriesSaved() {
+        update(seasonId);
+    }
 }

@@ -31,6 +31,7 @@ public class Matches extends DbObject {
         // Create a list with an empty Data object. The table controller
         // requires that there is at least one row in the table.
         list = new LinkedHashMap<Integer, Data>();
+        deletedList = new LinkedHashMap<Integer, Data>();
         Data m = new Data();
         list.put(0, m);
         isEmpty = true;
@@ -39,6 +40,7 @@ public class Matches extends DbObject {
 
     public Matches(int seasonId) {
         list = new LinkedHashMap<Integer, Data>();
+        deletedList = new LinkedHashMap<Integer, Data>();
         db = new MySqlDb();
         fetch(seasonId);
     }
@@ -137,6 +139,18 @@ public class Matches extends DbObject {
                         break;
                 }
             }
+            System.err.println("No of deleted items: " + deletedList.size());
+            /* Delete rows */
+            for(Iterator itr = deletedList.values().iterator(); itr.hasNext();) {
+                Data row = (Data) itr.next();
+                String q;
+                HashMap<String, Object> idFields = new HashMap<String, Object>();
+
+                System.err.println("save() id: " + row.field_id);
+                idFields.put("id", row.field_id);
+                q = db.qe.deleteItems("Match", idFields);
+                st.executeUpdate(q);
+            }
         } catch (Exception e) {
             System.err.println("Could not save match data.");
         }
@@ -228,6 +242,7 @@ public class Matches extends DbObject {
             if (field_round != null) {
                 retval = retval + field_round.toString();
             }
+            retval.concat("/");
             if (field_matchNumber != null) {
                 retval = retval + field_matchNumber.toString();
             }

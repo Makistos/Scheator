@@ -45,6 +45,16 @@ public abstract class DbObject<Object, Data> {
     public void addNew(String name) {
 
     }
+
+    /** Deletes every item in the list.
+     * 
+     *  This will not delete the items from the database yet, a call to save()
+     *  is required for that.
+     */
+    public void deleteAll() {
+        deletedList.putAll(list);
+        list.clear();
+    }
     
     /** Returns the LinkedHashMap containing the data.
      *
@@ -54,6 +64,10 @@ public abstract class DbObject<Object, Data> {
         return list;
     }
 
+    /** Returns number of items in the list.
+     *
+     * @return Size of list.
+     */
     public Integer getSize() {
         return list.size();
     }
