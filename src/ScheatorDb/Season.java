@@ -74,6 +74,37 @@ public class Season extends DbObject {
      */
     @Override
     public void save() {
+        try {
+            Statement st = db.con.createStatement();
+            for(Iterator itr = list.values().iterator(); itr.hasNext();) {
+                Data row = (Data) itr.next();
+                String q;
+                HashMap<String, Object> fields = new HashMap<String, Object>();
+
+                fields.put("name", row.field_name);
+                fields.put("series", row.field_series);
+                System.err.println("State = " + row.state);
+                switch (row.state) {
+                    case SAVED:
+                        break;
+                    case CHANGED:
+                        HashMap<String, Object> idFields = new HashMap<String, Object>();
+                        idFields.put("id", row.field_id);
+                        q = db.qe.updateItem("Season", fields, idFields);
+                        st.executeUpdate(q);
+                        break;
+                    case NEW:
+                        q = db.qe.addItem("Season", fields);
+                        st.executeUpdate(q);
+                        break;
+                }
+
+            }
+        } catch (Exception e) {
+            System.err.println("Could not save season data.");
+        }
+        // Reload information */
+        fetch(currentId);
 
     }
 
@@ -99,6 +130,7 @@ public class Season extends DbObject {
 
         if (exists == false){
             /* Season does not exist yet, let's create it */
+            season.state = FieldState.NEW;
             list.put(null, season);
             save();    
             

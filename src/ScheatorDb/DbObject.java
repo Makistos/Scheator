@@ -1,6 +1,7 @@
 package ScheatorDb;
 import java.lang.reflect.Field;
 import java.util.*;
+
 /** An abstract definition of a database object. 
  * 
  * @brief An object can be the contents of an entire table, part of a table or a
@@ -65,6 +66,31 @@ public abstract class DbObject<Object, Data> {
         return list.get(index);
     }
 
+    /** Returns an item based on the value in the name field.
+     *
+     *  Note that this will only return one item so if there are more
+     *  than one item with the same name, only the first found is returned.
+     *
+     * @param name Name to search for.
+     * @return Matching item, or null if no matching objects were found.
+     */
+    public DbObject.Data getItemByName(Object name) {
+        DbObject.Data retval = null;
+        Boolean found = false;
+        for(Iterator it=list.values().iterator(); it.hasNext();) {
+            retval = (DbObject.Data) it.next();
+            if (retval.get("name").equals(name)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found == true) {
+            return retval;
+        } else {
+            return null;
+        }
+    }
     /** Rudimentary debugging tool. Prints the contents of the data list
      * as specified in the Data::toString() function.
      */
@@ -73,6 +99,7 @@ public abstract class DbObject<Object, Data> {
             System.err.println((Data)itr.next());
         }
     }
+
     /** The actual data for this class.
      *
      * @brief This class holds the actual data retrieved from the database. Each

@@ -90,7 +90,7 @@ public class Scheduler {
                 t2 = (Teams.Data)l1.get(tId);
             }
             System.err.println(t1.get("name") + " - " + t2.get("name"));
-            matches.addNew(((round-1)*l1.size())+(tId+1), seasonId, (String)t1.get("name"), (Integer)t1.get("id"),
+            matches.addNew(round, ((round-1)*l1.size())+(tId+1), seasonId, (String)t1.get("name"), (Integer)t1.get("id"),
                     (String)t2.get("name"), (Integer)t2.get("id"));
         }
     }

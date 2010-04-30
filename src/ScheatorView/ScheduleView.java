@@ -174,7 +174,7 @@ public class ScheduleView extends javax.swing.JFrame {
      */
     @Action
     public void genButton() {
-        String name = seasonName.toString();
+        String name = seasonName.getText();
         Series.Data s = (Series.Data)series.getSelectedItem();
         //LinkedHashMap<Integer, Teams.Data> teams = new LinkedHashMap<Integer, Teams.Data>();
 

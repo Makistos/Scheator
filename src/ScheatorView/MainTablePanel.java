@@ -68,27 +68,27 @@ public class MainTablePanel extends AbstractView {
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
-        upButton.setText(resourceMap.getString("moveUp.text"));
-        upButton.setName("moveUp");
-        upButton.setAction(actionMap.get("moveUp"));
-        upButton.addActionListener(new ButtonListener());
+//        upButton.setText(resourceMap.getString("moveUp.text"));
+//        upButton.setName("moveUp");
+//        upButton.setAction(actionMap.get("moveUp"));
+//        upButton.addActionListener(new ButtonListener());
         
-        downButton.setText(resourceMap.getString("moveDown.text"));
-        downButton.setName("moveDown");
-        downButton.setAction(actionMap.get("moveDown"));
-        downButton.addActionListener(new ButtonListener());
+//        downButton.setText(resourceMap.getString("moveDown.text"));
+//        downButton.setName("moveDown");
+//        downButton.setAction(actionMap.get("moveDown"));
+//        downButton.addActionListener(new ButtonListener());
 
-        saveButton.setText(resourceMap.getString("save.text"));
-        saveButton.setName("save");
-        saveButton.setAction(actionMap.get("save")); // NOI18N
+//        saveButton.setText(resourceMap.getString("save.text"));
+//        saveButton.setName("save");
+//        saveButton.setAction(actionMap.get("save")); // NOI18N
 
         deleteButton.setText(resourceMap.getString("delete.text"));
         deleteButton.setName("delete");
         deleteButton.setAction(actionMap.get("delete"));
 
-        buttonPanel.add(upButton);
-        buttonPanel.add(downButton);
-        buttonPanel.add(saveButton);
+//        buttonPanel.add(upButton);
+//        buttonPanel.add(downButton);
+//        buttonPanel.add(saveButton);
         buttonPanel.add(deleteButton);
         
         add(scrollPanel);

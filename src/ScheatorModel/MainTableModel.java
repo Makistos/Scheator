@@ -20,8 +20,13 @@ public class MainTableModel extends AbstractTableModel {
     private AbstractController controller;
     Matches provider;
     LinkedHashMap<Integer, Matches.Data> list;
-    private String columns[] = {"", "", ""};
+    private String columns[] = {"", "", "", ""};
     private Integer seasonId;
+
+    private static final int COL_ROUND = 0;
+    private static final int COL_MATCH = 1;
+    private static final int COL_HOMETEAM = 2;
+    private static final int COL_AWAYTEAM = 3;
 
     public MainTableModel(AbstractController controller) {
         provider = new ScheatorDb.Matches();
@@ -31,9 +36,10 @@ public class MainTableModel extends AbstractTableModel {
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getResourceMap(MainTableModel.class);
         //javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(MainTableModel.class, this);
 
-        columns[0] = resourceMap.getString("ColRound.text");
-        columns[1] = resourceMap.getString("ColHome.text");
-        columns[2] = resourceMap.getString("ColAway.text");
+        columns[COL_ROUND] = resourceMap.getString("ColRound.text");
+        columns[COL_MATCH] = resourceMap.getString("ColMatch.text");
+        columns[COL_HOMETEAM] = resourceMap.getString("ColHome.text");
+        columns[COL_AWAYTEAM] = resourceMap.getString("ColAway.text");
         seasonId = 0;
     }
 
@@ -75,11 +81,13 @@ public class MainTableModel extends AbstractTableModel {
             System.err.println("Match: " + dbRow.get("matchNumber"));
             if (i == row) {
                 switch(column) {
-                    case 0:
+                    case COL_ROUND:
+                        return dbRow.get("round");
+                    case COL_MATCH:
                         return dbRow.get("matchNumber");
-                    case 1:
+                    case COL_HOMETEAM:
                         return dbRow.get("homeTeam");
-                    case 2:
+                    case COL_AWAYTEAM:
                         return dbRow.get("awayTeam");
                 }
                 break;

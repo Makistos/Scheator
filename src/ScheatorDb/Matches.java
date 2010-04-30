@@ -1,5 +1,4 @@
 package ScheatorDb;
-import java.util.LinkedHashMap;
 import java.sql.*;
 import java.lang.reflect.Field;
 import java.util.*;
@@ -15,6 +14,7 @@ public class Matches extends DbObject {
     /** Fields that need to be retrieved from the database for a match. */
     private static final String[] FIELDS =
     {"Match.Id AS matchId",
+     "Match.round as round",
      "Season.id AS seasonId",
      "home.name AS hometeam",
      "home.id as homeid",
@@ -23,7 +23,7 @@ public class Matches extends DbObject {
      "match_no"};
 
     /** Field used to order the matches. */
-    private static final String[] ORDER_BY = {"match_no"};
+    private static final String[] ORDER_BY = {"round", "match_no"};
 
     private boolean isEmpty;
 
@@ -50,9 +50,9 @@ public class Matches extends DbObject {
      * @param awayTeam Away team id.
      */
 
-    public void addNew(Integer match_no, Integer seasonId, String homeTeam, Integer homeTeamId,
+    public void addNew(Integer round, Integer match_no, Integer seasonId, String homeTeam, Integer homeTeamId,
             String awayTeam, Integer awayTeamId) {
-        Data match = new Data(match_no, seasonId, match_no, homeTeam, homeTeamId,
+        Data match = new Data(null, round, seasonId, match_no, homeTeam, homeTeamId,
                 awayTeam, awayTeamId);
         match.state = FieldState.NEW;
         list.put(match_no, match);
@@ -87,6 +87,7 @@ public class Matches extends DbObject {
             ResultSet rs = st.executeQuery(db.qe.getItems(TABLES, FIELDS, idFields, ORDER_BY));
             while (rs.next()) {
                 Integer matchId = rs.getInt("matchId");
+                Integer round = rs.getInt("round");
                 Integer sId = rs.getInt("seasonId");
                 String home_team = rs.getString("hometeam");
                 Integer home_id = rs.getInt("homeid");
@@ -94,7 +95,7 @@ public class Matches extends DbObject {
                 Integer away_id = rs.getInt("awayid");
                 Integer match_no = rs.getInt("match_no");
                 currentId = sId;
-                Data team = new Data(matchId, sId,
+                Data team = new Data(matchId, round, sId,
                         match_no,home_team, home_id, away_team, away_id);
                 list.put(matchId, team);
             }
@@ -115,6 +116,7 @@ public class Matches extends DbObject {
                 String q;
                 HashMap<String, Object> fields = new HashMap<String, Object>();
 
+                fields.put("round", row.field_round);
                 fields.put("match_no", row.field_matchNumber);
                 fields.put("hometeam", row.field_homeTeamId);
                 fields.put("awayteam", row.field_awayTeamId);
@@ -136,7 +138,7 @@ public class Matches extends DbObject {
                 }
             }
         } catch (Exception e) {
-
+            System.err.println("Could not save match data.");
         }
         // Reload information */
         fetch(currentId);
@@ -150,6 +152,8 @@ public class Matches extends DbObject {
         Integer field_id;
         /** Season "name", e.g. "2007-08". */
         String field_name;
+        /** Round of this match */
+        Integer field_round;
         /** Match number (order) in the schedule. */
         Integer field_matchNumber;
         /** Home team id (from the Team table). */
@@ -166,6 +170,7 @@ public class Matches extends DbObject {
         public Data() {
             field_id = null;
             field_name = null;
+            field_round = null;
             field_matchNumber = null;
             field_homeTeam = null;
             field_homeTeamId = null;
@@ -175,10 +180,11 @@ public class Matches extends DbObject {
             state = FieldState.NEW;
         }
         
-        Data(Integer id, Integer seasonId, int match, String home, Integer homeId,
+        Data(Integer id, Integer round, Integer seasonId, int match, String home, Integer homeId,
                 String away, Integer awayId) {
             field_id = id;
             field_name = "";
+            field_round = round;
             field_matchNumber = match;
             field_homeTeam = home;
             field_homeTeamId = homeId;
@@ -219,6 +225,9 @@ public class Matches extends DbObject {
         @Override
         public String toString() {
             String retval = "(";
+            if (field_round != null) {
+                retval = retval + field_round.toString();
+            }
             if (field_matchNumber != null) {
                 retval = retval + field_matchNumber.toString();
             }

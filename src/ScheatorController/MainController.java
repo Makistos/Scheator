@@ -90,8 +90,16 @@ public class MainController extends AbstractController {
     public void generateSchedule(String seasonName, Series.Data series, Teams teamList) {
         Integer seriesId = (Integer) series.get("id");
         Season season = new Season(seriesId);
-        Integer seasonId = season.addNew(seriesId, seasonName);
+        Integer seasonId;
 
+        if (season.getItemByName(seasonName) == null) {
+            // No season by this name exists for this series.
+            season.addNew(seriesId, seasonName);
+            season.save();
+        }
+        
+        Season.Data data = (Season.Data) season.getItemByName(seasonName);
+        seasonId = (Integer)data.get("id");
         Scheduler schedule = new Scheduler(seasonId, teamList);
         Matches matches = schedule.get();
 
