@@ -21,7 +21,8 @@ public class ScheatorAboutBox extends javax.swing.JDialog {
         getRootPane().setDefaultButton(closeButton);
     }
 
-    @Action public void closeAboutBox() {
+    @Action
+    public void close() {
         dispose();
     }
 
@@ -46,8 +47,8 @@ public class ScheatorAboutBox extends javax.swing.JDialog {
         setResizable(false);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(scheator.ScheatorApp.class).getContext().getActionMap(ScheatorAboutBox.class, this);
-        closeButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
-        closeButton.setName("closeButton"); // NOI18N
+        closeButton.setAction(actionMap.get("close")); // NOI18N
+        closeButton.setName("close"); // NOI18N
 
         appTitleLabel.setFont(appTitleLabel.getFont().deriveFont(appTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, appTitleLabel.getFont().getSize()+4));
         appTitleLabel.setText(resourceMap.getString("Application.title")); // NOI18N
