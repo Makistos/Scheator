@@ -78,7 +78,6 @@ public class MainTableModel extends AbstractTableModel {
         int i = 0;
         for(Iterator it=list.values().iterator(); it.hasNext();) {
             Matches.Data dbRow = (Matches.Data) it.next();
-            System.err.println("Match: " + dbRow.get("matchNumber"));
             if (i == row) {
                 switch(column) {
                     case COL_ROUND:

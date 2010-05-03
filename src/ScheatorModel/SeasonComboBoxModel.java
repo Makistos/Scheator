@@ -32,7 +32,7 @@ public class SeasonComboBoxModel extends ScheatorComboBoxModel {
         provider.fetch(seriesId);
         //list.clear();
         list = provider.getList();
-        System.err.println("Firing contentsChange() (list size = " + list.size() + ")");
+        System.err.println("Firing contentsChange() from SeasonComboBoxModel (list size = " + list.size() + ")");
         fireContentsChanged(this, 0, list.size()-1);
     }
 
