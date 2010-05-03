@@ -275,7 +275,10 @@ public class ScheduleView extends javax.swing.JFrame {
     class TableListener implements TableModelListener {
         @Override
         public void tableChanged(TableModelEvent e) {
-            tableModel.saveTeams();
+            System.err.println(e.toString() + " " + e.getSource().toString());
+            if (!e.getSource().toString().contains("TeamsModel")) {
+                tableModel.saveTeams();
+            }
         }
     }
 
@@ -306,9 +309,11 @@ public class ScheduleView extends javax.swing.JFrame {
                 tableModel.update(null);
             } else {
                 Series.Data data = (Series.Data)seriesModel.getSelectedItem();
-                Integer id = (Integer) data.get("id");
-                System.err.println("Item selected: " + id);
-                tableModel.update(id);
+                if (data != null) {
+                    Integer id = (Integer) data.get("id");
+                    System.err.println("Item selected: " + id);
+                    tableModel.update(id);
+                }
             }
         }
     }

@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ScheatorView;
 
 import scheator.*;
@@ -14,7 +9,9 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.event.*;
 
-/**
+/** Main view class.
+ *
+ *  Includes menu handling.
  *
  * @author mep
  */
@@ -33,6 +30,12 @@ public class MainView extends FrameView {
     private MainController controller;
     private boolean saveEnabled;
 
+    /** Function called when the main window is opened (i.e. when the
+     * application starts.
+     *
+     * @param app Pointer to SingleFrameApplication object.
+     * @param controller The main controller object.
+     */
     public MainView(SingleFrameApplication app, MainController controller) {
 
         super(app);
@@ -42,6 +45,11 @@ public class MainView extends FrameView {
         initComponents();
     }
 
+    /** Run when the user selecte Help -> About.
+     *
+     *  Opens the About box.
+     *
+     */
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
@@ -52,6 +60,9 @@ public class MainView extends FrameView {
         ScheatorApp.getApplication().show(aboutBox);
     }
 
+    /** Called when user selects File -> Create Schedule.
+     *
+     */
     @Action
     public void createSchedule() {
         System.err.println("create schedule");
@@ -67,7 +78,10 @@ public class MainView extends FrameView {
     public void print() {
         
     }
-    
+
+    /** Called when the user selects Edit -> Series.
+     *
+     */
     @Action
     public void editSeries() {
         if (editSeriesView == null) {
@@ -78,6 +92,9 @@ public class MainView extends FrameView {
         ScheatorApp.getApplication().show(editSeriesView);
     }
 
+    /** Called when the user selects Edit -> Teams.
+     *
+     */
     @Action
     public void editTeams() {
         if (editTeamsView == null) {
@@ -93,6 +110,9 @@ public class MainView extends FrameView {
 
     }
 
+    /** Initialises the main window.
+     * 
+     */
     private void initComponents() {
         mainPanel = new javax.swing.JPanel();
 
@@ -173,9 +193,9 @@ public class MainView extends FrameView {
         createScheduleMenuItem.setName("createSchedule");
         fileMenu.add(createScheduleMenuItem);
 
-        saveMenuItem.setAction(actionMap.get("save"));
-        saveMenuItem.setName("save");
-        fileMenu.add(saveMenuItem);
+//        saveMenuItem.setAction(actionMap.get("save"));
+//        saveMenuItem.setName("save");
+//        fileMenu.add(saveMenuItem);
 
         fileMenu.addSeparator();
         

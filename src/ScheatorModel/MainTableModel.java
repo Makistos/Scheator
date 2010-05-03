@@ -154,10 +154,17 @@ public class MainTableModel extends AbstractTableModel {
         System.err.println("Table saved");
     }
 
+    /** Returns current season id (primary key in database).
+     * 
+     * @return
+     */
     public Integer getSeasonId() {
         return seasonId;
     }
 
+    /** Called by the main controller when the series list has been changed.
+     * 
+     */
     public void seriesSaved() {
         update(seasonId);
     }

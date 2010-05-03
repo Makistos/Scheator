@@ -35,6 +35,8 @@ public class SeriesComboBoxModel extends ScheatorComboBoxModel {
     public void add(String name) {
         provider.addNew(name);
         provider.save();
+        provider.fetch(null);
+        list = provider.getList();
         fireContentsChanged(this, 0, list.size()-1);
     }
 }
